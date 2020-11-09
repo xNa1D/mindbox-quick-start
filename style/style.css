@@ -1,0 +1,50 @@
+.content {
+  display: grid;
+  grid-template-areas: 
+  "header"
+  "main"
+  "footer";
+  max-width: 1148px;
+  min-width: 320px;
+  width: calc(100% - 2*40px);
+  margin: 0 auto;
+  padding-top: 40px;
+  grid-template-rows: 1fr 4fr 1fr;
+}
+
+.header {
+  grid-area: header;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-area: main;
+  
+}
+
+.auth {
+    max-width: 320px;
+
+}
+
+.auth__buttons {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.auth__error {
+    border: 1px solid orangered;
+    border-radius: 5px;
+    padding: 5px 0;
+    text-align: center;
+    margin-top: 10px;
+    color: orangered;
+}
+
+.footer {
+  grid-area: footer;
+}
+
