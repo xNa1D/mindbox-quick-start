@@ -1,0 +1,16 @@
+@import url(../vendor/semantic.css);
+
+@import url(../block/content/content.css);
+
+@import url(../block/header/header.css);
+@import url(../block/header/__logo/header__logo.css);
+
+@import url(../block/main/main.css);
+
+@import url(../block/spec/spec.css);
+@import url(../block/spec/__link/spec__link.css);
+@import url(../block/spec/__header/spec__header.css);
+
+@import url(../block/wiget-links/wiget-links.css);
+
+@import url(../block/footer/footer.css);
