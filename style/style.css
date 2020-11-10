@@ -25,17 +25,27 @@
 }
 
 .auth {
-    max-width: 320px;
-
+    min-width: 320px;
 }
 
-.auth__buttons {
-  margin-top: 15px;
+.auth__logo {
+  width: 320px;
+  margin: 0 auto;
+  display: block;
+}
+
+.form__input-container {
+  border: 0;
+}
+
+.form__buttons {
+  border: 0;
+  margin-top: 10px;
   display: flex;
   justify-content: space-between;
 }
 
-.auth__error {
+.form__error {
     border: 1px solid orangered;
     border-radius: 5px;
     padding: 5px 0;
@@ -44,6 +54,9 @@
     color: orangered;
 }
 
+.form {
+    min-width: 320px;
+}
 .footer {
   grid-area: footer;
 }
