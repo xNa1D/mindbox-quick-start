@@ -14,18 +14,25 @@
 
 .header {
   grid-area: header;
+  display: flex;
+}
+
+.header__logo {
+  width: 180px;
+  margin: 0 auto;
+  display: block;
 }
 
 .main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   grid-area: main;
-  
 }
 
 .auth {
-    min-width: 320px;
+  min-width: 320px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .auth__logo {
@@ -36,13 +43,18 @@
 
 .form__input-container {
   border: 0;
+  padding: 0;
+  margin: 10px 0;
 }
 
 .form__buttons {
+  width: 100%;
   border: 0;
   margin-top: 10px;
   display: flex;
   justify-content: space-between;
+  flex-wrap: nowrap;
+  align-items: flex-start;
 }
 
 .form__error {
@@ -56,6 +68,24 @@
 
 .form {
     min-width: 320px;
+}
+
+.spec {
+ display: flex;
+ flex-direction: column;
+ align-items: end;
+}
+
+.spec__link {
+  margin-top: 10px !important;
+}
+
+.options__header {
+  font-size: 24px;
+}
+
+.wiget-links {
+  margin-top: 50px;
 }
 .footer {
   grid-area: footer;
