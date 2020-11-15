@@ -1,0 +1,24 @@
+{
+  "name": "mindbox-quick-start",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xNa1D/mindbox-quick-start.git"
+  },
+  "keywords": [
+    "express",
+    "nodejs",
+    "mindbox"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xNa1D/mindbox-quick-start/issues"
+  },
+  "homepage": "https://github.com/xNa1D/mindbox-quick-start#readme"
+}
