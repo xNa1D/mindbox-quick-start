@@ -1,0 +1,2 @@
+export const sign = () =>
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5pa2l0aW5AbWluZGJveC5ydSIsImlhdCI6MTYwNTY0Mjk3NywiZXhwIjoxNjA1NzI5Mzc3fQ.F_bmraq3PRsVIZMhGgnGjuemP8_JDLP5QaJS9MXnik4";
