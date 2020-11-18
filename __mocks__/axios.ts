@@ -1,6 +1,6 @@
 export default {
-  get: jest.fn().mockRejectedValue(),
-  post: jest.fn().mockRejectedValue(),
+  get: jest.fn(),
+  post: jest.fn(),
   interceptors: {
     request: {
       use: jest.fn(),
