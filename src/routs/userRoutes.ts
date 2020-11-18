@@ -3,24 +3,8 @@ import { Request, Response, NextFunction, Router } from "express";
 import User from "../models/User";
 import generateAccessToken from "../helpers/generateAccessToken";
 
-declare namespace myExpress {
-  interface Request {
-    body: {
-      email: string;
-      password: string;
-    };
-  }
-
-  interface Response {
-    body: {
-      isLoggedIn: boolean;
-      token: string;
-    };
-  }
-}
-
-const authRouter = Router();
-authRouter.post("/auth", async (req: Request, res: Response) => {
+const userRoutes = Router();
+userRoutes.post("/auth", async (req: Request, res: Response) => {
   const user = new User(req.body.email, req.body.password);
   const isLoggedSuccessfully = await user.loginStuff();
 
@@ -39,4 +23,20 @@ authRouter.post("/auth", async (req: Request, res: Response) => {
   }
 });
 
-export default authRouter;
+userRoutes.post("/reg", async (req: Request, res: Response) => {
+  const user = new User(req.body.email, req.body.password);
+  try {
+    const isUserExist = await user.isStuffExistInMindbox();
+    if (isUserExist) {
+      await user.registrStuff();
+      res.sendStatus(200);
+    } else {
+      res.sendStatus(403);
+    }
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(503);
+  }
+});
+
+export default userRoutes;
