@@ -1,16 +1,19 @@
-import express = require("express");
+import express from "express";
+import * as bodyParser from "body-parser";
+
+import * as dotenv from "dotenv";
 
 import authRouts from "./routs/authRouts";
 
 const app = express();
 
-app.use(express.json());
+dotenv.config();
+
+app.use(bodyParser.json());
 app.use(express.static("static"));
 
 app.use("/api/user", authRouts);
 
 const port = process.env.PORT || 3000;
 
-app.listen(port, () =>
-  console.log(`Server is running on http://localhos:${port}`)
-);
+export const server = app.listen(port);
