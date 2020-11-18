@@ -1,5 +1,5 @@
 import axios from "axios";
-import generator from "generate-password";
+import { generate } from "generate-password";
 
 type Status =
   | "Success"
@@ -25,7 +25,7 @@ type LoginStufffAnswer = {
 
 class User {
   email: string;
-  private password: string;
+  private password: string | undefined;
 
   constructor(email: string, password?: string) {
     this.email = email;
@@ -33,7 +33,7 @@ class User {
   }
 
   makeNewPassword() {
-    this.password = generator.generate({
+    this.password = generate({
       length: 10,
       numbers: true,
     });
