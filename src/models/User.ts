@@ -57,12 +57,16 @@ class User {
       }
     );
 
+    if (user.data.status !== "Success") {
+      throw "Mindbox internal Error";
+    }
+
     return user.data.customer.processingStatus === "Found";
   }
 
   async registrStuff(): Promise<{}> {
     return await axios.post(
-      `https://api.mindbox.ru/v3/operations/sync?endpointId=${process.env.ENDPOINT}&operation=QuickStart.Reg`,
+      `https://api.mindbox.ru/v3/operations/async?endpointId=${process.env.ENDPOINT}&operation=QuickStart.Reg`,
       {
         customer: {
           email: this.email,
@@ -96,6 +100,10 @@ class User {
         },
       }
     );
+
+    if (user.data.status !== "Success") {
+      throw "Mindbox internal Error";
+    }
 
     return user.data.customer.processingStatus === "AuthenticationSucceeded";
   }
