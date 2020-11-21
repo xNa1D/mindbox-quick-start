@@ -1,30 +1,99 @@
 import axios from "../../__mocks__/axios";
-import {
-  createBasicEcommersOperations,
-  createLoayltyOfflineOperations,
-  createLoayltyOnlineOperations,
-  createMobilePushOperations,
-} from "./Scenarios";
+import scenarios from "./Scenarios";
 
-axios.post = jest.fn().mockResolvedValue({
-  status: 200,
+describe("ecommerce", () => {
+  it("should return 200 if resolve", async () => {
+    axios.post = jest.fn().mockResolvedValue({
+      status: 200,
+    });
+
+    const res = await scenarios.ecommerce("test", 1);
+    console.log(axios.post.mock.calls[0]);
+
+    expect(res.status).toBe(200);
+  });
+
+  it("should trrow on network error", async () => {
+    axios.post = jest.fn().mockRejectedValue({
+      status: 500,
+    });
+
+    try {
+      await scenarios.ecommerce("test", 1);
+    } catch (error) {
+      expect(error).toBeTruthy();
+    }
+  });
 });
 
-describe("all scenarios", () => {
-  it("should make requst for ecom scenario", async () => {
-    await createBasicEcommersOperations("test");
-    expect(axios.post).toHaveBeenCalled();
+describe("loyaltyOfline", () => {
+  it("should return 200 if resolve", async () => {
+    axios.post = jest.fn().mockResolvedValue({
+      status: 200,
+    });
+
+    const res = await scenarios.loyaltyOfline("test", 1);
+
+    expect(res.status).toBe(200);
   });
-  it("should make requst for loyalty online scenario", async () => {
-    await createLoayltyOnlineOperations("test", 1);
-    expect(axios.post).toHaveBeenCalled();
+
+  it("should trrow on network error", async () => {
+    axios.post = jest.fn().mockRejectedValue({
+      status: 500,
+    });
+
+    try {
+      await scenarios.loyaltyOfline("test", 1);
+    } catch (error) {
+      expect(error).toBeTruthy();
+    }
   });
-  it("should make requst for loyalty offline scenario", async () => {
-    await createLoayltyOfflineOperations("test", 1);
-    expect(axios.post).toHaveBeenCalled();
+});
+
+describe("loyaltyOnline", () => {
+  it("should return 200 if resolve", async () => {
+    axios.post = jest.fn().mockResolvedValue({
+      status: 200,
+    });
+
+    const res = await scenarios.loyaltyOnline("test", 1);
+
+    expect(res.status).toBe(200);
   });
-  it("should make requst for mobile push scenario", async () => {
-    await createMobilePushOperations("test", 1);
-    expect(axios.post).toHaveBeenCalled();
+
+  it("should trrow on network error", async () => {
+    axios.post = jest.fn().mockRejectedValue({
+      status: 500,
+    });
+
+    try {
+      await scenarios.loyaltyOnline("test", 1);
+    } catch (error) {
+      expect(error).toBeTruthy();
+    }
+  });
+});
+
+describe("mobilePush", () => {
+  it("should return 200 if resolve", async () => {
+    axios.post = jest.fn().mockResolvedValue({
+      status: 200,
+    });
+
+    const res = await scenarios.mobilePush("test", 1);
+
+    expect(res.status).toBe(200);
+  });
+
+  it("should trrow on network error", async () => {
+    axios.post = jest.fn().mockRejectedValue({
+      status: 500,
+    });
+
+    try {
+      await scenarios.mobilePush("test", 1);
+    } catch (error) {
+      expect(error).toBeTruthy();
+    }
   });
 });
