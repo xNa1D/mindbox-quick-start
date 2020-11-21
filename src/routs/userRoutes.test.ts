@@ -15,7 +15,7 @@ afterAll(() => {
   server.close();
 });
 describe("/auth", () => {
-  it("should return access tocken", async () => {
+  it("should return access tocken", async (done) => {
     jest.setTimeout(30000);
     axios.post = jest.fn().mockResolvedValue({
       status: 200,
@@ -35,9 +35,10 @@ describe("/auth", () => {
     });
 
     expect(res.text).toBe(token);
+    done();
   });
 
-  it("should return 403 when login fail", async () => {
+  it("should return 403 when login fail", async (done) => {
     axios.post = jest.fn().mockResolvedValue({
       status: 200,
       data: {
@@ -54,6 +55,7 @@ describe("/auth", () => {
     });
 
     expect(res.status).toBe(403);
+    done();
   });
 });
 
