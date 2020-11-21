@@ -5,13 +5,17 @@ import generateAccessToken from "../helpers/generateAccessToken";
 
 const userRoutes = Router();
 userRoutes.post("/auth", async (req: Request, res: Response) => {
-  const user = new User(req.body.email, req.body.password);
-  const isLoggedSuccessfully = await user.loginStuff();
-
-  let accessToken: string;
   try {
+    console.log(req.body);
+
+    const user = new User(req.body.email, req.body.password);
+    const isLoggedSuccessfully = await user.loginStuff();
+
+    let accessToken: string;
+
     if (isLoggedSuccessfully) {
       accessToken = generateAccessToken(user.email);
+
       res.send(accessToken);
     } else {
       res.sendStatus(403);

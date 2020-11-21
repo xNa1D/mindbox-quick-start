@@ -4,9 +4,9 @@ import coockieParser from "cookie-parser";
 import * as dotenv from "dotenv";
 import morgan from "morgan";
 
-import userRoutes from "./routs/userRoutes";
-import scenariosRoutes from "./routs/scenariosRoutes";
-import pagesRoutes from "./routs/pagesRoutes";
+import userRoutes from "./routes/userRoutes";
+import scenariosRoutes from "./routes/scenariosRoutes";
+import pagesRoutes from "./routes/pagesRoutes";
 
 const app = express();
 
