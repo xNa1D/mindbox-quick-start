@@ -127,6 +127,20 @@ describe("/scenario", () => {
   });
 
   describe("notification sending", () => {
+    it("should send OK message when all is ok", async () => {
+      const body: ScenarioRequestBody = {
+        taskName: "ecommerce",
+        projectName: "test",
+        campaingNumber: 1,
+      };
+
+      await agent
+        .post("/api/scenario/start")
+        .set("Cookie", [`token=${token}`])
+        .send(body);
+      expect(sendMessage.ok).toHaveBeenCalled();
+    });
+
     it("should NOT send OK message when all is not ok bun token expired", async () => {
       scenarios.ecommerce = jest.fn().mockRejectedValue({
         status: 503,
@@ -144,21 +158,6 @@ describe("/scenario", () => {
         .send(body);
 
       expect(sendMessage.ok).not.toHaveBeenCalled();
-    });
-
-    it("should send OK message when all is ok", async () => {
-      const body: ScenarioRequestBody = {
-        taskName: "ecommerce",
-        projectName: "test",
-        campaingNumber: 1,
-      };
-
-      await agent
-        .post("/api/scenario/start")
-        .set("Cookie", [`token=${token}`])
-        .send(body);
-
-      expect(sendMessage.ok).toHaveBeenCalled();
     });
 
     it("should NOT send FAIL message when all is not ok bun token expired", async () => {
