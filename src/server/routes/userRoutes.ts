@@ -4,28 +4,32 @@ import User from "../models/User";
 import generateAccessToken from "../helpers/generateAccessToken";
 
 const userRoutes = Router();
-userRoutes.post("/auth", async (req: Request, res: Response) => {
-  try {
-    console.log(req.body);
 
-    const user = new User(req.body.email, req.body.password);
-    const isLoggedSuccessfully = await user.loginStuff();
+import { AuthRequestBody } from "../../index.d";
 
-    let accessToken: string;
+userRoutes.post(
+  "/auth",
+  async (req: Request<{}, {}, AuthRequestBody>, res: Response) => {
+    try {
+      const user = new User(req.body.email, req.body.password);
+      const isLoggedSuccessfully = await user.loginStuff();
 
-    if (isLoggedSuccessfully) {
-      accessToken = generateAccessToken(user.email);
+      let accessToken: string;
 
-      res.send(accessToken);
-    } else {
-      res.sendStatus(403);
+      if (isLoggedSuccessfully) {
+        accessToken = generateAccessToken(user.email);
+
+        res.send(accessToken);
+      } else {
+        res.sendStatus(403);
+      }
+    } catch (error) {
+      console.log(error);
+
+      res.sendStatus(503);
     }
-  } catch (error) {
-    console.log(error);
-
-    res.sendStatus(503);
   }
-});
+);
 
 userRoutes.post("/reg", async (req: Request, res: Response) => {
   const user = new User(req.body.email, req.body.password);
