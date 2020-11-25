@@ -9,32 +9,46 @@
 </head>
 
 <body class="content ui">
-  <section class="header">
-    <a class="header__link" href="acc.html"><img class="header__logo" src="./images/logo.png" alt="Логотип Mindbox Quick Start"></a>
-  </section>
+  <section class="header"></section>
   <main class="main">
-    <section class="options">
+    <section class="option">
+      <a class="auth__link" href="/"><img class="auth__logo" src="./images/logo.png" alt="Логотип Mindbox Quick Start"></a>
       <h1 class="options__header">Завести операции ...</h1>
-      <form class="ui form">
-        <fieldset class="form__input-container">
+      <form class="ui form" id="scenario">
+        <fieldset class="field form__input-container ">
           <label for="projectName" class="form__label">Системное имя проекта</label>
-          <input type="text" id="projectName" class="form__input" name="projectName" placeholder="nexus" required>
+          <div class="ui right labeled input">
+            <input type="text" id="projectName" class="form__input" name="projectName" placeholder="nexus" required>
+            <div class="ui basic label">
+              .mindbox.ru
+            </div>
+
+          </div>
         </fieldset>
-        <fieldset class="form__input-container">
-          <label for="endpointidlink" class="form__label">Ссылка на точку интеграции</label>
-          <input type="text" id="endpointidlink" class="form__input" name="" required>
+        <fieldset class="field form__input-container">
+          <label for="task" class="form__label">Какие операции заводить</label>
+          <select class="ui fluid dropdown" name="task" id="task">
+            <option value="ecommerce">Для стандартного интернет магазина</option>
+            <option value="loyaltyOnline">Программа лояльности на сайте</option>
+            <option value="loyaltyOfline">Программа лояльности в офлайне</option>
+            <option value="mobilePush">Для мобильного приложения и пушей</option>
+          </select>
         </fieldset>
-        <fieldset class="form__input-container">
-          <label for="campaign" class="form__label">Номер кампании (цифровой)</label>
-          <input type="text" id="campaign" class="form__input" name="campaign" placeholder="1" required>
+        <fieldset class="field  form__input-container">
+          <label for="campaign" class=" form__label">Номер кампании</label>
+          <input type="number" id="campaign" class="fluid  " name="campaign" placeholder="1" required>
+
+          <p style="padding-top:5px;color: rgb(172, 172, 172);">https://demo-new.mindbox.ru/campaigns/<b style="margin: 0 5px;" class="ui black circular label">вот эта цифра</b>/operations</p>
         </fieldset>
-        <fieldset class="form__input-container">
+        <div class="form__buttons">
           <button type="submit" class="form__button_login ui button basic green">Запустить</button>
-        </fieldset>
+        </div>
       </form>
     </section>
   </main>
   <section class="footer"></section>
+  <script src='./script/script.js'></script>
+
 </body>
 
 </html>

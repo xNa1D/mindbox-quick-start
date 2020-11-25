@@ -13,22 +13,30 @@
   </section>
   <main class="main">
     <section class="auth">
-      <a class="auth__link" href="index.html"><img class="auth__logo" src="./images/logo.png" alt="Логотип Mindbox Quick Start"></a>
-      <form class="ui form">
-        <fieldset class="form__input-container">
-          <label for="login" class="form__label">Логин</label>
-          <input type="text" class="form__login" id="login" name="login" required>
+      <a class="auth__link" href="/"><img class="auth__logo" src="./images/logo.png" alt="Логотип Mindbox Quick Start"></a>
+      <form class="ui form" id="auth__form_registration">
+        <fieldset class="field form__input-container">
+          <div class="fluid field">
+            <label for="email" class="form__label">Логин</label>
+            <div class="ui right labeled input">
+              <input type="text" class="form__login" id="email" name="email" required />
+              <div class="ui basic label">
+                @mindbox.ru
+              </div>
+            </div>
+          </div>
         </fieldset>
-        <fieldset class="form__buttons">
+        <div class="form__buttons">
           <button type="submit" class="form__button_reg ui button basic green">Регистрация</button>
-        </fieldset>
+        </div>
         <div class="form__error form__error_noreg error message">Такой логин незарегистрирован</div>
-        <div class="form__error form__error_pass error message">Пароль некорректный</div>
+        <!-- <div class="form__error form__error_pass error message">Пароль некорректный</div> -->
         <div class="form__error form__error_login error message">Введите свой логин в mindbox а не email</div>
       </form>
     </section>
   </main>
   <section class="footer"></section>
+  <script src='./script/script.js'></script>
 </body>
 
 </html>
