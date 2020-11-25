@@ -10,3 +10,8 @@ export type ScenarioRequestBody = {
   projectName: string;
   campaingNumber: number;
 };
+
+export type AuthRequestBody = {
+  email: string;
+  password: string;
+};
