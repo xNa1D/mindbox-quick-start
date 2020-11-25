@@ -14,7 +14,7 @@ dotenv.config();
 
 app.use(bodyParser.json());
 app.use(coockieParser());
-app.use(express.static("./src/static"));
+app.use(express.static("./src/client"));
 
 app.use("/", pagesRoutes);
 app.use("/api/user", userRoutes);
