@@ -4,7 +4,7 @@
     "header"
     "main"
     "footer";
-    max-width: 1148px;
+    max-width: 848px;
     min-width: 320px;
     width: calc(100% - 2*40px);
     margin: 0 auto;
