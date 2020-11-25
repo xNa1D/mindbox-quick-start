@@ -23,6 +23,7 @@ describe("isStuffExistInMindbox", () => {
 
     expect(await user.isStuffExistInMindbox()).toBeTruthy();
   });
+
   it("should return false if stuff not exist", async () => {
     axios.post = jest.fn().mockResolvedValue({
       status: 200,
@@ -35,6 +36,24 @@ describe("isStuffExistInMindbox", () => {
     });
 
     expect(await user.isStuffExistInMindbox()).not.toBeTruthy();
+  });
+
+  it("should throw error when mindbox fail", async () => {
+    axios.post = jest.fn().mockResolvedValue({
+      status: 500,
+      data: {
+        status: "InternalServerError",
+        errorMessage: "Внутрення ошибка сервера",
+        errorId: "111-111",
+        httpStatusCode: 500,
+      },
+    });
+
+    try {
+      await user.isStuffExistInMindbox();
+    } catch (error) {
+      expect(error).toBe("Mindbox internal Error");
+    }
   });
 });
 
