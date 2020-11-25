@@ -15,3 +15,5 @@ export type AuthRequestBody = {
   email: string;
   password: string;
 };
+
+export type RegistrationRequest = Pick<AuthRequestBody, "email">;
