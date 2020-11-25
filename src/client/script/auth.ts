@@ -8,7 +8,7 @@ const auth = async (event: Event, authForm: HTMLFormElement) => {
   const formData = new FormData(authForm);
 
   const requestBody: AuthRequestBody = {
-    email: (formData.get("email") as string) || "",
+    email: ((formData.get("email") + "@mindbox.ru") as string) || "",
     password: (formData.get("password") as string) || "",
   };
 
