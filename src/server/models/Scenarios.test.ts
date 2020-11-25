@@ -1,4 +1,4 @@
-import axios from "../../__mocks__/axios";
+import axios from "../../../__mocks__/axios";
 import scenarios from "./Scenarios";
 
 describe("ecommerce", () => {

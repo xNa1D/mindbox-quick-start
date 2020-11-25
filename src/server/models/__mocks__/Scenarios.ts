@@ -1,4 +1,4 @@
-import { Scenarios } from "../../index.d";
+import { Scenarios } from "../../..";
 
 const scenarios: Scenarios = {
   ecommerce: jest.fn().mockImplementation(async (projectName: string) => ""),

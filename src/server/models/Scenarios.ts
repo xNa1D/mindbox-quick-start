@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { Scenarios } from "../index.d";
+import { Scenarios } from "../..";
 
 const scenarios: Scenarios = {
   ecommerce: async (projectName: string, campaignNumber?: number) =>

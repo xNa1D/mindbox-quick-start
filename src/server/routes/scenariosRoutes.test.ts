@@ -1,5 +1,5 @@
 import supertest from "supertest";
-import axios from "../../__mocks__/axios";
+import axios from "../../../__mocks__/axios";
 import scenarios from "../models/Scenarios";
 import sendMessage from "../models/Message";
 
@@ -7,7 +7,7 @@ import generateAccessToken from "../helpers/generateAccessToken";
 
 import { server } from "../index";
 
-import { ScenarioRequestBody, Scenarios } from "../index.d";
+import { ScenarioRequestBody, Scenarios } from "../..";
 
 let agent: any;
 

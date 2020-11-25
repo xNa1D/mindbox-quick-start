@@ -12,18 +12,18 @@ pagesRoutes.get("/", (req: Request, res: Response) => {
   } catch (error) {
     console.log(error);
 
-    res.sendFile(path.resolve(__dirname, "../static/login.html"));
+    res.sendFile(path.resolve(__dirname, "../../client/login.html"));
   }
 });
 
 pagesRoutes.get("/registration", (req: Request, res: Response) => {
-  res.sendFile(path.resolve(__dirname, "../static/reg.html"));
+  res.sendFile(path.resolve(__dirname, "../../client/reg.html"));
 });
 
 pagesRoutes.get("/scenario", (req: Request, res: Response) => {
   try {
     checkToken(req.cookies.token || "");
-    res.sendFile(path.resolve(__dirname, "../static/scenario.html"));
+    res.sendFile(path.resolve(__dirname, "../../client/scenario.html"));
   } catch (error) {
     console.log(error);
     res.redirect("/");

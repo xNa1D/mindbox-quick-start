@@ -4,7 +4,7 @@ import scenarios from "../models/Scenarios";
 import checkToken from "../helpers/checkTocken";
 import sendMessage from "../models/Message";
 
-import { ScenarioRequestBody } from "../index.d";
+import { ScenarioRequestBody } from "../..";
 
 const scenariosRoutes = Router();
 scenariosRoutes.post(

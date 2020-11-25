@@ -1,4 +1,4 @@
-import axios from "../../__mocks__/axios";
+import axios from "../../../__mocks__/axios";
 import User from "./User";
 
 const user = new User("nikitin@mindbox.ru");
