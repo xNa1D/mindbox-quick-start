@@ -8,8 +8,6 @@ describe("ecommerce", () => {
     });
 
     const res = await scenarios.ecommerce("test", 1);
-    console.log(axios.post.mock.calls[0]);
-
     expect(res.status).toBe(200);
   });
 
