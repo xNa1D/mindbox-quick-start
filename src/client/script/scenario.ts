@@ -5,6 +5,10 @@ import { ScenarioRequestBody, Scenarios } from "../..";
 const scenario = async (event: Event, authForm: HTMLFormElement) => {
   event.preventDefault();
 
+  const submitBtn = authForm.querySelector("#submit");
+  const result = authForm.querySelector("#result");
+  submitBtn?.classList.add("loading");
+
   const formData = new FormData(authForm);
 
   const requestBody: ScenarioRequestBody = {
@@ -18,9 +22,10 @@ const scenario = async (event: Event, authForm: HTMLFormElement) => {
       headers: { "content-type": "application/json" },
     });
 
-    alert("Все ок");
+    submitBtn?.classList.remove("loading");
+    result?.classList.remove("form__result_hidden");
   } catch (error) {
-    alert(error);
+    submitBtn?.classList.remove("loading");
   }
 };
 
