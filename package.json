@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --coverage  --maxWorkers=1",
     "start:dev": "nodemon",
-    "start:front": "webpack"
+    "build:front": "webpack --mode=production"
   },
   "repository": {
     "type": "git",
@@ -52,6 +52,9 @@
     "@types/supertest": "^2.0.10",
     "awesome-typescript-loader": "^5.2.1",
     "babel-jest": "^26.6.3",
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-concat": "^2.6.1",
     "jest": "^26.6.3",
     "jsdom": "^16.4.0",
     "supertest": "^6.0.1",
