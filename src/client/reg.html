@@ -24,14 +24,19 @@
                 @mindbox.ru
               </div>
             </div>
+            <p class="form__description">Пароль мы сделаем автоматически и пришлем на почту</p>
           </div>
         </fieldset>
         <div class="form__buttons">
           <button type="submit" class="form__button_reg ui button basic green">Регистрация</button>
         </div>
-        <div class="form__error form__error_noreg error message">Такой логин незарегистрирован</div>
-        <!-- <div class="form__error form__error_pass error message">Пароль некорректный</div> -->
-        <div class="form__error form__error_login error message">Введите свой логин в mindbox а не email</div>
+        <div class="ui error message " id='error'>
+          <div class="header">
+            Такого пользователя нет
+          </div>
+          <p>Возможно ошибка в почте. <br> Если ошибки нет, то напиши в слаке @moskalev</p>
+        </div>
+
       </form>
     </section>
   </main>

@@ -5,6 +5,12 @@ import { RegistrationRequest } from "../../index.d";
 const registration = async (event: Event, authForm: HTMLFormElement) => {
   event.preventDefault();
 
+  const errorMessage = authForm.querySelector("#error");
+  const submitBtn = authForm.querySelector("#submit");
+
+  submitBtn?.classList.add("loading");
+  errorMessage?.classList.remove("visible");
+
   const formData = new FormData(authForm);
 
   const requestBody = {
@@ -22,7 +28,8 @@ const registration = async (event: Event, authForm: HTMLFormElement) => {
 
     window.location.replace("/");
   } catch (error) {
-    alert(error);
+    errorMessage?.classList.add("visible");
+    submitBtn?.classList.remove("loading");
   }
 };
 
