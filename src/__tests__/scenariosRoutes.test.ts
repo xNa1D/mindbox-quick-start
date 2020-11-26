@@ -1,13 +1,13 @@
 import supertest from "supertest";
-import axios from "../../../__mocks__/axios";
-import scenarios from "../models/Scenarios";
-import sendMessage from "../models/Message";
+import axios from "../../__mocks__/axios";
+import scenarios from "../server/models/Scenarios";
+import sendMessage from "../server/models/Message";
 
-import generateAccessToken from "../helpers/generateAccessToken";
+import generateAccessToken from "../server/helpers/generateAccessToken";
 
-import { server } from "../index";
+import { server } from "../server/index";
 
-import { ScenarioRequestBody, Scenarios } from "../..";
+import { ScenarioRequestBody, Scenarios } from "..";
 
 let agent: any;
 

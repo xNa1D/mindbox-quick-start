@@ -1,9 +1,9 @@
 import supertest from "supertest";
-import axios from "../../../__mocks__/axios";
+import axios from "../../__mocks__/axios";
 
-import generateAccessToken from "../helpers/generateAccessToken";
+import generateAccessToken from "../server/helpers/generateAccessToken";
 
-import { server } from "../index";
+import { server } from "../server/index";
 
 let agent: any;
 

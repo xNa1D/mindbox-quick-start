@@ -1,14 +1,14 @@
 import supertest from "supertest";
 import { getByText, queryByText, screen } from "@testing-library/dom";
 import "@testing-library/jest-dom/extend-expect";
-import generateAccessToken from "../helpers/generateAccessToken";
+import generateAccessToken from "../server/helpers/generateAccessToken";
 import { JSDOM } from "jsdom";
 
-import { server } from "../index";
+import { server } from "../server/index";
 
 let agent: supertest.SuperTest<supertest.Test>;
 
-jest.mock("../models/Scenarios");
+jest.mock("../server/models/Scenarios.ts");
 
 beforeAll(() => {
   agent = supertest(server);

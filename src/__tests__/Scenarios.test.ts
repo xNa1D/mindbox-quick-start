@@ -1,5 +1,5 @@
-import axios from "../../../__mocks__/axios";
-import scenarios from "./Scenarios";
+import axios from "../../__mocks__/axios";
+import scenarios from "../server/models/Scenarios";
 
 describe("ecommerce", () => {
   it("should return 200 if resolve", async () => {
