@@ -33,7 +33,7 @@
         </fieldset>
         <fieldset class="form__input-container">
           <div class="form__buttons">
-            <button type="submit" class="form__button_login ui button basic green">
+            <button type="submit" class="form__button_login ui button basic green" id="submit">
               Войти
             </button>
             <a href="./reg.html" class="form__button_reg ui button basic black">Регистрация</a>
@@ -44,14 +44,11 @@
             <a href="./acc.html" class="form__button_reg ui button">Временная кнопка для входа в аккаунт</a>
           </div>
         </fieldset> -->
-        <div class="form__error form__error_noreg error message">
-          Такой логин незарегистрирован
-        </div>
-        <div class="form__error form__error_pass error message">
-          Пароль некорректный
-        </div>
-        <div class="form__error form__error_login error message">
-          Введите свой логин в mindbox а не email
+        <div class="ui error message " id='error'>
+          <div class="header">
+            Неправильный логин или пароль
+          </div>
+          <p>Можешь получить новый пароль <a href="/registration">на странице регистрации</p> 
         </div>
       </form>
     </section>
