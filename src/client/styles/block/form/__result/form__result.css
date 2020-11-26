@@ -1,0 +1,7 @@
+.form__result {
+  margin-left: 10px;
+  color:#016936; 
+}
+.form__result_hidden {
+  display: none;
+}
