@@ -1,7 +1,17 @@
 import axios from "axios";
+import { Scenarios } from "../../index.d";
+
+type taskNameHuman = { [K in keyof Scenarios]: string };
+
+const taskNameHuman: taskNameHuman = {
+  ecommerce: "Стандартыне операции для интернет магазина",
+  loyaltyOfline: "Операции для ПЛ на кассе",
+  loyaltyOnline: "Операции для ПЛ на сайте",
+  mobilePush: "Стандратная интеграция мобильного приложения",
+};
 
 const sendMessage = {
-  ok: (projectName: string, taskName: string, email: string) =>
+  ok: (projectName: string, taskName: keyof Scenarios, email: string) =>
     axios.post(
       `https://api.mindbox.ru/v3/operations/async?endpointId=${process.env.ENDPOINT}&operation=QuickStart.SendSuccessStatus`,
       {
@@ -10,8 +20,14 @@ const sendMessage = {
         },
         emailMailing: {
           customParameters: {
-            Task: taskName,
+            Task: taskNameHuman[taskName],
             TaskProjectName: projectName,
+            StandardNotificationParameters: {
+              ProjectName: "",
+            },
+            ExportTask: {
+              ResultUrl: "",
+            },
           },
         },
       },
@@ -23,7 +39,7 @@ const sendMessage = {
         },
       }
     ),
-  fail: (projectName: string, taskName: string, email: string) =>
+  fail: (projectName: string, taskName: keyof Scenarios, email: string) =>
     axios.post(
       `https://api.mindbox.ru/v3/operations/async?endpointId=${process.env.ENDPOINT}&operation=QuickStart.SendErrorStatus`,
       {
@@ -32,8 +48,14 @@ const sendMessage = {
         },
         emailMailing: {
           customParameters: {
-            Task: taskName,
+            Task: taskNameHuman[taskName],
             TaskProjectName: projectName,
+            StandardNotificationParameters: {
+              ProjectName: "",
+            },
+            ExportTask: {
+              ResultUrl: "",
+            },
           },
         },
       },
