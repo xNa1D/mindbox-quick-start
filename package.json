@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest --coverage  --maxWorkers=1",
     "start:dev": "nodemon",
+    "start:prod": "ts-node ./src/server/index.ts",
     "build:front": "webpack --mode=production"
   },
   "repository": {
