@@ -10,7 +10,7 @@ describe("ok message", () => {
       },
     });
 
-    sendMessage.ok("test", "test", "test@mindbox.ru");
+    sendMessage.ok("test", "ecommerce", "test@mindbox.ru");
 
     expect(axios.post.mock.calls[0][1]).toEqual({
       customer: {
@@ -18,7 +18,13 @@ describe("ok message", () => {
       },
       emailMailing: {
         customParameters: {
-          Task: "test",
+          ExportTask: {
+            ResultUrl: "",
+          },
+          StandardNotificationParameters: {
+            ProjectName: "",
+          },
+          Task: "Стандартыне операции для интернет магазина",
           TaskProjectName: "test",
         },
       },
@@ -34,7 +40,7 @@ describe("ok message", () => {
     });
 
     try {
-      sendMessage.ok("test", "test", "test@mindbox.ru");
+      sendMessage.ok("test", "ecommerce", "test@mindbox.ru");
     } catch (error) {
       expect(error).toBeTruthy();
     }
@@ -49,7 +55,7 @@ describe("fail message", () => {
       },
     });
 
-    sendMessage.fail("test", "test", "test@mindbox.ru");
+    sendMessage.fail("test", "ecommerce", "test@mindbox.ru");
 
     expect(axios.post.mock.calls[0][1]).toEqual({
       customer: {
@@ -57,7 +63,13 @@ describe("fail message", () => {
       },
       emailMailing: {
         customParameters: {
-          Task: "test",
+          ExportTask: {
+            ResultUrl: "",
+          },
+          StandardNotificationParameters: {
+            ProjectName: "",
+          },
+          Task: "Стандартыне операции для интернет магазина",
           TaskProjectName: "test",
         },
       },
@@ -73,7 +85,7 @@ describe("fail message", () => {
     });
 
     try {
-      sendMessage.fail("test", "test", "test@mindbox.ru");
+      sendMessage.fail("test", "ecommerce", "test@mindbox.ru");
     } catch (error) {
       expect(error).toBeTruthy();
     }

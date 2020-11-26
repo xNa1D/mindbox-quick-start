@@ -11,8 +11,8 @@ import { ScenarioRequestBody, Scenarios } from "..";
 
 let agent: any;
 
-jest.mock("../models/Scenarios");
-jest.mock("../models/Message");
+jest.mock("../server/models/Scenarios");
+jest.mock("../server/models/Message");
 
 afterEach(() => {
   jest.clearAllMocks();
