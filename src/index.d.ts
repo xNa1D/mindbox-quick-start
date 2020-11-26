@@ -1,7 +1,7 @@
 export type Scenarios = {
   ecommerce: (projectName: string, campaignNumber: number) => Promise<any>;
   loyaltyOnline: (projectName: string, campaignNumber: number) => Promise<any>;
-  loyaltyOfline: (projectName: string, campaignNumber: number) => Promise<any>;
+  loyaltyOffline: (projectName: string, campaignNumber: number) => Promise<any>;
   mobilePush: (projectName: string, campaignNumber: number) => Promise<any>;
 };
 

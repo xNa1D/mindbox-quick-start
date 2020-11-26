@@ -7,7 +7,7 @@ const scenarios: Scenarios = {
     .mockImplementation(async (projectName: string, campaignNumber: number) =>
       jest.fn().mockResolvedValue("")
     ),
-  loyaltyOfline: jest
+  loyaltyOffline: jest
     .fn()
     .mockImplementation(async (projectName: string, campaignNumber: number) =>
       jest.fn().mockResolvedValue("")

@@ -36,7 +36,7 @@ export const handleScenarioChange = (event: Event) => {
       }
       formInputCampaign?.classList.remove("disabled");
       break;
-    case "loyaltyOfline":
+    case "loyaltyOffline":
       if (specificationLint) {
         specificationLint.innerHTML = `<a href="">ПЛ в кассах</a>`;
       }

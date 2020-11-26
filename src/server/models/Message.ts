@@ -5,7 +5,7 @@ type taskNameHuman = { [K in keyof Scenarios]: string };
 
 const taskNameHuman: taskNameHuman = {
   ecommerce: "Стандартыне операции для интернет магазина",
-  loyaltyOfline: "Операции для ПЛ на кассе",
+  loyaltyOffline: "Операции для ПЛ на кассе",
   loyaltyOnline: "Операции для ПЛ на сайте",
   mobilePush: "Стандратная интеграция мобильного приложения",
 };

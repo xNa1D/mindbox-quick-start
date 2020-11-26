@@ -23,7 +23,7 @@ const scenarios: Scenarios = {
         },
       }
     ),
-  loyaltyOfline: async (projectName: string, campaignNumber: number) => {
+  loyaltyOffline: async (projectName: string, campaignNumber: number) => {
     await axios.post(
       `https://api.ghostinspector.com/v1/tests/5ecbae5297e4531b3aaaf62e/execute/?apiKey=777edc3b47a553359340c186dca0a1923bc51c77`,
       { projectName, campaign: campaignNumber },

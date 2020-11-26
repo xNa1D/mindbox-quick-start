@@ -24,13 +24,13 @@ describe("ecommerce", () => {
   });
 });
 
-describe("loyaltyOfline", () => {
+describe("loyaltyOffline", () => {
   it("should return 200 if resolve", async () => {
     axios.post = jest.fn().mockResolvedValue({
       status: 200,
     });
 
-    const res = await scenarios.loyaltyOfline("test", 1);
+    const res = await scenarios.loyaltyOffline("test", 1);
 
     expect(res.status).toBe(200);
   });
@@ -41,7 +41,7 @@ describe("loyaltyOfline", () => {
     });
 
     try {
-      await scenarios.loyaltyOfline("test", 1);
+      await scenarios.loyaltyOffline("test", 1);
     } catch (error) {
       expect(error).toBeTruthy();
     }

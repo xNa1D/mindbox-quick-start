@@ -97,7 +97,7 @@ describe("/scenario", () => {
 
     it("should call  loaylty-offline  ", async () => {
       const body: ScenarioRequestBody = {
-        taskName: "loyaltyOfline",
+        taskName: "loyaltyOffline",
         projectName: "test",
         campaingNumber: 1,
       };
@@ -107,7 +107,7 @@ describe("/scenario", () => {
         .set("Cookie", [`token=${token}`])
         .send(body);
 
-      expect(scenarios.loyaltyOfline).toHaveBeenCalled();
+      expect(scenarios.loyaltyOffline).toHaveBeenCalled();
     });
 
     it("should call  mobile psuh  ", async () => {
