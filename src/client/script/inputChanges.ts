@@ -1,3 +1,5 @@
+import config from "../../config";
+
 export const handleEmailInput = (event: Event) => {
   const target = event.target as HTMLInputElement;
   if (target.value.indexOf("@") > 0) {
@@ -26,25 +28,25 @@ export const handleScenarioChange = (event: Event) => {
   switch (target.value) {
     case "ecommerce":
       if (specificationLint) {
-        specificationLint.innerHTML = `<a href="">интернет магазина</a>`;
+        specificationLint.innerHTML = `<a href="${config.docs.ecommerce}">интернет магазина</a>`;
       }
       formInputCampaign?.classList.add("disabled");
       break;
     case "loyaltyOnline":
       if (specificationLint) {
-        specificationLint.innerHTML = `<a href="">ПЛ на сайте</a>`;
+        specificationLint.innerHTML = `<a href="${config.docs.loyaltyOnline}">ПЛ на сайте</a>`;
       }
       formInputCampaign?.classList.remove("disabled");
       break;
     case "loyaltyOffline":
       if (specificationLint) {
-        specificationLint.innerHTML = `<a href="">ПЛ в кассах</a>`;
+        specificationLint.innerHTML = `<a href="${config.docs.loyaltyOffline}">ПЛ в кассах</a>`;
       }
       formInputCampaign?.classList.remove("disabled");
       break;
     case "mobilePush":
       if (specificationLint) {
-        specificationLint.innerHTML = `<a href="">Стандартная интеграция мобильного приложения</a>`;
+        specificationLint.innerHTML = `<a href="${config.docs.mobilePush}">Стандартная интеграция мобильного приложения</a>`;
       }
       formInputCampaign?.classList.remove("disabled");
       break;
