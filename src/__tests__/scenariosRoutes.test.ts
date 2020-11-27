@@ -7,7 +7,7 @@ import generateAccessToken from "../server/helpers/generateAccessToken";
 
 import { server } from "../server/index";
 
-import { ScenarioRequestBody, Scenarios } from "..";
+import { ScenarioRequestBody } from "..";
 
 let agent: any;
 
