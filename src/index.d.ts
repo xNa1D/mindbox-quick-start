@@ -5,6 +5,8 @@ export type Scenarios = {
   mobilePush: (projectName: string, campaignNumber: number) => Promise<any>;
 };
 
+export type ScenariosTpes = keyof Scenarios;
+
 export type ScenarioRequestBody = {
   taskName: keyof Scenarios;
   projectName: string;

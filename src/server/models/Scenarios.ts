@@ -1,11 +1,12 @@
 import axios from "axios";
 
-import { Scenarios } from "../..";
+import { ScenarioApiCalls } from "../..";
+import config from "../../config";
 
-const scenarios: Scenarios = {
+const scenarios: ScenarioApiCalls = {
   ecommerce: async (projectName: string, campaignNumber?: number) =>
     axios.post(
-      `https://api.ghostinspector.com/v1/tests/5ec6c26197e4531b3a9d9864/execute/?apiKey=777edc3b47a553359340c186dca0a1923bc51c77`,
+      config.scenarioApi.ecommerce,
       { projectName },
       {
         headers: {
@@ -15,7 +16,7 @@ const scenarios: Scenarios = {
     ),
   loyaltyOnline: async (projectName: string, campaignNumber: number) =>
     axios.post(
-      `https://api.ghostinspector.com/v1/tests/5ed5315fe1d6aa3e73eeac22/execute/?apiKey=777edc3b47a553359340c186dca0a1923bc51c77`,
+      config.scenarioApi.loyaltyOnline,
       { projectName, campaign: campaignNumber },
       {
         headers: {
@@ -25,7 +26,7 @@ const scenarios: Scenarios = {
     ),
   loyaltyOffline: async (projectName: string, campaignNumber: number) => {
     await axios.post(
-      `https://api.ghostinspector.com/v1/tests/5ecbae5297e4531b3aaaf62e/execute/?apiKey=777edc3b47a553359340c186dca0a1923bc51c77`,
+      config.scenarioApi.loyaltyOffline,
       { projectName, campaign: campaignNumber },
       {
         headers: {
@@ -34,7 +35,7 @@ const scenarios: Scenarios = {
       }
     );
     return axios.post(
-      `https://api.ghostinspector.com/v1/tests/5f113490d5acb022c96d5bf5/execute/?apiKey=777edc3b47a553359340c186dca0a1923bc51c77`,
+      config.scenarioApi.mobilePush,
       { projectName, campaign: campaignNumber },
       {
         headers: {

@@ -1,6 +1,6 @@
-import { Scenarios } from "../../..";
+import { ScenarioApiCalls } from "../../..";
 
-const scenarios: Scenarios = {
+const scenarios: ScenarioApiCalls = {
   ecommerce: jest.fn().mockImplementation(async (projectName: string) => ""),
   loyaltyOnline: jest
     .fn()
