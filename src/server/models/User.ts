@@ -42,7 +42,7 @@ class User {
 
   async isStuffExistInMindbox(): Promise<boolean> {
     const user = await axios.post<FindStuffAnswer>(
-      `https://api.mindbox.ru/v3/operations/sync?endpointId=${process.env.ENDPOINT}&operation=QuickStart.GetStaff`,
+      `https://api.mindbox.ru/v3/operations/sync?endpointId=${process.env.ENDPOINT_FOR_SEARCH}&operation=QuickStart.GetStaff`,
       {
         customer: {
           email: this.email,
@@ -52,7 +52,7 @@ class User {
         headers: {
           "Content-Type": "application/json; charset=utf-8",
           Accept: "application/json",
-          Authorization: `Mindbox secretKey="${process.env.SECRET_KEY}"`,
+          Authorization: `Mindbox secretKey="${process.env.SECRET_KEY_FOR_SEARCH}"`,
         },
       }
     );
