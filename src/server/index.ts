@@ -3,6 +3,7 @@ import * as bodyParser from "body-parser";
 import coockieParser from "cookie-parser";
 import * as dotenv from "dotenv";
 import morgan from "morgan";
+import path from "path";
 
 import userRoutes from "./routes/userRoutes";
 import scenariosRoutes from "./routes/scenariosRoutes";
@@ -14,7 +15,7 @@ dotenv.config();
 
 app.use(bodyParser.json());
 app.use(coockieParser());
-app.use(express.static("./src/client"));
+app.use(express.static(path.resolve(__dirname, "../client")));
 
 app.use("/", pagesRoutes);
 app.use("/api/user", userRoutes);
