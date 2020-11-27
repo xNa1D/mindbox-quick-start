@@ -4,8 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage",
-    "start:dev": "nodemon"
+    "test": "jest --coverage  --maxWorkers=1",
+    "start:dev": "nodemon",
+    "start": "node ./build/server/index.js",
+    "build:front": "webpack --mode=production && gulp",
+    "build:back": "tsc --project tsconfic.server.json",
+    "build": "npm run build:front && npm run build:back"
   },
   "repository": {
     "type": "git",
@@ -24,21 +28,45 @@
   "homepage": "https://github.com/xNa1D/mindbox-quick-start#readme",
   "dependencies": {
     "axios": "^0.21.0",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "generate-password": "^1.5.1",
+    "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.6",
+    "path-browserify": "^1.0.1",
+    "url": "^0.11.0",
+    "util": "^0.12.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-typescript": "^7.12.1",
+    "@testing-library/dom": "^7.28.0",
+    "@testing-library/jest-dom": "^5.11.6",
+    "@types/cookie-parser": "^1.4.2",
     "@types/express": "^4.17.9",
     "@types/jest": "^26.0.15",
+    "@types/jsdom": "^16.2.5",
+    "@types/jsonwebtoken": "^8.5.0",
     "@types/morgan": "^1.9.2",
     "@types/node": "^14.14.7",
+    "@types/supertest": "^2.0.10",
+    "awesome-typescript-loader": "^5.2.1",
     "babel-jest": "^26.6.3",
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-copy": "^4.0.1",
+    "gulp-image": "^6.2.1",
     "jest": "^26.6.3",
+    "jsdom": "^16.4.0",
+    "supertest": "^6.0.1",
+    "ts-loader": "^8.0.11",
     "ts-node": "^9.0.0",
-    "typescript": "^4.0.5"
+    "typescript": "^4.0.5",
+    "webpack": "^5.6.0",
+    "webpack-cli": "^4.2.0"
   }
 }
