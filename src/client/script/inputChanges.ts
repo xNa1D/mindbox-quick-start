@@ -1,3 +1,4 @@
+import { ScenarioNames } from "../..";
 import config from "../../config";
 
 export const handleEmailInput = (event: Event) => {
@@ -25,30 +26,8 @@ export const handleScenarioChange = (event: Event) => {
   const specificationLint = document.querySelector("#lintToTZ");
   const formInputCampaign = document.querySelector("#form__input_campaign");
 
-  switch (target.value) {
-    case "ecommerce":
-      if (specificationLint) {
-        specificationLint.innerHTML = `<a href="${config.docs.ecommerce}">интернет магазина</a>`;
-      }
-      formInputCampaign?.classList.add("disabled");
-      break;
-    case "loyaltyOnline":
-      if (specificationLint) {
-        specificationLint.innerHTML = `<a href="${config.docs.loyaltyOnline}">ПЛ на сайте</a>`;
-      }
-      formInputCampaign?.classList.remove("disabled");
-      break;
-    case "loyaltyOffline":
-      if (specificationLint) {
-        specificationLint.innerHTML = `<a href="${config.docs.loyaltyOffline}">ПЛ в кассах</a>`;
-      }
-      formInputCampaign?.classList.remove("disabled");
-      break;
-    case "mobilePush":
-      if (specificationLint) {
-        specificationLint.innerHTML = `<a href="${config.docs.mobilePush}">Стандартная интеграция мобильного приложения</a>`;
-      }
-      formInputCampaign?.classList.remove("disabled");
-      break;
-  }
+  specificationLint?.setAttribute(
+    "href",
+    config.docs[target.value as ScenarioNames]
+  );
 };
