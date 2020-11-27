@@ -6,8 +6,10 @@
   "scripts": {
     "test": "jest --coverage  --maxWorkers=1",
     "start:dev": "nodemon",
-    "start:prod": "node ./src/server/index.js",
-    "build:front": "webpack --mode=production"
+    "start": "node ./build/server/index.js",
+    "build:front": "webpack --mode=production && gulp",
+    "build:back": "tsc --project tsconfic.server.json",
+    "build": "npm run build:front && npm run build:back"
   },
   "repository": {
     "type": "git",
@@ -56,6 +58,8 @@
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",
     "gulp-concat": "^2.6.1",
+    "gulp-copy": "^4.0.1",
+    "gulp-image": "^6.2.1",
     "jest": "^26.6.3",
     "jsdom": "^16.4.0",
     "supertest": "^6.0.1",
