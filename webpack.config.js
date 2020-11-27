@@ -2,8 +2,6 @@ const path = require("path");
 
 module.exports = {
   entry: "./src/client/script/script.ts",
-  devtool: "inline-source-map",
-
   module: {
     rules: [
       {
@@ -18,6 +16,6 @@ module.exports = {
   },
   output: {
     filename: "script.js",
-    path: path.resolve(__dirname, "./src/client/script/"),
+    path: path.resolve(__dirname, "./build/client/script/"),
   },
 };
