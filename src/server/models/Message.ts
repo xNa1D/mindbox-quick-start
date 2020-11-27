@@ -1,7 +1,7 @@
 import axios from "axios";
-import { Scenarios } from "../../index.d";
+import { ScenarioNames } from "../../index.d";
 
-type taskNameHuman = { [K in keyof Scenarios]: string };
+type taskNameHuman = { [K in ScenarioNames]: string };
 
 const taskNameHuman: taskNameHuman = {
   ecommerce: "Стандартыне операции для интернет магазина",
@@ -11,7 +11,7 @@ const taskNameHuman: taskNameHuman = {
 };
 
 const sendMessage = {
-  ok: (projectName: string, taskName: keyof Scenarios, email: string) =>
+  ok: (projectName: string, taskName: ScenarioNames, email: string) =>
     axios.post(
       `https://api.mindbox.ru/v3/operations/async?endpointId=${process.env.ENDPOINT}&operation=QuickStart.SendSuccessStatus`,
       {
@@ -39,7 +39,7 @@ const sendMessage = {
         },
       }
     ),
-  fail: (projectName: string, taskName: keyof Scenarios, email: string) =>
+  fail: (projectName: string, taskName: ScenarioNames, email: string) =>
     axios.post(
       `https://api.mindbox.ru/v3/operations/async?endpointId=${process.env.ENDPOINT}&operation=QuickStart.SendErrorStatus`,
       {

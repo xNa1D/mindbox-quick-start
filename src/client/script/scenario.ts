@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { ScenarioRequestBody, Scenarios } from "../..";
+import { ScenarioRequestBody, ScenarioNames } from "../..";
 
 const scenario = async (event: Event, authForm: HTMLFormElement) => {
   event.preventDefault();
@@ -12,7 +12,7 @@ const scenario = async (event: Event, authForm: HTMLFormElement) => {
   const formData = new FormData(authForm);
 
   const requestBody: ScenarioRequestBody = {
-    taskName: (formData.get("task") as keyof Scenarios) || "",
+    taskName: (formData.get("task") as ScenarioNames) || "",
     projectName: (formData.get("projectName") as string) || "",
     campaingNumber: +(formData.get("campaign") || "") as number,
   };

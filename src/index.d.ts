@@ -1,14 +1,14 @@
-export type Scenarios = {
+export type ScenarioApiCalls = {
   ecommerce: (projectName: string, campaignNumber: number) => Promise<any>;
   loyaltyOnline: (projectName: string, campaignNumber: number) => Promise<any>;
   loyaltyOffline: (projectName: string, campaignNumber: number) => Promise<any>;
   mobilePush: (projectName: string, campaignNumber: number) => Promise<any>;
 };
 
-export type ScenariosTpes = keyof Scenarios;
+export type ScenarioNames = keyof ScenarioApiCalls;
 
 export type ScenarioRequestBody = {
-  taskName: keyof Scenarios;
+  taskName: keyof ScenarioApiCalls;
   projectName: string;
   campaingNumber: number;
 };
