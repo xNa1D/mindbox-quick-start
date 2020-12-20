@@ -1,6 +1,11 @@
 import { ScenarioNames } from "../..";
 import config from "../../config";
 
+const clearButtonDisabledAttribute = () => {
+  const submitBtn = document.querySelector("#submit");
+  submitBtn?.removeAttribute("disabled");
+};
+
 export const handleEmailInput = (event: Event) => {
   const target = event.target as HTMLInputElement;
   if (target.value.indexOf("@") > 0) {
@@ -19,6 +24,8 @@ export const handleProjectNameInput = (event: Event) => {
   if (target.value.indexOf(".") >= 0) {
     target.value = target.value.split(".")[0];
   }
+
+  clearButtonDisabledAttribute();
 };
 
 export const handleScenarioChange = (event: Event) => {
@@ -30,4 +37,9 @@ export const handleScenarioChange = (event: Event) => {
     "href",
     config.docs[target.value as ScenarioNames]
   );
+  clearButtonDisabledAttribute();
+};
+
+export const handleCampaignNumberChange = () => {
+  clearButtonDisabledAttribute();
 };
