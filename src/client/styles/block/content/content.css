@@ -1,0 +1,12 @@
+.content {
+    display: grid;
+    grid-template-areas: 
+    "header"
+    "main"
+    "footer";
+    max-width: 848px;
+    min-width: 320px;
+    margin: 0 auto;
+    padding-top: 40px;
+    grid-template-rows: 1fr 4fr 1fr;
+  }

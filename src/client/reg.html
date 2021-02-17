@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mindbox Quick Start - Регистрация</title>
+  <link rel="stylesheet" href="./styles/style.css">
+</head>
+
+<body class="content ui">
+  <section class="header">
+  </section>
+  <main class="main">
+    <section class="auth">
+      <a class="auth__link" href="/"><img class="auth__logo" src="./images/logo.png" alt="Логотип Mindbox Quick Start"></a>
+      <form class="ui form" id="auth__form_registration">
+        <fieldset class="field form__input-container">
+          <div class="fluid field">
+            <label for="email" class="form__label">Логин</label>
+            <div class="ui right labeled input">
+              <input type="text" class="form__login" id="email" name="email" required />
+              <div class="ui basic label">
+                @mindbox.ru
+              </div>
+            </div>
+            <p class="form__description">Пароль мы сделаем автоматически и пришлем на почту</p>
+          </div>
+        </fieldset>
+        <div class="form__buttons">
+          <button type="submit" class="form__button_reg ui button basic green">Регистрация</button>
+        </div>
+        <div class="ui error message " id='error'>
+          <div class="header">
+            Такого пользователя нет
+          </div>
+          <p>Возможно ошибка в почте. <br> Если ошибки нет, то напиши в слаке @moskalev</p>
+        </div>
+
+        <div class="ui success message" id="success">
+          <div class="header">
+            Зарегистрирован!
+          </div>
+          <p>Пароль мы отправили на почту. <a href="https://mail.google.com/" target="_blank">Проверить в gmail</a></p>
+          <p>Через <span id='timer'>5</span>с откроется страница логина. <br> <a href="/">Но можно перейти прямо сейчас</a> </p>
+        </div>
+      </form>
+    </section>
+  </main>
+  <section class="footer"></section>
+  <script src='./script/script.js'></script>
+</body>
+
+</html>
