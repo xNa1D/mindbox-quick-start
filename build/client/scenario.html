@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mindbox Quick Start - Личный кабинет</title>
+  <link rel="stylesheet" href="./styles/style.css">
+</head>
+
+<body class="content ui">
+  <section class="header"></section>
+  <main class="main">
+    <section class="option">
+      <a class="auth__link" href="/"><img class="auth__logo" src="./images/logo.png" alt="Логотип Mindbox Quick Start"></a>
+      <h1 class="options__header">Завести операции ...</h1>
+      <div class="ui stackable grid">
+        <div class="ten wide column">
+          <form class="ui form" id="scenario">
+            <fieldset class="field form__input-container ">
+              <label for="projectName" class="form__label">Системное имя проекта</label>
+              <div class="ui right labeled input">
+                <input type="text" id="projectName" class="form__input" name="projectName" placeholder="nexus" required>
+                <div class="ui basic label">
+                  .mindbox.ru
+                </div>
+
+              </div>
+              <p class="form__description">Можно вставить ссылку прямо вот так: <i>https://demo-new.mindbox.ru/</i>, она подрежится сама</p>
+            </fieldset>
+            <fieldset class="field form__input-container">
+              <label for="task" class="form__label">Какие операции заводить</label>
+              <select class="ui fluid dropdown" name="task" id="task">
+              <option value="" selected disabled hidden>Выберите сценарий</option>
+              <option value="ecommerce">Для стандартного интернет магазина</option>
+              <option value="loyaltyOnline">Программа лояльности на сайте</option>
+              <option value="loyaltyOffline">Программа лояльности в офлайне</option>
+              <option value="mobilePush">Для мобильного приложения и пушей</option>
+            </select>
+            </fieldset>
+            <fieldset class="field  form__input-container" id="form__input_campaign">
+              <label for="campaign" class=" form__label">Номер кампании</label>
+              <input type="number" id="campaign" class="fluid  " name="campaign" placeholder="1">
+
+              <p class="form__description">https://demo-new.mindbox.ru/campaigns/<b style="margin: 0 5px;" class="ui black circular label">вот эта цифра</b>/operations</p>
+            </fieldset>
+            <div class="form__buttons">
+              <button type="submit" class="form__button_login ui button basic green" id="submit">
+                <i class="play icon"></i>
+                Запустить
+              </button>
+              <span class="form__result form__result_hidden" id="result"><i class="check circle outline icon"></i> Автозаведение запущено</span>
+            </div>
+          </form>
+        </div>
+        <div class="six wide column">
+          <div class="ui message">
+            <!-- <p>Заготовка под ТЗ <span id="lintToTZ"> </span></p>
+
+
+            <div class="ui divider"></div> -->
+            <div class="header">
+              Что дальше?
+            </div>
+            <ul class="list">
+              <li>Сейчас мы запустили сценарий автозаведения. На проекте создадутся точки интеграции, операции, ШД и прочее. </li>
+              <li>Минут через 10-15 должно прийти письмо с результатом</li>
+              <li>Пока оно заводится, сделай копию гугльдока и замени в нем {{client}} на название проекта</li>
+              <li>После получения письма обязательно проверь все операции по ТЗ. Если чего-то нет, то напиши про это в слаке <a href="https://mindbox.slack.com/archives/C01G12FQQ0Z">#mindbox-quick-start</a></li>
+            </ul>
+          </div>
+          <a class="ui button green fluid" id="lintToTZ" target="_blank"><i class="file alternate outline icon"></i>Заготовка под ТЗ </a>
+
+        </div>
+      </div>
+      </div>
+
+
+    </section>
+  </main>
+  <section class="footer"></section>
+  <script src='./script/script.js'></script>
+
+</body>
+
+</html>
