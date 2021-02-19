@@ -41,7 +41,7 @@ jobs:
         port: ${{ secrets.SSH_PORT }}
         script: |
           cd /mindbox-quick-start
-          git pull origin master
+          git pull origin main
           npm install --production
           npm run build
           pm2 restart index
