@@ -8,6 +8,7 @@ const scenario = async (event: Event, authForm: HTMLFormElement) => {
   const submitBtn = authForm.querySelector("#submit");
   const result = authForm.querySelector("#result");
   submitBtn?.classList.add("loading");
+  submitBtn?.setAttribute("disabled", "disabled");
 
   const formData = new FormData(authForm);
 

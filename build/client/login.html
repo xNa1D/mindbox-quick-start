@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mindbox Quick Start - Авторизация</title>
+  <link rel="stylesheet" href="./styles/style.css" />
+</head>
+
+<body class="content ui">
+  <section class="header"></section>
+  <main class="main">
+    <section class="auth">
+      <a class="auth__link" href="/"><img class="auth__logo" src="./images/logo.png" alt="Логотип Mindbox Quick Start" /></a>
+      <form class="ui form" id="auth__form">
+        <fieldset class="field form__input-container">
+          <div class="fluid field">
+            <label for="email" class="form__label">Логин</label>
+            <div class="ui right labeled input">
+              <input type="text" class="form__login" id="email" name="email" required />
+              <div class="ui basic label">
+                @mindbox.ru
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <fieldset class="field form__input-container">
+          <div class="fluid field">
+            <label for="password" class="form__label form__label_pass">Пароль</label>
+            <input type="password" class="form__password" id="password" name="password" required />
+          </div>
+        </fieldset>
+        <fieldset class="form__input-container">
+          <div class="form__buttons">
+            <button type="submit" class="form__button_login ui button basic green" id="submit">
+              Войти
+            </button>
+            <a href="./reg.html" class="form__button_reg ui button basic black">Регистрация</a>
+          </div>
+        </fieldset>
+        <!-- <fieldset class="form__input-container">
+          <div class="form__buttons">
+            <a href="./acc.html" class="form__button_reg ui button">Временная кнопка для входа в аккаунт</a>
+          </div>
+        </fieldset> -->
+        <div class="ui error message " id='error'>
+          <div class="header">
+            Неправильный логин или пароль
+          </div>
+          <p>Можешь получить новый пароль <a href="/registration">на странице регистрации</p> 
+        </div>
+      </form>
+    </section>
+  </main>
+  <section class="footer"></section>
+  <script src="./script/script.js"></script>
+</body>
+
+</html>
