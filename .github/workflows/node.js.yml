@@ -44,4 +44,4 @@ jobs:
           git pull origin master
           npm install --production
           npm run build
-          pm2 restart node-app
+          pm2 restart index
