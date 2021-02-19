@@ -1,1 +1,3 @@
 # mindbox-quick-start
+
+ privet
