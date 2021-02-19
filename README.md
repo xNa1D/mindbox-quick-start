@@ -1,3 +1,3 @@
 # mindbox-quick-start
 
- privet!
+ privet! mi u mami programisty
