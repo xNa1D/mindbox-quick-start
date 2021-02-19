@@ -24,7 +24,7 @@ describe("ok message", () => {
           StandardNotificationParameters: {
             ProjectName: "",
           },
-          Task: "Стандартыне операции для интернет магазина",
+          Task: "Стандартные операции для интернет магазина",
           TaskProjectName: "test",
         },
       },
@@ -69,7 +69,7 @@ describe("fail message", () => {
           StandardNotificationParameters: {
             ProjectName: "",
           },
-          Task: "Стандартыне операции для интернет магазина",
+          Task: "Стандартные операции для интернет магазина",
           TaskProjectName: "test",
         },
       },

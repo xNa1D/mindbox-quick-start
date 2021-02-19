@@ -4,7 +4,7 @@ import { ScenarioNames } from "../../index.d";
 type taskNameHuman = { [K in ScenarioNames]: string };
 
 const taskNameHuman: taskNameHuman = {
-  ecommerce: "Стандартыне операции для интернет магазина",
+  ecommerce: "Стандартные операции для интернет магазина",
   loyaltyOffline: "Операции для ПЛ на кассе",
   loyaltyOnline: "Операции для ПЛ на сайте",
   mobilePush: "Стандратная интеграция мобильного приложения",
