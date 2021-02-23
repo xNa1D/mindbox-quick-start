@@ -2,7 +2,7 @@ const gulp = require("gulp");
 const concat = require("gulp-concat");
 const cleanCSS = require("gulp-clean-css");
 const image = require("gulp-image");
-const clean = require("gulp-clean");
+// const clean = require("gulp-clean");
 
 gulp.task("default", function () {});
 
@@ -18,10 +18,7 @@ gulp.task("html", function (done) {
 });
 
 gulp.task("image", function (done) {
-  gulp
-    .src("./src/client/images/*")
-    .pipe(image())
-    .pipe(gulp.dest("./build/client/images"));
+  gulp.src("./src/client/images/*").pipe(gulp.dest("./build/client/images"));
   done();
 });
 
