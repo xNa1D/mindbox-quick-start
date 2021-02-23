@@ -2,6 +2,11 @@ const path = require("path");
 
 module.exports = {
   entry: "./src/client/script/script.ts",
+  mode: "production",
+  output: {
+    path: path.resolve(__dirname, "./build/client/script/"),
+    filename: "script.js",
+  },
   module: {
     rules: [
       {
@@ -13,9 +18,5 @@ module.exports = {
   },
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
-  },
-  output: {
-    filename: "script.js",
-    path: path.resolve(__dirname, "./build/client/script/"),
   },
 };

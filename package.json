@@ -7,9 +7,10 @@
     "test": "jest --coverage  --maxWorkers=1",
     "start:dev": "nodemon",
     "start": "node ./build/server/index.js",
-    "build:front": "webpack --mode=production && gulp",
+    "build:front": "webpack --config ./webpack.config.js && gulp",
     "build:back": "tsc --project tsconfic.server.json",
-    "build": "npm run build:front && npm run build:back"
+    "build": "npm run build:front && npm run build:back",
+    "webpack": "webpack --config ./webpack.config.js"
   },
   "repository": {
     "type": "git",
