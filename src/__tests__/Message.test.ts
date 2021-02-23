@@ -1,5 +1,5 @@
 import sendMessage from "../server/models/Message";
-import axios from "../../__mocks__/axios";
+import axios from "../__mocks__/axios";
 
 describe("ok message", () => {
   it("should call request with right arguments", () => {
