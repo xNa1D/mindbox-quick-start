@@ -6,11 +6,11 @@ const clean = require("gulp-clean");
 
 gulp.task("default", function () {});
 
-gulp.task("clean", function () {
-  return gulp
-    .src(`${path.input}/styles/style.css`)
-    .pipe(clean({ read: false }));
-});
+// gulp.task("clean", function () {
+//   return gulp
+//     .src(`${path.input}/styles/style.css`)
+//     .pipe(clean({ read: false, allowEmpty: true }));
+// });
 
 gulp.task("html", function (done) {
   gulp.src("./src/client/*.html").pipe(gulp.dest("./build/client/"));
@@ -49,6 +49,6 @@ gulp.task("css", function () {
     .pipe(gulp.dest("./build/client/styles"));
 });
 
-gulp.task("default", gulp.series("clean", "css", "html", "image", "fonts"));
+gulp.task("default", gulp.series("css", "html", "image", "fonts"));
 
 // watch("./src/client/**/*", gulp.task("default", gulp.series("css", "html")));
