@@ -115,7 +115,8 @@ dist
 
 # End of https://www.toptal.com/developers/gitignore/api/node
 
-build
 
+coverage/
 
-.coverage
+build/
+src/client/script/script.js
