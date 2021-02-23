@@ -1,5 +1,5 @@
 import supertest from "supertest";
-import axios from "../../__mocks__/axios";
+import axios from "../__mocks__/axios";
 import scenarios from "../server/models/Scenarios";
 import sendMessage from "../server/models/Message";
 
