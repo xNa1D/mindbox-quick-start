@@ -1,5 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { TsConfigPathsPlugin } = require("awesome-typescript-loader");
+
 
 module.exports = {
   mode: "development",
@@ -32,7 +34,7 @@ module.exports = {
         test: /\.(woff(2)?|ttf|eot|svg|png|jpe?g|gif)(\?v=\d+\.\d+\.\d+)?$/,
         use: [
           {
-            loader: "file-loader", 
+            loader: "file-loader",
           },
         ],
       },
@@ -42,5 +44,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "src/client", "index.html"),
     }),
+    new TsConfigPathsPlugin(),
   ],
 };
