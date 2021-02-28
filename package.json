@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage  --maxWorkers=1",
+    "test": "jest  --maxWorkers=1",
+    "test:dev": "jest  --maxWorkers=1 --watch --coverage",
     "start:dev": "nodemon",
     "start": "node ./build/server/index.js",
     "start:front": "webpack --config ./webpack.config.dev.js serve --open",
@@ -39,6 +40,7 @@
     "nodemon": "^2.0.6",
     "path-browserify": "^1.0.1",
     "react": "^17.0.1",
+    "react-cookie": "^4.0.3",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
     "url": "^0.11.0",
