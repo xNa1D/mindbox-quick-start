@@ -1,4 +1,4 @@
-import auth from "./auth";
+import auth from "./hooks/useAuth";
 import registration from "./registration";
 import scenario from "./scenario";
 import {
@@ -11,7 +11,7 @@ import {
 const authForm =
   (document.querySelector("#auth__form") as HTMLFormElement) || undefined;
 
-authForm?.addEventListener("submit", (event) => auth(event, authForm));
+// authForm?.addEventListener("submit", (event) => auth(event, authForm));
 
 const registrationForm =
   (document.querySelector("#auth__form_registration") as HTMLFormElement) ||
