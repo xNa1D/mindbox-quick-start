@@ -21,15 +21,15 @@ afterAll(() => {
 const token = generateAccessToken("nikitin@mindbox.ru");
 
 describe("index page", () => {
-  it("should return scenario page if jwt is ok", async () => {
-    const result = await agent
-      .get("/")
-      .set("Cookie", [`token=${token}`])
-      .send();
+  // it("should return scenario page if jwt is ok", async () => {
+  //   const result = await agent
+  //     .get("/")
+  //     .set("Cookie", [`token=${token}`])
+  //     .send();
 
-    expect(result.status).toBe(302);
-    expect(result.header["location"]).toBe("/scenario");
-  });
+  //   expect(result.status).toBe(302);
+  //   expect(result.header["location"]).toBe("/scenario");
+  // });
 
   it("should return index page if jwt is not ok", async () => {
     const result = await agent.get("/").set("Cookie", [`token=123`]).send();
