@@ -1,8 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
+import useAuth from "client/script/hooks/useAuth";
+
+import { AuthRequestBody } from "src/declarations";
 
 const Login = () => {
+  const initialUser: AuthRequestBody = {
+    email: "",
+    password: "",
+  };
+  const auth = useAuth();
+  const [user, setUser] = useState(initialUser);
+
+  const handleLoginFromSubmit = async (event: React.SyntheticEvent) => {
+    event.preventDefault();
+    try {
+      auth.login(user);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <form className="ui form" id="auth__form">
+    <form className="ui form" id="auth__form" onSubmit={handleLoginFromSubmit}>
       <fieldset className="field form__input-container">
         <div className="fluid field">
           <label htmlFor="email" className="form__label">
@@ -15,6 +36,9 @@ const Login = () => {
               id="email"
               name="email"
               required
+              onChange={(event) =>
+                setUser({ ...user, email: event.target.value })
+              }
             />
             <div className="ui basic label">@mindbox.ru</div>
           </div>
@@ -31,6 +55,9 @@ const Login = () => {
             id="password"
             name="password"
             required
+            onChange={(event) =>
+              setUser({ ...user, password: event.target.value })
+            }
           />
         </div>
       </fieldset>
@@ -43,12 +70,12 @@ const Login = () => {
           >
             Войти
           </button>
-          <a
-            href="./reg.html"
+          <Link
             className="form__button_reg ui button basic black"
+            to="/registration"
           >
             Регистрация
-          </a>
+          </Link>
         </div>
       </fieldset>
 
