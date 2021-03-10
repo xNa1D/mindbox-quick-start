@@ -4,7 +4,7 @@ import Login from './pages/Login'
 import Registration from './pages/Registration';
 import Scenario from "./pages/Scenario";
 
-import { ProvideAuth } from 'client/script/auth/useAuth';
+import { ProvideAuth } from 'src/client/script/hooks/useAuth';
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
