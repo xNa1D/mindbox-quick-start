@@ -9,14 +9,26 @@ export const ProvideAuth = ({ children }: any) => {
   return <authContext.Provider value={auth}>{children}</authContext.Provider>;
 };
 
-export const useAuth = () => {
-  return useContext(authContext);
-};
+type UseProviderReturnedValue = {
+  isLoggedIn: boolean;
+  token: string;
+  loginErrors: never[]
+  login: (user: AuthRequestBody) => Promise<void>
+  checkAuth: () => Promise<void>
+}
+
+const initialContext:UseProviderReturnedValue = {
+  isLoggedIn: false,
+  token: '',
+  loginErrors: [],
+  login: async (user) => {},
+  checkAuth: async () => {},
+}
 
 const useProvideAuth = () => {
   const [token, setToken] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [loginErrors, setLoginErrors] = useState({});
+  const [loginErrors, setLoginErrors] = useState([]);
 
   const login = async (user: AuthRequestBody) => {
     try {
@@ -48,6 +60,10 @@ const useProvideAuth = () => {
   };
 };
 
-const authContext = createContext(useProvideAuth());
+const authContext = createContext<UseProviderReturnedValue>(initialContext);
+
+export const useAuth = () => {
+  return useContext(authContext);
+};
 
 export default useAuth;
