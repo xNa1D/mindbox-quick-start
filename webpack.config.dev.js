@@ -13,6 +13,10 @@ module.exports = {
   target: "web",
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".css", ".scss"],
+    src: path.resolve(__dirname, 'src/'),
+    client: path.resolve(__dirname, 'src/client/'),
+    server: path.resolve(__dirname, 'src/server/'),
+
   },
   devServer: {
     contentBase: path.join(__dirname, "build"),
