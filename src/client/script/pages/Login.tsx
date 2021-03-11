@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import useAuth from "client/script/hooks/useAuth";
 
 import { AuthRequestBody } from "src/declarations";
+import { handleEmailInput } from "client/script/helpers/inputChanges";
 
 const Login = () => {
   const initialUser: AuthRequestBody = {
@@ -18,7 +19,7 @@ const Login = () => {
     try {
       auth.login(user);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -35,10 +36,13 @@ const Login = () => {
               className="form__login"
               id="email"
               name="email"
+              value={user.email}
               required
-              onChange={(event) =>
-                setUser({ ...user, email: event.target.value })
-              }
+              onChange={(event) => {
+                handleEmailInput(event);
+
+                setUser({ ...user, email: event.target.value });
+              }}
             />
             <div className="ui basic label">@mindbox.ru</div>
           </div>
@@ -54,6 +58,7 @@ const Login = () => {
             className="form__password"
             id="password"
             name="password"
+            value={user.password}
             required
             onChange={(event) =>
               setUser({ ...user, password: event.target.value })
@@ -78,14 +83,12 @@ const Login = () => {
           </Link>
         </div>
       </fieldset>
-
-      <div className="ui error message " id="error">
-        <div className="header">Неправильный логин или пароль</div>
-        <p>
-          Можешь получить новый пароль{" "}
-          <a href="/registration">на странице регистрации</a>
-        </p>
-      </div>
+      {auth.loginErrors && (
+        <div className="ui error message " id="error">
+          <div className="header">Ошибка входа</div>
+          <p>{auth.loginErrors}</p>
+        </div>
+      )}
     </form>
   );
 };
