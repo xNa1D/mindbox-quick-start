@@ -5,7 +5,7 @@ import generateAccessToken from "../helpers/generateAccessToken";
 
 const userRoutes = Router();
 
-import { AuthRequestBody } from "src/";
+import { AuthRequestBody } from "src/declarations";
 
 userRoutes.post(
   "/auth",

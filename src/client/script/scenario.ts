@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { ScenarioRequestBody, ScenarioNames } from "../..";
+import { ScenarioRequestBody, ScenarioNames } from "src/declarations";
 
 const scenario = async (event: Event, authForm: HTMLFormElement) => {
   event.preventDefault();

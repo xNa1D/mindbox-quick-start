@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScenarioNames } from 'src/'
+import { ScenarioNames } from "src/declarations"
 import config from "src/config"
 
 const clearButtonDisabledAttribute = () => {

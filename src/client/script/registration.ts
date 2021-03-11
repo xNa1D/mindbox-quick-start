@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { RegistrationRequest } from "../../index.d";
+import { RegistrationRequest } from "src/declarations";
 
 const registration = async (event: Event, authForm: HTMLFormElement) => {
   event.preventDefault();

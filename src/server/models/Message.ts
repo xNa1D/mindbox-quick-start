@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ScenarioNames } from "../../index.d";
+import { ScenarioNames } from "src/declarations";
 
 type taskNameHuman = { [K in ScenarioNames]: string };
 
