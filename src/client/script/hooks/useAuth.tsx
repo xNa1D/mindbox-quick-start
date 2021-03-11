@@ -4,15 +4,10 @@ import { loginUser, checkToken } from "client/script/api/userRequests";
 
 import { AuthRequestBody } from "src/declarations";
 
-export const ProvideAuth = ({ children }: any) => {
-  const auth = useProvideAuth();
-  return <authContext.Provider value={auth}>{children}</authContext.Provider>;
-};
-
 type UseProviderReturnedValue = {
   isLoggedIn: boolean;
   token: string;
-  loginErrors: never[]
+  loginErrors: string
   login: (user: AuthRequestBody) => Promise<void>
   checkAuth: () => Promise<void>
 }
@@ -20,23 +15,30 @@ type UseProviderReturnedValue = {
 const initialContext:UseProviderReturnedValue = {
   isLoggedIn: false,
   token: '',
-  loginErrors: [],
+  loginErrors: "",
   login: async (user) => {},
   checkAuth: async () => {},
 }
 
+export const ProvideAuth = ({ children }: any) => {
+  const auth = useProvideAuth();
+  return <authContext.Provider value={auth}>{children}</authContext.Provider>;
+};
+
+
+
 const useProvideAuth = () => {
   const [token, setToken] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [loginErrors, setLoginErrors] = useState([]);
+  const [loginErrors, setLoginErrors] = useState("");
 
   const login = async (user: AuthRequestBody) => {
     try {
       const token = await loginUser(user);
       setToken(token.data);
       setIsLoggedIn(true);
-    } catch (error) {
-      setLoginErrors(error.toString());
+    } catch (error) {     
+      setLoginErrors( error.data);
       setIsLoggedIn(false);
     }
   };
