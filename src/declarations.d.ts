@@ -1,5 +1,3 @@
-declare module "*.css";
-declare module "*.png";
 
 export type ScenarioApiCalls = {
   ecommerce: (projectName: string, campaignNumber: number) => Promise<any>;
