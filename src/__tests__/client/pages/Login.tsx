@@ -8,9 +8,10 @@ import {
 } from "@testing-library/react";
 import '@testing-library/jest-dom';
 import axios from "axios";
-
-import Login from "client/script/pages/Login";
 import { MemoryRouter } from "react-router-dom";
+
+import useAuth, { ProvideAuth } from "client/script/hooks/useAuth";
+import Login from "client/script/pages/Login";
 
 import {loginUser} from 'client/script/api/userRequests';
 // import { User, AuthUserResponse } from "src/declarations";
@@ -19,7 +20,14 @@ import {loginUser} from 'client/script/api/userRequests';
 jest.mock("axios");
 jest.mock("client/script/api/userRequests");
 
-loginUser
+
+const customRender = (ui: any, { providerProps, ...renderOptions }: any) => {
+  return render(
+    <ProvideAuth {...providerProps}>{ui}</ProvideAuth>,
+    renderOptions
+  );
+};
+
 describe("Test render of form", () => {
   // const mockedAuthUser = (user: User) => {};
   test("should login input be in the doc", () => {
@@ -47,38 +55,36 @@ describe("Test render of form", () => {
 describe("Form submit", () => {
   it("should call passed function", async () => {
 
-    render(
+    customRender(
       <MemoryRouter>
       <Login />
-    </MemoryRouter>
+    </MemoryRouter>, {}
     );
 
-    const submitBtn = screen.getByText("Отправить");
+    const submitBtn = screen.getByText("Войти");
     await act(async () => {
       fireEvent.click(submitBtn);
     });
 
-    expect(authUser).toBeCalled();
+    expect(loginUser).toBeCalled();
   });
 
-  // it("should render rejected value", async () => {
-  //   const authUser = jest.fn().mockRejectedValue("Network Error");
+  it("should render rejected value", async () => {
+    const mockedLogin = loginUser as jest.Mock;
+    mockedLogin.mockRejectedValue({status: 401, data: "LoginError"})
 
-  //   render(
-  //     <Login
-  //       authUser={(user: User) => {
-  //         authUser();
-  //       }}
-  //     />
-  //   );
+    customRender(
+      <MemoryRouter>
+      <Login />
+    </MemoryRouter>, {}
+    );
 
-  //   const submitBtn = screen.getByText("Отправить");
-  //   await act(async () => {
-  //     fireEvent.click(submitBtn);
-  //   });
+    const submitBtn = screen.getByText("Войти");
+    await act(async () => {
+      fireEvent.click(submitBtn);
+    });
+    const error = screen.getByText("Ошибка входа");
 
-  //   await waitFor(() => {
-  //     expect(screen.getByText("Ошибка авторизации")).toBeInTheDocument();
-  //   });
-  // });
+    expect(error).toBeInTheDocument();
+  });
 });
