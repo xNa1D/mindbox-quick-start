@@ -1,12 +1,13 @@
-import { ScenarioNames } from "../..";
-import config from "../../config";
+import React from 'react'
+import { ScenarioNames } from 'src/'
+import config from "src/config"
 
 const clearButtonDisabledAttribute = () => {
   const submitBtn = document.querySelector("#submit");
   submitBtn?.removeAttribute("disabled");
 };
 
-export const handleEmailInput = (event: Event) => {
+export const handleEmailInput = (event: React.ChangeEvent<HTMLInputElement>) => {
   const target = event.target as HTMLInputElement;
   if (target.value.indexOf("@") > 0) {
     target.value = target.value.split("@")[0];
