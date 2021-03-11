@@ -1,12 +1,13 @@
 import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+import PrivateRoute from 'client/script/helpers/PrivateRoute'
 import Logo from "./components/Logo";
 import Login from './pages/Login'
 import Registration from './pages/Registration';
 import Scenario from "./pages/Scenario";
-
 import { ProvideAuth } from 'src/client/script/hooks/useAuth';
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 export default function App() {
   return (
@@ -33,9 +34,9 @@ export default function App() {
             <Route path="/registration">
               <Registration />
             </Route>
-            <Route path="/scenario">
+            <PrivateRoute path="/scenario">
               <Scenario />
-            </Route>
+            </PrivateRoute>
             <Route path="/">
               <Login />
             </Route>
