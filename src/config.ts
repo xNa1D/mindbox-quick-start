@@ -1,4 +1,4 @@
-import { ScenarioNames } from "./index";
+import { ScenarioNames } from "./declarations.d";
 
 type ScenarioDocs = { [T in ScenarioNames]: string };
 
