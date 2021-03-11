@@ -1,4 +1,4 @@
-import { ScenarioApiCalls } from "src/declarations"
+import { ScenarioApiCalls } from "src/"
 
 const scenarios: ScenarioApiCalls = {
   ecommerce: jest.fn().mockImplementation(async (projectName: string) => ""),
