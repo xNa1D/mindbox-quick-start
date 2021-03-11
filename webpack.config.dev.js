@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { TsConfigPathsPlugin } = require("awesome-typescript-loader");
+// const { TsConfigPathsPlugin } = require("awesome-typescript-loader");
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 
 module.exports = {
@@ -13,10 +14,13 @@ module.exports = {
   target: "web",
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".css", ".scss"],
-    src: path.resolve(__dirname, 'src/'),
-    client: path.resolve(__dirname, 'src/client/'),
-    server: path.resolve(__dirname, 'src/server/'),
+    plugins: [new TsconfigPathsPlugin()],
 
+    alias: {
+      src: path.resolve(__dirname, "src/"),
+      client: path.resolve(__dirname, "src/client/"),
+      server: path.resolve(__dirname, "src/server/"),
+    },
   },
   devServer: {
     contentBase: path.join(__dirname, "build"),
@@ -48,6 +52,5 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "src/client", "index.html"),
     }),
-    new TsConfigPathsPlugin(),
   ],
 };
