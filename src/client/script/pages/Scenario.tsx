@@ -1,12 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
+import { ScenarioRequestBody, ScenarioNames } from "src/declarations";
+
+import { handleProjectNameInput } from "client/script/helpers/inputChanges";
+import startScenario from "client/script/api/scenarioRequests";
 
 const Scenario = () => {
+  const [scenario, setScenario] = useState({
+    projectName: "",
+    campaingNumber: 0,
+    taskName: "ecommerce",
+  } as ScenarioRequestBody);
+
+  const [isStarted, setIsStarted] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleFormSubmit = async (event: React.SyntheticEvent) => {
+    event.preventDefault();
+
+    try {
+      await startScenario(scenario);
+      setIsStarted(true);
+    } catch (error) {
+      setError(error.data);
+    }
+  };
+
   return (
     <>
       <h1 className="options__header">Завести операции ...</h1>
       <div className="ui stackable grid">
         <div className="ten wide column">
-          <form className="ui form" id="scenario">
+          <form className="ui form" id="scenario" onSubmit={handleFormSubmit}>
             <fieldset className="field form__input-container ">
               <label htmlFor="projectName" className="form__label">
                 Системное имя проекта
@@ -19,6 +43,13 @@ const Scenario = () => {
                   name="projectName"
                   placeholder="nexus"
                   required
+                  onChange={(event) => {
+                    const eventValue = handleProjectNameInput(
+                      event.target.value
+                    );
+                    setScenario({ ...scenario, projectName: eventValue });
+                  }}
+                  value={scenario.projectName}
                 />
                 <div className="ui basic label">.mindbox.ru</div>
               </div>
@@ -31,10 +62,16 @@ const Scenario = () => {
               <label htmlFor="task" className="form__label">
                 Какие операции заводить
               </label>
-              <select className="ui fluid dropdown" name="task" id="task">
-                <option value="" selected disabled hidden>
-                  Выберите сценарий
-                </option>
+              <select
+                className="ui fluid dropdown"
+                name="task"
+                id="task"
+                onChange={(event) => {
+                  const eventValue = event.target.value as ScenarioNames;
+                  setScenario({ ...scenario, taskName: eventValue });
+                }}
+                value={scenario.taskName}
+              >
                 <option value="ecommerce">
                   Для стандартного интернет магазина
                 </option>
@@ -62,7 +99,11 @@ const Scenario = () => {
                 className="fluid  "
                 name="campaign"
                 placeholder="1, 2 или 100500. Кто знает, сколько у вас там кампаний"
-                value="1"
+                onChange={(event) => {
+                  const eventValue = +event.target.value as number;
+                  setScenario({ ...scenario, campaingNumber: eventValue });
+                }}
+                value={scenario.campaingNumber}
               />
 
               <p className="form__description">
@@ -80,10 +121,17 @@ const Scenario = () => {
                 <i className="play icon"></i>
                 Запустить
               </button>
-              <span className="form__result form__result_hidden" id="result">
-                <i className="check circle outline icon"></i> Автозаведение
-                запущено
-              </span>
+              {isStarted && (
+                <span className="form__result form__result_hidden" id="result">
+                  <i className="check circle outline icon"></i>
+                  Автозаведение запущено
+                </span>
+              )}
+              {error && (
+                <span className="form__result form__result_hidden" id="result">
+                  {error}
+                </span>
+              )}
             </div>
           </form>
         </div>
@@ -97,8 +145,8 @@ const Scenario = () => {
               </li>
               <li>Минут через 10-15 должно прийти письмо с результатом</li>
               <li>
-                Пока оно заводится, сделай копию гугльдока и замени в нем{" "}
-                  на название проекта
+                Пока оно заводится, сделай копию гугльдока и замени в нем на
+                название проекта
               </li>
               <li>
                 После получения письма обязательно проверь все операции по ТЗ.
