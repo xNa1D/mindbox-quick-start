@@ -7,26 +7,26 @@ const clearButtonDisabledAttribute = () => {
   submitBtn?.removeAttribute("disabled");
 };
 
-export const handleEmailInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-  const target = event.target as HTMLInputElement;
-  if (target.value.indexOf("@") > 0) {
-    target.value = target.value.split("@")[0];
+export const handleEmailInput = (inputValue: string) => {
+  if (inputValue.indexOf("@") > 0) {
+   return  inputValue.split("@")[0];
   }
+  return inputValue; 
 };
 
-export const handleProjectNameInput = (event: Event) => {
-  const target = event.target as HTMLInputElement;
-  if (target.value.indexOf("http://") >= 0) {
-    target.value = target.value.replace("http://", "");
+export const handleProjectNameInput = (inputValue: string) => {
+  let resultValue = inputValue; 
+  if (inputValue.indexOf("http://") >= 0) {
+    resultValue = inputValue.replace("http://", "");
   }
-  if (target.value.indexOf("https://") >= 0) {
-    target.value = target.value.replace("https://", "");
+  if (inputValue.indexOf("https://") >= 0) {
+    resultValue = inputValue.replace("https://", "");
   }
-  if (target.value.indexOf(".") >= 0) {
-    target.value = target.value.split(".")[0];
+  if (inputValue.indexOf(".") >= 0) {
+    resultValue = inputValue.split(".")[0];
   }
 
-  clearButtonDisabledAttribute();
+  return resultValue; 
 };
 
 export const handleScenarioChange = (event: Event) => {
