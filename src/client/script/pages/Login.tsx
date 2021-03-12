@@ -38,11 +38,12 @@ const Login = () => {
               name="email"
               value={user.email}
               required
-              onChange={(event) => {
-                handleEmailInput(event);
-
-                setUser({ ...user, email: event.target.value });
-              }}
+              onChange={(event) =>
+                setUser({
+                  ...user,
+                  email: handleEmailInput(event.target.value),
+                })
+              }
             />
             <div className="ui basic label">@mindbox.ru</div>
           </div>
