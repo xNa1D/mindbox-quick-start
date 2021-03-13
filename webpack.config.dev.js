@@ -8,7 +8,7 @@ module.exports = {
   mode: "development",
   entry: path.resolve(__dirname, "src/client", "index.tsx"),
   output: {
-    path: path.resolve(__dirname, "build"),
+    path: path.resolve(__dirname, "build/client"),
     filename: "bundle.js",
   },
   target: "web",
@@ -23,9 +23,12 @@ module.exports = {
     },
   },
   devServer: {
-    contentBase: path.join(__dirname, "build"),
+    contentBase: path.join(__dirname, "build/client"),
     compress: true,
     port: 9000,
+    proxy: {
+      "/api": "http://localhost:3030",
+    },
   },
   module: {
     rules: [

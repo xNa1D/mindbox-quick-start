@@ -1,23 +1,26 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { TsConfigPathsPlugin } = require("awesome-typescript-loader");
+// const { TsConfigPathsPlugin } = require("awesome-typescript-loader");
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 module.exports = {
-  mode: "development",
+  mode: "production",
   entry: path.resolve(__dirname, "src/client", "index.tsx"),
   output: {
-    path: path.resolve(__dirname, "build"),
+    path: path.resolve(__dirname, "build/client"),
     filename: "bundle.js",
   },
   target: "web",
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".css", ".scss"],
-  },
-  devServer: {
-    contentBase: path.join(__dirname, "build"),
-    compress: true,
-    port: 9000,
-  },
+    plugins: [new TsconfigPathsPlugin()],
+
+    alias: {
+      src: path.resolve(__dirname, "src/"),
+      client: path.resolve(__dirname, "src/client/"),
+      server: path.resolve(__dirname, "src/server/"),
+    },
+  }, 
   module: {
     rules: [
       {
@@ -43,6 +46,5 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "src/client", "index.html"),
     }),
-    new TsConfigPathsPlugin(),
   ],
 };
