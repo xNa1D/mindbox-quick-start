@@ -21,12 +21,12 @@ userRoutes.post(
 
         res.send(accessToken);
       } else {
-        res.sendStatus(403);
+        res.status(403).send('Неправильная почта или пароль');
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data);
 
-      res.sendStatus(503);
+      res.status(503).send(error.response.data);
     }
   }
 );
