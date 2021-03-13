@@ -34,11 +34,18 @@ const useProvideAuth = () => {
 
   const login = async (user: AuthRequestBody) => {
     try {
-      const token = await loginUser(user);
+      const token = await loginUser(user);      
       setToken(token.data);
       setIsLoggedIn(true);
     } catch (error) {     
-      setLoginErrors( error.data);
+      console.log(error.response.data);
+      if (error.response.data.errorMessage) {
+        setLoginErrors(error.response.data.errorMessage);
+      } else if (error.response.data) {
+        setLoginErrors(error.response.data);
+      } else {
+        setLoginErrors(error.toString());
+      }
       setIsLoggedIn(false);
     }
   };
