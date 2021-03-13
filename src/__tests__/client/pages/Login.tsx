@@ -74,7 +74,7 @@ describe("Form submit", () => {
     });
 
     expect(loginUser).toHaveBeenLastCalledWith({
-      email: "nikitin",
+      email: "nikitin@mindbox.ru",
       password: "123",
     });
   });
