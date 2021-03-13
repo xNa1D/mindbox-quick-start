@@ -17,11 +17,12 @@ const Login = () => {
   const handleLoginFromSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
     try {
-      auth.login(user);
+      auth.login({...user, email: `${user.email}@mindbox.ru`});
     } catch (error) {
-      // console.log(error);
+      console.log(error);
     }
   };
+  
 
   return (
     <form className="ui form" id="auth__form" onSubmit={handleLoginFromSubmit}>
@@ -85,7 +86,7 @@ const Login = () => {
         </div>
       </fieldset>
       {auth.loginErrors && (
-        <div className="ui error message " id="error">
+        <div className="ui error message visible" id="error">
           <div className="header">Ошибка входа</div>
           <p>{auth.loginErrors}</p>
         </div>
