@@ -9,13 +9,12 @@ import {
 import "@testing-library/jest-dom";
 import axios from "axios";
 import { MemoryRouter } from "react-router-dom";
+import { createMemoryHistory } from "history";
 
 import useAuth, { ProvideAuth } from "client/script/hooks/useAuth";
 import Scenario from "client/script/pages/Scenario";
 
 import startScenario from "client/script/api/scenarioRequests";
-
-// import { User, AuthUserResponse } from "src/declarations";
 
 jest.mock("axios");
 jest.mock("client/script/api/scenarioRequests");
@@ -78,5 +77,35 @@ describe("Scenario calls", () => {
     const successMessage = screen.getByText("Автозаведение запущено");
 
     expect(successMessage).toBeInTheDocument();
+  });
+
+  test("should render error message on not AUTH error", async () => {
+    const rejectedApiCall = startScenario as jest.Mock;
+    rejectedApiCall.mockRejectedValue({ status: 503, data: "Server error" });
+    render(<Scenario />);
+
+    await act(async () => {
+      fireEvent.click(screen.getByText("Запустить"));
+    });
+
+    expect(screen.getByText("Server error")).toBeInTheDocument();
+  });
+
+  test("should redirect to login page on AUTH error", async () => {
+    const rejectedApiCall = startScenario as jest.Mock;
+    rejectedApiCall.mockRejectedValue({ status: 403, data: "Forbidden" });
+    const history = createMemoryHistory();
+
+    render(
+      <MemoryRouter>
+        <Scenario />
+      </MemoryRouter>
+    );
+
+    await act(async () => {
+      fireEvent.click(screen.getByText("Запустить"));
+    });
+
+    expect(history.location.pathname).toBe("/");
   });
 });
