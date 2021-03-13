@@ -19,7 +19,9 @@ const Registration = () => {
     event.preventDefault();
     
     try {
-      await createUser(user);
+      const ansver = await createUser({ email: `${user.email}@mindbox.ru` });
+      console.log(ansver);
+      // TODO: не меняется страница после отправки запроса
       setIsCreationSuccess(true);
       tickTimer();
       setTimeout(() => <Redirect to="/" />, 500);
