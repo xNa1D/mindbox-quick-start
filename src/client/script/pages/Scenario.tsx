@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import { ScenarioRequestBody, ScenarioNames } from "src/declarations";
+import {Redirect} from 'react-router-dom'
 
+import { ScenarioRequestBody, ScenarioNames } from "src/declarations";
 import { handleProjectNameInput } from "client/script/helpers/inputChanges";
 import startScenario from "client/script/api/scenarioRequests";
 
+
 const Scenario = () => {
+
   const [scenario, setScenario] = useState({
     projectName: "",
     campaingNumber: 0,
@@ -21,6 +24,9 @@ const Scenario = () => {
       await startScenario(scenario);
       setIsStarted(true);
     } catch (error) {
+      if (error.status === 403) {
+        <Redirect to="/"/>
+      }
       setError(error.data);
     }
   };
