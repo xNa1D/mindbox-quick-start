@@ -1,21 +1,22 @@
-import React, { useState } from "react";
-import {Redirect} from 'react-router-dom'
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 import { ScenarioRequestBody, ScenarioNames } from "src/declarations";
 import { handleProjectNameInput } from "client/script/helpers/inputChanges";
 import startScenario from "client/script/api/scenarioRequests";
-
+import useAuth from "client/script/hooks/useAuth";
 
 const Scenario = () => {
-
   const [scenario, setScenario] = useState({
     projectName: "",
-    campaingNumber: 0,
+    campaingNumber: 1,
     taskName: "ecommerce",
   } as ScenarioRequestBody);
 
   const [isStarted, setIsStarted] = useState(false);
   const [error, setError] = useState("");
+  const history = useHistory();
+  const auth = useAuth();
 
   const handleFormSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
@@ -24,12 +25,24 @@ const Scenario = () => {
       await startScenario(scenario);
       setIsStarted(true);
     } catch (error) {
-      if (error.status === 403) {
-        <Redirect to="/"/>
+      if (error.response.status === 403) {
+        history.push("/");
       }
       setError(error.data);
     }
   };
+
+  const checkAuth = async () => {
+    try {
+      await auth.checkAuth();
+    } catch (error) {
+      history.push("/");
+    }
+  };
+
+  useEffect(() => {
+    checkAuth();
+  }, []);
 
   return (
     <>
@@ -107,7 +120,11 @@ const Scenario = () => {
                 placeholder="1, 2 или 100500. Кто знает, сколько у вас там кампаний"
                 onChange={(event) => {
                   const eventValue = +event.target.value as number;
-                  setScenario({ ...scenario, campaingNumber: eventValue });
+                  console.log(event.target.value);
+
+                  if (eventValue) {
+                    setScenario({ ...scenario, campaingNumber: eventValue });
+                  }
                 }}
                 value={scenario.campaingNumber}
               />
@@ -119,6 +136,7 @@ const Scenario = () => {
               </p>
             </fieldset>
             <div className="form__buttons">
+              {/* TODO: add loading class and desable after click  */}
               <button
                 type="submit"
                 className="form__button_login ui button basic green"
@@ -128,13 +146,19 @@ const Scenario = () => {
                 Запустить
               </button>
               {isStarted && (
-                <span className="form__result form__result_hidden" id="result">
+                <span
+                  className="form__result  visible"
+                  id="result"
+                >
                   <i className="check circle outline icon"></i>
                   Автозаведение запущено
                 </span>
               )}
               {error && (
-                <span className="form__result form__result_hidden" id="result">
+                <span
+                  className="form__result  visible"
+                  id="result"
+                >
                   {error}
                 </span>
               )}
