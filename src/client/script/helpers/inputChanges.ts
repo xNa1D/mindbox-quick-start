@@ -20,6 +20,9 @@ export const handleProjectNameInput = (inputValue: string) => {
     resultValue = inputValue.replace("http://", "");
   }
   if (inputValue.indexOf("https://") >= 0) {
+    // TODO: on PASTE don't cut this part
+    console.log(inputValue);
+    
     resultValue = inputValue.replace("https://", "");
   }
   if (inputValue.indexOf(".") >= 0) {
