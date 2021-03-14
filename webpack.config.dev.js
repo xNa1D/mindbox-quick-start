@@ -29,6 +29,7 @@ module.exports = {
     proxy: {
       "/api": "http://localhost:3030",
     },
+    historyApiFallback: true,
   },
   module: {
     rules: [
@@ -53,6 +54,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      inject: true,
       template: path.join(__dirname, "src/client", "index.html"),
     }),
   ],

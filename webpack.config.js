@@ -20,7 +20,7 @@ module.exports = {
       client: path.resolve(__dirname, "src/client/"),
       server: path.resolve(__dirname, "src/server/"),
     },
-  }, 
+  },
   module: {
     rules: [
       {
@@ -44,6 +44,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      inject: true,
       template: path.join(__dirname, "src/client", "index.html"),
     }),
   ],
