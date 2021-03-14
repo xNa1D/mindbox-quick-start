@@ -1,4 +1,5 @@
-import React, { useContext, createContext, useState } from "react";
+import React, { useContext, createContext, useState, useEffect } from "react";
+import { useCookies } from "react-cookie";
 
 import { loginUser, checkToken } from "client/script/api/userRequests";
 
@@ -7,37 +8,39 @@ import { AuthRequestBody } from "src/declarations";
 type UseProviderReturnedValue = {
   isLoggedIn: boolean;
   token: string;
-  loginErrors: string
-  login: (user: AuthRequestBody) => Promise<void>
-  checkAuth: () => Promise<void>
-}
+  loginErrors: string;
+  login: (user: AuthRequestBody) => Promise<true | undefined>;
+  checkAuth: () => Promise<void>;
+};
 
-const initialContext:UseProviderReturnedValue = {
+const initialContext: UseProviderReturnedValue = {
   isLoggedIn: false,
-  token: '',
+  token: "",
   loginErrors: "",
-  login: async (user) => {},
+  login: async (user) => Promise.resolve(true),
   checkAuth: async () => {},
-}
+};
 
 export const ProvideAuth = ({ children }: any) => {
   const auth = useProvideAuth();
   return <authContext.Provider value={auth}>{children}</authContext.Provider>;
 };
 
-
-
 const useProvideAuth = () => {
   const [token, setToken] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loginErrors, setLoginErrors] = useState("");
+  const [cookies, setCookie] = useCookies(["token"]);
 
   const login = async (user: AuthRequestBody) => {
     try {
-      const token = await loginUser(user);      
+      const token = await loginUser(user);
+      setCookie("token", token.data);
       setToken(token.data);
       setIsLoggedIn(true);
-    } catch (error) {     
+
+      return true;
+    } catch (error) {
       console.log(error.response.data);
       if (error.response.data.errorMessage) {
         setLoginErrors(error.response.data.errorMessage);
@@ -52,13 +55,17 @@ const useProvideAuth = () => {
 
   const checkAuth = async () => {
     try {
-      const newToken = await checkToken(token);
+      const newToken = await checkToken();
       setToken(newToken.data);
       setIsLoggedIn(true);
     } catch (error) {
       setIsLoggedIn(false);
     }
   };
+
+  useEffect(() => {
+    checkAuth() 
+  }, [])
 
   return {
     isLoggedIn,
