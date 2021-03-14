@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import useAuth from "client/script/hooks/useAuth";
 
@@ -11,13 +11,18 @@ const Login = () => {
     email: "",
     password: "",
   };
+
   const auth = useAuth();
   const [user, setUser] = useState(initialUser);
+
+  const history = useHistory();
 
   const handleLoginFromSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
     try {
-      auth.login({...user, email: `${user.email}@mindbox.ru`});
+      await auth.login({ ...user, email: `${user.email}@mindbox.ru` });
+      history.push("/scenario");
+      
     } catch (error) {
       console.log(error);
     }
