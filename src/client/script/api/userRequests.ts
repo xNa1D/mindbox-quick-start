@@ -7,8 +7,8 @@ export const loginUser = (user: AuthRequestBody) => {
     headers: { "content-type": "application/json" },
   });
 };
-export const checkToken = (token: string) => {
-  return axios.post("/api/user/checkToken", token, {
+export const checkToken = () => {
+  return axios.get("/api/user/checkToken", {
     headers: { "content-type": "application/json" },
   });
 };
