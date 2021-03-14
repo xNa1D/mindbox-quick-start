@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import { createUser } from "client/script/api/userRequests";
 import { handleEmailInput } from "client/script/helpers/inputChanges";
@@ -9,24 +9,27 @@ const Registration = () => {
   const [formError, setFormError] = useState("");
   const [isCreationSuccess, setIsCreationSuccess] = useState(false);
   const [tick, setTick] = useState(5);
+  const history = useHistory();
 
   const tickTimer = () => {
-    setInterval(() => setTick(tick - 1), 100);
+    setInterval(() => { 
+      setTick((tick) => tick - 1);
+    }, 1000);
   };
 
-  
   const handleFormSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
-    
+
     try {
-      const ansver = await createUser({ email: `${user.email}@mindbox.ru` });
-      console.log(ansver);
-      // TODO: не меняется страница после отправки запроса
+      setFormError("");
+      await createUser({ email: `${user.email}@mindbox.ru` });
       setIsCreationSuccess(true);
       tickTimer();
-      setTimeout(() => <Redirect to="/" />, 500);
+      setTimeout(() => {
+        history.push("/")
+      }, 5000);
     } catch (error) {
-      setFormError(error.data);
+      setFormError(error.response.data);
     }
   };
 
@@ -69,7 +72,7 @@ const Registration = () => {
         </button>
       </div>
       {formError && (
-        <div className="ui error message " id="error">
+        <div className="ui error message visible" id="error">
           <div className="header">Ошибка регистрации</div>
           <p>{formError}</p>
           <p>
@@ -79,7 +82,7 @@ const Registration = () => {
         </div>
       )}
       {isCreationSuccess && (
-        <div className="ui success message" id="success">
+        <div className="ui success message visible" id="success">
           <div className="header">Зарегистрирован!</div>
           <p>
             Пароль мы отправили на почту.{" "}
