@@ -2,6 +2,7 @@ import { Request, Response, NextFunction, Router } from "express";
 
 import User from "../models/User";
 import generateAccessToken from "../helpers/generateAccessToken";
+import checkTocken from "../helpers/checkTocken";
 
 const userRoutes = Router();
 
@@ -39,11 +40,30 @@ userRoutes.post("/reg", async (req: Request, res: Response) => {
       await user.registrStuff();
       res.sendStatus(200);
     } else {
-      res.sendStatus(403);
+      res.status(403).send('Такого пользователя на существует');
     }
   } catch (error) {
     console.log(error);
-    res.sendStatus(503);
+    let errorMessage: string;
+    
+    if (error.response.data.errorMessage) {
+      errorMessage = error.response.data.errorMessage;
+    } else {
+      errorMessage = error.response.data;
+    }
+
+    res.status(503).send(errorMessage);
+  }
+});
+
+userRoutes.get("/checkToken", (req: Request, res: Response) => {
+  try {
+    checkTocken(req.cookies.token || "");
+    res.sendStatus(200)
+  } catch (error) {
+    console.log(error);
+    
+    res.sendStatus(403);
   }
 });
 
