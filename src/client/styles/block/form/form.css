@@ -1,3 +1,50 @@
 .form {
-    min-width: 320px;
-  }
+  min-width: 320px;
+}
+
+.form__buttons {
+  width: 100%;
+  border: 0;
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.form__description {
+  padding-top: 5px;
+  color: rgb(172, 172, 172);
+}
+
+.form__error {
+  border: 1px solid orangered;
+  border-radius: 5px;
+  padding: 5px 0;
+  text-align: center;
+  margin-top: 10px;
+  color: orangered;
+}
+
+.form__input-container {
+  border: 0;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.form__label {
+  display: block;
+}
+
+.form__result {
+  margin-left: 10px;
+}
+.form__result_success {
+  color:#016936; 
+}
+.form__result_error {
+  color:#912d2b; 
+}
+.form__result_hidden {
+  display: none;
+}

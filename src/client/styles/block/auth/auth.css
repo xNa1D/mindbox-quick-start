@@ -1,7 +1,13 @@
 .auth {
-    min-width: 320px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
+  min-width: 320px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.auth__logo {
+  width: 320px;
+  margin: 0 auto;
+  display: block;
+}
