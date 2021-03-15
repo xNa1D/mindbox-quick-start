@@ -9,6 +9,8 @@ import Registration from './pages/Registration';
 import Scenario from "./pages/Scenario";
 import { ProvideAuth } from 'src/client/script/hooks/useAuth';
 
+import 'client/styles/block/main/main.css'
+
 
 export default function App() {
   return (
