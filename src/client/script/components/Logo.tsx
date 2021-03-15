@@ -1,6 +1,8 @@
 import React from 'react'
 import logo from "../../images/logo.png";
 
+import 'client/styles/block/auth/auth.css'
+
 const Logo = () => {
   return (
     <a className="auth__link" href="/">
