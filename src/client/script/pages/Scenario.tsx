@@ -6,6 +6,8 @@ import { handleProjectNameInput } from "client/script/helpers/inputChanges";
 import startScenario from "client/script/api/scenarioRequests";
 import useAuth from "client/script/hooks/useAuth";
 
+import 'client/styles/block/form/form.css'
+
 const Scenario = () => {
   const [scenario, setScenario] = useState({
     projectName: "",
@@ -14,6 +16,7 @@ const Scenario = () => {
   } as ScenarioRequestBody);
 
   const [isStarted, setIsStarted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const history = useHistory();
   const auth = useAuth();
@@ -22,13 +25,17 @@ const Scenario = () => {
     event.preventDefault();
 
     try {
+      setIsLoading(true);
       await startScenario(scenario);
       setIsStarted(true);
     } catch (error) {
       if (error.response.status === 403) {
         history.push("/");
       }
-      setError(error.data);
+      console.log(error.response.data)
+      setError(error.response.data);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -67,6 +74,7 @@ const Scenario = () => {
                       event.target.value
                     );
                     setScenario({ ...scenario, projectName: eventValue });
+                    setIsStarted(false);
                   }}
                   value={scenario.projectName}
                 />
@@ -88,6 +96,7 @@ const Scenario = () => {
                 onChange={(event) => {
                   const eventValue = event.target.value as ScenarioNames;
                   setScenario({ ...scenario, taskName: eventValue });
+                  setIsStarted(false);
                 }}
                 value={scenario.taskName}
               >
@@ -125,6 +134,7 @@ const Scenario = () => {
                   if (eventValue) {
                     setScenario({ ...scenario, campaingNumber: eventValue });
                   }
+                  setIsStarted(false);
                 }}
                 value={scenario.campaingNumber}
               />
@@ -136,29 +146,25 @@ const Scenario = () => {
               </p>
             </fieldset>
             <div className="form__buttons">
-              {/* TODO: add loading class and desable after click  */}
               <button
                 type="submit"
-                className="form__button_login ui button basic green"
+                className={`form__button_login ui button basic green 
+                            ${isStarted && "disabled"} 
+                            ${isLoading && "loading"}`
+                          }
                 id="submit"
               >
                 <i className="play icon"></i>
                 Запустить
               </button>
               {isStarted && (
-                <span
-                  className="form__result  visible"
-                  id="result"
-                >
+                <span className="form__result form__result_success " id="result">
                   <i className="check circle outline icon"></i>
                   Автозаведение запущено
                 </span>
               )}
               {error && (
-                <span
-                  className="form__result  visible"
-                  id="result"
-                >
+                <span className="form__result form__result_error " id="result">
                   {error}
                 </span>
               )}
