@@ -6,6 +6,8 @@ import useAuth from "client/script/hooks/useAuth";
 import { AuthRequestBody } from "src/declarations";
 import { handleEmailInput } from "client/script/helpers/inputChanges";
 
+import "client/styles/block/form/form.css";
+
 const Login = () => {
   const initialUser: AuthRequestBody = {
     email: "",
@@ -14,20 +16,24 @@ const Login = () => {
 
   const auth = useAuth();
   const [user, setUser] = useState(initialUser);
-
+  const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
 
   const handleLoginFromSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
     try {
+      setIsLoading(true);
+
       await auth.login({ ...user, email: `${user.email}@mindbox.ru` });
+      console.log('auth ok')
       history.push("/scenario");
-      
     } catch (error) {
+      console.log('auth NOT ok')
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
-  
 
   return (
     <form className="ui form" id="auth__form" onSubmit={handleLoginFromSubmit}>
@@ -90,6 +96,7 @@ const Login = () => {
           </Link>
         </div>
       </fieldset>
+      {/* TODO: add special place for render checkToken errors */}
       {auth.loginErrors && (
         <div className="ui error message visible" id="error">
           <div className="header">Ошибка входа</div>
