@@ -17,16 +17,13 @@ export const handleEmailInput = (inputValue: string) => {
 export const handleProjectNameInput = (inputValue: string) => {
   let resultValue = inputValue; 
   if (inputValue.indexOf("http://") >= 0) {
-    resultValue = inputValue.replace("http://", "");
+    resultValue = resultValue.replace("http://", "");
   }
   if (inputValue.indexOf("https://") >= 0) {
-    // TODO: on PASTE don't cut this part
-    console.log(inputValue);
-    
-    resultValue = inputValue.replace("https://", "");
+    resultValue = resultValue.replace("https://", "");
   }
   if (inputValue.indexOf(".") >= 0) {
-    resultValue = inputValue.split(".")[0];
+    resultValue = resultValue.split(".")[0];
   }
 
   return resultValue; 
