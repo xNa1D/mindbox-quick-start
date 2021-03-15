@@ -21,7 +21,6 @@ app.use("/api/user", userRoutes);
 app.use("/api/scenario", scenariosRoutes);
 
 app.use(express.static(path.resolve(__dirname, "../client")));
-// TODO: не запускается реакт приложение если запросить любуюс страницу кроме главной. Вариант: https://dev-listener.medium.com/react-routes-nodejs-routes-2875f148065b
 
 app.get("*", (req, res) =>
   res.sendFile(path.resolve(__dirname, "../client", "index.html"))
