@@ -9,7 +9,7 @@ type UseProviderReturnedValue = {
   isLoggedIn: boolean;
   token: string;
   loginErrors: string;
-  login: (user: AuthRequestBody) => Promise<true | undefined>;
+  login: (user: AuthRequestBody) => Promise<void>;
   checkAuth: () => Promise<void>;
 };
 
@@ -17,7 +17,7 @@ const initialContext: UseProviderReturnedValue = {
   isLoggedIn: false,
   token: "",
   loginErrors: "",
-  login: async (user) => Promise.resolve(true),
+  login: async (user) => {},
   checkAuth: async () => {},
 };
 
@@ -37,9 +37,7 @@ const useProvideAuth = () => {
       const token = await loginUser(user);
       setCookie("token", token.data);
       setToken(token.data);
-      setIsLoggedIn(true);
-
-      return true;
+      setIsLoggedIn(true); 
     } catch (error) {
       console.log(error.response.data);
       if (error.response.data.errorMessage) {
@@ -50,16 +48,27 @@ const useProvideAuth = () => {
         setLoginErrors(error.toString());
       }
       setIsLoggedIn(false);
+      throw error; 
     }
+
   };
 
   const checkAuth = async () => {
+    // TODO: add extra state for checkToken errors 
     try {
       const newToken = await checkToken();
       setToken(newToken.data);
       setIsLoggedIn(true);
     } catch (error) {
+      if (error.response.data.errorMessage) {
+        setLoginErrors(error.response.data.errorMessage);
+      } else if (error.response.data) {
+        setLoginErrors(error.response.data);
+      } else {
+        setLoginErrors(error.toString());
+      }
       setIsLoggedIn(false);
+      throw error; 
     }
   };
 
