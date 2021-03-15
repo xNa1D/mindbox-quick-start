@@ -4,15 +4,18 @@ import { useHistory } from "react-router-dom";
 import { createUser } from "client/script/api/userRequests";
 import { handleEmailInput } from "client/script/helpers/inputChanges";
 
+import "client/styles/block/form/form.css";
+
 const Registration = () => {
   const [user, setUser] = useState({ email: "" });
   const [formError, setFormError] = useState("");
   const [isCreationSuccess, setIsCreationSuccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [tick, setTick] = useState(5);
   const history = useHistory();
 
   const tickTimer = () => {
-    setInterval(() => { 
+    setInterval(() => {
       setTick((tick) => tick - 1);
     }, 1000);
   };
@@ -21,15 +24,18 @@ const Registration = () => {
     event.preventDefault();
 
     try {
+      setIsLoading(true);
       setFormError("");
       await createUser({ email: `${user.email}@mindbox.ru` });
       setIsCreationSuccess(true);
       tickTimer();
       setTimeout(() => {
-        history.push("/")
+        history.push("/");
       }, 5000);
     } catch (error) {
       setFormError(error.response.data);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -66,7 +72,9 @@ const Registration = () => {
       <div className="form__buttons">
         <button
           type="submit"
-          className="form__button_reg ui button basic green"
+          className={`form__button_reg ui button basic green ${
+            isLoading && "loading"
+          }`}
         >
           Регистрация
         </button>
