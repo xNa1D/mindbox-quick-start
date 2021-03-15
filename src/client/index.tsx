@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import  './styles/style.css';
+
+import  './styles/vendor/semantic.css';
 
 import App from "./script/App";
 
