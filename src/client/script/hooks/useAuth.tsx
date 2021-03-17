@@ -9,6 +9,7 @@ type UseProviderReturnedValue = {
   isLoggedIn: boolean;
   token: string;
   loginErrors: string;
+  checkTokenErrors: string;
   login: (user: AuthRequestBody) => Promise<void>;
   checkAuth: () => Promise<void>;
 };
@@ -17,6 +18,7 @@ const initialContext: UseProviderReturnedValue = {
   isLoggedIn: false,
   token: "",
   loginErrors: "",
+  checkTokenErrors: "",
   login: async (user) => {},
   checkAuth: async () => {},
 };
@@ -30,14 +32,17 @@ const useProvideAuth = () => {
   const [token, setToken] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loginErrors, setLoginErrors] = useState("");
+  const [checkTokenErrors, setCheckTokenErrors] = useState("");
+
   const [cookies, setCookie] = useCookies(["token"]);
 
   const login = async (user: AuthRequestBody) => {
     try {
+      setLoginErrors("");
       const token = await loginUser(user);
       setCookie("token", token.data);
       setToken(token.data);
-      setIsLoggedIn(true); 
+      setIsLoggedIn(true);
     } catch (error) {
       console.log(error.response.data);
       if (error.response.data.errorMessage) {
@@ -48,38 +53,38 @@ const useProvideAuth = () => {
         setLoginErrors(error.toString());
       }
       setIsLoggedIn(false);
-      throw error; 
+      throw error;
     }
-
   };
 
   const checkAuth = async () => {
-    // TODO: add extra state for checkToken errors 
     try {
+      setCheckTokenErrors("");
       const newToken = await checkToken();
       setToken(newToken.data);
       setIsLoggedIn(true);
     } catch (error) {
       if (error.response.data.errorMessage) {
-        setLoginErrors(error.response.data.errorMessage);
+        setCheckTokenErrors(error.response.data.errorMessage);
       } else if (error.response.data) {
-        setLoginErrors(error.response.data);
+        setCheckTokenErrors(error.response.data);
       } else {
-        setLoginErrors(error.toString());
+        setCheckTokenErrors(error.toString());
       }
       setIsLoggedIn(false);
-      throw error; 
+      throw error;
     }
   };
 
   useEffect(() => {
-    checkAuth() 
-  }, [])
+    checkAuth();
+  }, []);
 
   return {
     isLoggedIn,
     token,
     loginErrors,
+    checkTokenErrors,
     login,
     checkAuth,
   };

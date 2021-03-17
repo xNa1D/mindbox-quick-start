@@ -96,11 +96,17 @@ const Login = () => {
           </Link>
         </div>
       </fieldset>
-      {/* TODO: add special place for render checkToken errors */}
       {auth.loginErrors && (
         <div className="ui error message visible" id="error">
           <div className="header">Ошибка входа</div>
           <p>{auth.loginErrors}</p>
+        </div>
+      )}
+      {auth.checkTokenErrors && (
+        <div className="ui error message visible" id="error">
+          <div className="header">Ошибка авторизации.</div>
+          <p>{auth.checkTokenErrors}</p>
+          <p>Авторизуйтесь заново</p>
         </div>
       )}
     </form>
