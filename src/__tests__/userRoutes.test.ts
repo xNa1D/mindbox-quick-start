@@ -13,7 +13,7 @@ beforeAll(() => {
 
 afterAll(() => {
   server.close();
-}); 
+});
 describe("/auth", () => {
   it("should return access tocken", async (done) => {
     jest.setTimeout(30000);
@@ -117,7 +117,7 @@ describe("/reg", () => {
   it("should return 503 if api return error", async () => {
     axios.post = jest.fn().mockRejectedValue({
       status: 500,
-      data: "Rejected"
+      data: "Rejected",
     });
     let res;
 
