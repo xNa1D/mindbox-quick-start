@@ -46,10 +46,10 @@ userRoutes.post("/reg", async (req: Request, res: Response) => {
     console.log(error);
     let errorMessage: string;
     
-    if (error.response.data.errorMessage) {
-      errorMessage = error.response.data.errorMessage;
+    if (error.response?.data?.errorMessage) {
+      errorMessage = error.response?.data?.errorMessage;
     } else {
-      errorMessage = error.response.data;
+      errorMessage = error.response?.data;
     }
 
     res.status(503).send(errorMessage);
