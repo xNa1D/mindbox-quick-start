@@ -32,7 +32,6 @@ const Scenario = () => {
       if (error.response.status === 403) {
         history.push("/");
       }
-      console.log(error.response.data)
       setError(error.response.data);
     } finally {
       setIsLoading(false);
@@ -129,8 +128,6 @@ const Scenario = () => {
                 placeholder="1, 2 или 100500. Кто знает, сколько у вас там кампаний"
                 onChange={(event) => {
                   const eventValue = +event.target.value as number;
-                  console.log(event.target.value);
-
                   if (eventValue) {
                     setScenario({ ...scenario, campaingNumber: eventValue });
                   }
