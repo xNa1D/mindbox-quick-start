@@ -9,12 +9,8 @@ const MockConsumer = () => {
       <button onClick={() => auth.login({ email: "test", password: "test" })}>
         Login
       </button>
-      <button onClick={() => auth.checkAuth()}>
-        Check
-      </button>
-      <p>
-        Errors: {auth.loginErrors}
-      </p>
+      <button onClick={() => auth.checkAuth()}>Check</button>
+      <p>Errors: {auth.loginErrors}</p>
     </div>
   );
 };
