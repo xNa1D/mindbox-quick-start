@@ -1,6 +1,6 @@
 import React, { useContext, createContext, useState, useEffect } from "react";
 import Cookies from "universal-cookie";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import { loginUser, checkToken } from "client/script/api/userRequests";
 
@@ -32,15 +32,18 @@ const useProvideAuth = () => {
   const history = useHistory();
 
   const cookies = new Cookies();
+  
+  console.log(useHistory);
 
   const login = async (user: AuthRequestBody) => {
     try {
       setLoginErrors("");
       const token = await loginUser(user);
-      cookies.set("token", token);
+      cookies.set("token", token.data);
       setIsLoggedIn(true);
-      history.push("/");
+      history.push("/scenario");      
     } catch (error) {
+      
       if (error.response.data.errorMessage) {
         setLoginErrors(error.response?.data?.errorMessage);
       } else if (error.response.data) {
@@ -56,11 +59,12 @@ const useProvideAuth = () => {
     try {
       setCheckTokenErrors("");
       const newToken = await checkToken();
-      cookies.set("token", newToken);
+      cookies.set("token", newToken.data);
       setIsLoggedIn(true);
+      history.push("/scenario");      
     } catch (error) {
       setIsLoggedIn(false);
-      throw error;
+      history.push("/");      
     }
   };
 
