@@ -12,8 +12,8 @@ import "client/styles/block/main/main.css";
 
 export default function App() {
   return (
-    <ProvideAuth>
-      <Router>
+    <Router>
+      <ProvideAuth>
         <section className="header"></section>
         <main className="main">
           <Logo />
@@ -29,7 +29,7 @@ export default function App() {
             </Route>
           </Switch>
         </main>
-      </Router>
-    </ProvideAuth>
+      </ProvideAuth>
+    </Router>
   );
 }
