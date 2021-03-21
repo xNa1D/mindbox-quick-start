@@ -81,7 +81,9 @@ describe("Scenario calls", () => {
 
   test("should render error message on not AUTH error", async () => {
     const rejectedApiCall = startScenario as jest.Mock;
-    rejectedApiCall.mockRejectedValue({ status: 503, data: "Server error" });
+    rejectedApiCall.mockRejectedValue({
+      response: { status: 503, data: "Server error" },
+    });
     render(<Scenario />);
 
     await act(async () => {
@@ -92,8 +94,9 @@ describe("Scenario calls", () => {
   });
 
   test("should redirect to login page on AUTH error", async () => {
-    const rejectedApiCall = startScenario as jest.Mock;
-    rejectedApiCall.mockRejectedValue({ status: 403, data: "Forbidden" });
+    (startScenario as jest.Mock).mockRejectedValue({
+      response: { status: 403, data: "Forbidden" },
+    });
     const history = createMemoryHistory();
 
     render(
