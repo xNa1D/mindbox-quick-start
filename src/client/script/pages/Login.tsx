@@ -17,22 +17,13 @@ const Login = () => {
   const auth = useAuth();
   const [user, setUser] = useState(initialUser);
   const [isLoading, setIsLoading] = useState(false);
-  const history = useHistory();
+
 
   const handleLoginFromSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
-    try {
-      setIsLoading(true);
-
-      await auth.login({ ...user, email: `${user.email}@mindbox.ru` });
-      console.log('auth ok')
-      history.push("/scenario");
-    } catch (error) {
-      console.log('auth NOT ok')
-      console.log(error);
-    } finally {
-      setIsLoading(false);
-    }
+    setIsLoading(true);
+    await auth.login({ ...user, email: `${user.email}@mindbox.ru` });
+    setIsLoading(false);
   };
 
   return (
