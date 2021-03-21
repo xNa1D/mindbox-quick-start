@@ -19,32 +19,29 @@ import { loginUser } from "client/script/api/userRequests";
 jest.mock("axios");
 jest.mock("client/script/api/userRequests");
 
-const customRender = (ui: any, { providerProps, ...renderOptions }: any) => {
-  return render(
-    <ProvideAuth {...providerProps}>{ui}</ProvideAuth>,
-    renderOptions
-  );
+const customRender = async (ui: any, { providerProps, ...renderOptions }: any) => {
+  return await act(async () => {
+    render(
+      <MemoryRouter>
+        <ProvideAuth {...providerProps}>{ui}</ProvideAuth>
+      </MemoryRouter>,
+      renderOptions
+    );
+  });
 };
 
 describe("Test render of form", () => {
   // const mockedAuthUser = (user: User) => {};
   test("should login input be in the doc", () => {
-    render(
-      <MemoryRouter>
-        <Login />
-      </MemoryRouter>
-    );
+    customRender(<Login />, {});
 
     const loginInput = screen.getByLabelText("Логин");
     expect(loginInput).toBeInTheDocument();
   });
 
   test("should password input be in the doc", () => {
-    render(
-      <MemoryRouter>
-        <Login />
-      </MemoryRouter>
-    );
+    customRender(<Login />, {});
+
     const passwordInput = screen.getByLabelText("Пароль");
     expect(passwordInput).toBeInTheDocument();
   });
@@ -52,12 +49,7 @@ describe("Test render of form", () => {
 
 describe("Form submit", () => {
   it("should call passed function", async () => {
-    customRender(
-      <MemoryRouter>
-        <Login />
-      </MemoryRouter>,
-      {}
-    );
+    customRender(<Login />, {});
 
     const login = screen.getByLabelText("Логин");
     const password = screen.getByLabelText("Пароль");
@@ -80,15 +72,11 @@ describe("Form submit", () => {
   });
 
   it("should render rejected value", async () => {
-    const mockedLogin = loginUser as jest.Mock;
-    mockedLogin.mockRejectedValue({ status: 401, data: "LoginError" });
+    (loginUser as jest.Mock).mockRejectedValue({
+      response: { status: 401, data: "LoginError" },
+    });
 
-    customRender(
-      <MemoryRouter>
-        <Login />
-      </MemoryRouter>,
-      {}
-    );
+    customRender(<Login />, {});
 
     const submitBtn = screen.getByText("Войти");
     await act(async () => {
