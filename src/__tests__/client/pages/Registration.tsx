@@ -9,7 +9,7 @@ import {
 import "@testing-library/jest-dom";
 import axios from "axios";
 import { MemoryRouter, Redirect } from "react-router-dom";
-import { createMemoryHistory } from 'history'
+import { createMemoryHistory } from "history";
 
 import useAuth, { ProvideAuth } from "client/script/hooks/useAuth";
 import Registration from "client/script/pages/Registration";
@@ -54,10 +54,10 @@ describe("Registration form", () => {
     await act(async () => {
       fireEvent.click(submitBtn);
     });
-    expect(createUser).toHaveBeenCalledWith({ email: "nikitin" });
+    expect(createUser).toHaveBeenCalledWith({ email: "nikitin@mindbox.ru" });
   });
 
-  test('should render success message on OK', async () => {
+  test("should render success message on OK", async () => {
     customRender(
       <MemoryRouter>
         <Registration />
@@ -78,12 +78,11 @@ describe("Registration form", () => {
     const successMessage = screen.getByText("Зарегистрирован!");
 
     expect(successMessage).toBeInTheDocument();
-
   });
 
-  test('should render error message on Error', async () => {
+  test("should render error message on Error", async () => {
     const mockedCall = createUser as jest.Mock;
-    mockedCall.mockRejectedValue({status: 400, data: 'Error'})
+    mockedCall.mockRejectedValue({ response: { status: 400, data: "Error" } });
     customRender(
       <MemoryRouter>
         <Registration />
@@ -106,9 +105,8 @@ describe("Registration form", () => {
     expect(errorMessage).toBeInTheDocument();
   });
 
-  test('should redirect on Ok', async () => {
-
-    const history = createMemoryHistory(); 
+  test("should redirect on Ok", async () => {
+    const history = createMemoryHistory();
 
     customRender(
       <MemoryRouter>
@@ -119,16 +117,13 @@ describe("Registration form", () => {
 
     const field = screen.getByLabelText("Логин");
     const submitBtn = screen.getByText("Регистрация");
- 
+
     await act(async () => {
       fireEvent.click(submitBtn);
     });
-    jest.useFakeTimers()
+    jest.useFakeTimers();
     jest.runAllTimers();
 
-
-    expect(history.location.pathname).toBe('/');
-
+    expect(history.location.pathname).toBe("/");
   });
-  
 });
