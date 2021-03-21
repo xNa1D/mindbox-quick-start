@@ -7,11 +7,12 @@ import path from "path";
 
 import userRoutes from "./routes/userRoutes";
 import scenariosRoutes from "./routes/scenariosRoutes";
-import pagesRoutes from "./routes/pagesRoutes";
 
 const app = express();
 
 dotenv.config();
+
+app.use(bodyParser.urlencoded());
 
 app.use(bodyParser.json());
 app.use(coockieParser());
