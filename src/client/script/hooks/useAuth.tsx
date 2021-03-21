@@ -32,18 +32,17 @@ const useProvideAuth = () => {
   const [loginErrors, setLoginErrors] = useState("");
   const [checkTokenErrors, setCheckTokenErrors] = useState("");
   const history = useHistory();
-  
+
   const cookies = new Cookies();
 
   const login = async (user: AuthRequestBody) => {
     try {
       setLoginErrors("");
       const token = await loginUser(user);
-      cookies.set('token', token)
+      cookies.set("token", token);
       setIsLoggedIn(true);
-      history.push("/")
+      history.push("/");
     } catch (error) {
-    
       if (error.response.data.errorMessage) {
         setLoginErrors(error.response?.data?.errorMessage);
       } else if (error.response.data) {
@@ -59,7 +58,7 @@ const useProvideAuth = () => {
     try {
       setCheckTokenErrors("");
       const newToken = await checkToken();
-      cookies.set('token', newToken)
+      cookies.set("token", newToken);
       setIsLoggedIn(true);
     } catch (error) {
       if (error.response.data?.errorMessage) {
