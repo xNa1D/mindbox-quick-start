@@ -18,7 +18,6 @@ const Login = () => {
   const [user, setUser] = useState(initialUser);
   const [isLoading, setIsLoading] = useState(false);
 
-
   const handleLoginFromSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
     setIsLoading(true);
@@ -74,7 +73,9 @@ const Login = () => {
         <div className="form__buttons">
           <button
             type="submit"
-            className="form__button_login ui button basic green"
+            className={`form__button_login ui button basic green ${
+              isLoading && "loading"
+            }`}
             id="submit"
           >
             Войти
@@ -91,13 +92,6 @@ const Login = () => {
         <div className="ui error message visible" id="error">
           <div className="header">Ошибка входа</div>
           <p>{auth.loginErrors}</p>
-        </div>
-      )}
-      {auth.checkTokenErrors && (
-        <div className="ui error message visible" id="error">
-          <div className="header">Ошибка авторизации.</div>
-          <p>{auth.checkTokenErrors}</p>
-          <p>Авторизуйтесь заново</p>
         </div>
       )}
     </form>

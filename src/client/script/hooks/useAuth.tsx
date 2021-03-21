@@ -9,7 +9,6 @@ import { AuthRequestBody } from "src/declarations";
 type UseProviderReturnedValue = {
   isLoggedIn: boolean;
   loginErrors: string;
-  checkTokenErrors: string;
   login: (user: AuthRequestBody) => Promise<void>;
   checkAuth: () => Promise<void>;
 };
@@ -17,7 +16,6 @@ type UseProviderReturnedValue = {
 const initialContext: UseProviderReturnedValue = {
   isLoggedIn: false,
   loginErrors: "",
-  checkTokenErrors: "",
   login: async (user) => {},
   checkAuth: async () => {},
 };
@@ -61,14 +59,6 @@ const useProvideAuth = () => {
       cookies.set("token", newToken);
       setIsLoggedIn(true);
     } catch (error) {
-      if (error.response.data?.errorMessage) {
-        setCheckTokenErrors(error.response.data?.errorMessage);
-      } else if (error.response.data) {
-        setCheckTokenErrors(error.response?.data);
-      } else {
-        setCheckTokenErrors(error.toString());
-      }
-
       setIsLoggedIn(false);
       throw error;
     }
@@ -81,7 +71,6 @@ const useProvideAuth = () => {
   return {
     isLoggedIn,
     loginErrors,
-    checkTokenErrors,
     login,
     checkAuth,
   };
