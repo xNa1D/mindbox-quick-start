@@ -38,18 +38,6 @@ const Scenario = () => {
     }
   };
 
-  const checkAuth = async () => {
-    try {
-      await auth.checkAuth();
-    } catch (error) {
-      history.push("/");
-    }
-  };
-
-  useEffect(() => {
-    checkAuth();
-  }, []);
-
   return (
     <>
       <h1 className="options__header">Завести операции ...</h1>
