@@ -67,6 +67,9 @@ const Login = () => {
               setUser({ ...user, password: event.target.value })
             }
           />
+        <p className="form__description">
+            Пароль от проектов НЕ подойдет
+          </p>
         </div>
       </fieldset>
       <fieldset className="form__input-container">
