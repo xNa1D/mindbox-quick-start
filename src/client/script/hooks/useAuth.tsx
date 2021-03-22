@@ -32,8 +32,6 @@ const useProvideAuth = () => {
   const history = useHistory();
 
   const cookies = new Cookies();
-  
-  console.log(useHistory);
 
   const login = async (user: AuthRequestBody) => {
     try {
