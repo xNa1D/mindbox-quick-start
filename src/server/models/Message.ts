@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ScenarioNames } from "src/declarations";
-import { taskNameHuman } from 'src/config';
+import { taskNameHuman } from "../../config";
 
 const sendMessage = {
   ok: (projectName: string, taskName: ScenarioNames, email: string) =>
