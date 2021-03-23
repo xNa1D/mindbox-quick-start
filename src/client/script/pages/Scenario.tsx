@@ -5,8 +5,9 @@ import { ScenarioRequestBody, ScenarioNames } from "src/declarations";
 import { handleProjectNameInput } from "client/script/helpers/inputChanges";
 import startScenario from "client/script/api/scenarioRequests";
 import useAuth from "client/script/hooks/useAuth";
+import config from "src/config";
 
-import 'client/styles/block/form/form.css'
+import "client/styles/block/form/form.css";
 
 const Scenario = () => {
   const [scenario, setScenario] = useState({
@@ -135,15 +136,17 @@ const Scenario = () => {
                 type="submit"
                 className={`form__button_login ui button basic green 
                             ${isStarted && "disabled"} 
-                            ${isLoading && "loading"}`
-                          }
+                            ${isLoading && "loading"}`}
                 id="submit"
               >
                 <i className="play icon"></i>
                 Запустить
               </button>
               {isStarted && (
-                <span className="form__result form__result_success " id="result">
+                <span
+                  className="form__result form__result_success "
+                  id="result"
+                >
                   <i className="check circle outline icon"></i>
                   Автозаведение запущено
                 </span>
@@ -178,7 +181,12 @@ const Scenario = () => {
               </li>
             </ul>
           </div>
-          <a className="ui button green fluid" id="lintToTZ" target="_blank">
+          <a
+            className="ui button green fluid"
+            href={config.docs[scenario.taskName]}
+            id="lintToTZ"
+            target="_blank"
+          >
             <i className="file alternate outline icon"></i>Заготовка под ТЗ{" "}
           </a>
         </div>
