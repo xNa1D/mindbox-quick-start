@@ -22,7 +22,9 @@ jest.mock("client/script/api/userRequests");
 
 const customRender = (ui: any, { providerProps, ...renderOptions }: any) => {
   return render(
-    <ProvideAuth {...providerProps}>{ui}</ProvideAuth>,
+    <MemoryRouter>
+      <ProvideAuth {...providerProps}>{ui}</ProvideAuth>
+    </MemoryRouter>,
     renderOptions
   );
 };
@@ -38,12 +40,7 @@ describe("Registration render", () => {
 
 describe("Registration form", () => {
   test("should call API method on submit", async () => {
-    customRender(
-      <MemoryRouter>
-        <Registration />
-      </MemoryRouter>,
-      {}
-    );
+    customRender(<Registration />, {});
 
     const field = screen.getByLabelText("Логин");
     const submitBtn = screen.getByText("Регистрация");
@@ -58,12 +55,7 @@ describe("Registration form", () => {
   });
 
   test("should render success message on OK", async () => {
-    customRender(
-      <MemoryRouter>
-        <Registration />
-      </MemoryRouter>,
-      {}
-    );
+    customRender(<Registration />, {});
 
     const field = screen.getByLabelText("Логин");
     const submitBtn = screen.getByText("Регистрация");
@@ -83,12 +75,7 @@ describe("Registration form", () => {
   test("should render error message on Error", async () => {
     const mockedCall = createUser as jest.Mock;
     mockedCall.mockRejectedValue({ response: { status: 400, data: "Error" } });
-    customRender(
-      <MemoryRouter>
-        <Registration />
-      </MemoryRouter>,
-      {}
-    );
+    customRender(<Registration />, {});
 
     const field = screen.getByLabelText("Логин");
     const submitBtn = screen.getByText("Регистрация");
@@ -108,12 +95,7 @@ describe("Registration form", () => {
   test("should redirect on Ok", async () => {
     const history = createMemoryHistory();
 
-    customRender(
-      <MemoryRouter>
-        <Registration />
-      </MemoryRouter>,
-      {}
-    );
+    customRender(<Registration />, {});
 
     const field = screen.getByLabelText("Логин");
     const submitBtn = screen.getByText("Регистрация");
