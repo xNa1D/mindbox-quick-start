@@ -1,14 +1,6 @@
 import axios from "axios";
 import { ScenarioNames } from "src/declarations";
-
-type taskNameHuman = { [K in ScenarioNames]: string };
-
-const taskNameHuman: taskNameHuman = {
-  ecommerce: "Стандартные операции для интернет магазина",
-  loyaltyOffline: "Операции для ПЛ на кассе",
-  loyaltyOnline: "Операции для ПЛ на сайте",
-  mobilePush: "Стандратная интеграция мобильного приложения",
-};
+import { taskNameHuman } from 'src/config';
 
 const sendMessage = {
   ok: (projectName: string, taskName: ScenarioNames, email: string) =>
