@@ -20,3 +20,7 @@ export type AuthRequestBody = {
 };
 
 export type RegistrationRequest = Pick<AuthRequestBody, "email">;
+
+export type ScenarioDocs = { [T in ScenarioNames]: string };
+
+export type TaskNameHumanType = { [K in ScenarioNames]: string };
