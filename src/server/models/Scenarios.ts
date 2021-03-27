@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { ScenarioApiCalls } from "../..";
+import { ScenarioApiCalls } from "src/declarations";
 import config from "../../config";
 
 const scenarios: ScenarioApiCalls = {

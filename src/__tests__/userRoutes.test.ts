@@ -117,6 +117,7 @@ describe("/reg", () => {
   it("should return 503 if api return error", async () => {
     axios.post = jest.fn().mockRejectedValue({
       status: 500,
+      data: "Rejected",
     });
     let res;
 

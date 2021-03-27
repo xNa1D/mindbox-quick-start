@@ -1,6 +1,11 @@
-import { ScenarioNames } from "./index";
+import { ScenarioNames, TaskNameHumanType, ScenarioDocs} from "./declarations.d";
 
-type ScenarioDocs = { [T in ScenarioNames]: string };
+export const taskNameHuman: TaskNameHumanType = {
+  ecommerce: "Стандартные операции для интернет магазина",
+  loyaltyOffline: "Операции для ПЛ на кассе",
+  loyaltyOnline: "Операции для ПЛ на сайте",
+  mobilePush: "Стандратная интеграция мобильного приложения",
+};
 
 const docs: ScenarioDocs = {
   ecommerce:
@@ -27,6 +32,7 @@ const scenarioApi: ScenarioDocs = {
 const config = {
   docs,
   scenarioApi,
+  taskNameHuman,
 };
 
 export default config;

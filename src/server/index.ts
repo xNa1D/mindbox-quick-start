@@ -7,19 +7,25 @@ import path from "path";
 
 import userRoutes from "./routes/userRoutes";
 import scenariosRoutes from "./routes/scenariosRoutes";
-import pagesRoutes from "./routes/pagesRoutes";
 
 const app = express();
 
 dotenv.config();
 
+app.use(bodyParser.urlencoded());
+
 app.use(bodyParser.json());
 app.use(coockieParser());
-app.use(express.static(path.resolve(__dirname, "../client")));
 
-app.use("/", pagesRoutes);
+// app.use("/", pagesRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/scenario", scenariosRoutes);
+
+app.use(express.static(path.resolve(__dirname, "../client")));
+
+app.get("*", (req, res) =>
+  res.sendFile(path.resolve(__dirname, "../client", "index.html"))
+);
 
 const port = process.env.PORT || 3000;
 
