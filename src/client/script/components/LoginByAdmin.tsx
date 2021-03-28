@@ -4,6 +4,7 @@ import useAuth from "client/script/hooks/useAuth";
 import { handleProjectNameInput } from "client/script/helpers/inputChanges";
 
 const LoginByAdmin = () => {
+  // TODO: add normal functions for handling form submit
   const handleLoginFromSubmit = () => ({});
   const [user, setUser] = useState({});
   const handleEmailInput = (value: any) => ({});
