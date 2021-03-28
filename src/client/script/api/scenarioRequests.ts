@@ -1,8 +1,8 @@
 import axios from "axios";
 
-import { ScenarioRequestBody, ScenarioNames } from "src/declarations";
+import { StartScenarioBody, ScenarioNames } from "src/declarations";
 
-const startScenario = async (requestBody: ScenarioRequestBody) =>
+const startScenario = async (requestBody: StartScenarioBody) =>
   await axios.post("/api/scenario/start", requestBody, {
     headers: { "content-type": "application/json" },
   });
