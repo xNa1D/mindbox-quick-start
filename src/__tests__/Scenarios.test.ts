@@ -1,13 +1,23 @@
 import axios from "../__mocks__/axios";
-import scenarios from "../server/models/Scenarios";
+import startScenario from "../server/models/Scenarios";
 
-describe("ecommerce", () => {
+const mockBody = {
+  scenarioApiAddress: "testApi",
+  projectName: "testProject",
+  campaign: 1,
+};
+
+describe("startScenario", () => {
   it("should return 200 if resolve", async () => {
     axios.post = jest.fn().mockResolvedValue({
       status: 200,
     });
 
-    const res = await scenarios.ecommerce("test", 1);
+    const res = await startScenario(
+      mockBody.scenarioApiAddress,
+      mockBody.projectName,
+      mockBody.campaign
+    );
     expect(res.status).toBe(200);
   });
 
@@ -17,79 +27,11 @@ describe("ecommerce", () => {
     });
 
     try {
-      await scenarios.ecommerce("test", 1);
-    } catch (error) {
-      expect(error).toBeTruthy();
-    }
-  });
-});
-
-describe("loyaltyOffline", () => {
-  it("should return 200 if resolve", async () => {
-    axios.post = jest.fn().mockResolvedValue({
-      status: 200,
-    });
-
-    const res = await scenarios.loyaltyOffline("test", 1);
-
-    expect(res.status).toBe(200);
-  });
-
-  it("should trrow on network error", async () => {
-    axios.post = jest.fn().mockRejectedValue({
-      status: 500,
-    });
-
-    try {
-      await scenarios.loyaltyOffline("test", 1);
-    } catch (error) {
-      expect(error).toBeTruthy();
-    }
-  });
-});
-
-describe("loyaltyOnline", () => {
-  it("should return 200 if resolve", async () => {
-    axios.post = jest.fn().mockResolvedValue({
-      status: 200,
-    });
-
-    const res = await scenarios.loyaltyOnline("test", 1);
-
-    expect(res.status).toBe(200);
-  });
-
-  it("should trrow on network error", async () => {
-    axios.post = jest.fn().mockRejectedValue({
-      status: 500,
-    });
-
-    try {
-      await scenarios.loyaltyOnline("test", 1);
-    } catch (error) {
-      expect(error).toBeTruthy();
-    }
-  });
-});
-
-describe("mobilePush", () => {
-  it("should return 200 if resolve", async () => {
-    axios.post = jest.fn().mockResolvedValue({
-      status: 200,
-    });
-
-    const res = await scenarios.mobilePush("test", 1);
-
-    expect(res.status).toBe(200);
-  });
-
-  it("should trrow on network error", async () => {
-    axios.post = jest.fn().mockRejectedValue({
-      status: 500,
-    });
-
-    try {
-      await scenarios.mobilePush("test", 1);
+      await await startScenario(
+        mockBody.scenarioApiAddress,
+        mockBody.projectName,
+        mockBody.campaign
+      );
     } catch (error) {
       expect(error).toBeTruthy();
     }
