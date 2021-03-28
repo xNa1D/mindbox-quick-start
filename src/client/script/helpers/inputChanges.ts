@@ -1,6 +1,6 @@
 import React from 'react'
 import { ScenarioNames } from "src/declarations"
-import config from "src/config"
+import config from "src/data"
 
 const clearButtonDisabledAttribute = () => {
   const submitBtn = document.querySelector("#submit");
@@ -27,18 +27,6 @@ export const handleProjectNameInput = (inputValue: string) => {
   }
 
   return resultValue; 
-};
-
-export const handleScenarioChange = (event: Event) => {
-  const target = event.target as HTMLInputElement;
-  const specificationLint = document.querySelector("#lintToTZ");
-  const formInputCampaign = document.querySelector("#form__input_campaign");
-
-  specificationLint?.setAttribute(
-    "href",
-    config.docs[target.value as ScenarioNames]
-  );
-  clearButtonDisabledAttribute();
 };
 
 export const handleCampaignNumberChange = () => {
