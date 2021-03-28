@@ -22,12 +22,45 @@ userRoutes.post(
 
         res.send(accessToken);
       } else {
-        res.status(403).send('Неправильная почта или пароль');
+        res.status(403).send("Неправильная почта или пароль");
       }
     } catch (error) {
       console.log(error.response.data);
 
       res.status(503).send(error.response.data);
+    }
+  }
+);
+
+userRoutes.post(
+  "/authByAdminPanel",
+  async (req: Request<{}, {}>, res: Response) => {
+    try {
+      const user = new User(req.body.email, req.body.password);
+      const tokenFromAdminPanel = await user.authenticateByAdminPanel(
+        req.body.project
+      );
+
+      let accessToken: string;
+
+      if (tokenFromAdminPanel) {
+        accessToken = generateAccessToken(
+          user.email,
+          req.body.project,
+          tokenFromAdminPanel
+        );
+
+        res.send(accessToken);
+      } else {
+        res.status(403).send("Неправильная почта или пароль");
+      }
+    } catch (error) {
+      console.log(error);
+      if (error.response?.data) {
+        res.status(503).send(error.response?.data);
+      } else {
+        res.status(503).send(error);
+      }
     }
   }
 );
@@ -40,12 +73,12 @@ userRoutes.post("/reg", async (req: Request, res: Response) => {
       await user.registrStuff();
       res.sendStatus(200);
     } else {
-      res.status(403).send('Такого пользователя на существует');
+      res.status(403).send("Такого пользователя на существует");
     }
   } catch (error) {
     console.log(error);
     let errorMessage: string;
-    
+
     if (error.response?.data?.errorMessage) {
       errorMessage = error.response?.data?.errorMessage;
     } else {
@@ -59,10 +92,10 @@ userRoutes.post("/reg", async (req: Request, res: Response) => {
 userRoutes.get("/checkToken", (req: Request, res: Response) => {
   try {
     checkTocken(req.cookies.token || "");
-    res.sendStatus(200)
+    res.sendStatus(200);
   } catch (error) {
     console.log(error);
-    
+
     res.sendStatus(403);
   }
 });
