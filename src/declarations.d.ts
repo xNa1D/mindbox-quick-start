@@ -6,12 +6,19 @@ export type ScenarioApiCalls = {
   mobilePush: (projectName: string, campaignNumber: number) => Promise<any>;
 };
 
+export type Scenario = {
+  type: string;
+  name: string;
+  docs: string;
+  api: string;
+};
+
 export type ScenarioNames = keyof ScenarioApiCalls;
 
-export type ScenarioRequestBody = {
-  taskName: keyof ScenarioApiCalls;
+export type StartScenarioBody = {
+  scenario: Scenario;
   projectName: string;
-  campaingNumber: number;
+  campaign: number;
 };
 
 export type AuthRequestBody = {
