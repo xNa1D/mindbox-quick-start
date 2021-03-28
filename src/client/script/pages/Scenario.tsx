@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-import { ScenarioRequestBody, ScenarioNames } from "src/declarations";
+import { StartScenarioBody, ScenarioNames } from "src/declarations";
 import { handleProjectNameInput } from "client/script/helpers/inputChanges";
 import startScenario from "client/script/api/scenarioRequests";
 import useAuth from "client/script/hooks/useAuth";
-import config from "src/config";
+import scenarios from "src/data";
 
 import "client/styles/block/form/form.css";
 
 const Scenario = () => {
   const [scenario, setScenario] = useState({
+    scenario: scenarios[0],
     projectName: "",
-    campaingNumber: 1,
-    taskName: "ecommerce",
-  } as ScenarioRequestBody);
+    campaign: 0,
+  } as StartScenarioBody);
 
   const [isStarted, setIsStarted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -82,11 +82,15 @@ const Scenario = () => {
                 name="task"
                 id="task"
                 onChange={(event) => {
-                  const eventValue = event.target.value as ScenarioNames;
-                  setScenario({ ...scenario, taskName: eventValue });
+                  const eventValue = event.target.value;
+                  const selectedScenario =
+                    scenarios.find(
+                      (scenario) => scenario.type === eventValue
+                    ) || scenarios[0];
+                  setScenario({ ...scenario, scenario: selectedScenario });
                   setIsStarted(false);
                 }}
-                value={scenario.taskName}
+                value={scenario.scenario.type}
               >
                 <option value="ecommerce">
                   Для стандартного интернет магазина
@@ -118,11 +122,11 @@ const Scenario = () => {
                 onChange={(event) => {
                   const eventValue = +event.target.value as number;
                   if (eventValue) {
-                    setScenario({ ...scenario, campaingNumber: eventValue });
+                    setScenario({ ...scenario, campaign: eventValue });
                   }
                   setIsStarted(false);
                 }}
-                value={scenario.campaingNumber}
+                value={scenario.campaign}
               />
 
               <p className="form__description">
@@ -183,7 +187,7 @@ const Scenario = () => {
           </div>
           <a
             className="ui button green fluid"
-            href={config.docs[scenario.taskName]}
+            href={scenario.scenario.docs}
             id="lintToTZ"
             target="_blank"
           >
