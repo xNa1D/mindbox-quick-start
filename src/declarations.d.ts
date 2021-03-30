@@ -25,6 +25,11 @@ export type AuthRequestBody = {
   email: string;
   password: string;
 };
+export type AuthByAdminPanelRequestBody =  {
+  login: string;
+  password: string;
+  project: string;
+};
 
 export type RegistrationRequest = Pick<AuthRequestBody, "email">;
 
