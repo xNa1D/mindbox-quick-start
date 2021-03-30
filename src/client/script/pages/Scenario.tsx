@@ -10,9 +10,10 @@ import scenarios from "src/data";
 import "client/styles/block/form/form.css";
 
 const Scenario = () => {
+  const auth = useAuth();
   const [scenario, setScenario] = useState({
     scenario: scenarios[0],
-    projectName: "",
+    projectName: auth.project,
     campaign: 0,
   } as StartScenarioBody);
 
@@ -20,7 +21,6 @@ const Scenario = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const history = useHistory();
-  const auth = useAuth();
 
   const handleFormSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
@@ -64,14 +64,23 @@ const Scenario = () => {
                     setScenario({ ...scenario, projectName: eventValue });
                     setIsStarted(false);
                   }}
+                  disabled={Boolean(auth.project)}
                   value={scenario.projectName}
                 />
                 <div className="ui basic label">.mindbox.ru</div>
               </div>
-              <p className="form__description">
-                Можно вставить ссылку прямо вот так:{" "}
-                <i>https://demo-new.mindbox.ru/</i>, она подрежится сама
-              </p>
+              {
+                Boolean(auth.project) ? (
+                  <p className="form__description">
+                    Вы залогинелись через админку проекта, поэтому нельзя выбрать проект для запуска нельзя
+                  </p>
+                ) : (
+                  <p className="form__description">
+                    Можно вставить ссылку прямо вот так:{" "}
+                    <i>https://demo-new.mindbox.ru/</i>, она подрежится сама
+                  </p>
+                )
+              }
             </fieldset>
             <fieldset className="field form__input-container">
               <label htmlFor="task" className="form__label">
@@ -130,7 +139,7 @@ const Scenario = () => {
               />
 
               <p className="form__description">
-                https://demo-new.mindbox.ru/campaigns/
+                https://{scenario.projectName}.mindbox.ru/campaigns/
                 <b className="ui black circular label">вот эта цифра</b>
                 /operations
               </p>
