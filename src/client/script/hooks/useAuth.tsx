@@ -2,21 +2,25 @@ import React, { useContext, createContext, useState, useEffect } from "react";
 import Cookies from "universal-cookie";
 import { useHistory } from "react-router-dom";
 
-import { loginUser, checkToken } from "client/script/api/userRequests";
+import { loginUser, checkToken, loginUserByAdminPanel } from "client/script/api/userRequests";
 
-import { AuthRequestBody } from "src/declarations";
+import { AuthRequestBody, AuthByAdminPanelRequestBody } from "src/declarations";
 
 type UseProviderReturnedValue = {
   isLoggedIn: boolean;
   loginErrors: string;
+  project: string;
   login: (user: AuthRequestBody) => Promise<void>;
+  loginByAdminPanel: (user: AuthByAdminPanelRequestBody) => Promise<void>;
   checkAuth: () => Promise<void>;
 };
 
 const initialContext: UseProviderReturnedValue = {
   isLoggedIn: false,
   loginErrors: "",
+  project: "",
   login: async (user) => {},
+  loginByAdminPanel: async (user) => {},
   checkAuth: async () => {},
 };
 
@@ -29,6 +33,7 @@ const useProvideAuth = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loginErrors, setLoginErrors] = useState("");
   const [checkTokenErrors, setCheckTokenErrors] = useState("");
+  const [project, setProject] = useState("");
   const history = useHistory();
 
   const cookies = new Cookies();
@@ -38,6 +43,26 @@ const useProvideAuth = () => {
       setLoginErrors("");
       const token = await loginUser(user);
       cookies.set("token", token.data);
+      setIsLoggedIn(true);
+      history.push("/scenario");      
+    } catch (error) {
+      
+      if (error.response.data.errorMessage) {
+        setLoginErrors(error.response?.data?.errorMessage);
+      } else if (error.response.data) {
+        setLoginErrors(error.response?.data);
+      } else {
+        setLoginErrors(error.toString());
+      }
+      setIsLoggedIn(false);
+    }
+  };
+  const loginByAdminPanel = async (user: AuthByAdminPanelRequestBody) => {
+    try {
+      setLoginErrors("");
+      const token = await loginUserByAdminPanel(user);
+      cookies.set("token", token.data);
+      setProject(user.project);
       setIsLoggedIn(true);
       history.push("/scenario");      
     } catch (error) {
@@ -73,8 +98,10 @@ const useProvideAuth = () => {
   return {
     isLoggedIn,
     loginErrors,
+    project,
     login,
     checkAuth,
+    loginByAdminPanel
   };
 };
 
