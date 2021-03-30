@@ -4,12 +4,23 @@ import useAuth from "client/script/hooks/useAuth";
 import { handleProjectNameInput } from "client/script/helpers/inputChanges";
 
 const LoginByAdmin = () => {
-  // TODO: add normal functions for handling form submit
-  const handleLoginFromSubmit = () => ({});
-  const [user, setUser] = useState({});
-  const handleEmailInput = (value: any) => ({});
-  const [isLoading, setIsLoading] = useState(false);
+
+  const initialUser = {
+    login: "",
+    password: "",
+    project: ""
+  };
+
   const auth = useAuth();
+  const [user, setUser] = useState(initialUser);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleLoginFromSubmit = async (event: React.SyntheticEvent) => {
+    event.preventDefault();
+    setIsLoading(true);
+    await auth.loginByAdminPanel({ ...user});
+    setIsLoading(false);
+  };
 
   return (
     <Form onSubmit={handleLoginFromSubmit}>
