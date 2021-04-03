@@ -1,12 +1,12 @@
 import axios from "axios";
-import { StartScenarioBody } from "src/declarations";
+import { ScenarioResult } from "src/ScenarioResult";
 
 const startScenario = async (
   scenarioApiAddress: string,
   projectName: string,
   campaign: number
-) =>
-  await axios.post(
+) => {
+  const result = await axios.post<ScenarioResult>(
     scenarioApiAddress,
     { projectName, campaign },
     {
@@ -15,5 +15,14 @@ const startScenario = async (
       },
     }
   );
+
+  if (result.data.code !== "SUCCESS") {
+    throw new Error("Internal error in Scenario Server");
+  } else if (!result.data.data.passing) {
+     throw new Error(result.data.data.error?.details);
+  } else {
+    return true;
+  }
+};
 
 export default startScenario;
