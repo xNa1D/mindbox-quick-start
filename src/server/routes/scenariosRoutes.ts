@@ -19,7 +19,7 @@ scenariosRoutes.post(
     try {
       email = checkToken(req.cookies.token).email;
       res.sendStatus(200);
-      
+
       try {
         await startScenario(
           req.body.scenario.api,
@@ -30,6 +30,8 @@ scenariosRoutes.post(
         sendMessage.ok(req.body.projectName, req.body.scenario.name, email);
       } catch (error) {
         sendMessage.fail(req.body.projectName, req.body.scenario.name, email);
+        // send message to developer on error
+        sendMessage.fail(req.body.projectName, req.body.scenario.name, "nikitin@mindbox.ru");
       }
     } catch (error) {
       res.status(403).send(error);
