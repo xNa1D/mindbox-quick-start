@@ -2,7 +2,7 @@ import axios from "../__mocks__/axios";
 import startScenario from "../server/models/Scenarios";
 
 const mockBody = {
-  scenarioApiAddress: "testApi",
+  scenarioApiAddress: ["testApi"],
   projectName: "testProject",
   campaign: 1,
 };
@@ -24,7 +24,10 @@ describe("startScenario", () => {
       mockBody.projectName,
       mockBody.campaign
     );
-    expect(res).toBe(true);
+    expect(res).toStrictEqual({
+      resultStatus: { errorMessage: "", status: "SUCCESS" },
+      resultSteps: [],
+    });
   });
 
   it("should throw on network error", async () => {
@@ -33,7 +36,7 @@ describe("startScenario", () => {
     });
 
     try {
-      await await startScenario(
+      await startScenario(
         mockBody.scenarioApiAddress,
         mockBody.projectName,
         mockBody.campaign
@@ -54,7 +57,7 @@ describe("startScenario", () => {
       },
     });
     try {
-      await await startScenario(
+      await startScenario(
         mockBody.scenarioApiAddress,
         mockBody.projectName,
         mockBody.campaign
@@ -78,7 +81,7 @@ describe("startScenario", () => {
       },
     });
     try {
-      await await startScenario(
+      await startScenario(
         mockBody.scenarioApiAddress,
         mockBody.projectName,
         mockBody.campaign
