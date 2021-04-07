@@ -10,7 +10,11 @@ describe("ok message", () => {
       },
     });
 
-    sendMessage.ok("test", "ecommerce", "test@mindbox.ru");
+    sendMessage.ok(
+      "test",
+      "Стандартные операции для интернет магазина",
+      "test@mindbox.ru"
+    );
 
     expect(axios.post.mock.calls[0][1]).toEqual({
       customer: {
@@ -55,7 +59,11 @@ describe("fail message", () => {
       },
     });
 
-    sendMessage.fail("test", "ecommerce", "test@mindbox.ru");
+    sendMessage.fail(
+      "test",
+      "Стандартные операции для интернет магазина",
+      "test@mindbox.ru"
+    );
 
     expect(axios.post.mock.calls[0][1]).toEqual({
       customer: {

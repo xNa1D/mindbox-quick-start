@@ -1,15 +1,34 @@
 import supertest from "supertest";
-import axios from "../__mocks__/axios";
-import scenarios from "../server/models/Scenarios";
+import axios from "axios";
+import startScenario from "../server/models/Scenarios";
 import sendMessage from "../server/models/Message";
 
 import generateAccessToken from "../server/helpers/generateAccessToken";
 
 import { server } from "../server/index";
 
-import { ScenarioRequestBody } from "..";
+import { StartScenarioBody, Scenario } from "src/declarations";
+
+jest.mock("jest");
+jest.mock("../server/models/Scenarios");
+jest.mock("../server/models/Message");
+
+// import scenarios from "src/data";
 
 let agent: any;
+
+const mockScenario: Scenario = {
+  type: "mockType",
+  name: "Мок запуска сценария",
+  api: ["mockAddress"],
+  docs: "mockDocs",
+};
+
+const mockApiBody: StartScenarioBody = {
+  scenario: mockScenario,
+  projectName: "testProject",
+  campaign: 1,
+};
 
 jest.mock("../server/models/Scenarios");
 jest.mock("../server/models/Message");
@@ -28,14 +47,32 @@ afterAll(() => {
 
 describe("/scenario", () => {
   jest.setTimeout(30000);
-  axios.post = jest.fn().mockResolvedValue({
-    status: 200,
-    data: {
-      status: "Success",
-      customer: {
-        processingStatus: "AuthenticationSucceeded",
+  (startScenario as jest.Mock).mockResolvedValue({
+    resultStatus: { status: "SUCCESS" },
+    resultSteps: [
+      {
+        sequence: 0,
+        condition: null,
+        private: false,
+        optional: false,
+        passing: true,
+        _id: "5fc4d2c996c72c136cd978f6",
+        target: "#UserName",
+        command: "click",
+        value: "",
+        variableName: "",
+        extra: {
+          source: {
+            test: "5fb2689e89be016e9702904b",
+            sequence: 0,
+          },
+          rootSequence: 0,
+        },
+        notes: "Imported from: Петр - Моб. приложение - Вход на проект\n",
+        url: "https://megastroy.mindbox.ru/",
+        dateExecuted: "2020-11-30T10:58:44.603Z",
       },
-    },
+    ],
   });
 
   const token = generateAccessToken("nikitin@mindbox.ru");
@@ -45,9 +82,7 @@ describe("/scenario", () => {
       const res = await agent
         .post("/api/scenario/start")
         .set("Cookie", [`token=${token}`])
-        .send({
-          taskName: "ecommerce",
-        });
+        .send(mockApiBody);
 
       expect(res.status).toBe(200);
     });
@@ -56,144 +91,72 @@ describe("/scenario", () => {
       const res = await agent
         .post("/api/scenario/start")
         .set("Cookie", [`token=123`])
-        .send({
-          taskName: "ecommerce",
-        });
+        .send(mockApiBody);
 
       expect(res.status).toBe(403);
     });
   });
 
   describe("scenartio variant calls", () => {
-    it("should call createBasicEcommersOperations ", async () => {
-      const body: ScenarioRequestBody = {
-        taskName: "ecommerce",
-        projectName: "test",
-        campaingNumber: 1,
-      };
-
+    it("should call startScenario with passed data", async () => {
       await agent
         .post("/api/scenario/start")
         .set("Cookie", [`token=${token}`])
-        .send(body);
+        .send(mockApiBody);
 
-      expect(scenarios.ecommerce).toHaveBeenCalled();
-    });
-
-    it("should call  loaylty-online  ", async () => {
-      const body: ScenarioRequestBody = {
-        taskName: "loyaltyOnline",
-        projectName: "test",
-        campaingNumber: 1,
-      };
-
-      await agent
-        .post("/api/scenario/start")
-        .set("Cookie", [`token=${token}`])
-        .send(body);
-
-      expect(scenarios.loyaltyOnline).toHaveBeenCalled();
-    });
-
-    it("should call  loaylty-offline  ", async () => {
-      const body: ScenarioRequestBody = {
-        taskName: "loyaltyOffline",
-        projectName: "test",
-        campaingNumber: 1,
-      };
-
-      await agent
-        .post("/api/scenario/start")
-        .set("Cookie", [`token=${token}`])
-        .send(body);
-
-      expect(scenarios.loyaltyOffline).toHaveBeenCalled();
-    });
-
-    it("should call  mobile psuh  ", async () => {
-      const body: ScenarioRequestBody = {
-        taskName: "mobilePush",
-        projectName: "test",
-        campaingNumber: 1,
-      };
-
-      await agent
-        .post("/api/scenario/start")
-        .set("Cookie", [`token=${token}`])
-        .send(body);
-
-      expect(scenarios.mobilePush).toHaveBeenCalled();
+      expect(startScenario).toHaveBeenCalled();
     });
   });
 
   describe("notification sending", () => {
     it("should send OK message when all is ok", async () => {
-      const body: ScenarioRequestBody = {
-        taskName: "ecommerce",
-        projectName: "test",
-        campaingNumber: 1,
-      };
-
       await agent
         .post("/api/scenario/start")
         .set("Cookie", [`token=${token}`])
-        .send(body);
+        .send(mockApiBody);
+
       expect(sendMessage.ok).toHaveBeenCalled();
     });
 
     it("should NOT send OK message when all is not ok bun token expired", async () => {
-      scenarios.ecommerce = jest.fn().mockRejectedValue({
+      (startScenario as jest.Mock).mockRejectedValue({
         status: 503,
       });
-
-      const body: ScenarioRequestBody = {
-        taskName: "ecommerce",
-        projectName: "test",
-        campaingNumber: 1,
-      };
 
       await agent
         .post("/api/scenario/start")
         .set("Cookie", [`token=123`])
-        .send(body);
+        .send(mockApiBody);
 
       expect(sendMessage.ok).not.toHaveBeenCalled();
     });
 
     it("should NOT send FAIL message when all is not ok bun token expired", async () => {
-      scenarios.ecommerce = jest.fn().mockRejectedValue({
+      (startScenario as jest.Mock).mockRejectedValue({
         status: 503,
       });
-
-      const body: ScenarioRequestBody = {
-        taskName: "ecommerce",
-        projectName: "test",
-        campaingNumber: 1,
-      };
-
-      await agent
-        .post("/api/scenario/start")
-        .set("Cookie", [`token=123`])
-        .send(body);
+      try {
+        const res = await agent
+          .post("/api/scenario/start")
+          .set("Cookie", [`token=123`])
+          .send(mockApiBody);
+      } catch (error) {
+        console.log(error);
+      }
 
       expect(sendMessage.fail).not.toHaveBeenCalled();
     });
 
     it("should send FAIL message when all is not ok", async () => {
-      scenarios.ecommerce = jest.fn().mockRejectedValue({
-        status: 503,
-      });
-
-      const body: ScenarioRequestBody = {
-        taskName: "ecommerce",
-        projectName: "test",
-        campaingNumber: 1,
-      };
+       (startScenario as jest.Mock).mockResolvedValue({
+         resultStatus: { status: "ERROR" },
+         resultSteps: [],
+       });
 
       await agent
         .post("/api/scenario/start")
         .set("Cookie", [`token=${token}`])
-        .send(body);
+        .send(mockApiBody);
 
       expect(sendMessage.fail).toHaveBeenCalled();
     });

@@ -2,10 +2,11 @@ import { Request, Response, NextFunction, Router } from "express";
 
 import User from "../models/User";
 import generateAccessToken from "../helpers/generateAccessToken";
+import checkTocken from "../helpers/checkTocken";
 
 const userRoutes = Router();
 
-import { AuthRequestBody } from "../../index.d";
+import { AuthRequestBody } from "src/declarations";
 
 userRoutes.post(
   "/auth",
@@ -21,12 +22,45 @@ userRoutes.post(
 
         res.send(accessToken);
       } else {
-        res.sendStatus(403);
+        res.status(403).send("Неправильная почта или пароль");
+      }
+    } catch (error) {
+      console.log(error.response.data);
+
+      res.status(503).send(error.response.data);
+    }
+  }
+);
+
+userRoutes.post(
+  "/authByAdminPanel",
+  async (req: Request<{}, {}>, res: Response) => {
+    try {
+      const user = new User(req.body.email, req.body.password);
+      const tokenFromAdminPanel = await user.authenticateByAdminPanel(
+        req.body.project
+      );
+
+      let accessToken: string;
+
+      if (tokenFromAdminPanel) {
+        accessToken = generateAccessToken(
+          user.email,
+          req.body.project,
+          tokenFromAdminPanel
+        );
+
+        res.send(accessToken);
+      } else {
+        res.status(403).send("Неправильная почта или пароль");
       }
     } catch (error) {
       console.log(error);
-
-      res.sendStatus(503);
+      if (error.response?.data) {
+        res.status(503).send(error.response?.data);
+      } else {
+        res.status(503).send(error);
+      }
     }
   }
 );
@@ -39,11 +73,30 @@ userRoutes.post("/reg", async (req: Request, res: Response) => {
       await user.registrStuff();
       res.sendStatus(200);
     } else {
-      res.sendStatus(403);
+      res.status(403).send("Такого пользователя на существует");
     }
   } catch (error) {
     console.log(error);
-    res.sendStatus(503);
+    let errorMessage: string;
+
+    if (error.response?.data?.errorMessage) {
+      errorMessage = error.response?.data?.errorMessage;
+    } else {
+      errorMessage = error.response?.data;
+    }
+
+    res.status(503).send(errorMessage);
+  }
+});
+
+userRoutes.get("/checkToken", (req: Request, res: Response) => {
+  try {
+    checkTocken(req.cookies.token || "");
+    res.sendStatus(200);
+  } catch (error) {
+    console.log(error);
+
+    res.sendStatus(403);
   }
 });
 

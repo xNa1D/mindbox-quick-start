@@ -107,6 +107,39 @@ class User {
 
     return user.data.customer.processingStatus === "AuthenticationSucceeded";
   }
+
+  async authenticateByAdminPanel(project: string) {
+    try {
+      console.log("start authenticateByAdminPanel");
+
+      const response = await axios.post(
+        `https://${project}.mindbox.ru/authenticateByUserNameAndPassword`,
+        {
+          pageState: "login",
+          previousPageState: "login",
+          confirmationCodeSeconds: 30,
+          userName: this.email,
+          password: this.password,
+          validationSummary: null,
+        },
+        {
+          headers: {
+            "content-type": "application/json",
+          },
+        }
+      );
+
+      if (response.data.validationSummary?.globalMessages) {
+        throw new Error(response.data.validationSummary?.globalMessages);
+      }
+
+      const token = response.headers["set-cookie"][0].split(";")[0];
+      return token;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
 }
 
 export default User;

@@ -1,97 +1,95 @@
 import axios from "../__mocks__/axios";
-import scenarios from "../server/models/Scenarios";
+import startScenario from "../server/models/Scenarios";
 
-describe("ecommerce", () => {
+const mockBody = {
+  scenarioApiAddress: ["testApi"],
+  projectName: "testProject",
+  campaign: 1,
+};
+
+describe("startScenario", () => {
   it("should return 200 if resolve", async () => {
     axios.post = jest.fn().mockResolvedValue({
       status: 200,
+      data: {
+        code: "SUCCESS",
+        data: {
+          passing: true
+        }
+      },
     });
 
-    const res = await scenarios.ecommerce("test", 1);
-    expect(res.status).toBe(200);
+    const res = await startScenario(
+      mockBody.scenarioApiAddress,
+      mockBody.projectName,
+      mockBody.campaign
+    );
+    expect(res).toStrictEqual({
+      resultStatus: { errorMessage: "", status: "SUCCESS" },
+      resultSteps: [],
+    });
   });
 
-  it("should trrow on network error", async () => {
+  it("should throw on network error", async () => {
     axios.post = jest.fn().mockRejectedValue({
       status: 500,
     });
 
     try {
-      await scenarios.ecommerce("test", 1);
+      await startScenario(
+        mockBody.scenarioApiAddress,
+        mockBody.projectName,
+        mockBody.campaign
+      );
     } catch (error) {
       expect(error).toBeTruthy();
     }
   });
-});
 
-describe("loyaltyOffline", () => {
-  it("should return 200 if resolve", async () => {
+  it("should throw internal error of code not SUCCESS", async () => {
     axios.post = jest.fn().mockResolvedValue({
       status: 200,
+      data: {
+        code: "ERROR",
+        data: {
+          passing: true,
+        },
+      },
     });
-
-    const res = await scenarios.loyaltyOffline("test", 1);
-
-    expect(res.status).toBe(200);
-  });
-
-  it("should trrow on network error", async () => {
-    axios.post = jest.fn().mockRejectedValue({
-      status: 500,
-    });
-
     try {
-      await scenarios.loyaltyOffline("test", 1);
+      await startScenario(
+        mockBody.scenarioApiAddress,
+        mockBody.projectName,
+        mockBody.campaign
+      );
     } catch (error) {
-      expect(error).toBeTruthy();
+      expect(error.toString()).toBe("Error: Internal error in Scenario Server");
     }
   });
-});
 
-describe("loyaltyOnline", () => {
-  it("should return 200 if resolve", async () => {
+  it("should throw internal error of code not SUCCESS", async () => {
     axios.post = jest.fn().mockResolvedValue({
       status: 200,
+      data: {
+        code: "SUCCESS",
+        data: {
+          passing: false,
+          error: {
+            details: "Test run reached 10 minute time limit and was stopped",
+          },
+        },
+      },
     });
-
-    const res = await scenarios.loyaltyOnline("test", 1);
-
-    expect(res.status).toBe(200);
-  });
-
-  it("should trrow on network error", async () => {
-    axios.post = jest.fn().mockRejectedValue({
-      status: 500,
-    });
-
     try {
-      await scenarios.loyaltyOnline("test", 1);
+      await startScenario(
+        mockBody.scenarioApiAddress,
+        mockBody.projectName,
+        mockBody.campaign
+      );
     } catch (error) {
-      expect(error).toBeTruthy();
-    }
-  });
-});
-
-describe("mobilePush", () => {
-  it("should return 200 if resolve", async () => {
-    axios.post = jest.fn().mockResolvedValue({
-      status: 200,
-    });
-
-    const res = await scenarios.mobilePush("test", 1);
-
-    expect(res.status).toBe(200);
-  });
-
-  it("should trrow on network error", async () => {
-    axios.post = jest.fn().mockRejectedValue({
-      status: 500,
-    });
-
-    try {
-      await scenarios.mobilePush("test", 1);
-    } catch (error) {
-      expect(error).toBeTruthy();
+      expect(error.toString()).toBe(
+        "Error: Test run reached 10 minute time limit and was stopped"
+      );
     }
   });
 });
