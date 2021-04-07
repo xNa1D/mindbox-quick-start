@@ -19,17 +19,22 @@ scenariosRoutes.post(
     try {
       email = checkToken(req.cookies.token).email;
       res.sendStatus(200);
-      
-      try {
-        await startScenario(
-          req.body.scenario.api,
-          req.body.projectName,
-          req.body.campaign
-        );
 
-        sendMessage.ok(req.body.projectName, req.body.scenario.name, email);
+      const projectName = req.body.projectName;
+      const scenario = req.body.scenario;
+      const campaign = req.body.campaign;
+
+      try {
+        const result = await startScenario(scenario.api, projectName, campaign);
+        
+        if (result.resultStatus.status === "SUCCESS") {
+          sendMessage.ok(projectName, scenario.name, email);
+        } else {
+          sendMessage.fail(projectName, scenario.name, email);
+          sendMessage.fail(projectName, scenario.name, "nikitin@mindbox.ru");
+        }
       } catch (error) {
-        sendMessage.fail(req.body.projectName, req.body.scenario.name, email);
+        console.log(error);
       }
     } catch (error) {
       res.status(403).send(error);

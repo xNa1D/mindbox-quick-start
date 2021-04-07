@@ -10,7 +10,7 @@ export type Scenario = {
   type: string;
   name: string;
   docs: string;
-  api: string;
+  api: string[];
 };
 
 export type ScenarioNames = keyof ScenarioApiCalls;

@@ -62,8 +62,7 @@ describe("Scenario calls", () => {
       campaign: 12,
       projectName: "test",
       scenario: {
-        api:
-          "https://api.ghostinspector.com/v1/tests/5ed5315fe1d6aa3e73eeac22/execute/?apiKey=777edc3b47a553359340c186dca0a1923bc51c77",
+        api: ["5ed5315fe1d6aa3e73eeac22"],
         docs:
           "https://docs.google.com/document/d/13XJIqU1CSv5yaTFeAFu7J1L94edaMAQNQAAwHJxqAOc/edit",
         name: "Операции для ПЛ на сайте",

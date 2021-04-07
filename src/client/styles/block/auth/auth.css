@@ -1,9 +1,10 @@
 .auth {
   min-width: 320px;
-  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  max-width: 450px;
+  margin: 0 auto;
 }
 
 .auth__logo {
