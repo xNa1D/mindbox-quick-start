@@ -1,7 +1,7 @@
 import supertest from "supertest";
 import axios from "../__mocks__/axios";
 
-import generateAccessToken from "../server/helpers/generateAccessToken";
+import generateAccessToken from "../server/user/generateAccessToken";
 
 import { server } from "../server/index";
 

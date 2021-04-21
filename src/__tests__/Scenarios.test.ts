@@ -1,5 +1,5 @@
 import axios from "../__mocks__/axios";
-import startScenario from "../server/models/Scenarios";
+import startScenario from "../server/scenario/Scenarios";
 
 const mockBody = {
   scenarioApiAddress: ["testApi"],

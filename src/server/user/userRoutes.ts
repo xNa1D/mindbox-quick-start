@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction, Router } from "express";
 
-import User from "../models/User";
-import generateAccessToken from "../helpers/generateAccessToken";
-import checkTocken from "../helpers/checkTocken";
+import User from "./User";
+import generateAccessToken from "./generateAccessToken";
+import checkTocken from "./checkTocken";
 
 const userRoutes = Router();
 

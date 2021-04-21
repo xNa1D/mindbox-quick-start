@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction, Router } from "express";
 
-import startScenario from "../models/Scenarios";
-import checkToken from "../helpers/checkTocken";
-import sendMessage from "../models/Message";
+import startScenario from "./Scenarios";
+import checkToken from "../user/checkTocken";
+import sendMessage from "./Message";
 
 import { StartScenarioBody } from "src/declarations";
 

@@ -1,4 +1,4 @@
-import sendMessage from "../server/models/Message";
+import sendMessage from "../server/scenario/Message";
 import axios from "../__mocks__/axios";
 
 describe("ok message", () => {

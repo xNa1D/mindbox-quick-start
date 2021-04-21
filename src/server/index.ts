@@ -5,8 +5,8 @@ import * as dotenv from "dotenv";
 import morgan from "morgan";
 import path from "path";
 
-import userRoutes from "./routes/userRoutes";
-import scenariosRoutes from "./routes/scenariosRoutes";
+import userRoutes from "./user/userRoutes";
+import scenariosRoutes from "./scenario/scenariosRoutes";
 
 const app = express();
 

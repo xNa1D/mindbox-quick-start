@@ -1,5 +1,5 @@
-import checkTocken from "./checkTocken";
-import generateAccessToken from "./generateAccessToken";
+import checkTocken from "../../server/user/checkTocken";
+import generateAccessToken from "../../server/user/generateAccessToken";
 import { Request, Response, NextFunction } from "express";
 
 describe("checkTocken", () => {

@@ -1,17 +1,17 @@
 import supertest from "supertest";
 import axios from "axios";
-import startScenario from "../server/models/Scenarios";
-import sendMessage from "../server/models/Message";
+import startScenario from "../server/scenario/Scenarios";
+import sendMessage from "../server/scenario/Message";
 
-import generateAccessToken from "../server/helpers/generateAccessToken";
+import generateAccessToken from "../server/user/generateAccessToken";
 
 import { server } from "../server/index";
 
 import { StartScenarioBody, Scenario } from "src/declarations";
 
 jest.mock("jest");
-jest.mock("../server/models/Scenarios");
-jest.mock("../server/models/Message");
+jest.mock("../server/scenario/Scenarios");
+jest.mock("../server/scenario/Message");
 
 // import scenarios from "src/data";
 
@@ -29,9 +29,6 @@ const mockApiBody: StartScenarioBody = {
   projectName: "testProject",
   campaign: 1,
 };
-
-jest.mock("../server/models/Scenarios");
-jest.mock("../server/models/Message");
 
 afterEach(() => {
   jest.clearAllMocks();
