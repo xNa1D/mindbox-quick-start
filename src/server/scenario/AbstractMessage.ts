@@ -2,7 +2,7 @@ import axios from "axios";
 import { ScenarioResult, StepsEntity } from "src/ScenarioResult";
 import { MessageParameters, Step, Scenario } from "src/declarations";
 
-class AbstractMessage {
+abstract class AbstractMessage {
   email: string;
   steps: Step[] | undefined;
   scenarioName: string = "";
@@ -31,7 +31,7 @@ class AbstractMessage {
           stepsObject[rootId] = {
             name: step.notes
               ?.split("\n")[0]
-              .replace("Imported from: Петр - ", ""),
+              .replace("Imported from: Петр - ", "").split("-")[1].trim(),
             status: step.passing,
           };
         } else {
