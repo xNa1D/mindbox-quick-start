@@ -1,4 +1,4 @@
-import AbstractMessage from "server/scenario/AbstractMessage";
+import SuccessMessage from "server/scenario/SuccessMessage";
 import mockScenarioResult from "../../__mocks__/mockScenarioResult.json";
 
 const mockResult = mockScenarioResult;
@@ -11,26 +11,28 @@ const mockScenario = {
   api: ["5ec6c26197e4531b3a9d9864"],
 };
 
+const expectedSteps = [
+  {
+    name: "Вход на проект",
+    status: null,
+  },
+  {
+    name: "ШД для импорта клиентов",
+    status: true,
+  },
+  {
+    name:
+      "ШД для создания клиентов администратором",
+    status: false,
+  },
+];
+
 it("should parse steps", () => {
-  const message = new AbstractMessage(
+  const message = new SuccessMessage(
     mockResult,
     "nikitin@mindbox.ru",
     mockScenario
   );
 
-  expect(message.steps).toStrictEqual([
-    {
-      name: "Стандартные операции для ИМ - Вход на проект",
-      status: true,
-    },
-    {
-      name: "Стандартные операции для ИМ - ШД для импорта клиентов",
-      status: true,
-    },
-    {
-      name:
-        "Стандартные операции для ИМ - ШД для создания клиентов администратором",
-      status: false,
-    },
-  ]);
+  expect(message.steps).toStrictEqual(expectedSteps);
 });
