@@ -17,7 +17,7 @@ class AbstractMessage {
     this.scenarioName = scenario.name;
   }
 
-  parseStepsInfo(steps: StepsEntity[] | null) {
+  private parseStepsInfo(steps: StepsEntity[] | null) {
     if (steps?.length === 0) {
       return;
     }
@@ -25,7 +25,6 @@ class AbstractMessage {
 
     steps?.reduce((stepsObject, step) => {
       const rootId = step.extra?.rootSequence;
-      let stepStatus: { [k: string]: any } = {};
 
       if (rootId !== undefined) {
         if (stepsObject[rootId] === undefined) {
@@ -36,7 +35,6 @@ class AbstractMessage {
             status: step.passing,
           };
         } else {
-          // stepsObject[rootId]["status"].push(step.passing);
           if (stepsObject[rootId]["status"] === null) {
             if (step.passing === null) {
               stepsObject[rootId]["status"] = step.passing;
