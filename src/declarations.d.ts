@@ -30,11 +30,18 @@ export type Step = {
   name: string;
 };
 
-export type MessageParameters = {
+type BaseMessageParameters = {
   task: string;
   projectName: string;
-  errorMessage: ?string;
-  videoLink: ?string;
-  documentationLink: ?string;
   steps: Step[];
+};
+
+
+export type SuccessMessageParameters = BaseMessageParameters & {
+  documentationLink: string;
+};
+
+export type ErrorMessageParameters = BaseMessageParameters & {
+  errorMessage: string;
+  videoLink: string;
 };
