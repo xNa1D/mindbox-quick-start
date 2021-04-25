@@ -14,16 +14,6 @@ const mockScenario = {
   api: ["5ec6c26197e4531b3a9d9864"],
 };
 
-it("should save api docs", () => {
-  const message = new SuccessMessage(
-    mockResult,
-    "testOperation",
-    mockScenario,
-    "testProject"
-  );
-
-  expect(message.documentationLink).toBe(mockScenario.docs);
-});
 
 const expectedSteps = [
   { name: "Вход на проект", status: null },

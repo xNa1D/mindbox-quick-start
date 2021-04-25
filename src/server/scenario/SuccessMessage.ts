@@ -3,15 +3,13 @@ import { ScenarioResult, StepsEntity } from "src/ScenarioResult";
 import { SuccessMessageParameters, Step, Scenario } from "src/declarations";
 
 class SuccessMessage extends AbstractMessage<SuccessMessageParameters> {
-  documentationLink: string = "";
   constructor(
     scenarioResult: ScenarioResult,
-    operatoin: string,
+    operation: string,
     scenario: Scenario,
     projectName: string
   ) {
-    super(scenarioResult, scenario, operatoin);
-    this.documentationLink = scenario.docs;
+    super(scenarioResult, scenario, operation);
     this.customParameters = {
       documentationLink: scenario.docs,
       projectName,
