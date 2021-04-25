@@ -1,6 +1,9 @@
 {
   "code": "SUCCESS",
   "data": {
+    "error": {
+      "details": "Test run reached 10 minute time limit and was stopped"
+    },
     "autoRetry": true,
     "autoRetryTriggered": false,
     "browser": "chrome-90",
