@@ -1,25 +1,26 @@
 import axios from "axios";
 import { ScenarioResult, StepsEntity } from "src/ScenarioResult";
-import { MessageParameters, Step, Scenario } from "src/declarations";
+import { Step, Scenario } from "src/declarations";
 
-abstract class AbstractMessage {
-  email: string;
-  steps: Step[] | undefined;
+abstract class AbstractMessage<T> {
+  steps: Step[];
   scenarioName: string = "";
+  customParameters: T | undefined;
+  operation: string;
 
   constructor(
-    scenarioResponse: ScenarioResult,
-    email: string,
-    scenario: Scenario
+    scenarioResult: ScenarioResult,
+    scenario: Scenario,
+    operation: string
   ) {
-    this.email = email;
-    this.steps = this.parseStepsInfo(scenarioResponse.data.steps);
+    this.steps = this.parseStepsInfo(scenarioResult.data.steps);
     this.scenarioName = scenario.name;
+    this.operation = operation;
   }
 
   private parseStepsInfo(steps: StepsEntity[] | null) {
     if (steps?.length === 0) {
-      return;
+      return [];
     }
     const stepsObject: { [k: string]: any } = {};
 
@@ -31,7 +32,9 @@ abstract class AbstractMessage {
           stepsObject[rootId] = {
             name: step.notes
               ?.split("\n")[0]
-              .replace("Imported from: Петр - ", "").split("-")[1].trim(),
+              .replace("Imported from: Петр - ", "")
+              .split("-")[1]
+              .trim(),
             status: step.passing,
           };
         } else {
@@ -42,7 +45,8 @@ abstract class AbstractMessage {
               stepsObject[rootId]["status"] = step.passing;
             }
           } else {
-            stepsObject[rootId]["status"] = stepsObject[rootId]["status"] &&  step.passing;
+            stepsObject[rootId]["status"] =
+              stepsObject[rootId]["status"] && step.passing;
           }
         }
       }
@@ -53,15 +57,15 @@ abstract class AbstractMessage {
     return Object.values(stepsObject) as Step[];
   }
 
-  async sendMessage(email: string, customParameters: MessageParameters) {
+  async sendMessage(email: string) {
     return await axios.post(
-      `https://api.mindbox.ru/v3/operations/async?endpointId=${process.env.ENDPOINT}&operation=QuickStart.SendSuccessStatus`,
+      `https://api.mindbox.ru/v3/operations/async`,
       {
         customer: {
           email: email,
         },
         emailMailing: {
-          customParameters,
+          customParameters: this.customParameters,
         },
       },
       {
@@ -69,6 +73,10 @@ abstract class AbstractMessage {
           "Content-Type": "application/json; charset=utf-8",
           Accept: "application/json",
           Authorization: `Mindbox secretKey="${process.env.SECRET_KEY}"`,
+        },
+        params: {
+          endpointId: process.env.ENDPOINT,
+          operation: this.operation,
         },
       }
     );
