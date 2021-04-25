@@ -1,12 +1,23 @@
 import AbstractMessage from './AbstractMessage';
 import { ScenarioResult, StepsEntity } from "src/ScenarioResult";
-import { MessageParameters, Step, Scenario } from "src/declarations";
+import { SuccessMessageParameters, Step, Scenario } from "src/declarations";
 
-class SuccessMessage extends AbstractMessage {
+class SuccessMessage extends AbstractMessage<SuccessMessageParameters> {
   documentationLink: string = "";
-  constructor(scenarioResponse: ScenarioResult, email: string, scenario: Scenario) {
-    super(scenarioResponse, email, scenario);
+  constructor(
+    scenarioResult: ScenarioResult,
+    operatoin: string,
+    scenario: Scenario,
+    projectName: string
+  ) {
+    super(scenarioResult, scenario, operatoin);
     this.documentationLink = scenario.docs;
+    this.customParameters = {
+      documentationLink: scenario.docs,
+      projectName,
+      steps: this.steps,
+      task: scenario.name,
+    };
   }
 }
 
