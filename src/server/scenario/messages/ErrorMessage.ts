@@ -4,12 +4,12 @@ import { ErrorMessageParameters, Step, Scenario } from "src/declarations";
 
 class SuccessMessage extends AbstractMessage<ErrorMessageParameters> {
   constructor(
-    steps: StepsEntity[],
-    videoLink: string,
-    errorMessage: string,
+    steps: Step[],
     operation: string,
     scenario: Scenario,
-    projectName: string
+    projectName: string,
+    videoLink: string,
+    errorMessage: string,
   ) {
     super(steps, scenario, operation);
     this.customParameters = {

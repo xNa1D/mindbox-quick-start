@@ -4,7 +4,7 @@ import { SuccessMessageParameters, Step, Scenario } from "src/declarations";
 
 class SuccessMessage extends AbstractMessage<SuccessMessageParameters> {
   constructor(
-    steps: StepsEntity[],
+    steps: Step[],
     operation: string,
     scenario: Scenario,
     projectName: string
