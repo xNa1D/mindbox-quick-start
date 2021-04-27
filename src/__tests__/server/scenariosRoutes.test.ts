@@ -1,17 +1,17 @@
 import supertest from "supertest";
-import axios from "axios";
-import startScenario from "../server/scenario/Scenarios";
-import sendMessage from "../server/scenario/Message";
+import startScenario from "src/server/scenario/startScenario";
+import sendMessage from "src/server/scenario/Message";
 
-import generateAccessToken from "../server/user/generateAccessToken";
+import generateAccessToken from "src/server/user/generateAccessToken";
+import mockScenarioResult from "../../__mocks__/mockScenarioResult.json";
 
-import { server } from "../server/index";
+import { server } from "src/server/index";
 
 import { StartScenarioBody, Scenario } from "src/declarations";
 
 jest.mock("jest");
-jest.mock("../server/scenario/Scenarios");
-jest.mock("../server/scenario/Message");
+jest.mock("src/server/scenario/startScenario");
+jest.mock("src/server/scenario/Message");
 
 // import scenarios from "src/data";
 
@@ -44,33 +44,7 @@ afterAll(() => {
 
 describe("/scenario", () => {
   jest.setTimeout(30000);
-  (startScenario as jest.Mock).mockResolvedValue({
-    resultStatus: { status: "SUCCESS" },
-    resultSteps: [
-      {
-        sequence: 0,
-        condition: null,
-        private: false,
-        optional: false,
-        passing: true,
-        _id: "5fc4d2c996c72c136cd978f6",
-        target: "#UserName",
-        command: "click",
-        value: "",
-        variableName: "",
-        extra: {
-          source: {
-            test: "5fb2689e89be016e9702904b",
-            sequence: 0,
-          },
-          rootSequence: 0,
-        },
-        notes: "Imported from: Петр - Моб. приложение - Вход на проект\n",
-        url: "https://megastroy.mindbox.ru/",
-        dateExecuted: "2020-11-30T10:58:44.603Z",
-      },
-    ],
-  });
+  (startScenario as jest.Mock).mockResolvedValue(mockScenarioResult);
 
   const token = generateAccessToken("nikitin@mindbox.ru");
 
