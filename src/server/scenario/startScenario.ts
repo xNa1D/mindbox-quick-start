@@ -1,6 +1,9 @@
 import axios from "axios";
-import { ScenarioResult } from "src/ScenarioResult";
+import { ScenarioResult  } from "src/ScenarioResult";
 import { StepsEntity } from "src/ScenarioResult";
+import parseStepsInfo from "./parseStepsInfo";
+
+import { Step } from "src/declarations";
 
 const startScenario = async (
   scenarioApiAddress: string[],
@@ -12,9 +15,10 @@ const startScenario = async (
     errorMessage: "",
     videoLink: "",
   };
-  let resultSteps: StepsEntity[] = [];
-
-  for (const api of scenarioApiAddress) {
+  
+  let resultSteps: Step[] = [];
+  let i = 0;
+  for await (const api of scenarioApiAddress) {
     try {
       const result = await axios.post<ScenarioResult>(
         `https://api.ghostinspector.com/v1/tests/${api}/execute/?apiKey=777edc3b47a553359340c186dca0a1923bc51c77`,
@@ -26,7 +30,10 @@ const startScenario = async (
         }
       );
 
-      resultSteps = [...resultSteps, ...(result.data.data.steps || [])];
+      resultSteps = [
+        ...resultSteps,
+        ...parseStepsInfo(result.data.data.steps || []),
+      ];
 
       if (result.data.code !== "SUCCESS") {
         resultStatus = "ERROR";
@@ -40,7 +47,7 @@ const startScenario = async (
       }
     } catch (error) {
       resultStatus = "ERROR";
-      resultError.errorMessage = error.toString();
+      resultError.errorMessage = error;
     }
   }
   return {
