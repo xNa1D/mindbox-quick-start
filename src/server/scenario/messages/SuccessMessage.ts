@@ -4,12 +4,12 @@ import { SuccessMessageParameters, Step, Scenario } from "src/declarations";
 
 class SuccessMessage extends AbstractMessage<SuccessMessageParameters> {
   constructor(
-    scenarioResult: ScenarioResult,
+    steps: StepsEntity[],
     operation: string,
     scenario: Scenario,
     projectName: string
   ) {
-    super(scenarioResult, scenario, operation);
+    super(steps, scenario, operation);
     this.customParameters = {
       documentationLink: scenario.docs,
       projectName,

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ScenarioResult, StepsEntity } from "src/ScenarioResult";
+import { StepsEntity } from "src/ScenarioResult";
 import { Step, Scenario } from "src/declarations";
 
 abstract class AbstractMessage<T> {
@@ -8,23 +8,19 @@ abstract class AbstractMessage<T> {
   customParameters: T | undefined;
   operation: string;
 
-  constructor(
-    scenarioResult: ScenarioResult,
-    scenario: Scenario,
-    operation: string
-  ) {
-    this.steps = this.parseStepsInfo(scenarioResult.data.steps);
+  constructor(steps: StepsEntity[], scenario: Scenario, operation: string) {
+    this.steps = this.parseStepsInfo(steps);
     this.scenarioName = scenario.name;
     this.operation = operation;
   }
 
-  private parseStepsInfo(steps: StepsEntity[] | null) {
+  private parseStepsInfo(steps: StepsEntity[]) {
     if (steps?.length === 0) {
       return [];
     }
     const stepsObject: { [k: string]: any } = {};
 
-    steps?.reduce((stepsObject, step) => {
+    steps.reduce((stepsObject, step) => {
       const rootId = step.extra?.rootSequence;
 
       if (rootId !== undefined) {
