@@ -4,7 +4,7 @@ import startScenario from "./startScenario";
 import checkToken from "../user/checkTocken";
 import SuccessMessage from "./messages/SuccessMessage";
 import ErrorMessage from "./messages/ErrorMessage";
-import { operations } from "src/data";
+import { operations } from "src/config";
 
 import { StartScenarioBody, Step } from "src/declarations";
 
