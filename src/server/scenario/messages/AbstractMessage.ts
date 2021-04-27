@@ -1,5 +1,5 @@
 import axios from "axios";
-import { StepsEntity } from "src/ScenarioResult";
+
 import { Step, Scenario } from "src/declarations";
 
 abstract class AbstractMessage<T> {
@@ -8,49 +8,10 @@ abstract class AbstractMessage<T> {
   customParameters: T | undefined;
   operation: string;
 
-  constructor(steps: StepsEntity[], scenario: Scenario, operation: string) {
-    this.steps = this.parseStepsInfo(steps);
+  constructor(steps: Step[], scenario: Scenario, operation: string) {
+    this.steps = steps;
     this.scenarioName = scenario.name;
     this.operation = operation;
-  }
-
-  private parseStepsInfo(steps: StepsEntity[]) {
-    if (steps?.length === 0) {
-      return [];
-    }
-    const stepsObject: { [k: string]: any } = {};
-
-    steps.reduce((stepsObject, step) => {
-      const rootId = step.extra?.rootSequence;
-
-      if (rootId !== undefined) {
-        if (stepsObject[rootId] === undefined) {
-          stepsObject[rootId] = {
-            name: step.notes
-              ?.split("\n")[0]
-              .replace("Imported from: Петр - ", "")
-              .split("-")[1]
-              .trim(),
-            status: step.passing,
-          };
-        } else {
-          if (stepsObject[rootId]["status"] === null) {
-            if (step.passing === null) {
-              stepsObject[rootId]["status"] = step.passing;
-            } else {
-              stepsObject[rootId]["status"] = step.passing;
-            }
-          } else {
-            stepsObject[rootId]["status"] =
-              stepsObject[rootId]["status"] && step.passing;
-          }
-        }
-      }
-
-      return stepsObject;
-    }, stepsObject);
-
-    return Object.values(stepsObject) as Step[];
   }
 
   async sendMessage(email: string) {

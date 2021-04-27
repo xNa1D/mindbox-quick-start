@@ -1,10 +1,12 @@
 import { Request, Response, NextFunction, Router } from "express";
 
-import startScenario from "./Scenarios";
+import startScenario from "./startScenario";
 import checkToken from "../user/checkTocken";
-import sendMessage from "./Message";
+import SuccessMessage from "./messages/SuccessMessage";
+import ErrorMessage from "./messages/ErrorMessage";
+import { operations } from "src/data";
 
-import { StartScenarioBody } from "src/declarations";
+import { StartScenarioBody, Step } from "src/declarations";
 
 const scenariosRoutes = Router();
 scenariosRoutes.post(
@@ -25,13 +27,32 @@ scenariosRoutes.post(
       const campaign = req.body.campaign;
 
       try {
-        const result = await startScenario(scenario.api, projectName, campaign);
-        
-        if (result.resultStatus.status === "SUCCESS") {
-          sendMessage.ok(projectName, scenario.name, email);
+        const scenarioResult = await startScenario(
+          scenario.api,
+          projectName,
+          campaign
+        );
+
+        if (scenarioResult.status === "SUCCESS") {
+          const successMessage = new SuccessMessage(
+            scenarioResult.steps,
+            operations.messages.success,
+            scenario,
+            projectName
+          );
+          
+          successMessage.sendMessage(email);
         } else {
-          sendMessage.fail(projectName, scenario.name, email);
-          sendMessage.fail(projectName, scenario.name, "nikitin@mindbox.ru");
+          const errorMessage = new ErrorMessage(
+            scenarioResult.steps,
+            operations.messages.error,
+            scenario,
+            projectName,
+            scenarioResult.error.videoLink,
+            scenarioResult.error.errorMessage,
+          );
+          errorMessage.sendMessage(email);
+          errorMessage.sendMessage("nikitin@mindbox.ru");
         }
       } catch (error) {
         console.log(error);
