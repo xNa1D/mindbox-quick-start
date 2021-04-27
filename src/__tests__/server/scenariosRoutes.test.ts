@@ -1,9 +1,12 @@
 import supertest from "supertest";
 import startScenario from "src/server/scenario/startScenario";
 import sendMessage from "src/server/scenario/Message";
+import ErrorMessage from "src/server/scenario/messages/ErrorMessage";
+import SuccessMessage from "src/server/scenario/messages/SuccessMessage";
 
 import generateAccessToken from "src/server/user/generateAccessToken";
-import mockScenarioResult from "../../__mocks__/mockScenarioResult.json";
+import mockScenarioResultSuccess from "../../__mocks__/mockScenarioResultSuccess.json";
+import mockScenarioResultError from "../../__mocks__/mockScenarioResultError.json";
 
 import { server } from "src/server/index";
 
@@ -11,7 +14,8 @@ import { StartScenarioBody, Scenario } from "src/declarations";
 
 jest.mock("jest");
 jest.mock("src/server/scenario/startScenario");
-jest.mock("src/server/scenario/Message");
+jest.mock("src/server/scenario/messages/ErrorMessage");
+jest.mock("src/server/scenario/messages/SuccessMessage");
 
 // import scenarios from "src/data";
 
@@ -24,11 +28,47 @@ const mockScenario: Scenario = {
   docs: "mockDocs",
 };
 
+const mockSteps = [
+  { name: "Вход на проект", status: null },
+  { name: "ШД для импорта клиентов", status: true },
+  { name: "ШД для создания клиентов администратором", status: false },
+];
+
+const mockSuccessResponse = {
+  error: {
+    errorMessage: "",
+    videoLink: "",
+  },
+  status: "SUCCESS",
+  steps: mockSteps,
+};
+
+const mockErrorResponse = {
+  error: {
+    errorMessage: "Test run reached 10 minute time limit and was stopped",
+    videoLink:
+      "https://ghostinspector-prod.s3.amazonaws.com/videos/a6306a8a-059a-4fda-a1ae-74c973d362b4.mp4",
+  },
+  status: "ERROR",
+  steps: mockSteps,
+};
+
 const mockApiBody: StartScenarioBody = {
   scenario: mockScenario,
   projectName: "testProject",
   campaign: 1,
 };
+
+
+
+// const mockErrorMessageInstance = (ErrorMessage as jest.Mock).mock.instances[0];
+// const sendErrorMessage = mockErrorMessageInstance.sendMessage;
+
+beforeEach(() => {
+  // Clear all instances and calls to constructor and all methods:
+  // (SuccessMessage as jest.Mock).mockClear();
+  // (ErrorMessage as jest.Mock).mockClear();
+});
 
 afterEach(() => {
   jest.clearAllMocks();
@@ -44,7 +84,7 @@ afterAll(() => {
 
 describe("/scenario", () => {
   jest.setTimeout(30000);
-  (startScenario as jest.Mock).mockResolvedValue(mockScenarioResult);
+  (startScenario as jest.Mock).mockResolvedValue(mockSuccessResponse);
 
   const token = generateAccessToken("nikitin@mindbox.ru");
 
@@ -80,14 +120,18 @@ describe("/scenario", () => {
   });
 
   describe("notification sending", () => {
-    it("should send OK message when all is ok", async () => {
-      await agent
-        .post("/api/scenario/start")
-        .set("Cookie", [`token=${token}`])
-        .send(mockApiBody);
+      
+      it("should send OK message when all is ok", async () => {
+        await agent
+          .post("/api/scenario/start")
+          .set("Cookie", [`token=${token}`])
+          .send(mockApiBody);
 
-      expect(sendMessage.ok).toHaveBeenCalled();
-    });
+        const mockSuccessMessageInstance = (SuccessMessage as jest.Mock).mock.instances[0];
+        const sendSuccessMessage = mockSuccessMessageInstance.sendMessage;
+
+        expect(sendSuccessMessage).toHaveBeenCalled();
+      });
 
     it("should NOT send OK message when all is not ok bun token expired", async () => {
       (startScenario as jest.Mock).mockRejectedValue({
@@ -99,7 +143,7 @@ describe("/scenario", () => {
         .set("Cookie", [`token=123`])
         .send(mockApiBody);
 
-      expect(sendMessage.ok).not.toHaveBeenCalled();
+      expect(SuccessMessage).not.toHaveBeenCalled();
     });
 
     it("should NOT send FAIL message when all is not ok bun token expired", async () => {
@@ -115,21 +159,20 @@ describe("/scenario", () => {
         console.log(error);
       }
 
-      expect(sendMessage.fail).not.toHaveBeenCalled();
+      expect(ErrorMessage).not.toHaveBeenCalled();
     });
 
     it("should send FAIL message when all is not ok", async () => {
-       (startScenario as jest.Mock).mockResolvedValue({
-         resultStatus: { status: "ERROR" },
-         resultSteps: [],
-       });
+      (startScenario as jest.Mock).mockResolvedValue(mockErrorResponse);
 
       await agent
         .post("/api/scenario/start")
         .set("Cookie", [`token=${token}`])
         .send(mockApiBody);
-
-      expect(sendMessage.fail).toHaveBeenCalled();
+      const mockErrorMessageInstance = (ErrorMessage as jest.Mock).mock
+        .instances[0];
+      const sendErrorMessage = mockErrorMessageInstance.sendMessage;
+      expect(sendErrorMessage).toHaveBeenCalled();
     });
   });
 });

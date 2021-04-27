@@ -1,10 +1,8 @@
 import SuccessMessage from "src/server/scenario/messages/SuccessMessage";
 import axios from "src/__mocks__/axios";
-import mockScenarioResult from "../../__mocks__/mockScenarioResult.json";
 
 jest.mock("jest");
 
-const mockResult = mockScenarioResult;
 
 const mockScenario = {
   type: "ecommerce",
@@ -21,24 +19,9 @@ const expectedSteps = [
   { name: "ШД для создания клиентов администратором", status: false },
 ];
 
-it("should parse steps", () => {
-  const message = new SuccessMessage(
-    mockResult,
-    "testOperation",
-    mockScenario,
-    "testProject"
-  );
-
-  expect(message.steps).toStrictEqual(expectedSteps);
-});
 
 it("should invoke operation properly", () => {
-  const message = new SuccessMessage(
-    mockResult,
-    "testOperation",
-    mockScenario,
-    "testProject"
-  );
+  const message = new SuccessMessage(expectedSteps, "testOperation", mockScenario, "testProject");
 
   message.sendMessage("test@mindbox.ru");
 
