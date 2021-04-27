@@ -1,17 +1,25 @@
-import AbstractMessage from './AbstractMessage';
+import AbstractMessage from "./AbstractMessage";
 import { ScenarioResult, StepsEntity } from "src/ScenarioResult";
 import { ErrorMessageParameters, Step, Scenario } from "src/declarations";
 
+type errorMessage = {
+  steps: Step[];
+  operation: string;
+  scenario: Scenario;
+  projectName: string;
+  videoLink: string;
+  errorMessage: string;
+};
 class SuccessMessage extends AbstractMessage<ErrorMessageParameters> {
-  constructor(
-    steps: Step[],
-    operation: string,
-    scenario: Scenario,
-    projectName: string,
-    videoLink: string,
-    errorMessage: string,
-  ) {
-    super(steps, scenario, operation);
+  constructor({
+    steps,
+    operation,
+    scenario,
+    projectName,
+    videoLink,
+    errorMessage,
+  }: errorMessage) {
+    super({ steps, scenario, operation });
     this.customParameters = {
       errorMessage,
       videoLink,
@@ -22,4 +30,4 @@ class SuccessMessage extends AbstractMessage<ErrorMessageParameters> {
   }
 }
 
-export default SuccessMessage; 
+export default SuccessMessage;

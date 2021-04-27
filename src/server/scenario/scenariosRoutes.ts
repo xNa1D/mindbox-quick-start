@@ -34,23 +34,23 @@ scenariosRoutes.post(
         );
 
         if (scenarioResult.status === "SUCCESS") {
-          const successMessage = new SuccessMessage(
-            scenarioResult.steps,
-            operations.messages.success,
-            scenario,
-            projectName
-          );
-          
+          const successMessage = new SuccessMessage({
+            steps: scenarioResult.steps,
+            operation: operations.messages.error,
+            scenario: scenario,
+            projectName,
+          });
+
           successMessage.sendMessage(email);
         } else {
-          const errorMessage = new ErrorMessage(
-            scenarioResult.steps,
-            operations.messages.error,
-            scenario,
+          const errorMessage = new ErrorMessage({
+            steps: scenarioResult.steps,
+            operation: operations.messages.error,
+            scenario: scenario,
             projectName,
-            scenarioResult.error.videoLink,
-            scenarioResult.error.errorMessage,
-          );
+            videoLink: scenarioResult.error.videoLink,
+            errorMessage: scenarioResult.error.errorMessage,
+          });
           errorMessage.sendMessage(email);
           errorMessage.sendMessage("nikitin@mindbox.ru");
         }

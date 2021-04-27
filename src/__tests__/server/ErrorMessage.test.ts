@@ -20,16 +20,15 @@ const expectedSteps = [
   { name: "ШД для создания клиентов администратором", status: false },
 ];
 
-
 it("should invoke operation properly", () => {
-  const message = new ErrorMessage(
-    expectedSteps,
-    "testOperation",
-    mockScenario,
-    "testProject",
-    mockResult.data.video.url,
-    mockResult.data.error.details,
-  );
+  const message = new ErrorMessage({
+    steps: expectedSteps,
+    operation: "testOperation",
+    scenario: mockScenario,
+    projectName: "testProject",
+    videoLink: mockResult.data.video.url,
+    errorMessage: mockResult.data.error.details,
+  });
 
   message.sendMessage("test@mindbox.ru");
 

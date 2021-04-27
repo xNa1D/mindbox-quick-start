@@ -2,13 +2,18 @@ import axios from "axios";
 
 import { Step, Scenario } from "src/declarations";
 
+type abstractMessage = {
+  steps: Step[];
+  scenario: Scenario;
+  operation: string;
+};
 abstract class AbstractMessage<T> {
   steps: Step[];
   scenarioName: string = "";
   customParameters: T | undefined;
   operation: string;
 
-  constructor(steps: Step[], scenario: Scenario, operation: string) {
+  constructor({ steps, scenario, operation }: abstractMessage) {
     this.steps = steps;
     this.scenarioName = scenario.name;
     this.operation = operation;

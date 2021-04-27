@@ -3,7 +3,6 @@ import axios from "src/__mocks__/axios";
 
 jest.mock("jest");
 
-
 const mockScenario = {
   type: "ecommerce",
   name: "Стандартные операции для интернет магазина",
@@ -12,16 +11,19 @@ const mockScenario = {
   api: ["5ec6c26197e4531b3a9d9864"],
 };
 
-
 const expectedSteps = [
   { name: "Вход на проект", status: null },
   { name: "ШД для импорта клиентов", status: true },
   { name: "ШД для создания клиентов администратором", status: false },
 ];
 
-
 it("should invoke operation properly", () => {
-  const message = new SuccessMessage(expectedSteps, "testOperation", mockScenario, "testProject");
+  const message = new SuccessMessage({
+    steps: expectedSteps,
+    operation: "testOperation",
+    scenario: mockScenario,
+    projectName: "testProject",
+  });
 
   message.sendMessage("test@mindbox.ru");
 
