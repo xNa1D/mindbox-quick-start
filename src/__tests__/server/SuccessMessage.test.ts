@@ -1,4 +1,4 @@
-import ErrorMessage from "server/scenario/ErrorMessage";
+import SuccessMessage from "src/server/scenario/messages/SuccessMessage";
 import axios from "src/__mocks__/axios";
 import mockScenarioResult from "../../__mocks__/mockScenarioResult.json";
 
@@ -14,6 +14,7 @@ const mockScenario = {
   api: ["5ec6c26197e4531b3a9d9864"],
 };
 
+
 const expectedSteps = [
   { name: "Вход на проект", status: null },
   { name: "ШД для импорта клиентов", status: true },
@@ -21,7 +22,7 @@ const expectedSteps = [
 ];
 
 it("should parse steps", () => {
-  const message = new ErrorMessage(
+  const message = new SuccessMessage(
     mockResult,
     "testOperation",
     mockScenario,
@@ -32,7 +33,7 @@ it("should parse steps", () => {
 });
 
 it("should invoke operation properly", () => {
-  const message = new ErrorMessage(
+  const message = new SuccessMessage(
     mockResult,
     "testOperation",
     mockScenario,
@@ -47,9 +48,8 @@ it("should invoke operation properly", () => {
       customer: { email: "test@mindbox.ru" },
       emailMailing: {
         customParameters: {
-          videoLink:
-            "https://ghostinspector-prod.s3.amazonaws.com/videos/a6306a8a-059a-4fda-a1ae-74c973d362b4.mp4",
-          errorMessage: "Test run reached 10 minute time limit and was stopped",
+          documentationLink:
+            "https://docs.google.com/document/d/1VoY1pre3ZqdBBuIxb4-1IIiZr5W-NkTUUrAimxeCfW4/edit",
           projectName: "testProject",
           steps: [
             { name: "Вход на проект", status: null },
