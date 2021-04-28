@@ -1,8 +1,6 @@
 import supertest from "supertest";
 import startScenario from "src/server/scenario/startScenario";
-import sendMessage from "src/server/scenario/Message";
-import ErrorMessage from "src/server/scenario/messages/ErrorMessage";
-import SuccessMessage from "src/server/scenario/messages/SuccessMessage";
+import sendMessage from "src/server/scenario/sendMessage";
 
 import generateAccessToken from "src/server/user/generateAccessToken";
 import mockScenarioResultSuccess from "../../__mocks__/mockScenarioResultSuccess.json";
@@ -14,8 +12,7 @@ import { StartScenarioBody, Scenario } from "src/declarations";
 
 jest.mock("jest");
 jest.mock("src/server/scenario/startScenario");
-jest.mock("src/server/scenario/messages/ErrorMessage");
-jest.mock("src/server/scenario/messages/SuccessMessage");
+jest.mock("src/server/scenario/sendMessage");
 
 // import scenarios from "src/data";
 
@@ -126,11 +123,9 @@ describe("/scenario", () => {
           .post("/api/scenario/start")
           .set("Cookie", [`token=${token}`])
           .send(mockApiBody);
+ 
 
-        const mockSuccessMessageInstance = (SuccessMessage as jest.Mock).mock.instances[0];
-        const sendSuccessMessage = mockSuccessMessageInstance.sendMessage;
-
-        expect(sendSuccessMessage).toHaveBeenCalled();
+        expect(sendMessage).toHaveBeenCalled();
       });
 
     it("should NOT send OK message when all is not ok bun token expired", async () => {
@@ -143,7 +138,7 @@ describe("/scenario", () => {
         .set("Cookie", [`token=123`])
         .send(mockApiBody);
 
-      expect(SuccessMessage).not.toHaveBeenCalled();
+      expect(sendMessage).not.toHaveBeenCalled();
     });
 
     it("should NOT send FAIL message when all is not ok bun token expired", async () => {
@@ -159,7 +154,7 @@ describe("/scenario", () => {
         console.log(error);
       }
 
-      expect(ErrorMessage).not.toHaveBeenCalled();
+      expect(sendMessage).not.toHaveBeenCalled();
     });
 
     it("should send FAIL message when all is not ok", async () => {
@@ -169,10 +164,8 @@ describe("/scenario", () => {
         .post("/api/scenario/start")
         .set("Cookie", [`token=${token}`])
         .send(mockApiBody);
-      const mockErrorMessageInstance = (ErrorMessage as jest.Mock).mock
-        .instances[0];
-      const sendErrorMessage = mockErrorMessageInstance.sendMessage;
-      expect(sendErrorMessage).toHaveBeenCalled();
+      
+      expect(sendMessage).toHaveBeenCalled();
     });
   });
 });
