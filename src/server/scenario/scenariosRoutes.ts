@@ -3,7 +3,7 @@ import { Request, Response, NextFunction, Router } from "express";
 import startScenario from "./startScenario";
 import checkToken from "../user/checkTocken";
 import sendMessage from "./sendMessage";
-import { operations } from "src/config";
+import { operations } from "../../config";
 
 import {
   StartScenarioBody,
