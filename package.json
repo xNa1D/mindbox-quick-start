@@ -8,11 +8,11 @@
     "test:dev": "jest  --maxWorkers=1 --watch --coverage",
     "start": "node ./build/server/index.js",
     "start:back": "nodemon",
-    "start:front": "webpack --config ./webpack.config.dev.js serve --open",
-    "build:front": "rm -rf ./build/client && webpack --config ./webpack.config.js",
+    "start:front": "webpack --mode=development serve --open",
+    "build:front": "rm -rf ./build/client && webpack --mode=production",
     "build:back": "rm -rf ./build/server && tsc --project tsconfic.server.json",
     "build": "npm run build:front && npm run build:back",
-    "webpack": "webpack --config ./webpack.config.js"
+    "webpack": "webpack --mode=production"
   },
   "repository": {
     "type": "git",
