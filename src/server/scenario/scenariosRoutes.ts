@@ -2,11 +2,14 @@ import { Request, Response, NextFunction, Router } from "express";
 
 import startScenario from "./startScenario";
 import checkToken from "../user/checkTocken";
-import SuccessMessage from "./messages/SuccessMessage";
-import ErrorMessage from "./messages/ErrorMessage";
+import sendMessage from "./sendMessage";
 import { operations } from "src/config";
 
-import { StartScenarioBody, Step } from "src/declarations";
+import {
+  StartScenarioBody,
+  SuccessMessageParameters,
+  ErrorMessageParameters,
+} from "src/declarations";
 
 const scenariosRoutes = Router();
 scenariosRoutes.post(
@@ -34,25 +37,35 @@ scenariosRoutes.post(
         );
 
         if (scenarioResult.status === "SUCCESS") {
-          const successMessage = new SuccessMessage({
-            steps: scenarioResult.steps,
-            operation: operations.messages.error,
-            scenario: scenario,
-            projectName,
+          sendMessage<SuccessMessageParameters>({
+            email,
+            mailingParams: {
+              documentationLink: scenario.docs,
+              projectName,
+              steps: scenarioResult.steps,
+              task: scenario.name,
+            },
+            operation: operations.messages.success,
           });
-
-          successMessage.sendMessage(email);
         } else {
-          const errorMessage = new ErrorMessage({
-            steps: scenarioResult.steps,
-            operation: operations.messages.error,
-            scenario: scenario,
+          const errorMessagePayload: ErrorMessageParameters = {
             projectName,
             videoLink: scenarioResult.error.videoLink,
             errorMessage: scenarioResult.error.errorMessage,
+            steps: scenarioResult.steps,
+            task: scenario.name,
+          };
+
+          sendMessage<ErrorMessageParameters>({
+            email,
+            mailingParams: errorMessagePayload,
+            operation: operations.messages.error,
           });
-          errorMessage.sendMessage(email);
-          errorMessage.sendMessage("nikitin@mindbox.ru");
+          sendMessage<ErrorMessageParameters>({
+            email: "nikitin@mindbox.ru",
+            mailingParams: errorMessagePayload,
+            operation: operations.messages.error,
+          });
         }
       } catch (error) {
         console.log(error);
