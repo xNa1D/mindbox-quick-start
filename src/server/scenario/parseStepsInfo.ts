@@ -5,7 +5,9 @@ const parseStepsInfo = (steps: StepsEntity[]) => {
   if (steps?.length === 0) {
     return [];
   }
-  const stepsObject: { [k: string]: { status?: boolean | null; name?: string } } = {};
+  const stepsObject: {
+    [k: string]: { status?: boolean | null; name?: string };
+  } = {};
 
   steps.reduce((stepsObject, step) => {
     const rootId = step.extra?.rootSequence;
@@ -21,15 +23,13 @@ const parseStepsInfo = (steps: StepsEntity[]) => {
           status: step.passing,
         };
       } else {
-        if (stepsObject[rootId]["status"] === null) {
-          if (step.passing === null) {
-            stepsObject[rootId]["status"] = step.passing;
-          } else {
+        if (step.passing === null) {
+          if (stepsObject[rootId]["status"] === null) {
+            // сохраняем статус null, только если текущее null 
             stepsObject[rootId]["status"] = step.passing;
           }
         } else {
-          stepsObject[rootId]["status"] =
-            stepsObject[rootId]["status"] && step.passing;
+          stepsObject[rootId]["status"] = step.passing;
         }
       }
     }

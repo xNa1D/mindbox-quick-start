@@ -2,6 +2,7 @@ import axios from "../../__mocks__/axios";
 import startScenario from "../../server/scenario/startScenario";
 import mockScenarioResultError from "../../__mocks__/mockScenarioResultError.json";
 import mockScenarioResultSuccess from "../../__mocks__/mockScenarioResultSuccess.json";
+import mockScenarioResultPartlySuccess from "../../__mocks__/mockScenarioResultPartlySuccess.json";
 
 const mockBody = {
   scenarioApiAddress: ["testApi"],
@@ -33,6 +34,27 @@ describe("checking returning object", () => {
     });
   });
 
+  it("should return correct object with results", async () => {
+    axios.post = jest.fn().mockResolvedValue({
+      status: 200,
+      data: mockScenarioResultPartlySuccess,
+    });
+
+    const res = await startScenario(["testApi"], "testProject", 1);
+    expect(res).toStrictEqual({
+      error: {
+        errorMessage: "",
+        videoLink: "",
+      },
+      status: "SUCCESS",
+      steps: [
+        { name: "Вход на проект", status: true },
+        { name: "ШД для импорта клиентов", status: true },
+        { name: "ШД для создания клиентов администратором", status: true },
+      ],
+    });
+  });
+
   it("should return correct object with results if run 2 api calls", async () => {
     axios.post = jest.fn().mockResolvedValue({
       status: 200,
@@ -61,11 +83,7 @@ describe("checking returning object", () => {
       data: mockScenarioResultError,
     });
 
-    const res = await startScenario(
-      ["testApi1"],
-      "testProject",
-      1
-    );
+    const res = await startScenario(["testApi1"], "testProject", 1);
 
     expect(res).toStrictEqual({
       error: {
