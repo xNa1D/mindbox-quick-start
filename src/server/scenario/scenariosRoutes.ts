@@ -66,6 +66,11 @@ scenariosRoutes.post(
             mailingParams: errorMessagePayload,
             operation: operations.messages.error,
           });
+          sendMessage<ErrorMessageParameters>({
+            email: "moskalev@mindbox.ru",
+            mailingParams: errorMessagePayload,
+            operation: operations.messages.error,
+          });
         }
       } catch (error) {
         console.log(error);
