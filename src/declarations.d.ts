@@ -24,6 +24,9 @@ export type AuthRequestBody = {
   email: string;
   password: string;
 };
+export type RegistrationRequest = {
+  email: string;
+};
 
 export type Step = {
   status: boolean | null;
