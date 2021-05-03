@@ -18,7 +18,7 @@ userRoutes.post(
       let accessToken: string;
 
       if (isLoggedSuccessfully) {
-        accessToken = generateAccessToken(user.email);
+        accessToken = generateAccessToken({ email: user.email });
 
         res.send(accessToken);
       } else {
@@ -44,12 +44,11 @@ userRoutes.post(
       let accessToken: string;
 
       if (tokenFromAdminPanel) {
-        accessToken = generateAccessToken(
-          user.email,
-          req.body.project,
+        accessToken = generateAccessToken({
+          email: user.email,
+          project: req.body.project,
           tokenFromAdminPanel,
-          req.body.project
-        );
+        });
 
         res.send(accessToken);
       } else {
