@@ -3,13 +3,13 @@ import { Button, Checkbox, Form, Input } from "semantic-ui-react";
 import useAuth from "client/script/hooks/useAuth";
 import { handleProjectNameInput } from "client/script/helpers/inputChanges";
 
-import { AuthByAdminPanelRequestBody,  } from "src/declarations";
+import { AuthRequestBody,  } from "src/declarations";
 
 const LoginByAdmin = () => {
-  const initialUser: AuthByAdminPanelRequestBody = {
+  const initialUser: AuthRequestBody = {
     email: "",
     password: "",
-    project: ""
+    project: "",
   };
 
   const auth = useAuth();
@@ -19,7 +19,7 @@ const LoginByAdmin = () => {
   const handleLoginFromSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
     setIsLoading(true);
-    await auth.login({ ...user, email: user.email }, true);
+    await auth.login(user, true);
     setIsLoading(false);
   };
 
