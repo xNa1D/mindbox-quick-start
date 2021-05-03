@@ -27,7 +27,7 @@ describe("/auth", () => {
       },
     });
 
-    const token = generateAccessToken("nikitin@mindbox.ru");
+    const token = generateAccessToken({email: "nikitin@mindbox.ru"});
 
     const res = await agent.post("/api/user/auth").send({
       email: "nikitin@mindbox.ru",

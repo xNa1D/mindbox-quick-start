@@ -68,6 +68,7 @@ describe("Form submit", () => {
     expect(loginUser).toHaveBeenCalledWith({
       email: "nikitin@mindbox.ru",
       password: "123",
+      project: ""
     }, false);
   });
 
