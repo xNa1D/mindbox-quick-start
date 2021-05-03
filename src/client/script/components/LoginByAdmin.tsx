@@ -3,18 +3,30 @@ import { Button, Checkbox, Form, Input } from "semantic-ui-react";
 import useAuth from "client/script/hooks/useAuth";
 import { handleProjectNameInput } from "client/script/helpers/inputChanges";
 
+import { AuthByAdminPanelRequestBody,  } from "src/declarations";
+
 const LoginByAdmin = () => {
-  // TODO: add normal functions for handling form submit
-  const handleLoginFromSubmit = () => ({});
-  const [user, setUser] = useState({});
-  const handleEmailInput = (value: any) => ({});
-  const [isLoading, setIsLoading] = useState(false);
+  const initialUser: AuthByAdminPanelRequestBody = {
+    email: "",
+    password: "",
+    project: ""
+  };
+
   const auth = useAuth();
+  const [user, setUser] = useState(initialUser);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleLoginFromSubmit = async (event: React.SyntheticEvent) => {
+    event.preventDefault();
+    setIsLoading(true);
+    await auth.login({ ...user, email: user.email }, true);
+    setIsLoading(false);
+  };
 
   return (
     <Form onSubmit={handleLoginFromSubmit}>
       <Form.Field>
-        <label>
+        <label htmlFor="project">
           Системное имя проекта
           <Input
             label={{ basic: true, content: ".mindbox.ru" }}
@@ -45,7 +57,7 @@ const LoginByAdmin = () => {
             onChange={(event) =>
               setUser({
                 ...user,
-                login: event.target.value,
+                email: event.target.value,
               })
             }
           />
