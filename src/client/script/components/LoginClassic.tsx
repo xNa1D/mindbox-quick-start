@@ -12,6 +12,7 @@ const LoginClassic = () => {
   const initialUser: AuthRequestBody = {
     email: "",
     password: "",
+    project: ""
   };
 
   const auth = useAuth();
@@ -21,7 +22,7 @@ const LoginClassic = () => {
   const handleLoginFromSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
     setIsLoading(true);
-    await auth.login({ ...user, email: `${user.email}@mindbox.ru` });
+    await auth.login({ ...user, email: `${user.email}@mindbox.ru` }, false);
     setIsLoading(false);
   };
 
