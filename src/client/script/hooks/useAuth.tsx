@@ -9,13 +9,15 @@ import { AuthRequestBody } from "src/declarations";
 type UseProviderReturnedValue = {
   isLoggedIn: boolean;
   loginErrors: string;
-  login: (user: AuthRequestBody) => Promise<void>;
+  loginForProject: string;
+  login: (user: AuthRequestBody, isLoginByAdmin: boolean) => Promise<void>;
   checkAuth: () => Promise<void>;
 };
 
 const initialContext: UseProviderReturnedValue = {
   isLoggedIn: false,
   loginErrors: "",
+  loginForProject: "",
   login: async (user) => {},
   checkAuth: async () => {},
 };
@@ -28,20 +30,26 @@ export const ProvideAuth = ({ children }: any) => {
 const useProvideAuth = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loginErrors, setLoginErrors] = useState("");
+  const [loginForProject, setLoginForProject] = useState("");
   const [checkTokenErrors, setCheckTokenErrors] = useState("");
   const history = useHistory();
 
   const cookies = new Cookies();
 
-  const login = async (user: AuthRequestBody) => {
+  const login = async (
+    user: AuthRequestBody,
+    isLoginByAdmin: boolean
+  ) => {
     try {
       setLoginErrors("");
-      const token = await loginUser(user);
+      const token = await loginUser(user, isLoginByAdmin);
       cookies.set("token", token.data);
+      if (isLoginByAdmin) {
+        setLoginForProject(user.project);
+      }
       setIsLoggedIn(true);
-      history.push("/scenario");      
+      history.push("/scenario");
     } catch (error) {
-      
       if (error.response.data.errorMessage) {
         setLoginErrors(error.response?.data?.errorMessage);
       } else if (error.response.data) {
@@ -59,10 +67,10 @@ const useProvideAuth = () => {
       const newToken = await checkToken();
       cookies.set("token", newToken.data);
       setIsLoggedIn(true);
-      history.push("/scenario");      
+      history.push("/scenario");
     } catch (error) {
       setIsLoggedIn(false);
-      history.push("/");      
+      history.push("/");
     }
   };
 
@@ -73,6 +81,7 @@ const useProvideAuth = () => {
   return {
     isLoggedIn,
     loginErrors,
+    loginForProject,
     login,
     checkAuth,
   };
