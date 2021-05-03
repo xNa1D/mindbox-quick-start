@@ -6,7 +6,11 @@ const MockConsumer = () => {
   return (
     <div>
       <p>Auth: {auth.isLoggedIn.toString()}</p>
-      <button onClick={() => auth.login({ email: "test", password: "test" }, false)}>
+      <button
+        onClick={() =>
+          auth.login({ email: "test", password: "test", project: "" }, false)
+        }
+      >
         Login
       </button>
       <button onClick={() => auth.checkAuth()}>Check</button>
