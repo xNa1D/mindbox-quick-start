@@ -47,7 +47,8 @@ userRoutes.post(
         accessToken = generateAccessToken(
           user.email,
           req.body.project,
-          tokenFromAdminPanel
+          tokenFromAdminPanel,
+          req.body.project
         );
 
         res.send(accessToken);
