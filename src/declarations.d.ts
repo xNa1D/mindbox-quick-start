@@ -23,7 +23,9 @@ export type StartScenarioBody = {
 export type AuthRequestBody = {
   email: string;
   password: string;
+  project: string;
 };
+
 export type RegistrationRequest = {
   email: string;
 };
@@ -38,7 +40,6 @@ type BaseMessageParameters = {
   projectName: string;
   steps: Step[];
 };
-
 
 export type SuccessMessageParameters = BaseMessageParameters & {
   documentationLink: string;
