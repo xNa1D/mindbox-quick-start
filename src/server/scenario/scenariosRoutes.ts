@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction, Router } from "express";
 
 import startScenario from "./startScenario";
-import checkToken from "../user/checkTocken";
+import checkToken  from "../user/checkTocken";
 import sendMessage from "./sendMessage";
 import { operations } from "../../config";
 
@@ -9,6 +9,7 @@ import {
   StartScenarioBody,
   SuccessMessageParameters,
   ErrorMessageParameters,
+  JwtUser
 } from "src/declarations";
 
 const scenariosRoutes = Router();
@@ -19,11 +20,16 @@ scenariosRoutes.post(
     res: Response,
     next: NextFunction
   ) => {
-    let email: string = "";
-
+    let user:JwtUser; 
     try {
-      email = checkToken(req.cookies.token).email;
+      user = checkToken(req.cookies.token);
       res.sendStatus(200);
+
+      if (
+        user.project !== req.body.projectName && user.tokenFromAdminPanel
+      ) {
+        throw "You should start scenario on project you logged in"
+      }
 
       const projectName = req.body.projectName;
       const scenario = req.body.scenario;
@@ -38,7 +44,7 @@ scenariosRoutes.post(
 
         if (scenarioResult.status === "SUCCESS") {
           sendMessage<SuccessMessageParameters>({
-            email,
+           email: user.email,
             mailingParams: {
               documentationLink: scenario.docs,
               projectName,
@@ -57,7 +63,7 @@ scenariosRoutes.post(
           };
 
           sendMessage<ErrorMessageParameters>({
-            email,
+            email: user.email,
             mailingParams: errorMessagePayload,
             operation: operations.messages.error,
           });
