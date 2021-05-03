@@ -49,3 +49,12 @@ export type ErrorMessageParameters = BaseMessageParameters & {
   errorMessage: string;
   videoLink: string;
 };
+
+
+// JWT
+
+export type JwtUser = {
+  email: string;
+  project?: string;
+  tokenFromAdminPanel?: string;
+};
