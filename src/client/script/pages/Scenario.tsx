@@ -10,17 +10,17 @@ import scenarios from "src/data";
 import "client/styles/block/form/form.css";
 
 const Scenario = () => {
-  const [scenario, setScenario] = useState({
-    scenario: scenarios[0],
-    projectName: "",
-    campaign: 0,
-  } as StartScenarioBody);
-
   const [isStarted, setIsStarted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const history = useHistory();
   const auth = useAuth();
+
+  const [scenario, setScenario] = useState({
+    scenario: scenarios[0],
+    projectName: auth.loginForProject,
+    campaign: 0,
+  } as StartScenarioBody);
 
   const handleFormSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
@@ -65,6 +65,7 @@ const Scenario = () => {
                     setIsStarted(false);
                   }}
                   value={scenario.projectName}
+                  disabled={auth.loginForProject ? true : false}
                 />
                 <div className="ui basic label">.mindbox.ru</div>
               </div>
