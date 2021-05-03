@@ -24,11 +24,11 @@ describe("Scenario rendering", () => {
     render(<Scenario />);
 
     const projectNameField = screen.getByLabelText("Системное имя проекта");
-    const campaingNumberField = screen.getByLabelText("Номер кампании");
+    const campaignNumberField = screen.getByLabelText("Номер кампании");
     const taskNameField = screen.getByLabelText("Какие операции заводить");
 
     expect(projectNameField).toBeInTheDocument();
-    expect(campaingNumberField).toBeInTheDocument();
+    expect(campaignNumberField).toBeInTheDocument();
     expect(taskNameField).toBeInTheDocument();
   });
 });
@@ -38,7 +38,7 @@ describe("Scenario calls", () => {
     render(<Scenario />);
 
     const projectNameField = screen.getByLabelText("Системное имя проекта");
-    const campaingNumberField = screen.getByLabelText("Номер кампании");
+    const campaignNumberField = screen.getByLabelText("Номер кампании");
     const taskNameField = screen.getByLabelText("Какие операции заводить");
 
     const submitBtn = screen.getByText("Запустить");
@@ -49,7 +49,7 @@ describe("Scenario calls", () => {
       });
     });
     await act(async () => {
-      fireEvent.input(campaingNumberField, { target: { value: "12" } });
+      fireEvent.input(campaignNumberField, { target: { value: "12" } });
     });
     await act(async () => {
       fireEvent.change(taskNameField, { target: { value: "loyaltyOnline" } });
