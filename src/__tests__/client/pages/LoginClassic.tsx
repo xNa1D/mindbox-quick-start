@@ -11,7 +11,7 @@ import axios from "axios";
 import { MemoryRouter } from "react-router-dom";
 
 import useAuth, { ProvideAuth } from "client/script/hooks/useAuth";
-import Login from "client/script/pages/Login";
+import Login from "client/script/components/LoginClassic";
 
 import { loginUser } from "client/script/api/userRequests";
 // import { User, AuthUserResponse } from "src/declarations";
@@ -65,10 +65,10 @@ describe("Form submit", () => {
       fireEvent.click(submitBtn);
     });
 
-    expect(loginUser).toHaveBeenLastCalledWith({
+    expect(loginUser).toHaveBeenCalledWith({
       email: "nikitin@mindbox.ru",
       password: "123",
-    });
+    }, false);
   });
 
   it("should render rejected value", async () => {
