@@ -1,21 +1,24 @@
 import express from "express";
 import * as bodyParser from "body-parser";
-import coockieParser from "cookie-parser";
+import cookieParser from "cookie-parser";
 import * as dotenv from "dotenv";
-import morgan from "morgan";
 import path from "path";
 
-import userRoutes from "./routes/userRoutes";
-import scenariosRoutes from "./routes/scenariosRoutes";
+import userRoutes from "./user/userRoutes";
+import scenariosRoutes from "./scenario/scenariosRoutes";
 
 const app = express();
 
 dotenv.config();
 
-app.use(bodyParser.urlencoded());
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
 
 app.use(bodyParser.json());
-app.use(coockieParser());
+app.use(cookieParser());
 
 // app.use("/", pagesRoutes);
 app.use("/api/user", userRoutes);

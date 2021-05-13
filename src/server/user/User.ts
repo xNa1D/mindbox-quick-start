@@ -16,7 +16,7 @@ type FindStuffAnswer = {
     processingStatus: FindProcessingStatus;
   };
 };
-type LoginStufffAnswer = {
+type LoginStuffAnswer = {
   status: Status;
   customer: {
     processingStatus: LoginProcessingStatus;
@@ -84,7 +84,7 @@ class User {
   }
 
   async loginStuff(): Promise<boolean> {
-    const user = await axios.post<LoginStufffAnswer>(
+    const user = await axios.post<LoginStuffAnswer>(
       `https://api.mindbox.ru/v3/operations/sync?endpointId=${process.env.ENDPOINT}&operation=QuickStart.Auth`,
       {
         customer: {

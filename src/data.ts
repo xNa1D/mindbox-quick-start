@@ -6,7 +6,7 @@ const scenarios: Scenario[] = [
     name: "Стандартные операции для интернет магазина",
     docs:
       "https://docs.google.com/document/d/1VoY1pre3ZqdBBuIxb4-1IIiZr5W-NkTUUrAimxeCfW4/edit",
-    api: ["5ec6c26197e4531b3a9d9864"],
+    api: ["5ec6c26197e4531b3a9d9864", "607994e335da151e07a5afa6"],
   },
   {
     type: "loyaltyOffline",

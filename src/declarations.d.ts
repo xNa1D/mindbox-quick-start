@@ -1,4 +1,3 @@
-
 export type ScenarioApiCalls = {
   ecommerce: (projectName: string, campaignNumber: number) => Promise<any>;
   loyaltyOnline: (projectName: string, campaignNumber: number) => Promise<any>;
@@ -25,9 +24,27 @@ export type AuthRequestBody = {
   email: string;
   password: string;
 };
+export type RegistrationRequest = {
+  email: string;
+};
 
-export type RegistrationRequest = Pick<AuthRequestBody, "email">;
+export type Step = {
+  status: boolean | null;
+  name: string;
+};
 
-export type ScenarioDocs = { [T in ScenarioNames]: string };
+type BaseMessageParameters = {
+  task: string;
+  projectName: string;
+  steps: Step[];
+};
 
-export type TaskNameHumanType = { [K in ScenarioNames]: string };
+
+export type SuccessMessageParameters = BaseMessageParameters & {
+  documentationLink: string;
+};
+
+export type ErrorMessageParameters = BaseMessageParameters & {
+  errorMessage: string;
+  videoLink: string;
+};

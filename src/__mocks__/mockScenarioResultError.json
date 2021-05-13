@@ -1,0 +1,1989 @@
+{
+  "code": "SUCCESS",
+  "data": {
+    "error": {
+      "details": "Test run reached 10 minute time limit and was stopped"
+    },
+    "autoRetry": true,
+    "autoRetryTriggered": false,
+    "browser": "chrome-90",
+    "comments": [],
+    "commentCount": 0,
+    "console": [
+      {
+        "_id": "60808043a3dc301fd08e7b53",
+        "dateExecuted": "2021-04-21T19:41:51.467Z",
+        "error": false,
+        "output": "4083:1362 \"Frontend Version: 0.97.214\"",
+        "url": "https://test.mindbox.ru/public/scripts/directcrm.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b54",
+        "dateExecuted": "2021-04-21T19:41:51.560Z",
+        "error": false,
+        "output": "486:1607 \"i18next::backendConnector: No backend was added via i18next.use. Will not load resources.\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b55",
+        "dateExecuted": "2021-04-21T19:41:51.560Z",
+        "error": false,
+        "output": "486:1607 \"i18next: languageChanged\" \"ru-RU\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b56",
+        "dateExecuted": "2021-04-21T19:41:51.560Z",
+        "error": false,
+        "output": "486:1607 \"i18next: initialized\" Object",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b57",
+        "dateExecuted": "2021-04-21T19:42:00.851Z",
+        "error": false,
+        "output": "4083:1362 \"Frontend Version: 0.97.214\"",
+        "url": "https://test.mindbox.ru/public/scripts/directcrm.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b58",
+        "dateExecuted": "2021-04-21T19:42:00.856Z",
+        "error": false,
+        "output": "486:1607 \"i18next::backendConnector: No backend was added via i18next.use. Will not load resources.\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b59",
+        "dateExecuted": "2021-04-21T19:42:00.856Z",
+        "error": false,
+        "output": "486:1607 \"i18next: languageChanged\" \"ru-RU\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b5a",
+        "dateExecuted": "2021-04-21T19:42:00.856Z",
+        "error": false,
+        "output": "486:1607 \"i18next: initialized\" Object",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b5b",
+        "dateExecuted": "2021-04-21T19:42:01.296Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b5c",
+        "dateExecuted": "2021-04-21T19:42:01.298Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b5d",
+        "dateExecuted": "2021-04-21T19:42:01.304Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b5e",
+        "dateExecuted": "2021-04-21T19:42:01.306Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b5f",
+        "dateExecuted": "2021-04-21T19:42:01.571Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b60",
+        "dateExecuted": "2021-04-21T19:42:01.572Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b61",
+        "dateExecuted": "2021-04-21T19:42:01.598Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b62",
+        "dateExecuted": "2021-04-21T19:42:01.599Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b63",
+        "dateExecuted": "2021-04-21T19:42:01.608Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b64",
+        "dateExecuted": "2021-04-21T19:42:01.610Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b65",
+        "dateExecuted": "2021-04-21T19:42:01.625Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b66",
+        "dateExecuted": "2021-04-21T19:42:01.629Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b67",
+        "dateExecuted": "2021-04-21T19:42:01.800Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b68",
+        "dateExecuted": "2021-04-21T19:42:01.800Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b69",
+        "dateExecuted": "2021-04-21T19:42:02.262Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b6a",
+        "dateExecuted": "2021-04-21T19:42:02.262Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b6b",
+        "dateExecuted": "2021-04-21T19:42:02.262Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b6c",
+        "dateExecuted": "2021-04-21T19:42:02.262Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b6d",
+        "dateExecuted": "2021-04-21T19:42:02.659Z",
+        "error": true,
+        "output": "2973:889 TypeError: Cannot read property 'email' of null\n    at l (https://test.mindbox.ru/public/scripts/common.js:571:1778)\n    at https://test.mindbox.ru/public/scripts/common.js:571:2281\n    at https://test.mindbox.ru/public/scripts/common.js:571:1621\n    at Object.next (https://test.mindbox.ru/public/scripts/common.js:571:1726)\n    at a (https://test.mindbox.ru/public/scripts/common.js:571:464)",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b6e",
+        "dateExecuted": "2021-04-21T19:42:02.659Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b6f",
+        "dateExecuted": "2021-04-21T19:42:02.659Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b70",
+        "dateExecuted": "2021-04-21T19:42:02.803Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b71",
+        "dateExecuted": "2021-04-21T19:42:02.804Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b72",
+        "dateExecuted": "2021-04-21T19:42:03.948Z",
+        "error": true,
+        "output": "Failed to load resource: the server responded with a status of 404 ()",
+        "url": "https://en.gravatar.com/avatar/8ab86211ddd43480eab4c544469ea9ea?s=80&d=404"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b73",
+        "dateExecuted": "2021-04-21T19:42:06.245Z",
+        "error": false,
+        "output": "4083:1362 \"Frontend Version: 0.97.214\"",
+        "url": "https://test.mindbox.ru/public/scripts/directcrm.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b74",
+        "dateExecuted": "2021-04-21T19:42:06.263Z",
+        "error": false,
+        "output": "486:1607 \"i18next::backendConnector: No backend was added via i18next.use. Will not load resources.\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b75",
+        "dateExecuted": "2021-04-21T19:42:06.263Z",
+        "error": false,
+        "output": "486:1607 \"i18next: languageChanged\" \"ru-RU\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b76",
+        "dateExecuted": "2021-04-21T19:42:06.263Z",
+        "error": false,
+        "output": "486:1607 \"i18next: initialized\" Object",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b77",
+        "dateExecuted": "2021-04-21T19:42:06.676Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b78",
+        "dateExecuted": "2021-04-21T19:42:06.679Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b79",
+        "dateExecuted": "2021-04-21T19:42:06.686Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b7a",
+        "dateExecuted": "2021-04-21T19:42:06.687Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b7b",
+        "dateExecuted": "2021-04-21T19:42:06.955Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b7c",
+        "dateExecuted": "2021-04-21T19:42:06.955Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b7d",
+        "dateExecuted": "2021-04-21T19:42:06.964Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b7e",
+        "dateExecuted": "2021-04-21T19:42:06.965Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b7f",
+        "dateExecuted": "2021-04-21T19:42:06.995Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b80",
+        "dateExecuted": "2021-04-21T19:42:06.996Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b81",
+        "dateExecuted": "2021-04-21T19:42:07.074Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b82",
+        "dateExecuted": "2021-04-21T19:42:07.095Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b83",
+        "dateExecuted": "2021-04-21T19:42:07.095Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b84",
+        "dateExecuted": "2021-04-21T19:42:07.095Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b85",
+        "dateExecuted": "2021-04-21T19:42:07.303Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b86",
+        "dateExecuted": "2021-04-21T19:42:07.303Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b87",
+        "dateExecuted": "2021-04-21T19:42:07.306Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b88",
+        "dateExecuted": "2021-04-21T19:42:07.307Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b89",
+        "dateExecuted": "2021-04-21T19:42:10.355Z",
+        "error": true,
+        "output": "2973:889 TypeError: Cannot read property 'email' of null\n    at l (https://test.mindbox.ru/public/scripts/common.js:571:1778)\n    at https://test.mindbox.ru/public/scripts/common.js:571:2281\n    at https://test.mindbox.ru/public/scripts/common.js:571:1621\n    at Object.next (https://test.mindbox.ru/public/scripts/common.js:571:1726)\n    at a (https://test.mindbox.ru/public/scripts/common.js:571:464)",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b8a",
+        "dateExecuted": "2021-04-21T19:42:10.355Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b8b",
+        "dateExecuted": "2021-04-21T19:42:10.355Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b8c",
+        "dateExecuted": "2021-04-21T19:42:10.355Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b8d",
+        "dateExecuted": "2021-04-21T19:42:10.355Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b8e",
+        "dateExecuted": "2021-04-21T19:42:10.355Z",
+        "error": true,
+        "output": "Failed to load resource: the server responded with a status of 404 ()",
+        "url": "https://en.gravatar.com/avatar/8ab86211ddd43480eab4c544469ea9ea?s=80&d=404"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b8f",
+        "dateExecuted": "2021-04-21T19:42:13.861Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b90",
+        "dateExecuted": "2021-04-21T19:42:13.861Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b91",
+        "dateExecuted": "2021-04-21T19:42:14.189Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b92",
+        "dateExecuted": "2021-04-21T19:42:14.189Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b93",
+        "dateExecuted": "2021-04-21T19:42:14.189Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b94",
+        "dateExecuted": "2021-04-21T19:42:14.189Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b95",
+        "dateExecuted": "2021-04-21T19:42:15.535Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b96",
+        "dateExecuted": "2021-04-21T19:42:15.535Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b97",
+        "dateExecuted": "2021-04-21T19:42:17.306Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b98",
+        "dateExecuted": "2021-04-21T19:42:17.313Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b99",
+        "dateExecuted": "2021-04-21T19:42:21.765Z",
+        "error": false,
+        "output": "4083:1362 \"Frontend Version: 0.97.214\"",
+        "url": "https://test.mindbox.ru/public/scripts/directcrm.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b9a",
+        "dateExecuted": "2021-04-21T19:42:21.774Z",
+        "error": false,
+        "output": "486:1607 \"i18next::backendConnector: No backend was added via i18next.use. Will not load resources.\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b9b",
+        "dateExecuted": "2021-04-21T19:42:21.774Z",
+        "error": false,
+        "output": "486:1607 \"i18next: languageChanged\" \"ru-RU\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b9c",
+        "dateExecuted": "2021-04-21T19:42:21.774Z",
+        "error": false,
+        "output": "486:1607 \"i18next: initialized\" Object",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b9d",
+        "dateExecuted": "2021-04-21T19:42:22.164Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b9e",
+        "dateExecuted": "2021-04-21T19:42:22.164Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7b9f",
+        "dateExecuted": "2021-04-21T19:42:22.164Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7ba0",
+        "dateExecuted": "2021-04-21T19:42:22.167Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7ba1",
+        "dateExecuted": "2021-04-21T19:42:22.437Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7ba2",
+        "dateExecuted": "2021-04-21T19:42:22.438Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7ba3",
+        "dateExecuted": "2021-04-21T19:42:22.485Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7ba4",
+        "dateExecuted": "2021-04-21T19:42:22.485Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7ba5",
+        "dateExecuted": "2021-04-21T19:42:22.521Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7ba6",
+        "dateExecuted": "2021-04-21T19:42:22.522Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7ba7",
+        "dateExecuted": "2021-04-21T19:42:22.533Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7ba8",
+        "dateExecuted": "2021-04-21T19:42:22.534Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7ba9",
+        "dateExecuted": "2021-04-21T19:42:22.540Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7baa",
+        "dateExecuted": "2021-04-21T19:42:22.541Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bab",
+        "dateExecuted": "2021-04-21T19:42:22.778Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bac",
+        "dateExecuted": "2021-04-21T19:42:22.779Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bad",
+        "dateExecuted": "2021-04-21T19:42:22.783Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bae",
+        "dateExecuted": "2021-04-21T19:42:22.784Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7baf",
+        "dateExecuted": "2021-04-21T19:42:23.090Z",
+        "error": true,
+        "output": "2973:889 TypeError: Cannot read property 'email' of null\n    at l (https://test.mindbox.ru/public/scripts/common.js:571:1778)\n    at https://test.mindbox.ru/public/scripts/common.js:571:2281\n    at https://test.mindbox.ru/public/scripts/common.js:571:1621\n    at Object.next (https://test.mindbox.ru/public/scripts/common.js:571:1726)\n    at a (https://test.mindbox.ru/public/scripts/common.js:571:464)",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bb0",
+        "dateExecuted": "2021-04-21T19:42:23.090Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bb1",
+        "dateExecuted": "2021-04-21T19:42:23.090Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bb2",
+        "dateExecuted": "2021-04-21T19:42:23.262Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bb3",
+        "dateExecuted": "2021-04-21T19:42:23.263Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bb4",
+        "dateExecuted": "2021-04-21T19:42:23.364Z",
+        "error": true,
+        "output": "Failed to load resource: the server responded with a status of 404 ()",
+        "url": "https://en.gravatar.com/avatar/8ab86211ddd43480eab4c544469ea9ea?s=80&d=404"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bb5",
+        "dateExecuted": "2021-04-21T19:42:24.517Z",
+        "error": false,
+        "output": "4083:1362 \"Frontend Version: 0.97.214\"",
+        "url": "https://test.mindbox.ru/public/scripts/directcrm.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bb6",
+        "dateExecuted": "2021-04-21T19:42:24.532Z",
+        "error": false,
+        "output": "486:1607 \"i18next::backendConnector: No backend was added via i18next.use. Will not load resources.\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bb7",
+        "dateExecuted": "2021-04-21T19:42:24.532Z",
+        "error": false,
+        "output": "486:1607 \"i18next: languageChanged\" \"ru-RU\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bb8",
+        "dateExecuted": "2021-04-21T19:42:24.532Z",
+        "error": false,
+        "output": "486:1607 \"i18next: initialized\" Object",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bb9",
+        "dateExecuted": "2021-04-21T19:42:24.866Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bba",
+        "dateExecuted": "2021-04-21T19:42:24.868Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bbb",
+        "dateExecuted": "2021-04-21T19:42:24.872Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bbc",
+        "dateExecuted": "2021-04-21T19:42:24.873Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bbd",
+        "dateExecuted": "2021-04-21T19:42:25.155Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bbe",
+        "dateExecuted": "2021-04-21T19:42:25.156Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bbf",
+        "dateExecuted": "2021-04-21T19:42:25.168Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bc0",
+        "dateExecuted": "2021-04-21T19:42:25.169Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bc1",
+        "dateExecuted": "2021-04-21T19:42:25.247Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bc2",
+        "dateExecuted": "2021-04-21T19:42:25.248Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bc3",
+        "dateExecuted": "2021-04-21T19:42:25.271Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bc4",
+        "dateExecuted": "2021-04-21T19:42:25.274Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bc5",
+        "dateExecuted": "2021-04-21T19:42:25.287Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bc6",
+        "dateExecuted": "2021-04-21T19:42:25.287Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bc7",
+        "dateExecuted": "2021-04-21T19:42:28.413Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bc8",
+        "dateExecuted": "2021-04-21T19:42:28.413Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bc9",
+        "dateExecuted": "2021-04-21T19:42:28.413Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bca",
+        "dateExecuted": "2021-04-21T19:42:28.413Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bcb",
+        "dateExecuted": "2021-04-21T19:42:28.414Z",
+        "error": true,
+        "output": "2973:889 TypeError: Cannot read property 'email' of null\n    at l (https://test.mindbox.ru/public/scripts/common.js:571:1778)\n    at https://test.mindbox.ru/public/scripts/common.js:571:2281\n    at https://test.mindbox.ru/public/scripts/common.js:571:1621\n    at Object.next (https://test.mindbox.ru/public/scripts/common.js:571:1726)\n    at a (https://test.mindbox.ru/public/scripts/common.js:571:464)",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bcc",
+        "dateExecuted": "2021-04-21T19:42:28.414Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bcd",
+        "dateExecuted": "2021-04-21T19:42:28.414Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bce",
+        "dateExecuted": "2021-04-21T19:42:28.414Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bcf",
+        "dateExecuted": "2021-04-21T19:42:28.414Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bd0",
+        "dateExecuted": "2021-04-21T19:42:28.414Z",
+        "error": true,
+        "output": "Failed to load resource: the server responded with a status of 404 ()",
+        "url": "https://en.gravatar.com/avatar/8ab86211ddd43480eab4c544469ea9ea?s=80&d=404"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bd1",
+        "dateExecuted": "2021-04-21T19:42:31.661Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bd2",
+        "dateExecuted": "2021-04-21T19:42:31.661Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bd3",
+        "dateExecuted": "2021-04-21T19:42:32.021Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bd4",
+        "dateExecuted": "2021-04-21T19:42:32.021Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bd5",
+        "dateExecuted": "2021-04-21T19:42:32.021Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bd6",
+        "dateExecuted": "2021-04-21T19:42:32.021Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bd7",
+        "dateExecuted": "2021-04-21T19:42:33.435Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bd8",
+        "dateExecuted": "2021-04-21T19:42:33.435Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bd9",
+        "dateExecuted": "2021-04-21T19:42:34.921Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"\\\"directCRMNavigation\" \"Roslyn_Triggery_add\" \"Roslyn_Triggery_add\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      },
+      {
+        "_id": "60808043a3dc301fd08e7bda",
+        "dateExecuted": "2021-04-21T19:42:34.921Z",
+        "error": false,
+        "output": "2973:889 \"i18next::translator: missingKey\" \"ru-RU\" \"directCRMNavigation\" \"PrizeMechanicsPrizes_edit\" \"PrizeMechanicsPrizes_edit\"",
+        "url": "https://test.mindbox.ru/public/scripts/common.js"
+      }
+    ],
+    "dateExecutionFinished": "2021-04-21T19:42:59.108Z",
+    "dateExecutionStarted": "2021-04-21T19:41:45.349Z",
+    "dateCreated": "2021-04-21T19:41:45.269Z",
+    "disableVisuals": false,
+    "disallowInsecureCertificates": false,
+    "endUrl": "https://test.mindbox.ru/actions/add?campaignId=1",
+    "executionHost": "test-runner-396e7c.ghostinspector.net",
+    "executionTime": 73759,
+    "extractions": {},
+    "failOnJavaScriptError": false,
+    "filters": [],
+    "finalDelay": 5000,
+    "globalStepDelay": 250,
+    "language": null,
+    "maxAjaxDelay": 10000,
+    "maxWaitDelay": 15000,
+    "name": "1. Общий сценарий заведения операций - ШД",
+    "organization": "5b55c99924a45131ae295dfc",
+    "passing": false,
+    "region": "us-east-1",
+    "screenshot": {
+      "small": {
+        "path": "screenshots/a6306a8a-059a-4fda-a1ae-74c973d362b4-small.png",
+        "defaultUrl": "https://ghostinspector-prod.s3.amazonaws.com/screenshots/a6306a8a-059a-4fda-a1ae-74c973d362b4-small.png",
+        "size": 41797,
+        "dims": {
+          "w": 320,
+          "h": 367
+        }
+      },
+      "original": {
+        "path": "screenshots/a6306a8a-059a-4fda-a1ae-74c973d362b4-original.png",
+        "defaultUrl": "https://ghostinspector-prod.s3.amazonaws.com/screenshots/a6306a8a-059a-4fda-a1ae-74c973d362b4-original.png",
+        "size": 187588,
+        "dims": {
+          "w": 1280,
+          "h": 1466
+        }
+      }
+    },
+    "screenshotCompareDifference": null,
+    "screenshotCompareEnabled": true,
+    "screenshotComparePassing": null,
+    "screenshotCompareThreshold": 0.1,
+    "startUrl": "https://test.mindbox.ru/",
+    "steps": [
+      {
+        "sequence": 0,
+        "condition": null,
+        "private": false,
+        "optional": false,
+        "passing": null,
+        "_id": "60808045a3dc301fd08e7bdb",
+        "target": "#UserName",
+        "command": "click",
+        "value": "",
+        "variableName": "",
+        "extra": {
+          "source": {
+            "test": "5e5e4cac830f7f79a4841514",
+            "sequence": 0
+          },
+          "rootSequence": 0
+        },
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - Вход на проект\n",
+        "url": "https://test.mindbox.ru/",
+        "dateExecuted": "2021-04-21T19:41:57.116Z"
+      },
+      {
+        "sequence": 1,
+        "condition": null,
+        "private": false,
+        "optional": false,
+        "passing": null,
+        "_id": "60808045a3dc301fd08e7bdc",
+        "target": "#UserName",
+        "command": "assign",
+        "value": "nikitin",
+        "variableName": "",
+        "extra": {
+          "source": {
+            "test": "5e5e4cac830f7f79a4841514",
+            "sequence": 1
+          },
+          "rootSequence": 0
+        },
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - Вход на проект\n",
+        "url": "https://test.mindbox.ru/",
+        "dateExecuted": "2021-04-21T19:41:57.832Z"
+      },
+      {
+        "sequence": 2,
+        "condition": null,
+        "private": true,
+        "optional": false,
+        "passing": null,
+        "_id": "60808045a3dc301fd08e7bdd",
+        "target": "#Password",
+        "command": "assign",
+        "value": "tiPzd9223G",
+        "variableName": "",
+        "extra": {
+          "source": {
+            "test": "5e5e4cac830f7f79a4841514",
+            "sequence": 2
+          },
+          "rootSequence": 0
+        },
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - Вход на проект\n",
+        "url": "https://test.mindbox.ru/",
+        "dateExecuted": "2021-04-21T19:41:58.551Z"
+      },
+      {
+        "sequence": 3,
+        "condition": null,
+        "private": false,
+        "optional": false,
+        "passing": null,
+        "_id": "60808045a3dc301fd08e7bde",
+        "target": "#SubmitCredentials",
+        "command": "click",
+        "value": "",
+        "variableName": "",
+        "extra": {
+          "source": {
+            "test": "5e5e4cac830f7f79a4841514",
+            "sequence": 3
+          },
+          "rootSequence": 0
+        },
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - Вход на проект\n",
+        "url": "https://test.mindbox.ru/",
+        "dateExecuted": "2021-04-21T19:42:02.388Z"
+      },
+      {
+        "sequence": 4,
+        "condition": null,
+        "private": false,
+        "optional": false,
+        "passing": null,
+        "_id": "60808045a3dc301fd08e7bdf",
+        "command": "pause",
+        "target": "",
+        "value": "1000",
+        "variableName": "",
+        "extra": {
+          "source": {
+            "test": "5e5e4cac830f7f79a4841514",
+            "sequence": 4
+          },
+          "rootSequence": 0
+        },
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - Вход на проект\n",
+        "url": "https://test.mindbox.ru/customers",
+        "dateExecuted": "2021-04-21T19:42:04.259Z"
+      },
+      {
+        "sequence": 5,
+        "condition": {
+          "statement": "return !!(document.querySelector('.auth-form'))",
+          "result": false
+        },
+        "private": false,
+        "optional": false,
+        "passing": null,
+        "_id": "60808045a3dc301fd08e7be0",
+        "target": "#UserName",
+        "command": "click",
+        "value": "",
+        "variableName": "",
+        "extra": {
+          "source": {
+            "test": "5e5e4cac830f7f79a4841514",
+            "sequence": 0
+          },
+          "rootSequence": 1
+        },
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для импорта клиентов\nImported from: Петр - Стандартные операции для ИМ - Вход на проект\n",
+        "url": "https://test.mindbox.ru/customers",
+        "dateExecuted": "2021-04-21T19:42:04.278Z"
+      },
+      {
+        "sequence": 6,
+        "condition": {
+          "statement": "return !!(document.querySelector('.auth-form'))",
+          "result": false
+        },
+        "private": false,
+        "optional": false,
+        "passing": null,
+        "_id": "60808045a3dc301fd08e7be1",
+        "target": "#UserName",
+        "command": "assign",
+        "value": "nikitin",
+        "variableName": "",
+        "extra": {
+          "source": {
+            "test": "5e5e4cac830f7f79a4841514",
+            "sequence": 1
+          },
+          "rootSequence": 1
+        },
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для импорта клиентов\nImported from: Петр - Стандартные операции для ИМ - Вход на проект\n",
+        "url": "https://test.mindbox.ru/customers",
+        "dateExecuted": "2021-04-21T19:42:04.291Z"
+      },
+      {
+        "sequence": 7,
+        "condition": {
+          "statement": "return !!(document.querySelector('.auth-form'))",
+          "result": false
+        },
+        "private": true,
+        "optional": false,
+        "passing": null,
+        "_id": "60808045a3dc301fd08e7be2",
+        "target": "#Password",
+        "command": "assign",
+        "value": "tiPzd9223G",
+        "variableName": "",
+        "extra": {
+          "source": {
+            "test": "5e5e4cac830f7f79a4841514",
+            "sequence": 2
+          },
+          "rootSequence": 1
+        },
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для импорта клиентов\nImported from: Петр - Стандартные операции для ИМ - Вход на проект\n",
+        "url": "https://test.mindbox.ru/customers",
+        "dateExecuted": "2021-04-21T19:42:04.369Z"
+      },
+      {
+        "sequence": 8,
+        "condition": {
+          "statement": "return !!(document.querySelector('.auth-form'))",
+          "result": false
+        },
+        "private": false,
+        "optional": false,
+        "passing": null,
+        "_id": "60808045a3dc301fd08e7be3",
+        "target": "#SubmitCredentials",
+        "command": "click",
+        "value": "",
+        "variableName": "",
+        "extra": {
+          "source": {
+            "test": "5e5e4cac830f7f79a4841514",
+            "sequence": 3
+          },
+          "rootSequence": 1
+        },
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для импорта клиентов\nImported from: Петр - Стандартные операции для ИМ - Вход на проект\n",
+        "url": "https://test.mindbox.ru/customers",
+        "dateExecuted": "2021-04-21T19:42:04.385Z"
+      },
+      {
+        "sequence": 9,
+        "condition": {
+          "statement": "return !!(document.querySelector('.auth-form'))",
+          "result": false
+        },
+        "private": false,
+        "optional": false,
+        "passing": null,
+        "_id": "60808045a3dc301fd08e7be4",
+        "command": "pause",
+        "target": "",
+        "value": "1000",
+        "variableName": "",
+        "extra": {
+          "source": {
+            "test": "5e5e4cac830f7f79a4841514",
+            "sequence": 4
+          },
+          "rootSequence": 1
+        },
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для импорта клиентов\nImported from: Петр - Стандартные операции для ИМ - Вход на проект\n",
+        "url": "https://test.mindbox.ru/customers",
+        "dateExecuted": "2021-04-21T19:42:04.432Z"
+      },
+      {
+        "sequence": 10,
+        "condition": null,
+        "private": false,
+        "optional": false,
+        "passing": true,
+        "_id": "60808045a3dc301fd08e7be5",
+        "target": "",
+        "command": "open",
+        "value": "/actions/add?campaignId=1",
+        "variableName": "",
+        "extra": {
+          "source": {
+            "test": "5ee078267860ac43d297cf0d",
+            "sequence": 1
+          },
+          "rootSequence": 1
+        },
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для импорта клиентов\n",
+        "url": "https://test.mindbox.ru/customers",
+        "dateExecuted": "2021-04-21T19:42:10.617Z"
+      },
+      {
+        "sequence": 11,
+        "condition": null,
+        "private": false,
+        "optional": false,
+        "passing": true,
+        "_id": "60808045a3dc301fd08e7be6",
+        "target": "#actionTemplateName",
+        "command": "assign",
+        "value": "Импорт при переносе исторической базы клиентов",
+        "variableName": "",
+        "extra": {
+          "source": {
+            "test": "5ee078267860ac43d297cf0d",
+            "sequence": 2
+          },
+          "rootSequence": 1
+        },
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для импорта клиентов\n",
+        "url": "https://test.mindbox.ru/actions/add?campaignId=1",
+        "dateExecuted": "2021-04-21T19:42:11.707Z"
+      },
+      {
+        "sequence": 12,
+        "condition": null,
+        "private": false,
+        "optional": true,
+        "passing": true,
+        "_id": "60808045a3dc301fd08e7be7",
+        "command": "click",
+        "target": "//label[contains(text(), \"Разрешено для всех брендов кампании\")]",
+        "value": "",
+        "variableName": "",
+        "extra": {
+          "source": {
+            "test": "5ee078267860ac43d297cf0d",
+            "sequence": 3
+          },
+          "rootSequence": 1
+        },
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для импорта клиентов\n",
+        "url": "https://test.mindbox.ru/actions/add?campaignId=1",
+        "dateExecuted": "2021-04-21T19:42:12.522Z"
+      },
+      {
+        "sequence": 13,
+        "condition": null,
+        "private": false,
+        "optional": false,
+        "passing": true,
+        "_id": "60808045a3dc301fd08e7be8",
+        "target": "//*[contains(text(), \"Категория I уровня\")]/../..//*[contains(text(), \"Выберите\")]",
+        "command": "click",
+        "value": "",
+        "variableName": "",
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для импорта клиентов\nАктивируем выбор категории 1 уровня",
+        "extra": {
+          "source": {
+            "test": "5ee078267860ac43d297cf0d",
+            "sequence": 4
+          },
+          "rootSequence": 1
+        },
+        "url": "https://test.mindbox.ru/actions/add?campaignId=1",
+        "dateExecuted": "2021-04-21T19:42:13.344Z"
+      },
+      {
+        "sequence": 14,
+        "condition": null,
+        "private": false,
+        "optional": false,
+        "passing": true,
+        "_id": "60808045a3dc301fd08e7be9",
+        "target": "//*[contains(text(), \"Личные действия клиента\")]",
+        "command": "click",
+        "value": "",
+        "variableName": "",
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для импорта клиентов\nВыбираем личные действия",
+        "extra": {
+          "source": {
+            "test": "5ee078267860ac43d297cf0d",
+            "sequence": 5
+          },
+          "rootSequence": 1
+        },
+        "url": "https://test.mindbox.ru/actions/add?campaignId=1",
+        "dateExecuted": "2021-04-21T19:42:14.210Z"
+      },
+      {
+        "sequence": 15,
+        "condition": null,
+        "private": false,
+        "optional": false,
+        "passing": true,
+        "_id": "60808045a3dc301fd08e7bea",
+        "target": "//*[contains(text(), \"Категория II уровня\")]/../..//*[contains(text(), \"Выберите\")]",
+        "command": "click",
+        "value": "",
+        "variableName": "",
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для импорта клиентов\nАктивируем выбор категории 2 уровня",
+        "extra": {
+          "source": {
+            "test": "5ee078267860ac43d297cf0d",
+            "sequence": 6
+          },
+          "rootSequence": 1
+        },
+        "url": "https://test.mindbox.ru/actions/add?campaignId=1",
+        "dateExecuted": "2021-04-21T19:42:15.016Z"
+      },
+      {
+        "sequence": 16,
+        "condition": null,
+        "private": false,
+        "optional": false,
+        "passing": true,
+        "_id": "60808045a3dc301fd08e7beb",
+        "target": "//*[contains(text(), \"Регистрация, авторизация, заполнение или обновление информации о клиенте\")]",
+        "command": "click",
+        "value": "",
+        "variableName": "",
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для импорта клиентов\nВыбираем потребление контента",
+        "extra": {
+          "source": {
+            "test": "5ee078267860ac43d297cf0d",
+            "sequence": 7
+          },
+          "rootSequence": 1
+        },
+        "url": "https://test.mindbox.ru/actions/add?campaignId=1",
+        "dateExecuted": "2021-04-21T19:42:15.902Z"
+      },
+      {
+        "sequence": 17,
+        "condition": null,
+        "private": false,
+        "optional": false,
+        "passing": true,
+        "_id": "60808045a3dc301fd08e7bec",
+        "target": "//*[contains(text(), \"Категория III уровня\")]/../..//*[contains(text(), \"Выберите\")]",
+        "command": "click",
+        "value": "",
+        "variableName": "",
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для импорта клиентов\nАктивируем выбор категории 3 уровня",
+        "extra": {
+          "source": {
+            "test": "5ee078267860ac43d297cf0d",
+            "sequence": 8
+          },
+          "rootSequence": 1
+        },
+        "url": "https://test.mindbox.ru/actions/add?campaignId=1",
+        "dateExecuted": "2021-04-21T19:42:16.819Z"
+      },
+      {
+        "sequence": 18,
+        "condition": null,
+        "private": false,
+        "optional": false,
+        "passing": true,
+        "_id": "60808045a3dc301fd08e7bed",
+        "target": "//*[contains(text(), \"Заполнение регистрационной анкеты\")]",
+        "command": "click",
+        "value": "",
+        "variableName": "",
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для импорта клиентов\nПросмотр продукта или категории",
+        "extra": {
+          "source": {
+            "test": "5ee078267860ac43d297cf0d",
+            "sequence": 9
+          },
+          "rootSequence": 1
+        },
+        "url": "https://test.mindbox.ru/actions/add?campaignId=1",
+        "dateExecuted": "2021-04-21T19:42:17.617Z"
+      },
+      {
+        "sequence": 19,
+        "condition": null,
+        "private": false,
+        "optional": false,
+        "passing": true,
+        "_id": "60808045a3dc301fd08e7bee",
+        "command": "click",
+        "target": "//span[contains(text(), \"Выберите теги\")]",
+        "value": "",
+        "variableName": "",
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для импорта клиентов\nОткрываем селектор тегов",
+        "extra": {
+          "source": {
+            "test": "5ee078267860ac43d297cf0d",
+            "sequence": 10
+          },
+          "rootSequence": 1
+        },
+        "url": "https://test.mindbox.ru/actions/add?campaignId=1",
+        "dateExecuted": "2021-04-21T19:42:18.348Z"
+      },
+      {
+        "sequence": 20,
+        "condition": null,
+        "private": false,
+        "optional": false,
+        "passing": true,
+        "_id": "60808045a3dc301fd08e7bef",
+        "command": "click",
+        "target": "//div[contains(text(), \"Импорт новых клиентов\")]",
+        "value": "",
+        "variableName": "",
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для импорта клиентов\nВыбираем импорт",
+        "extra": {
+          "source": {
+            "test": "5ee078267860ac43d297cf0d",
+            "sequence": 11
+          },
+          "rootSequence": 1
+        },
+        "url": "https://test.mindbox.ru/actions/add?campaignId=1",
+        "dateExecuted": "2021-04-21T19:42:19.094Z"
+      },
+      {
+        "sequence": 21,
+        "condition": null,
+        "private": false,
+        "optional": false,
+        "passing": true,
+        "_id": "60808045a3dc301fd08e7bf0",
+        "command": "click",
+        "target": "//div[contains(text(), \"Редактирование через импорт\")]",
+        "value": "",
+        "variableName": "",
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для импорта клиентов\nВыбираем импорт",
+        "extra": {
+          "source": {
+            "test": "5ee078267860ac43d297cf0d",
+            "sequence": 12
+          },
+          "rootSequence": 1
+        },
+        "url": "https://test.mindbox.ru/actions/add?campaignId=1",
+        "dateExecuted": "2021-04-21T19:42:19.901Z"
+      },
+      {
+        "sequence": 22,
+        "condition": null,
+        "private": false,
+        "optional": false,
+        "passing": true,
+        "_id": "60808045a3dc301fd08e7bf1",
+        "target": "//a[contains(text(), \"Сохранить\")]",
+        "command": "click",
+        "value": "",
+        "variableName": "",
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для импорта клиентов\nЖмакаем сохранить",
+        "extra": {
+          "source": {
+            "test": "5ee078267860ac43d297cf0d",
+            "sequence": 13
+          },
+          "rootSequence": 1,
+          "originalTarget": [
+            {
+              "selector": "//a[contains(text(), \"Сохранить\")]"
+            }
+          ]
+        },
+        "url": "https://test.mindbox.ru/actions/add?campaignId=1",
+        "dateExecuted": "2021-04-21T19:42:22.746Z"
+      },
+      {
+        "sequence": 23,
+        "condition": {
+          "statement": "return !!(document.querySelector('.auth-form'))",
+          "result": false
+        },
+        "private": false,
+        "optional": false,
+        "passing": null,
+        "_id": "60808045a3dc301fd08e7bf2",
+        "target": "#UserName",
+        "command": "click",
+        "value": "",
+        "variableName": "",
+        "extra": {
+          "source": {
+            "test": "5e5e4cac830f7f79a4841514",
+            "sequence": 0
+          },
+          "rootSequence": 2
+        },
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для создания клиентов администратором\nImported from: Петр - Стандартные операции для ИМ - Вход на проект\n",
+        "url": "https://test.mindbox.ru/actions/save",
+        "dateExecuted": "2021-04-21T19:42:22.756Z"
+      },
+      {
+        "sequence": 24,
+        "condition": {
+          "statement": "return !!(document.querySelector('.auth-form'))",
+          "result": false
+        },
+        "private": false,
+        "optional": false,
+        "passing": null,
+        "_id": "60808045a3dc301fd08e7bf3",
+        "target": "#UserName",
+        "command": "assign",
+        "value": "nikitin",
+        "variableName": "",
+        "extra": {
+          "source": {
+            "test": "5e5e4cac830f7f79a4841514",
+            "sequence": 1
+          },
+          "rootSequence": 2
+        },
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для создания клиентов администратором\nImported from: Петр - Стандартные операции для ИМ - Вход на проект\n",
+        "url": "https://test.mindbox.ru/actions/save",
+        "dateExecuted": "2021-04-21T19:42:22.768Z"
+      },
+      {
+        "sequence": 25,
+        "condition": {
+          "statement": "return !!(document.querySelector('.auth-form'))",
+          "result": false
+        },
+        "private": true,
+        "optional": false,
+        "passing": null,
+        "_id": "60808045a3dc301fd08e7bf4",
+        "target": "#Password",
+        "command": "assign",
+        "value": "tiPzd9223G",
+        "variableName": "",
+        "extra": {
+          "source": {
+            "test": "5e5e4cac830f7f79a4841514",
+            "sequence": 2
+          },
+          "rootSequence": 2
+        },
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для создания клиентов администратором\nImported from: Петр - Стандартные операции для ИМ - Вход на проект\n",
+        "url": "https://test.mindbox.ru/actions/save",
+        "dateExecuted": "2021-04-21T19:42:22.791Z"
+      },
+      {
+        "sequence": 26,
+        "condition": {
+          "statement": "return !!(document.querySelector('.auth-form'))",
+          "result": false
+        },
+        "private": false,
+        "optional": false,
+        "passing": null,
+        "_id": "60808045a3dc301fd08e7bf5",
+        "target": "#SubmitCredentials",
+        "command": "click",
+        "value": "",
+        "variableName": "",
+        "extra": {
+          "source": {
+            "test": "5e5e4cac830f7f79a4841514",
+            "sequence": 3
+          },
+          "rootSequence": 2
+        },
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для создания клиентов администратором\nImported from: Петр - Стандартные операции для ИМ - Вход на проект\n",
+        "url": "https://test.mindbox.ru/actions/save",
+        "dateExecuted": "2021-04-21T19:42:22.801Z"
+      },
+      {
+        "sequence": 27,
+        "condition": {
+          "statement": "return !!(document.querySelector('.auth-form'))",
+          "result": false
+        },
+        "private": false,
+        "optional": false,
+        "passing": null,
+        "_id": "60808045a3dc301fd08e7bf6",
+        "command": "pause",
+        "target": "",
+        "value": "1000",
+        "variableName": "",
+        "extra": {
+          "source": {
+            "test": "5e5e4cac830f7f79a4841514",
+            "sequence": 4
+          },
+          "rootSequence": 2
+        },
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для создания клиентов администратором\nImported from: Петр - Стандартные операции для ИМ - Вход на проект\n",
+        "url": "https://test.mindbox.ru/actions/save",
+        "dateExecuted": "2021-04-21T19:42:22.812Z"
+      },
+      {
+        "sequence": 28,
+        "condition": null,
+        "private": false,
+        "optional": false,
+        "passing": true,
+        "_id": "60808045a3dc301fd08e7bf7",
+        "target": "",
+        "command": "open",
+        "value": "/actions/add?campaignId=1",
+        "variableName": "",
+        "extra": {
+          "source": {
+            "test": "5ee0794e7860ac43d297d3e5",
+            "sequence": 1
+          },
+          "rootSequence": 2
+        },
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для создания клиентов администратором\n",
+        "url": "https://test.mindbox.ru/actions/save",
+        "dateExecuted": "2021-04-21T19:42:28.661Z"
+      },
+      {
+        "sequence": 29,
+        "condition": null,
+        "private": false,
+        "optional": false,
+        "passing": true,
+        "_id": "60808045a3dc301fd08e7bf8",
+        "target": "#actionTemplateName",
+        "command": "assign",
+        "value": "Создание/редактирование администратором",
+        "variableName": "",
+        "extra": {
+          "source": {
+            "test": "5ee0794e7860ac43d297d3e5",
+            "sequence": 2
+          },
+          "rootSequence": 2
+        },
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для создания клиентов администратором\n",
+        "url": "https://test.mindbox.ru/actions/add?campaignId=1",
+        "dateExecuted": "2021-04-21T19:42:29.670Z"
+      },
+      {
+        "sequence": 30,
+        "condition": null,
+        "private": false,
+        "optional": true,
+        "passing": true,
+        "_id": "60808045a3dc301fd08e7bf9",
+        "command": "click",
+        "target": "//label[contains(text(), \"Разрешено для всех брендов кампании\")]",
+        "value": "",
+        "variableName": "",
+        "extra": {
+          "source": {
+            "test": "5ee0794e7860ac43d297d3e5",
+            "sequence": 3
+          },
+          "rootSequence": 2
+        },
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для создания клиентов администратором\n",
+        "url": "https://test.mindbox.ru/actions/add?campaignId=1",
+        "dateExecuted": "2021-04-21T19:42:30.419Z"
+      },
+      {
+        "sequence": 31,
+        "condition": null,
+        "private": false,
+        "optional": false,
+        "passing": true,
+        "_id": "60808045a3dc301fd08e7bfa",
+        "target": "//*[contains(text(), \"Категория I уровня\")]/../..//*[contains(text(), \"Выберите\")]",
+        "command": "click",
+        "value": "",
+        "variableName": "",
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для создания клиентов администратором\nАктивируем выбор категории 1 уровня",
+        "extra": {
+          "source": {
+            "test": "5ee0794e7860ac43d297d3e5",
+            "sequence": 4
+          },
+          "rootSequence": 2
+        },
+        "url": "https://test.mindbox.ru/actions/add?campaignId=1",
+        "dateExecuted": "2021-04-21T19:42:31.174Z"
+      },
+      {
+        "sequence": 32,
+        "condition": null,
+        "private": false,
+        "optional": false,
+        "passing": true,
+        "_id": "60808045a3dc301fd08e7bfb",
+        "target": "//*[contains(text(), \"Личные действия клиента\")]",
+        "command": "click",
+        "value": "",
+        "variableName": "",
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для создания клиентов администратором\nВыбираем личные действия",
+        "extra": {
+          "source": {
+            "test": "5ee0794e7860ac43d297d3e5",
+            "sequence": 5
+          },
+          "rootSequence": 2
+        },
+        "url": "https://test.mindbox.ru/actions/add?campaignId=1",
+        "dateExecuted": "2021-04-21T19:42:32.054Z"
+      },
+      {
+        "sequence": 33,
+        "condition": null,
+        "private": false,
+        "optional": false,
+        "passing": true,
+        "_id": "60808045a3dc301fd08e7bfc",
+        "target": "//*[contains(text(), \"Категория II уровня\")]/../..//*[contains(text(), \"Выберите\")]",
+        "command": "click",
+        "value": "",
+        "variableName": "",
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для создания клиентов администратором\nАктивируем выбор категории 2 уровня",
+        "extra": {
+          "source": {
+            "test": "5ee0794e7860ac43d297d3e5",
+            "sequence": 6
+          },
+          "rootSequence": 2
+        },
+        "url": "https://test.mindbox.ru/actions/add?campaignId=1",
+        "dateExecuted": "2021-04-21T19:42:32.898Z"
+      },
+      {
+        "sequence": 34,
+        "condition": null,
+        "private": false,
+        "optional": false,
+        "passing": true,
+        "_id": "60808045a3dc301fd08e7bfd",
+        "target": "//*[contains(text(), \"Регистрация, авторизация, заполнение или обновление информации о клиенте\")]",
+        "command": "click",
+        "value": "",
+        "variableName": "",
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для создания клиентов администратором\nВыбираем потребление контента",
+        "extra": {
+          "source": {
+            "test": "5ee0794e7860ac43d297d3e5",
+            "sequence": 7
+          },
+          "rootSequence": 2
+        },
+        "url": "https://test.mindbox.ru/actions/add?campaignId=1",
+        "dateExecuted": "2021-04-21T19:42:33.721Z"
+      },
+      {
+        "sequence": 35,
+        "condition": null,
+        "private": false,
+        "optional": false,
+        "passing": true,
+        "_id": "60808045a3dc301fd08e7bfe",
+        "target": "//*[contains(text(), \"Категория III уровня\")]/../..//*[contains(text(), \"Выберите\")]",
+        "command": "click",
+        "value": "",
+        "variableName": "",
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для создания клиентов администратором\nАктивируем выбор категории 3 уровня",
+        "extra": {
+          "source": {
+            "test": "5ee0794e7860ac43d297d3e5",
+            "sequence": 8
+          },
+          "rootSequence": 2
+        },
+        "url": "https://test.mindbox.ru/actions/add?campaignId=1",
+        "dateExecuted": "2021-04-21T19:42:34.454Z"
+      },
+      {
+        "sequence": 36,
+        "condition": null,
+        "private": false,
+        "optional": false,
+        "passing": true,
+        "_id": "60808045a3dc301fd08e7bff",
+        "target": "//*[contains(text(), \"Заполнение регистрационной анкеты\")]",
+        "command": "click",
+        "value": "",
+        "variableName": "",
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для создания клиентов администратором\nПросмотр продукта или категории",
+        "extra": {
+          "source": {
+            "test": "5ee0794e7860ac43d297d3e5",
+            "sequence": 9
+          },
+          "rootSequence": 2
+        },
+        "url": "https://test.mindbox.ru/actions/add?campaignId=1",
+        "dateExecuted": "2021-04-21T19:42:35.200Z"
+      },
+      {
+        "sequence": 37,
+        "condition": null,
+        "private": false,
+        "optional": false,
+        "passing": true,
+        "_id": "60808045a3dc301fd08e7c00",
+        "command": "click",
+        "target": "//span[contains(text(), \"Выберите теги\")]",
+        "value": "",
+        "variableName": "",
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для создания клиентов администратором\nОткрываем селектор тегов",
+        "extra": {
+          "source": {
+            "test": "5ee0794e7860ac43d297d3e5",
+            "sequence": 10
+          },
+          "rootSequence": 2
+        },
+        "url": "https://test.mindbox.ru/actions/add?campaignId=1",
+        "dateExecuted": "2021-04-21T19:42:35.913Z"
+      },
+      {
+        "sequence": 38,
+        "condition": null,
+        "private": false,
+        "optional": false,
+        "passing": true,
+        "_id": "60808045a3dc301fd08e7c01",
+        "command": "click",
+        "target": "//div[contains(text(), \"Добавление клиента администратором\")]",
+        "value": "",
+        "variableName": "",
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для создания клиентов администратором\nВыбираем импорт",
+        "extra": {
+          "source": {
+            "test": "5ee0794e7860ac43d297d3e5",
+            "sequence": 11
+          },
+          "rootSequence": 2
+        },
+        "url": "https://test.mindbox.ru/actions/add?campaignId=1",
+        "dateExecuted": "2021-04-21T19:42:36.645Z"
+      },
+      {
+        "sequence": 39,
+        "condition": null,
+        "private": false,
+        "optional": false,
+        "passing": false,
+        "_id": "60808045a3dc301fd08e7c02",
+        "command": "click",
+        "target": "//div[contains(text(), \"Редактирование клиента администратором\")]",
+        "value": "",
+        "variableName": "",
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для создания клиентов администратором\nВыбираем импорт",
+        "extra": {
+          "source": {
+            "test": "5ee0794e7860ac43d297d3e5",
+            "sequence": 12
+          },
+          "rootSequence": 2
+        },
+        "url": "https://test.mindbox.ru/actions/add?campaignId=1",
+        "error": "Element not found",
+        "dateExecuted": "2021-04-21T19:42:52.305Z"
+      },
+      {
+        "sequence": 40,
+        "condition": null,
+        "private": false,
+        "optional": false,
+        "passing": null,
+        "_id": "5e84be0864f2191eccd52b26",
+        "target": [
+          {
+            "selector": "xpath=//a[contains(text(), \"Сохранить\")]"
+          }
+        ],
+        "command": "click",
+        "value": "",
+        "variableName": "",
+        "notes": "Imported from: Петр - Стандартные операции для ИМ - ШД для создания клиентов администратором\nЖмакаем сохранить",
+        "extra": {
+          "source": {
+            "test": "5ee0794e7860ac43d297d3e5",
+            "sequence": 13
+          },
+          "rootSequence": 2
+        }
+      }
+    ],
+    "suiteResult": null,
+    "test": {
+      "_id": "607994e335da151e07a5afa6",
+      "name": "1. Общий сценарий заведения операций - ШД",
+      "organization": "5b55c99924a45131ae295dfc",
+      "suite": "5e5e3ea0c676e442da904059"
+    },
+    "urls": [
+      "https://test.mindbox.ru/",
+      "https://test.mindbox.ru/customers",
+      "https://test.mindbox.ru/actions/add?campaignId=1",
+      "https://test.mindbox.ru/actions/save",
+      "https://test.mindbox.ru/actions/add?campaignId=1"
+    ],
+    "user": {
+      "_id": "5b488b7cea003a696087d9f1",
+      "name": "Gleb Efanov"
+    },
+    "uuid": "a6306a8a-059a-4fda-a1ae-74c973d362b4",
+    "variables": {
+      "projectName": "test"
+    },
+    "video": {
+      "path": "videos/a6306a8a-059a-4fda-a1ae-74c973d362b4.mp4",
+      "url": "https://ghostinspector-prod.s3.amazonaws.com/videos/a6306a8a-059a-4fda-a1ae-74c973d362b4.mp4",
+      "dims": {
+        "w": 1280,
+        "h": 800
+      }
+    },
+    "viewportSize": {
+      "width": 1280,
+      "height": 800
+    },
+    "_id": "60807ff97f3aeb2f0265c5d5"
+  }
+}

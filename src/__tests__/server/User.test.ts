@@ -1,5 +1,5 @@
-import axios from "../__mocks__/axios";
-import User from "../server/models/User";
+import axios from "../../__mocks__/axios";
+import User from "../../server/user/User";
 
 const user = new User("nikitin@mindbox.ru");
 
