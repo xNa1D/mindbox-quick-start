@@ -34,7 +34,7 @@ userRoutes.post(
   "/authByAdminPanel",
   async (req: Request<{}, string, AuthRequestBody>, res: Response) => {
     try {
-      const user = new User(req.body.login, req.body.password);
+      const user = new User(req.body.email, req.body.password);
       const tokenFromAdminPanel = await user.authenticateByAdminPanel(
         req.body.project
       );

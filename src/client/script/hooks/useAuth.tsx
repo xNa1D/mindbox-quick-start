@@ -19,7 +19,6 @@ const initialContext: UseProviderReturnedValue = {
   loginErrors: "",
   loginForProject: "",
   login: async (user) => {},
-  loginByAdminPanel: async (user) => {},
   checkAuth: async () => {},
 };
 
@@ -60,27 +59,6 @@ const useProvideAuth = () => {
       setLoginErrors(errorText);
     }
   };
-  const loginByAdminPanel = async (user: AuthByAdminPanelRequestBody) => {
-    try {
-      setLoginErrors("");
-      const token = await loginUserByAdminPanel(user);
-      cookies.set("token", token.data);
-      setProject(user.project);
-      setIsLoggedIn(true);
-      history.push("/scenario");      
-    } catch (error) {
-      
-      if (error.response.data.errorMessage) {
-        setLoginErrors(error.response?.data?.errorMessage);
-      } else if (error.response.data) {
-        setLoginErrors(error.response?.data);
-      } else {
-        setLoginErrors(error.toString());
-      }
-      setIsLoggedIn(false);
-    }
-  };
-
   const checkAuth = async () => {
     try {
       setCheckTokenErrors("");
@@ -102,7 +80,6 @@ const useProvideAuth = () => {
     loginForProject,
     login,
     checkAuth,
-    loginByAdminPanel
   };
 };
 
