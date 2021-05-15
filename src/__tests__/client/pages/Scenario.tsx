@@ -12,7 +12,7 @@ import { MemoryRouter } from "react-router-dom";
 import { createMemoryHistory } from "history";
 
 import useAuth, { ProvideAuth } from "client/script/hooks/useAuth";
-import Scenario from "client/script/pages/Scenario";
+import Main from "src/client/script/pages/Main";
 
 import startScenario from "client/script/api/scenarioRequests";
 
@@ -21,13 +21,11 @@ jest.mock("client/script/api/scenarioRequests");
 
 describe("Scenario rendering", () => {
   test("should render 2 inputs and selector", () => {
-    render(<Scenario />);
+    render(<Main />);
 
-    const projectNameField = screen.getByLabelText("Системное имя проекта");
     const campaignNumberField = screen.getByLabelText("Номер кампании");
     const taskNameField = screen.getByLabelText("Какие операции заводить");
 
-    expect(projectNameField).toBeInTheDocument();
     expect(campaignNumberField).toBeInTheDocument();
     expect(taskNameField).toBeInTheDocument();
   });
@@ -35,19 +33,13 @@ describe("Scenario rendering", () => {
 
 describe("Scenario calls", () => {
   test("should call API with chosen options", async () => {
-    render(<Scenario />);
+    render(<Main />);
 
-    const projectNameField = screen.getByLabelText("Системное имя проекта");
     const campaignNumberField = screen.getByLabelText("Номер кампании");
     const taskNameField = screen.getByLabelText("Какие операции заводить");
 
     const submitBtn = screen.getByText("Запустить");
 
-    await act(async () => {
-      fireEvent.input(projectNameField, {
-        target: { value: "test.mindbox.ru" },
-      });
-    });
     await act(async () => {
       fireEvent.input(campaignNumberField, { target: { value: "12" } });
     });
@@ -60,7 +52,7 @@ describe("Scenario calls", () => {
 
     expect(startScenario).toHaveBeenCalledWith({
       campaign: 12,
-      projectName: "test",
+      projectName: "",
       scenario: {
         api: ["5ed5315fe1d6aa3e73eeac22"],
         docs:
@@ -72,7 +64,7 @@ describe("Scenario calls", () => {
   });
 
   test("should call API with chosen options", async () => {
-    render(<Scenario />);
+    render(<Main />);
 
     const submitBtn = screen.getByText("Запустить");
 
@@ -90,7 +82,7 @@ describe("Scenario calls", () => {
     rejectedApiCall.mockRejectedValue({
       response: { status: 503, data: "Server error" },
     });
-    render(<Scenario />);
+    render(<Main />);
 
     await act(async () => {
       fireEvent.click(screen.getByText("Запустить"));
@@ -107,7 +99,7 @@ describe("Scenario calls", () => {
 
     render(
       <MemoryRouter>
-        <Scenario />
+        <Main />
       </MemoryRouter>
     );
 
