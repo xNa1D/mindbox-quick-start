@@ -36,10 +36,7 @@ const useProvideAuth = () => {
 
   const cookies = new Cookies();
 
-  const login = async (
-    user: AuthRequestBody,
-    isLoginByAdmin: boolean
-  ) => {
+  const login = async (user: AuthRequestBody, isLoginByAdmin: boolean) => {
     try {
       setLoginErrors("");
       const token = await loginUser(user, isLoginByAdmin);
@@ -48,16 +45,17 @@ const useProvideAuth = () => {
         setLoginForProject(user.project);
       }
       setIsLoggedIn(true);
-      history.push("/scenario");
     } catch (error) {
-      if (error.response.data.errorMessage) {
-        setLoginErrors(error.response?.data?.errorMessage);
-      } else if (error.response.data) {
-        setLoginErrors(error.response?.data);
-      } else {
-        setLoginErrors(error.toString());
-      }
       setIsLoggedIn(false);
+      let errorText;
+      if (error.response.data.errorMessage) {
+        errorText = error.response?.data?.errorMessage;
+      } else if (error.response.data) {
+        errorText = error.response?.data;
+      } else {
+        errorText = error.toString();
+      }
+      setLoginErrors(errorText);
     }
   };
 
@@ -65,12 +63,10 @@ const useProvideAuth = () => {
     try {
       setCheckTokenErrors("");
       const newToken = await checkToken();
-      cookies.set("token", newToken.data);
+      setLoginForProject(newToken.data);
       setIsLoggedIn(true);
-      history.push("/scenario");
     } catch (error) {
       setIsLoggedIn(false);
-      history.push("/");
     }
   };
 
