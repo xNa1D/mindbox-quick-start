@@ -25,13 +25,7 @@ scenariosRoutes.post(
       user = checkToken(req.cookies.token);
       res.sendStatus(200);
 
-      if (
-        user.project !== req.body.projectName && user.tokenFromAdminPanel
-      ) {
-        throw "You should start scenario on project you logged in"
-      }
-
-      const projectName = req.body.projectName;
+      const projectName = user.project || "";
       const scenario = req.body.scenario;
       const campaign = req.body.campaign;
 
@@ -79,7 +73,7 @@ scenariosRoutes.post(
           });
         }
       } catch (error) {
-        console.log(error);
+        throw error;
       }
     } catch (error) {
       res.status(403).send(error);
