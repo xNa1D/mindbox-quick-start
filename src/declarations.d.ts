@@ -29,6 +29,11 @@ export type AuthRequestBody = {
 export type RegistrationRequest = {
   email: string;
 };
+export type AuthByAdminPanelRequestBody =  {
+  login: string;
+  password: string;
+  project: string;
+};
 
 export type Step = {
   status: boolean | null;

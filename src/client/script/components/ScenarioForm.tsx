@@ -86,7 +86,7 @@ const Scenario = () => {
               />
 
               <p className="form__description">
-                https://demo-new.mindbox.ru/campaigns/
+                https://{scenario.projectName}.mindbox.ru/campaigns/
                 <b className="ui black circular label">вот эта цифра</b>
                 /operations
               </p>

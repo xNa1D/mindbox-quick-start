@@ -2,9 +2,9 @@ import React, { useContext, createContext, useState, useEffect } from "react";
 import Cookies from "universal-cookie";
 import { useHistory } from "react-router-dom";
 
-import { loginUser, checkToken } from "client/script/api/userRequests";
+import { loginUser, checkToken, loginUserByAdminPanel } from "client/script/api/userRequests";
 
-import { AuthRequestBody } from "src/declarations";
+import { AuthRequestBody, AuthByAdminPanelRequestBody } from "src/declarations";
 
 type UseProviderReturnedValue = {
   isLoggedIn: boolean;
@@ -19,6 +19,7 @@ const initialContext: UseProviderReturnedValue = {
   loginErrors: "",
   loginForProject: "",
   login: async (user) => {},
+  loginByAdminPanel: async (user) => {},
   checkAuth: async () => {},
 };
 
@@ -32,6 +33,7 @@ const useProvideAuth = () => {
   const [loginErrors, setLoginErrors] = useState("");
   const [loginForProject, setLoginForProject] = useState("");
   const [checkTokenErrors, setCheckTokenErrors] = useState("");
+  const [project, setProject] = useState("");
   const history = useHistory();
 
   const cookies = new Cookies();
@@ -58,6 +60,26 @@ const useProvideAuth = () => {
       setLoginErrors(errorText);
     }
   };
+  const loginByAdminPanel = async (user: AuthByAdminPanelRequestBody) => {
+    try {
+      setLoginErrors("");
+      const token = await loginUserByAdminPanel(user);
+      cookies.set("token", token.data);
+      setProject(user.project);
+      setIsLoggedIn(true);
+      history.push("/scenario");      
+    } catch (error) {
+      
+      if (error.response.data.errorMessage) {
+        setLoginErrors(error.response?.data?.errorMessage);
+      } else if (error.response.data) {
+        setLoginErrors(error.response?.data);
+      } else {
+        setLoginErrors(error.toString());
+      }
+      setIsLoggedIn(false);
+    }
+  };
 
   const checkAuth = async () => {
     try {
@@ -80,6 +102,7 @@ const useProvideAuth = () => {
     loginForProject,
     login,
     checkAuth,
+    loginByAdminPanel
   };
 };
 
