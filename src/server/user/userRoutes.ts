@@ -25,8 +25,6 @@ userRoutes.post(
         res.status(403).send("Неправильная почта или пароль");
       }
     } catch (error) {
-      console.log(error.response.data);
-
       res.status(503).send(error.response.data);
     }
   }
@@ -43,24 +41,21 @@ userRoutes.post(
 
       let accessToken: string;
 
-      if (tokenFromAdminPanel) {
-        accessToken = generateAccessToken({
-          email: user.email,
-          project: req.body.project,
-          tokenFromAdminPanel,
-        });
+      accessToken = generateAccessToken({
+        email: user.email,
+        project: req.body.project,
+        tokenFromAdminPanel,
+      });
 
-        res.send(accessToken);
-      } else {
-        res.status(403).send("Неправильная почта или пароль");
-      }
+      res.send(accessToken);
     } catch (error) {
-      console.log(error);
+      let errorText;
       if (error.response?.data) {
-        res.status(503).send(error.response?.data);
+        errorText = error.response?.data
       } else {
-        res.status(503).send(error);
+        errorText = error.toString();
       }
+      res.status(503).send(errorText);
     }
   }
 );
@@ -76,7 +71,7 @@ userRoutes.post("/reg", async (req: Request, res: Response) => {
       res.status(403).send("Такого пользователя на существует");
     }
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     let errorMessage: string;
 
     if (error.response?.data?.errorMessage) {
@@ -91,11 +86,9 @@ userRoutes.post("/reg", async (req: Request, res: Response) => {
 
 userRoutes.get("/checkToken", (req: Request, res: Response) => {
   try {
-    checkTocken(req.cookies.token || "");
-    res.sendStatus(200);
+    const user = checkTocken(req.cookies.token || "");
+    res.send(user.project);
   } catch (error) {
-    console.log(error);
-
     res.sendStatus(403);
   }
 });
