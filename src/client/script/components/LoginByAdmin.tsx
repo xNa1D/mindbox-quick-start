@@ -73,6 +73,7 @@ const LoginByAdmin = () => {
             onChange={(event) =>
               setUser({ ...user, password: event.target.value })
             }
+            type="password"
           />
         </label>
       </Form.Field>
