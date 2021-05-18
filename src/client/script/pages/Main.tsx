@@ -17,7 +17,7 @@ import "client/styles/block/form/form.css";
 const Main = () => {
   const auth = useAuth();
 
-  const [isAuthShown, setIsAuthShown] = useState(auth.isLoggedIn);
+  const [isAuthShown, setIsAuthShown] = useState(!auth.isLoggedIn);
 
   return (
     <>
