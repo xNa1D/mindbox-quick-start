@@ -159,7 +159,7 @@ describe("/reg", () => {
       password: "123",
     });
 
-    expect(res.status).toBe(503);
+    expect(res.status).toBe(403);
   });
 
   it("should return 503 if api return error", async () => {
