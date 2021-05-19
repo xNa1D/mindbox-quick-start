@@ -66,6 +66,7 @@ const useProvideAuth = () => {
       setLoginForProject(newToken.data);
       setIsLoggedIn(true);
     } catch (error) {
+      setLoginForProject("");
       setIsLoggedIn(false);
     }
   };
