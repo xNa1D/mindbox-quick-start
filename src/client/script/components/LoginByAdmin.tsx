@@ -3,7 +3,7 @@ import { Button, Checkbox, Form, Input } from "semantic-ui-react";
 import useAuth from "client/script/hooks/useAuth";
 import { handleProjectNameInput } from "client/script/helpers/inputChanges";
 
-import { AuthRequestBody,  } from "src/declarations";
+import { AuthRequestBody } from "src/declarations";
 
 const LoginByAdmin = () => {
   const initialUser: AuthRequestBody = {
