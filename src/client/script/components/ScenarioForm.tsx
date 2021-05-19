@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 
 import { StartScenarioBody, ScenarioNames } from "src/declarations";
-import { handleProjectNameInput } from "client/script/helpers/inputChanges";
 import startScenario from "client/script/api/scenarioRequests";
 import useAuth from "client/script/hooks/useAuth";
 import scenarios from "src/data";
@@ -10,17 +8,16 @@ import scenarios from "src/data";
 import "client/styles/block/form/form.css";
 
 const Scenario = () => {
-  const [scenario, setScenario] = useState({
-    scenario: scenarios[0],
-    projectName: "",
-    campaign: 0,
-  } as StartScenarioBody);
-
   const [isStarted, setIsStarted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const history = useHistory();
   const auth = useAuth();
+
+  const [scenario, setScenario] = useState({
+    scenario: scenarios[0],
+    projectName: auth.loginForProject,
+    campaign: 0,
+  } as StartScenarioBody);
 
   const handleFormSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
@@ -30,49 +27,17 @@ const Scenario = () => {
       await startScenario(scenario);
       setIsStarted(true);
     } catch (error) {
-      if (error.response.status === 403) {
-        history.push("/");
-      }
       setError(error.response.data);
     } finally {
       setIsLoading(false);
     }
   };
-
   return (
     <>
       <h1 className="options__header">Завести операции ...</h1>
       <div className="ui stackable grid">
         <div className="ten wide column">
           <form className="ui form" id="scenario" onSubmit={handleFormSubmit}>
-            <fieldset className="field form__input-container ">
-              <label htmlFor="projectName" className="form__label">
-                Системное имя проекта
-              </label>
-              <div className="ui right labeled input">
-                <input
-                  type="text"
-                  id="projectName"
-                  className="form__input"
-                  name="projectName"
-                  placeholder="nexus"
-                  required
-                  onChange={(event) => {
-                    const eventValue = handleProjectNameInput(
-                      event.target.value
-                    );
-                    setScenario({ ...scenario, projectName: eventValue });
-                    setIsStarted(false);
-                  }}
-                  value={scenario.projectName}
-                />
-                <div className="ui basic label">.mindbox.ru</div>
-              </div>
-              <p className="form__description">
-                Можно вставить ссылку прямо вот так:{" "}
-                <i>https://demo-new.mindbox.ru/</i>, она подрежится сама
-              </p>
-            </fieldset>
             <fieldset className="field form__input-container">
               <label htmlFor="task" className="form__label">
                 Какие операции заводить
@@ -92,18 +57,9 @@ const Scenario = () => {
                 }}
                 value={scenario.scenario.type}
               >
-                <option value="ecommerce">
-                  Для стандартного интернет магазина
-                </option>
-                <option value="loyaltyOnline">
-                  Программа лояльности на сайте
-                </option>
-                <option value="loyaltyOffline">
-                  Программа лояльности в офлайне
-                </option>
-                <option value="mobilePush">
-                  Для мобильного приложения и пушей
-                </option>
+                {scenarios.map((scenario) => (
+                  <option value={scenario.type} key={ scenario.type}>{scenario.name}</option>
+                ))}
               </select>
             </fieldset>
             <fieldset
@@ -130,7 +86,7 @@ const Scenario = () => {
               />
 
               <p className="form__description">
-                https://demo-new.mindbox.ru/campaigns/
+                https://{scenario.projectName}.mindbox.ru/campaigns/
                 <b className="ui black circular label">вот эта цифра</b>
                 /operations
               </p>

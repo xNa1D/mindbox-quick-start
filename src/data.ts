@@ -29,6 +29,13 @@ const scenarios: Scenario[] = [
       "https://docs.google.com/document/d/1glcthFoGqwcj1hzAt8PG4Y6YO_Sw6MlUmhiOj2cPa1o/edit",
     api: ["5fb2689f89be016e97029052"],
   },
+  {
+    type: "OSMI_cards",
+    name: "Интеграция OSMI Cards",
+    docs:
+      "#",
+    api: ["608be528e1c7b042c92ec029"],
+  },
 ];
 
 export default scenarios;

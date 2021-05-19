@@ -110,8 +110,6 @@ class User {
 
   async authenticateByAdminPanel(project: string) {
     try {
-      console.log("start authenticateByAdminPanel");
-
       const response = await axios.post(
         `https://${project}.mindbox.ru/authenticateByUserNameAndPassword`,
         {
@@ -123,7 +121,7 @@ class User {
           validationSummary: null,
         },
         {
-          headers: {
+          headers: { 
             "content-type": "application/json",
           },
         }
@@ -136,7 +134,7 @@ class User {
       const token = response.headers["set-cookie"][0].split(";")[0];
       return token;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       throw error;
     }
   }

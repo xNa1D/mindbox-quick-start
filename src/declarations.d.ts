@@ -23,9 +23,16 @@ export type StartScenarioBody = {
 export type AuthRequestBody = {
   email: string;
   password: string;
+  project: string;
 };
+
 export type RegistrationRequest = {
   email: string;
+};
+export type AuthByAdminPanelRequestBody =  {
+  login: string;
+  password: string;
+  project: string;
 };
 
 export type Step = {
@@ -39,7 +46,6 @@ type BaseMessageParameters = {
   steps: Step[];
 };
 
-
 export type SuccessMessageParameters = BaseMessageParameters & {
   documentationLink: string;
 };
@@ -47,4 +53,13 @@ export type SuccessMessageParameters = BaseMessageParameters & {
 export type ErrorMessageParameters = BaseMessageParameters & {
   errorMessage: string;
   videoLink: string;
+};
+
+
+// JWT
+
+export type JwtUser = {
+  email: string;
+  project?: string;
+  tokenFromAdminPanel?: string;
 };

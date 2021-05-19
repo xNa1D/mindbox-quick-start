@@ -1,16 +1,9 @@
 import * as jwt from "jsonwebtoken";
 
-type CheckedToken = {
-  email: string;
-  exp: number;
-  iat: number;
-};
+import {JwtUser} from 'src/declarations'
 
-const checkTocken = (token: string): CheckedToken => {
-  return jwt.verify(
-    token,
-    process.env.JWT_SECRET || "test_secret"
-  ) as CheckedToken;
+const checkTocken = (token: string): JwtUser => {
+  return jwt.verify(token, process.env.JWT_SECRET || "test_secret") as JwtUser;
 };
 
 export default checkTocken;
