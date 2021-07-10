@@ -37,6 +37,12 @@ const scenarios: Scenario[] = [
     docs: "",
     api: ["60e60727f90fe91565a8f090"],
   },
+  {
+    type: "OSMI_cards",
+    name: "Интеграция OSMI Cards",
+    docs: "#",
+    api: ["608be528e1c7b042c92ec029"],
+  },
 ];
 
 export default scenarios;
