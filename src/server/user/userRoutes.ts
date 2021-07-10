@@ -6,7 +6,7 @@ import checkTocken from "./checkTocken";
 
 const userRoutes = Router();
 
-import { AuthRequestBody } from "src/declarations";
+import { AuthRequestBody, AuthByAdminPanelRequestBody } from "src/declarations";
 
 userRoutes.post(
   "/auth",
@@ -18,15 +18,13 @@ userRoutes.post(
       let accessToken: string;
 
       if (isLoggedSuccessfully) {
-        accessToken = generateAccessToken(user.email);
+        accessToken = generateAccessToken({ email: user.email });
 
         res.send(accessToken);
       } else {
         res.status(403).send("Неправильная почта или пароль");
       }
     } catch (error) {
-      console.log(error.response.data);
-
       res.status(503).send(error.response.data);
     }
   }
@@ -34,7 +32,7 @@ userRoutes.post(
 
 userRoutes.post(
   "/authByAdminPanel",
-  async (req: Request<{}, {}>, res: Response) => {
+  async (req: Request<{}, string, AuthRequestBody>, res: Response) => {
     try {
       const user = new User(req.body.email, req.body.password);
       const tokenFromAdminPanel = await user.authenticateByAdminPanel(
@@ -43,24 +41,21 @@ userRoutes.post(
 
       let accessToken: string;
 
-      if (tokenFromAdminPanel) {
-        accessToken = generateAccessToken(
-          user.email,
-          req.body.project,
-          tokenFromAdminPanel
-        );
+      accessToken = generateAccessToken({
+        email: user.email,
+        project: req.body.project,
+        tokenFromAdminPanel,
+      });
 
-        res.send(accessToken);
-      } else {
-        res.status(403).send("Неправильная почта или пароль");
-      }
+      res.send(accessToken);
     } catch (error) {
-      console.log(error);
+      let errorText;
       if (error.response?.data) {
-        res.status(503).send(error.response?.data);
+        errorText = error.response?.data
       } else {
-        res.status(503).send(error);
+        errorText = error.toString();
       }
+      res.status(503).send(errorText);
     }
   }
 );
@@ -76,7 +71,7 @@ userRoutes.post("/reg", async (req: Request, res: Response) => {
       res.status(403).send("Такого пользователя на существует");
     }
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     let errorMessage: string;
 
     if (error.response?.data?.errorMessage) {
@@ -91,11 +86,9 @@ userRoutes.post("/reg", async (req: Request, res: Response) => {
 
 userRoutes.get("/checkToken", (req: Request, res: Response) => {
   try {
-    checkTocken(req.cookies.token || "");
-    res.sendStatus(200);
+    const user = checkTocken(req.cookies.token || "");
+    res.send(user.project);
   } catch (error) {
-    console.log(error);
-
     res.sendStatus(403);
   }
 });

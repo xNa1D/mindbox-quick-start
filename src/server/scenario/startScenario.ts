@@ -21,7 +21,7 @@ const startScenario = async (
   for await (const api of scenarioApiAddress) {
     try {
       const result = await axios.post<ScenarioResult>(
-        `https://api.ghostinspector.com/v1/tests/${api}/execute/?apiKey=777edc3b47a553359340c186dca0a1923bc51c77`,
+        `https://api.ghostinspector.com/v1/tests/${api}/execute/?apiKey=${process.env.GH_TOKEN}`,
         { projectName, campaign },
         {
           headers: {

@@ -1,12 +1,24 @@
 import axios from "axios";
 
-import { AuthRequestBody, RegistrationRequest } from "src/declarations";
+import { AuthRequestBody, RegistrationRequest, AuthByAdminPanelRequestBody } from "src/declarations";
 
-export const loginUser = (user: AuthRequestBody) => {
-  return axios.post("/api/user/auth", user, {
+export const loginUser = (
+  user: AuthRequestBody,
+  isLoginByAdmin: boolean
+) => {
+  const authUrl = isLoginByAdmin ? "authByAdminPanel" : "auth";
+
+  return axios.post(`/api/user/${authUrl}`, user, {
     headers: { "content-type": "application/json" },
   });
 };
+
+export const loginUserByAdminPanel = (user: AuthByAdminPanelRequestBody) => {
+  return axios.post("/api/user/authByAdminPanel", user, {
+    headers: { "content-type": "application/json" },
+  });
+};
+
 export const checkToken = () => {
   return axios.get("/api/user/checkToken", {
     headers: { "content-type": "application/json" },

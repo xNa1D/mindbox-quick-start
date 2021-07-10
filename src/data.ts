@@ -26,6 +26,7 @@ const scenarios: Scenario[] = [
     api: ["5fb2689f89be016e97029052"],
   },
   {
+
     type: "Frontol",
     name: "Интеграция с кассами Frontol",
     docs: "",

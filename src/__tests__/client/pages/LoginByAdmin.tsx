@@ -11,7 +11,7 @@ import axios from "axios";
 import { MemoryRouter } from "react-router-dom";
 
 import useAuth, { ProvideAuth } from "client/script/hooks/useAuth";
-import Login from "client/script/pages/Login";
+import Login from "client/script/components/LoginByAdmin";
 
 import { loginUser } from "client/script/api/userRequests";
 // import { User, AuthUserResponse } from "src/declarations";
@@ -53,6 +53,9 @@ describe("Form submit", () => {
 
     const login = screen.getByLabelText("Логин");
     const password = screen.getByLabelText("Пароль");
+    const projectField = screen.getByPlaceholderText(
+      "Домен административной панели проекта"
+    );
     const submitBtn = screen.getByText("Войти");
 
     await act(async () => {
@@ -62,13 +65,17 @@ describe("Form submit", () => {
       fireEvent.input(password, { target: { value: "123" } });
     });
     await act(async () => {
+      fireEvent.input(projectField, { target: { value: "test" } });
+    });
+    await act(async () => {
       fireEvent.click(submitBtn);
     });
 
-    expect(loginUser).toHaveBeenLastCalledWith({
+    expect(loginUser).toHaveBeenCalledWith({
       email: "nikitin@mindbox.ru",
       password: "123",
-    });
+      project: "test"
+    }, true);
   });
 
   it("should render rejected value", async () => {

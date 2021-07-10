@@ -2,20 +2,22 @@ import React, { useContext, createContext, useState, useEffect } from "react";
 import Cookies from "universal-cookie";
 import { useHistory } from "react-router-dom";
 
-import { loginUser, checkToken } from "client/script/api/userRequests";
+import { loginUser, checkToken, loginUserByAdminPanel } from "client/script/api/userRequests";
 
-import { AuthRequestBody } from "src/declarations";
+import { AuthRequestBody, AuthByAdminPanelRequestBody } from "src/declarations";
 
 type UseProviderReturnedValue = {
   isLoggedIn: boolean;
   loginErrors: string;
-  login: (user: AuthRequestBody) => Promise<void>;
+  loginForProject: string;
+  login: (user: AuthRequestBody, isLoginByAdmin: boolean) => Promise<void>;
   checkAuth: () => Promise<void>;
 };
 
 const initialContext: UseProviderReturnedValue = {
   isLoggedIn: false,
   loginErrors: "",
+  loginForProject: "",
   login: async (user) => {},
   checkAuth: async () => {},
 };
@@ -28,41 +30,44 @@ export const ProvideAuth = ({ children }: any) => {
 const useProvideAuth = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loginErrors, setLoginErrors] = useState("");
+  const [loginForProject, setLoginForProject] = useState("");
   const [checkTokenErrors, setCheckTokenErrors] = useState("");
+  const [project, setProject] = useState("");
   const history = useHistory();
 
   const cookies = new Cookies();
 
-  const login = async (user: AuthRequestBody) => {
+  const login = async (user: AuthRequestBody, isLoginByAdmin: boolean) => {
     try {
       setLoginErrors("");
-      const token = await loginUser(user);
+      const token = await loginUser(user, isLoginByAdmin);
       cookies.set("token", token.data);
-      setIsLoggedIn(true);
-      history.push("/scenario");      
-    } catch (error) {
-      
-      if (error.response.data.errorMessage) {
-        setLoginErrors(error.response?.data?.errorMessage);
-      } else if (error.response.data) {
-        setLoginErrors(error.response?.data);
-      } else {
-        setLoginErrors(error.toString());
+      if (isLoginByAdmin) {
+        setLoginForProject(user.project);
       }
+      setIsLoggedIn(true);
+    } catch (error) {
       setIsLoggedIn(false);
+      let errorText;
+      if (error.response.data.errorMessage) {
+        errorText = error.response?.data?.errorMessage;
+      } else if (error.response.data) {
+        errorText = error.response?.data;
+      } else {
+        errorText = error.toString();
+      }
+      setLoginErrors(errorText);
     }
   };
-
   const checkAuth = async () => {
     try {
       setCheckTokenErrors("");
       const newToken = await checkToken();
-      cookies.set("token", newToken.data);
+      setLoginForProject(newToken.data);
       setIsLoggedIn(true);
-      history.push("/scenario");      
     } catch (error) {
+      setLoginForProject("");
       setIsLoggedIn(false);
-      history.push("/");      
     }
   };
 
@@ -73,6 +78,7 @@ const useProvideAuth = () => {
   return {
     isLoggedIn,
     loginErrors,
+    loginForProject,
     login,
     checkAuth,
   };

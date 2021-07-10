@@ -56,8 +56,6 @@ const mockApiBody: StartScenarioBody = {
   campaign: 1,
 };
 
-
-
 // const mockErrorMessageInstance = (ErrorMessage as jest.Mock).mock.instances[0];
 // const sendErrorMessage = mockErrorMessageInstance.sendMessage;
 
@@ -83,7 +81,12 @@ describe("/scenario", () => {
   jest.setTimeout(30000);
   (startScenario as jest.Mock).mockResolvedValue(mockSuccessResponse);
 
-  const token = generateAccessToken("nikitin@mindbox.ru");
+  const token = generateAccessToken({ email: "nikitin@mindbox.ru" });
+  const tokenFromAdminPanel = generateAccessToken({
+    email: "nikitin@mindbox.ru",
+    project: "test",
+    tokenFromAdminPanel: "testToken",
+  });
 
   describe("access ticket", () => {
     it("should return 200 if token correct", async () => {
@@ -117,16 +120,14 @@ describe("/scenario", () => {
   });
 
   describe("notification sending", () => {
-      
-      it("should send OK message when all is ok", async () => {
-        await agent
-          .post("/api/scenario/start")
-          .set("Cookie", [`token=${token}`])
-          .send(mockApiBody);
- 
+    it("should send OK message when all is ok", async () => {
+      await agent
+        .post("/api/scenario/start")
+        .set("Cookie", [`token=${token}`])
+        .send(mockApiBody);
 
-        expect(sendMessage).toHaveBeenCalled();
-      });
+      expect(sendMessage).toHaveBeenCalled();
+    });
 
     it("should NOT send OK message when all is not ok bun token expired", async () => {
       (startScenario as jest.Mock).mockRejectedValue({
@@ -164,8 +165,9 @@ describe("/scenario", () => {
         .post("/api/scenario/start")
         .set("Cookie", [`token=${token}`])
         .send(mockApiBody);
-      
+
       expect(sendMessage).toHaveBeenCalled();
     });
   });
 });
+
