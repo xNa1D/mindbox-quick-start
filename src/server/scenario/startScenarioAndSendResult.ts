@@ -9,11 +9,11 @@ import {
 } from "src/declarations";
 
 const startScenarioAndSendResult = async ({
-  user,
+  email,
   projectName,
   scenario,
   campaign,
-}: params) => {
+}: StartScenarioAndSendResultType) => {
   const scenarioResult = await startScenario(
     scenario.api,
     projectName,
@@ -22,7 +22,7 @@ const startScenarioAndSendResult = async ({
 
   if (scenarioResult.status === "SUCCESS") {
     sendMessage<SuccessMessageParameters>({
-      email: user.email,
+      email,
       mailingParams: {
         documentationLink: scenario.docs,
         projectName,
@@ -41,14 +41,14 @@ const startScenarioAndSendResult = async ({
     };
 
     const usersToNotifyAboutError = [
-      user.email,
+      email,
       "nikitin@mindbox.ru",
       "moskalev@mindbox.ru",
     ];
 
-    usersToNotifyAboutError.forEach((user) =>
+    usersToNotifyAboutError.forEach((email) =>
       sendMessage<ErrorMessageParameters>({
-        email: user,
+        email,
         mailingParams: errorMessagePayload,
         operation: operations.messages.error,
       })
