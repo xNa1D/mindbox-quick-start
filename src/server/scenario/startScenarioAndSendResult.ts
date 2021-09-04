@@ -10,13 +10,6 @@ import {
   Scenario,
 } from "src/declarations";
 
-type params = {
-  user: JwtUser;
-  projectName: string;
-  scenario: Scenario;
-  campaign: number;
-};
-
 const startScenarioAndSendResult = async ({
   user,
   projectName,
