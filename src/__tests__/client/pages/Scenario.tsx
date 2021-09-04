@@ -20,16 +20,14 @@ jest.mock("axios");
 jest.mock("client/script/api/scenarioRequests");
 
 describe("Scenario rendering", () => {
-  test("should render inputs and selector", () => {
+  test("should render 2 inputs and selector", () => {
     render(<Main />);
 
     const campaignNumberField = screen.getByLabelText("Номер кампании");
     const taskNameField = screen.getByLabelText("Какие операции заводить");
-    const emailForNotification = screen.getByLabelText("Email для оповещений");
 
     expect(campaignNumberField).toBeInTheDocument();
     expect(taskNameField).toBeInTheDocument();
-    expect(emailForNotification).toBeInTheDocument();
   });
 });
 
@@ -39,7 +37,6 @@ describe("Scenario calls", () => {
 
     const campaignNumberField = screen.getByLabelText("Номер кампании");
     const taskNameField = screen.getByLabelText("Какие операции заводить");
-    const emailForNotification = screen.getByLabelText("Email для оповещений");
 
     const submitBtn = screen.getByText("Запустить");
 
@@ -50,9 +47,6 @@ describe("Scenario calls", () => {
       fireEvent.change(taskNameField, { target: { value: "loyaltyOnline" } });
     });
     await act(async () => {
-      fireEvent.change(emailForNotification, { target: { value: "test@me.more" } });
-    });
-    await act(async () => {
       fireEvent.click(submitBtn);
     });
 
@@ -61,15 +55,15 @@ describe("Scenario calls", () => {
       projectName: "",
       scenario: {
         api: ["5ed5315fe1d6aa3e73eeac22"],
-        docs: "https://docs.google.com/document/d/13XJIqU1CSv5yaTFeAFu7J1L94edaMAQNQAAwHJxqAOc/edit",
+        docs:
+          "https://docs.google.com/document/d/13XJIqU1CSv5yaTFeAFu7J1L94edaMAQNQAAwHJxqAOc/edit",
         name: "Операции для ПЛ на сайте",
         type: "loyaltyOnline",
       },
-      emailForNotification: "test@me.more"
     });
   });
 
-  test("should render successMessage", async () => {
+  test("should call API with chosen options", async () => {
     render(<Main />);
 
     const submitBtn = screen.getByText("Запустить");
