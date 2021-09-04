@@ -15,6 +15,7 @@ const startScenarioAndSendResult = async ({
   scenario,
   campaign,
 }: StartScenarioAndSendResultType) => {
+
   const scenarioData: StartScenarioType = {
     campaign,
     ghType: scenario.ghType,
@@ -23,6 +24,7 @@ const startScenarioAndSendResult = async ({
   };
 
   const scenarioResult = await startScenario(scenarioData);
+
 
   if (scenarioResult.status === "SUCCESS") {
     sendMessage<SuccessMessageParameters>({
