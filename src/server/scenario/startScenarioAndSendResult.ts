@@ -3,11 +3,9 @@ import { operations } from "../../config";
 import startScenario from "./startScenario";
 
 import {
-  StartScenarioBody,
   SuccessMessageParameters,
   ErrorMessageParameters,
-  JwtUser,
-  Scenario,
+  StartScenarioAndSendResultType,
 } from "src/declarations";
 
 const startScenarioAndSendResult = async ({
