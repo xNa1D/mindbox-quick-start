@@ -64,3 +64,10 @@ export type JwtUser = {
   project?: string;
   tokenFromAdminPanel?: string;
 };
+
+export type StartScenarioAndSendResultType = {
+  email: string;
+  projectName: string;
+  scenario: Scenario;
+  campaign: number;
+};
