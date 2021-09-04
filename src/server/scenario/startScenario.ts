@@ -1,31 +1,30 @@
 import axios from "axios";
-import { ScenarioResult  } from "src/ScenarioResult";
+import { ScenarioResult } from "src/ScenarioResult";
 import { StepsEntity } from "src/ScenarioResult";
 import parseStepsInfo from "./parseStepsInfo";
 
-import { Step } from "src/declarations";
+import { Step, StartScenarioType } from "src/declarations";
 
-const startScenario = async (
-  scenarioApiAddress: string[],
-  projectName: string,
-  campaign: number,
-  ghType: "old" | "new"
-) => {
+
+const startScenario = async ({
+  scenarioApiAddress,
+  projectName,
+  campaign,
+  ghType,
+}: StartScenarioType) => {
+
   let resultStatus;
   let resultError = {
     errorMessage: "",
     videoLink: "",
   };
-
+  
   let resultSteps: Step[] = [];
   let i = 0;
-
-  const ghToken =
-    ghType === "old" ? process.env.GH_TOKEN : process.env.GH_TOKEN_NEW;
   for await (const api of scenarioApiAddress) {
     try {
       const result = await axios.post<ScenarioResult>(
-        `https://api.ghostinspector.com/v1/tests/${api}/execute/?apiKey=${ghToken}`,
+        `https://api.ghostinspector.com/v1/tests/${api}/execute/?apiKey=${process.env.GH_TOKEN}`,
         { projectName, campaign },
         {
           headers: {
@@ -56,7 +55,7 @@ const startScenario = async (
   }
   return {
     status: resultStatus,
-    error: resultError,
+    error: resultError, 
     steps: resultSteps,
   };
 };

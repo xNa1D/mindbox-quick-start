@@ -10,7 +10,6 @@ export type Scenario = {
   name: string;
   docs: string;
   api: string[];
-  ghType: "old"|"new"
 };
 
 export type ScenarioNames = keyof ScenarioApiCalls;
@@ -71,4 +70,11 @@ export type StartScenarioAndSendResultType = {
   projectName: string;
   scenario: Scenario;
   campaign: number;
+};
+
+export type StartScenarioType = {
+  scenarioApiAddress: string[];
+  projectName: string;
+  campaign: number;
+  ghType: "old" | "new";
 };

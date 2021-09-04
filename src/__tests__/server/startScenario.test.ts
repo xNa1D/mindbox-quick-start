@@ -8,6 +8,7 @@ const mockBody = {
   scenarioApiAddress: ["testApi"],
   projectName: "testProject",
   campaign: 1,
+  ghType: "old" as "old"|"new",
 };
 
 const expectedSteps = [
@@ -23,7 +24,7 @@ describe("checking returning object", () => {
       data: mockScenarioResultSuccess,
     });
 
-    const res = await startScenario(["testApi"], "testProject", 1);
+    const res = await startScenario(mockBody);
     expect(res).toStrictEqual({
       error: {
         errorMessage: "",
@@ -40,7 +41,7 @@ describe("checking returning object", () => {
       data: mockScenarioResultPartlySuccess,
     });
 
-    const res = await startScenario(["testApi"], "testProject", 1);
+    const res = await startScenario(mockBody);
     expect(res).toStrictEqual({
       error: {
         errorMessage: "",
@@ -60,12 +61,11 @@ describe("checking returning object", () => {
       status: 200,
       data: mockScenarioResultSuccess,
     });
-
-    const res = await startScenario(
-      ["testApi1", "testApi2 "],
-      "testProject",
-      1
-    );
+    const mockBodyWith2apis = {
+      ...mockBody,
+      scenarioApiAddress: ["test1", "test2"]
+    };
+    const res = await startScenario(mockBodyWith2apis);
     expect(axios.post).toHaveBeenCalledTimes(2);
     expect(res).toStrictEqual({
       error: {
@@ -83,7 +83,7 @@ describe("checking returning object", () => {
       data: mockScenarioResultError,
     });
 
-    const res = await startScenario(["testApi1"], "testProject", 1);
+    const res = await startScenario(mockBody);
 
     expect(res).toStrictEqual({
       error: {
@@ -102,11 +102,7 @@ it("should throw on network error", async () => {
     status: 500,
   });
 
-  const response = await startScenario(
-    mockBody.scenarioApiAddress,
-    mockBody.projectName,
-    mockBody.campaign
-  );
+  const response = await startScenario(mockBody);
 
   expect(response.status).toBe("ERROR");
 });
@@ -121,11 +117,7 @@ it("should throw internal error of code not SUCCESS", async () => {
       },
     },
   });
-  const response = await startScenario(
-    mockBody.scenarioApiAddress,
-    mockBody.projectName,
-    mockBody.campaign
-  );
+  const response = await startScenario(mockBody);
   expect(response.error.errorMessage).toBe("Internal error in Scenario Server");
 });
 
@@ -143,11 +135,7 @@ it("should throw internal error of code not SUCCESS", async () => {
     },
   });
 
-  const response = await startScenario(
-    mockBody.scenarioApiAddress,
-    mockBody.projectName,
-    mockBody.campaign
-  );
+  const response = await startScenario(mockBody);
   expect(response.error.errorMessage).toBe(
     "Test run reached 10 minute time limit and was stopped"
   );

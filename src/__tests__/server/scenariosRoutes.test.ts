@@ -23,6 +23,7 @@ const mockScenario: Scenario = {
   name: "Мок запуска сценария",
   api: ["mockAddress"],
   docs: "mockDocs",
+  ghType: "old"
 };
 
 const mockSteps = [
