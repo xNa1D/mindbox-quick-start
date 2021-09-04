@@ -61,8 +61,11 @@ describe("checking returning object", () => {
       status: 200,
       data: mockScenarioResultSuccess,
     });
-
-    const res = await startScenario(mockBody);
+    const mockBodyWith2apis = {
+      ...mockBody,
+      scenarioApiAddress: ["test1", "test2"]
+    };
+    const res = await startScenario(mockBodyWith2apis);
     expect(axios.post).toHaveBeenCalledTimes(2);
     expect(res).toStrictEqual({
       error: {
