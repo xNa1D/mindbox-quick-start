@@ -25,9 +25,11 @@ describe("Scenario rendering", () => {
 
     const campaignNumberField = screen.getByLabelText("Номер кампании");
     const taskNameField = screen.getByLabelText("Какие операции заводить");
+    const emailForNotification = screen.getByLabelText("Email для оповещений");
 
     expect(campaignNumberField).toBeInTheDocument();
     expect(taskNameField).toBeInTheDocument();
+    expect(emailForNotification).toBeInTheDocument();
   });
 });
 
@@ -37,6 +39,7 @@ describe("Scenario calls", () => {
 
     const campaignNumberField = screen.getByLabelText("Номер кампании");
     const taskNameField = screen.getByLabelText("Какие операции заводить");
+    const emailForNotification = screen.getByLabelText("Email для оповещений");
 
     const submitBtn = screen.getByText("Запустить");
 
@@ -45,6 +48,11 @@ describe("Scenario calls", () => {
     });
     await act(async () => {
       fireEvent.change(taskNameField, { target: { value: "loyaltyOnline" } });
+    });
+    await act(async () => {
+      fireEvent.change(emailForNotification, {
+        target: { value: "test@me.more" },
+      });
     });
     await act(async () => {
       fireEvent.click(submitBtn);
@@ -59,7 +67,9 @@ describe("Scenario calls", () => {
           "https://docs.google.com/document/d/13XJIqU1CSv5yaTFeAFu7J1L94edaMAQNQAAwHJxqAOc/edit",
         name: "Операции для ПЛ на сайте",
         type: "loyaltyOnline",
+        ghType: "old",
       },
+      emailForNotification: "test@me.more",
     });
   });
 
