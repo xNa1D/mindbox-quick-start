@@ -8,7 +8,7 @@ import scenarios from "src/data";
 import "client/styles/block/form/form.css";
 
 const Scenario = () => {
-  const [isStarted, setIsStarted] = useState(false);
+  const [wasStarted, setWasStarted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const auth = useAuth();
@@ -25,7 +25,7 @@ const Scenario = () => {
     try {
       setIsLoading(true);
       await startScenario(scenario);
-      setIsStarted(true);
+      setWasStarted(true);
     } catch (error) {
       setError(error.response.data);
     } finally {
@@ -53,7 +53,7 @@ const Scenario = () => {
                       (scenario) => scenario.type === eventValue
                     ) || scenarios[0];
                   setScenario({ ...scenario, scenario: selectedScenario });
-                  setIsStarted(false);
+                  setWasStarted(false);
                 }}
                 value={scenario.scenario.type}
               >
@@ -77,7 +77,7 @@ const Scenario = () => {
                   if (eventValue) {
                     setScenario({ ...scenario, campaign: eventValue });
                   }
-                  setIsStarted(false);
+                  setWasStarted(false);
                 }}
                 value={scenario.campaign}
               />
@@ -92,14 +92,14 @@ const Scenario = () => {
               <button
                 type="submit"
                 className={`form__button_login ui button basic green 
-                            ${isStarted && "disabled"} 
+                            ${wasStarted && "disabled"} 
                             ${isLoading && "loading"}`}
                 id="submit"
               >
                 <i className="play icon"></i>
                 Запустить
               </button>
-              {isStarted && (
+              {wasStarted && (
                 <span
                   className="form__result form__result_success "
                   id="result"
