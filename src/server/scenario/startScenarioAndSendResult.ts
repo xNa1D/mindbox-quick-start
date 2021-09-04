@@ -6,6 +6,7 @@ import {
   SuccessMessageParameters,
   ErrorMessageParameters,
   StartScenarioAndSendResultType,
+  StartScenarioType,
 } from "src/declarations";
 
 const startScenarioAndSendResult = async ({
@@ -14,11 +15,16 @@ const startScenarioAndSendResult = async ({
   scenario,
   campaign,
 }: StartScenarioAndSendResultType) => {
-  const scenarioResult = await startScenario(
-    scenario.api,
+
+  const scenarioData: StartScenarioType = {
+    campaign,
+    ghType: scenario.ghType,
     projectName,
-    campaign
-  );
+    scenarioApiAddress: scenario.api,
+  };
+
+  const scenarioResult = await startScenario(scenarioData);
+
 
   if (scenarioResult.status === "SUCCESS") {
     sendMessage<SuccessMessageParameters>({

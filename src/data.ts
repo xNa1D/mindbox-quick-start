@@ -44,6 +44,13 @@ const scenarios: Scenario[] = [
     docs: "#",
     api: ["608be528e1c7b042c92ec029"],
   },
+  {
+    type: "CardsMobile",
+    name: "Интеграция c Кошельком (CardsMobile)",
+    docs: "",
+    api: ["6130c3074c553a4e5e6ae535", "6130d64345a24c3ffb073008"],
+    ghType: "new",
+  },
 ];
 
 export default scenarios;

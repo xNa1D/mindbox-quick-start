@@ -71,3 +71,10 @@ export type StartScenarioAndSendResultType = {
   scenario: Scenario;
   campaign: number;
 };
+
+export type StartScenarioType = {
+  scenarioApiAddress: string[];
+  projectName: string;
+  campaign: number;
+  ghType: "old" | "new";
+};
