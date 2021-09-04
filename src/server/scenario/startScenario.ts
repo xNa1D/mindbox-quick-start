@@ -1,16 +1,16 @@
 import axios from "axios";
-import { ScenarioResult  } from "src/ScenarioResult";
+import { ScenarioResult } from "src/ScenarioResult";
 import { StepsEntity } from "src/ScenarioResult";
 import parseStepsInfo from "./parseStepsInfo";
 
-import { Step } from "src/declarations";
+import { Step, StartScenarioType } from "src/declarations";
 
-const startScenario = async (
-  scenarioApiAddress: string[],
-  projectName: string,
-  campaign: number,
-  ghType: "old" | "new"
-) => {
+const startScenario = async ({
+  scenarioApiAddress,
+  projectName,
+  campaign,
+  ghType,
+}: StartScenarioType) => {
   let resultStatus;
   let resultError = {
     errorMessage: "",
