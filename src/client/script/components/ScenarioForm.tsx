@@ -35,10 +35,10 @@ const Scenario = () => {
   return (
     <>
       <h1 className="options__header">Завести операции ...</h1>
-      <div className="ui stackable grid">
+      <Grid stackable>
         <div className="ten wide column">
-          <form className="ui form" id="scenario" onSubmit={handleFormSubmit}>
-            <fieldset className="field form__input-container">
+          <Form onSubmit={handleFormSubmit} id="scenario">
+            <Form.Field>
               <label htmlFor="task" className="form__label">
                 Какие операции заводить
               </label>
@@ -61,11 +61,8 @@ const Scenario = () => {
                   <option value={scenario.type} key={ scenario.type}>{scenario.name}</option>
                 ))}
               </select>
-            </fieldset>
-            <fieldset
-              className="field  form__input-container"
-              id="form__input_campaign"
-            >
+            </Form.Field>
+            <Form.Field>
               <label htmlFor="campaign" className=" form__label">
                 Номер кампании
               </label>
@@ -90,7 +87,7 @@ const Scenario = () => {
                 <b className="ui black circular label">вот эта цифра</b>
                 /operations
               </p>
-            </fieldset>
+            </Form.Field>
             <div className="form__buttons">
               <button
                 type="submit"
@@ -117,11 +114,12 @@ const Scenario = () => {
                 </span>
               )}
             </div>
-          </form>
+          </Form>
         </div>
         <div className="six wide column">
           <ScenarioInfo documentationLink={scenario.scenario.docs} />
         </div>
+      </Grid>
     </>
   );
 };
