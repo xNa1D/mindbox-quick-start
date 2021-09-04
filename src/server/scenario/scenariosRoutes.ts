@@ -22,9 +22,10 @@ scenariosRoutes.post(
       const projectName = user.project || "";
       const scenario = req.body.scenario;
       const campaign = req.body.campaign;
+      const email = req.body.emailForNotification; 
 
       await startScenarioAndSendResult({
-        user,
+        email,
         projectName,
         scenario,
         campaign,
