@@ -18,6 +18,7 @@ export type StartScenarioBody = {
   scenario: Scenario;
   projectName: string;
   campaign: number;
+  emailForNotification: string;
 };
 
 export type AuthRequestBody = {
