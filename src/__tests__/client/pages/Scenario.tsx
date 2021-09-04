@@ -64,8 +64,9 @@ describe("Scenario calls", () => {
         docs: "https://docs.google.com/document/d/13XJIqU1CSv5yaTFeAFu7J1L94edaMAQNQAAwHJxqAOc/edit",
         name: "Операции для ПЛ на сайте",
         type: "loyaltyOnline",
+        ghType: "old",
       },
-      emailForNotification: "test@me.more"
+      emailForNotification: "test@me.more",
     });
   });
 
