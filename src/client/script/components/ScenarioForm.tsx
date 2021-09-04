@@ -5,7 +5,17 @@ import startScenario from "client/script/api/scenarioRequests";
 import useAuth from "client/script/hooks/useAuth";
 import scenarios from "src/data";
 
+import {
+  Button,
+  Checkbox,
+  Divider,
+  Form,
+  Grid,
+  Input,
+} from "semantic-ui-react";
+
 import "client/styles/block/form/form.css";
+import ScenarioInfo from "./ScenarioInfo";
 
 const Scenario = () => {
   const [wasStarted, setWasStarted] = useState(false);
@@ -17,6 +27,7 @@ const Scenario = () => {
     scenario: scenarios[0],
     projectName: auth.loginForProject,
     campaign: 0,
+    emailForNotification: "",
   } as StartScenarioBody);
 
   const handleFormSubmit = async (event: React.SyntheticEvent) => {
@@ -58,7 +69,9 @@ const Scenario = () => {
                 value={scenario.scenario.type}
               >
                 {scenarios.map((scenario) => (
-                  <option value={scenario.type} key={ scenario.type}>{scenario.name}</option>
+                  <option value={scenario.type} key={scenario.type}>
+                    {scenario.name}
+                  </option>
                 ))}
               </select>
             </Form.Field>
@@ -66,10 +79,10 @@ const Scenario = () => {
               <label htmlFor="campaign" className=" form__label">
                 Номер кампании
               </label>
-              <input
+              <Input
+                fluid
                 type="number"
                 id="campaign"
-                className="fluid  "
                 name="campaign"
                 placeholder="1, 2 или 100500. Кто знает, сколько у вас там кампаний"
                 onChange={(event) => {
@@ -88,6 +101,28 @@ const Scenario = () => {
                 /operations
               </p>
             </Form.Field>
+            <Divider />
+            <Form.Field>
+              <label htmlFor="emailForNotification" className=" form__label">
+                Email для оповещений
+              </label>
+              <Input
+                required
+                fluid
+                id="emailForNotification"
+                name="emailForNotification"
+                placeholder="Почта, на которую мы отправим письмо, когда сценарий добежит до конца"
+                onChange={(event) => {
+                  setScenario({
+                    ...scenario,
+                    emailForNotification: event.target.value,
+                  });
+                  setWasStarted(false);
+                }}
+                value={scenario.emailForNotification}
+              />
+            </Form.Field>
+
             <div className="form__buttons">
               <button
                 type="submit"
