@@ -17,8 +17,7 @@ const startScenarioAndSendResult = async ({
   const scenarioResult = await startScenario(
     scenario.api,
     projectName,
-    campaign,
-    scenario.ghType
+    campaign
   );
 
   if (scenarioResult.status === "SUCCESS") {

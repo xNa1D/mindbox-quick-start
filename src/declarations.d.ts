@@ -10,7 +10,6 @@ export type Scenario = {
   name: string;
   docs: string;
   api: string[];
-  ghType: "old"|"new"
 };
 
 export type ScenarioNames = keyof ScenarioApiCalls;
