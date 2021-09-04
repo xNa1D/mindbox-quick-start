@@ -29,6 +29,7 @@ const LoginByAdmin = () => {
         <label htmlFor="project">
           Системное имя проекта
           <Input
+            required
             label={{ basic: true, content: ".mindbox.ru" }}
             labelPosition="right"
             placeholder="Домен административной панели проекта"
@@ -57,7 +58,7 @@ const LoginByAdmin = () => {
             onChange={(event) =>
               setUser({
                 ...user,
-                email: event.target.value,
+                email: event.target.value.trim(),
               })
             }
           />

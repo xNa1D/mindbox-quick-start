@@ -5,10 +5,20 @@ import startScenario from "client/script/api/scenarioRequests";
 import useAuth from "client/script/hooks/useAuth";
 import scenarios from "src/data";
 
+import {
+  Button,
+  Checkbox,
+  Divider,
+  Form,
+  Grid,
+  Input,
+} from "semantic-ui-react";
+
 import "client/styles/block/form/form.css";
+import ScenarioInfo from "./ScenarioInfo";
 
 const Scenario = () => {
-  const [isStarted, setIsStarted] = useState(false);
+  const [wasStarted, setWasStarted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const auth = useAuth();
@@ -17,6 +27,7 @@ const Scenario = () => {
     scenario: scenarios[0],
     projectName: auth.loginForProject,
     campaign: 0,
+    emailForNotification: "",
   } as StartScenarioBody);
 
   const handleFormSubmit = async (event: React.SyntheticEvent) => {
@@ -25,7 +36,7 @@ const Scenario = () => {
     try {
       setIsLoading(true);
       await startScenario(scenario);
-      setIsStarted(true);
+      setWasStarted(true);
     } catch (error) {
       setError(error.response.data);
     } finally {
@@ -35,10 +46,10 @@ const Scenario = () => {
   return (
     <>
       <h1 className="options__header">Завести операции ...</h1>
-      <div className="ui stackable grid">
+      <Grid stackable>
         <div className="ten wide column">
-          <form className="ui form" id="scenario" onSubmit={handleFormSubmit}>
-            <fieldset className="field form__input-container">
+          <Form onSubmit={handleFormSubmit} id="scenario">
+            <Form.Field>
               <label htmlFor="task" className="form__label">
                 Какие операции заводить
               </label>
@@ -53,26 +64,25 @@ const Scenario = () => {
                       (scenario) => scenario.type === eventValue
                     ) || scenarios[0];
                   setScenario({ ...scenario, scenario: selectedScenario });
-                  setIsStarted(false);
+                  setWasStarted(false);
                 }}
                 value={scenario.scenario.type}
               >
                 {scenarios.map((scenario) => (
-                  <option value={scenario.type} key={ scenario.type}>{scenario.name}</option>
+                  <option value={scenario.type} key={scenario.type}>
+                    {scenario.name}
+                  </option>
                 ))}
               </select>
-            </fieldset>
-            <fieldset
-              className="field  form__input-container"
-              id="form__input_campaign"
-            >
+            </Form.Field>
+            <Form.Field>
               <label htmlFor="campaign" className=" form__label">
                 Номер кампании
               </label>
-              <input
+              <Input
+                fluid
                 type="number"
                 id="campaign"
-                className="fluid  "
                 name="campaign"
                 placeholder="1, 2 или 100500. Кто знает, сколько у вас там кампаний"
                 onChange={(event) => {
@@ -80,7 +90,7 @@ const Scenario = () => {
                   if (eventValue) {
                     setScenario({ ...scenario, campaign: eventValue });
                   }
-                  setIsStarted(false);
+                  setWasStarted(false);
                 }}
                 value={scenario.campaign}
               />
@@ -90,19 +100,41 @@ const Scenario = () => {
                 <b className="ui black circular label">вот эта цифра</b>
                 /operations
               </p>
-            </fieldset>
+            </Form.Field>
+            <Divider />
+            <Form.Field>
+              <label htmlFor="emailForNotification" className=" form__label">
+                Email для оповещений
+              </label>
+              <Input
+                required
+                fluid
+                id="emailForNotification"
+                name="emailForNotification"
+                placeholder="Почта, на которую мы отправим письмо, когда сценарий добежит до конца"
+                onChange={(event) => {
+                  setScenario({
+                    ...scenario,
+                    emailForNotification: event.target.value,
+                  });
+                  setWasStarted(false);
+                }}
+                value={scenario.emailForNotification}
+              />
+            </Form.Field>
+
             <div className="form__buttons">
               <button
                 type="submit"
                 className={`form__button_login ui button basic green 
-                            ${isStarted && "disabled"} 
+                            ${wasStarted && "disabled"} 
                             ${isLoading && "loading"}`}
                 id="submit"
               >
                 <i className="play icon"></i>
                 Запустить
               </button>
-              {isStarted && (
+              {wasStarted && (
                 <span
                   className="form__result form__result_success "
                   id="result"
@@ -117,40 +149,12 @@ const Scenario = () => {
                 </span>
               )}
             </div>
-          </form>
+          </Form>
         </div>
         <div className="six wide column">
-          <div className="ui message">
-            <div className="header">Что дальше?</div>
-            <ul className="list">
-              <li>
-                Сейчас мы запустили сценарий автозаведения. На проекте
-                создадутся точки интеграции, операции, ШД и прочее.{" "}
-              </li>
-              <li>Минут через 10-15 должно прийти письмо с результатом</li>
-              <li>
-                Пока оно заводится, сделай копию гугльдока и замени в нем на
-                название проекта
-              </li>
-              <li>
-                После получения письма обязательно проверь все операции по ТЗ.
-                Если чего-то нет, то напиши про это в слаке{" "}
-                <a href="https://mindbox.slack.com/archives/C01G12FQQ0Z">
-                  #mindbox-quick-start
-                </a>
-              </li>
-            </ul>
-          </div>
-          <a
-            className="ui button green fluid"
-            href={scenario.scenario.docs}
-            id="lintToTZ"
-            target="_blank"
-          >
-            <i className="file alternate outline icon"></i>Заготовка под ТЗ{" "}
-          </a>
+          <ScenarioInfo documentationLink={scenario.scenario.docs} />
         </div>
-      </div>
+      </Grid>
     </>
   );
 };

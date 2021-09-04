@@ -54,6 +54,7 @@ const mockApiBody: StartScenarioBody = {
   scenario: mockScenario,
   projectName: "testProject",
   campaign: 1,
+  emailForNotification: "test@test.ru"
 };
 
 // const mockErrorMessageInstance = (ErrorMessage as jest.Mock).mock.instances[0];

@@ -18,6 +18,7 @@ export type StartScenarioBody = {
   scenario: Scenario;
   projectName: string;
   campaign: number;
+  emailForNotification: string;
 };
 
 export type AuthRequestBody = {
@@ -62,4 +63,11 @@ export type JwtUser = {
   email: string;
   project?: string;
   tokenFromAdminPanel?: string;
+};
+
+export type StartScenarioAndSendResultType = {
+  email: string;
+  projectName: string;
+  scenario: Scenario;
+  campaign: number;
 };
