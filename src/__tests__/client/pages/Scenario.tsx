@@ -62,10 +62,9 @@ describe("Scenario calls", () => {
       campaign: 12,
       projectName: "",
       scenario: {
-        api: ["5ed5315fe1d6aa3e73eeac22"],
-        docs:
-          "https://docs.google.com/document/d/13XJIqU1CSv5yaTFeAFu7J1L94edaMAQNQAAwHJxqAOc/edit",
-        name: "Операции для ПЛ на сайте",
+        api: ["5ed5315fe1d6aa3e73eeac22", "6134b10278fff919767c256d"],
+        docs: "https://docs.google.com/document/d/13XJIqU1CSv5yaTFeAFu7J1L94edaMAQNQAAwHJxqAOc/edit",
+        name: "Программа лояльности: онлайн на сайте",
         type: "loyaltyOnline",
         ghType: "old",
       },
