@@ -10,18 +10,14 @@ const Main = () => {
     <div
       style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
     >
-      <section style={{ flexGrow: 1 }}>
+      <Segment basic style={{ flexGrow: 1 }}>
         <AuthComponent />
-      </section>
-      <Segment vertical style={{ padding: "5em 0em", flexGrow: 3 }}>
-        <main className="main">
-          <ScenarioForm />
-        </main>
+      </Segment>
+      <Segment basic style={{ padding: "3em 0em", flexGrow: 3 }}>
+        <ScenarioComponent />
       </Segment>
       <Segment inverted vertical style={{ padding: "3em 0em" }}>
-        <Container>
-          <Icon name="code" /> with <Icon name="heart" color="red" />
-        </Container>
+        <Footer />
       </Segment>
     </div>
   );
