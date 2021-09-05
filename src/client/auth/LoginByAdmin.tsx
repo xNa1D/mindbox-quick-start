@@ -88,18 +88,16 @@ const LoginByAdmin = () => {
         </Form.Field>
       </Form.Group>
 
-      <fieldset className="form__input-container">
-        <div className="form__buttons">
-          <Button positive type="submit" loading={isLoading} id="submit">
-            Войти
-          </Button>
-        </div>
-      </fieldset>
+      <Form.Field>
+        <Button positive type="submit" loading={isLoading} id="submit">
+          Войти
+        </Button>
+      </Form.Field>
       {auth.loginErrors && (
-        <div className="ui error message visible" id="error">
-          <div className="header">Ошибка входа</div>
+        <Message error visible>
+          <Header>Ошибка входа</Header>
           <p>{auth.loginErrors}</p>
-        </div>
+        </Message>
       )}
     </Form>
   );
