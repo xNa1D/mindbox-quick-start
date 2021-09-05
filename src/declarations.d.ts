@@ -79,3 +79,11 @@ export type StartScenarioType = {
   campaign: number;
   ghType: "old" | "new";
 };
+
+export type UseProviderReturnedValue = {
+  isLoggedIn: boolean;
+  loginErrors: string;
+  loginForProject: string;
+  login: (user: AuthRequestBody, isLoginByAdmin: boolean) => Promise<void>;
+  checkAuth: () => Promise<void>;
+};
