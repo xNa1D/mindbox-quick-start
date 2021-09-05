@@ -49,7 +49,7 @@ const LoginByAdmin = () => {
             }
           />
         </label>
-        <p className="form__description">
+        <p style={{ color: "#b9b9b9", fontSize: '.9rem' }}>
           Можно вставить ссылку прямо вот так:{" "}
           <i>https://demo-new.mindbox.ru/</i>, она подрежится сама
         </p>

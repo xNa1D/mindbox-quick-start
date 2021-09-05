@@ -88,18 +88,7 @@ const Scenario = () => {
                 value={scenario.campaign}
               />
 
-              <p className="form__description">
-                https://{scenario.projectName}.mindbox.ru/campaigns/
-                <b className="ui black circular label">вот эта цифра</b>
-                /operations
-              </p>
-            </Form.Field>
-            <Divider />
-            <Form.Field>
-              <label htmlFor="emailForNotification" className=" form__label">
-                Email для оповещений
-              </label>
-              <Input
+        <p style={{ color: "#b9b9b9", fontSize: ".9rem" }}>
                 required
                 fluid
                 id="emailForNotification"
