@@ -11,10 +11,9 @@ import axios from "axios";
 import { MemoryRouter } from "react-router-dom";
 import { createMemoryHistory } from "history";
 
-import useAuth, { ProvideAuth } from "client/script/hooks/useAuth";
-import Main from "src/client/script/pages/Main";
+import Main from "src/client/Main";
 
-import startScenario from "client/script/api/scenarioRequests";
+import startScenario from "src/client/api/scenarioRequests";
 
 jest.mock("axios");
 jest.mock("client/script/api/scenarioRequests");

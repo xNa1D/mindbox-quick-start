@@ -1,5 +1,5 @@
 import React from "react";
-import useAuth from "client/script/hooks/useAuth";
+import useAuth from "client/auth/useAuth";
 
 const MockConsumer = () => {
   const auth = useAuth();

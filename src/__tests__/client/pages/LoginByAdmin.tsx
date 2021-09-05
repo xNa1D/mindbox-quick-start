@@ -10,10 +10,10 @@ import "@testing-library/jest-dom";
 import axios from "axios";
 import { MemoryRouter } from "react-router-dom";
 
-import useAuth, { ProvideAuth } from "client/script/hooks/useAuth";
-import Login from "client/script/components/LoginByAdmin";
+import useAuth, { ProvideAuth } from "client/auth/useAuth";
+import Login from "client/auth/LoginByAdmin";
 
-import { loginUser } from "client/script/api/userRequests";
+import { loginUser } from "src/client/api/userRequests";
 // import { User, AuthUserResponse } from "src/declarations";
 
 jest.mock("axios");
