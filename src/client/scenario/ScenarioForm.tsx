@@ -1,19 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
-import { StartScenarioBody, ScenarioNames } from "src/declarations";
+import { StartScenarioBody } from "src/declarations";
 import startScenario from "src/client/api/scenarioRequests";
-import useAuth from "client/auth/useAuth";
 import scenarios from "src/data";
 
-import {
-  Button,
-  Checkbox,
-  Container,
-  Divider,
-  Form,
-  Grid,
-  Input,
-} from "semantic-ui-react";
+import { Button, Divider, Form, Icon, Input, Message } from "semantic-ui-react";
 
 import "client/styles/block/form/form.css";
 import ScenarioInfo from "./ScenarioInfo";

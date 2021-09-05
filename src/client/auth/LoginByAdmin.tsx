@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { Button, Checkbox, Form, Input } from "semantic-ui-react";
+import {
+  Button,
+  Form,
+  Header,
+  Input,
+  Message,
+} from "semantic-ui-react";
 import useAuth from "./useAuth";
 import { handleProjectNameInput } from "./inputChanges";
 

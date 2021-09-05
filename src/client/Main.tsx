@@ -1,11 +1,9 @@
-import React, { CSSProperties } from "react";
+import React from "react";
 
-import ScenarioForm from "client/scenario/ScenarioForm";
 import AuthComponent from "./auth/AuthComponent";
-
-import "client/styles/block/form/form.css";
-import { Container, Grid, Icon, Menu, Segment } from "semantic-ui-react";
-import Logo from "./common/Logo";
+import { Segment } from "semantic-ui-react";
+import Footer from "./common/Footer";
+import ScenarioComponent from "./scenario/ScenarioComponent";
 
 const Main = () => {
   return (

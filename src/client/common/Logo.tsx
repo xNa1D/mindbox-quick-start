@@ -1,8 +1,6 @@
 import React, { CSSProperties } from 'react'
 import logo from "client/images/logo.png";
 
-import 'client/styles/block/auth/auth.css'
-
 const Logo = () => {
 
   const style: CSSProperties = {
