@@ -6,28 +6,25 @@ import scenarios from "src/data";
 
 import { Button, Divider, Form, Icon, Input, Message } from "semantic-ui-react";
 
-import "client/styles/block/form/form.css";
-import ScenarioInfo from "./ScenarioInfo";
+type ScenarioFormProps = {
+  scenarioInfo: StartScenarioBody;
+  updateScenarioInfo: React.Dispatch<React.SetStateAction<StartScenarioBody>>;
+};
 
-const Scenario = () => {
+const ScenarioForm = ({
+  scenarioInfo,
+  updateScenarioInfo,
+}: ScenarioFormProps) => {
   const [wasStarted, setWasStarted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const auth = useAuth();
-
-  const [scenario, setScenario] = useState({
-    scenario: scenarios[0],
-    projectName: auth.loginForProject,
-    campaign: 0,
-    emailForNotification: "",
-  } as StartScenarioBody);
 
   const handleFormSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
 
     try {
       setIsLoading(true);
-      await startScenario(scenario);
+      await startScenario(scenarioInfo);
       setWasStarted(true);
     } catch (error) {
       // @ts-ignore
@@ -37,108 +34,104 @@ const Scenario = () => {
     }
   };
   return (
-    <Container>
-      <h1 className="options__header">Завести операции ...</h1>
-      <Grid stackable>
-        <div className="ten wide column">
-          <Form onSubmit={handleFormSubmit} id="scenario">
-            <Form.Field>
-              <label htmlFor="task" className="form__label">
-                Какие операции заводить
-              </label>
-              <select
-                className="ui fluid dropdown"
-                name="task"
-                id="task"
-                onChange={(event) => {
-                  const eventValue = event.target.value;
-                  const selectedScenario =
-                    scenarios.find(
-                      (scenario) => scenario.type === eventValue
-                    ) || scenarios[0];
-                  setScenario({ ...scenario, scenario: selectedScenario });
-                  setWasStarted(false);
-                }}
-                value={scenario.scenario.type}
-              >
-                {scenarios.map((scenario) => (
-                  <option value={scenario.type} key={scenario.type}>
-                    {scenario.name}
-                  </option>
-                ))}
-              </select>
-            </Form.Field>
-            <Form.Field>
-              <label htmlFor="campaign" className=" form__label">
-                Номер кампании
-              </label>
-              <Input
-                fluid
-                type="number"
-                id="campaign"
-                name="campaign"
-                placeholder="1, 2 или 100500. Кто знает, сколько у вас там кампаний"
-                onChange={(event) => {
-                  const eventValue = +event.target.value as number;
-                  if (eventValue) {
-                    setScenario({ ...scenario, campaign: eventValue });
-                  }
-                  setWasStarted(false);
-                }}
-                value={scenario.campaign}
-              />
+    <Form onSubmit={handleFormSubmit} id="scenario">
+      <Form.Field>
+        <label htmlFor="task" className="form__label">
+          Какие операции заводить
+        </label>
+        <select
+          className="ui fluid dropdown"
+          name="task"
+          id="task"
+          onChange={(event) => {
+            const eventValue = event.target.value;
+            const selectedScenario =
+              scenarios.find((scenario) => scenario.type === eventValue) ||
+              scenarios[0];
+            updateScenarioInfo({ ...scenarioInfo, scenario: selectedScenario });
+            setWasStarted(false);
+          }}
+          value={scenarioInfo.scenario.type}
+        >
+          {scenarios.map((scenario) => (
+            <option value={scenario.type} key={scenario.type}>
+              {scenario.name}
+            </option>
+          ))}
+        </select>
+      </Form.Field>
+      <Form.Field>
+        <label htmlFor="campaign" className=" form__label">
+          Номер кампании
+        </label>
+        <Input
+          fluid
+          type="number"
+          id="campaign"
+          name="campaign"
+          placeholder="1, 2 или 100500. Кто знает, сколько у вас там кампаний"
+          onChange={(event) => {
+            const eventValue = +event.target.value as number;
+            if (eventValue) {
+              updateScenarioInfo({ ...scenarioInfo, campaign: eventValue });
+            }
+            setWasStarted(false);
+          }}
+          value={scenarioInfo.campaign}
+        />
 
         <p style={{ color: "#b9b9b9", fontSize: ".9rem" }}>
-                required
-                fluid
-                id="emailForNotification"
-                name="emailForNotification"
-                placeholder="Почта, на которую мы отправим письмо, когда сценарий добежит до конца"
-                onChange={(event) => {
-                  setScenario({
-                    ...scenario,
-                    emailForNotification: event.target.value,
-                  });
-                  setWasStarted(false);
-                }}
-                value={scenario.emailForNotification}
-              />
-            </Form.Field>
+          https://{scenarioInfo.projectName}.mindbox.ru/campaigns/
+          <b className="ui black circular label">вот эта цифра</b>
+          /operations
+        </p>
+      </Form.Field>
+      <Divider />
+      <Form.Field>
+        <label htmlFor="emailForNotification" className=" form__label">
+          Email для оповещений
+        </label>
+        <Input
+          type="email"
+          required
+          fluid
+          id="emailForNotification"
+          name="emailForNotification"
+          placeholder="Почта, на которую мы отправим письмо, когда сценарий добежит до конца"
+          onChange={(event) => {
+            updateScenarioInfo({
+              ...scenarioInfo,
+              emailForNotification: event.target.value,
+            });
+            setWasStarted(false);
+          }}
+          value={scenarioInfo.emailForNotification}
+        />
+      </Form.Field>
 
-            <div className="form__buttons">
-              <button
-                type="submit"
-                className={`form__button_login ui button basic green 
-                            ${wasStarted && "disabled"} 
-                            ${isLoading && "loading"}`}
-                id="submit"
-              >
-                <i className="play icon"></i>
-                Запустить
-              </button>
-              {wasStarted && (
-                <span
-                  className="form__result form__result_success "
-                  id="result"
-                >
-                  <i className="check circle outline icon"></i>
-                  Автозаведение запущено
-                </span>
-              )}
-              {error && (
-                <span className="form__result form__result_error " id="result">
-                  {error}
-                </span>
-              )}
-            </div>
-          </Form>
-        </div>
-        <div className="six wide column">
-          <ScenarioInfo documentationLink={scenario.scenario.docs} />
-        </div>
-      </Grid>
-    </Container>
+      <div>
+        <Button
+          type="submit"
+          disabled={wasStarted}
+          loading={isLoading}
+          id="submit"
+          positive
+        >
+          <i className="play icon"></i>
+          Запустить
+        </Button>
+        {wasStarted && (
+          <Message success visible>
+            <Icon name="check circle" />
+            Автозаведение запущено
+          </Message>
+        )}
+        {error && (
+          <Message error visible header="Ошибка запуска" content={error} />
+        )}
+      </div>
+    </Form>
   );
 };
 
-export default Scenario;
+export default ScenarioForm;
