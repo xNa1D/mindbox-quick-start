@@ -1,8 +1,5 @@
 import React, { CSSProperties, useEffect, useState } from "react";
 import {
-  Accordion,
-  Icon,
-  Label,
   Button,
   Grid,
   Header,
