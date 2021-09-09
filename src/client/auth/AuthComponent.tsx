@@ -41,7 +41,7 @@ const AuthComponent = () => {
                 color="green"
                 onClick={() => setIsAuthShown(!isAuthShown)}
               >
-                Авторизован в проекте: {auth.loginForProject}.mindbox.ru
+                Авторизован в {auth.loginForProject}.mindbox.ru
               </Button>{" "}
               <Button
                 basic
