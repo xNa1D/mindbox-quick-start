@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { StartScenarioBody, ScenarioNames } from "src/declarations";
+import { StartScenarioBody } from "src/declarations";
 
 const startScenario = async (requestBody: StartScenarioBody) =>
   await axios.post("/api/scenario/start", requestBody, {
