@@ -4,20 +4,17 @@ import {
   screen,
   fireEvent,
   act,
-  waitFor,
 } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import axios from "axios";
 import { MemoryRouter } from "react-router-dom";
 
-import useAuth, { ProvideAuth } from "client/auth/useAuth";
+import { ProvideAuth } from "client/auth/useAuth";
 import Login from "client/auth/LoginByAdmin";
 
 import { loginUser } from "src/client/api/userRequests";
-// import { User, AuthUserResponse } from "src/declarations";
 
 jest.mock("axios");
-jest.mock("client/script/api/userRequests");
+jest.mock("client/api/userRequests");
 
 const customRender = async (ui: any, { providerProps, ...renderOptions }: any) => {
   return await act(async () => {
@@ -53,9 +50,7 @@ describe("Form submit", () => {
 
     const login = screen.getByLabelText("Логин");
     const password = screen.getByLabelText("Пароль");
-    const projectField = screen.getByPlaceholderText(
-      "Домен административной панели проекта"
-    );
+    const projectField = screen.getByPlaceholderText("Домен проекта");
     const submitBtn = screen.getByText("Войти");
 
     await act(async () => {
