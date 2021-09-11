@@ -4,10 +4,8 @@ import {
   screen,
   fireEvent,
   act,
-  waitFor,
 } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import axios from "axios";
 import { MemoryRouter } from "react-router-dom";
 import { createMemoryHistory } from "history";
 
@@ -16,7 +14,7 @@ import Main from "src/client/Main";
 import startScenario from "src/client/api/scenarioRequests";
 
 jest.mock("axios");
-jest.mock("client/script/api/scenarioRequests");
+jest.mock("client/api/scenarioRequests");
 
 describe("Scenario rendering", () => {
   test("should render 2 inputs and selector", () => {
