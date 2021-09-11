@@ -4,20 +4,17 @@ import {
   screen,
   fireEvent,
   act,
-  waitFor,
-  prettyDOM,
 } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import axios from "axios";
 import { MemoryRouter } from "react-router-dom";
 
-import useAuth, { ProvideAuth } from "client/auth/useAuth";
+import { ProvideAuth } from "client/auth/useAuth";
 import MockConsumer from "../../../__mocks__/MockConsumer";
 
 import { loginUser, checkToken } from "src/client/api/userRequests";
 
 jest.mock("axios");
-jest.mock("client/script/api/userRequests");
+jest.mock("client/api/userRequests");
 
 beforeEach(() => {
   (loginUser as jest.Mock).mockResolvedValue({
