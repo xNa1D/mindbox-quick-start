@@ -8,7 +8,7 @@ const MockConsumer = () => {
       <p>Auth: {auth.isLoggedIn.toString()}</p>
       <button
         onClick={() =>
-          auth.login({ email: "test", password: "test", project: "" }, false)
+          auth.login({ email: "test", password: "test", project: "" }, true)
         }
       >
         Login
