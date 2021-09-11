@@ -1,4 +1,4 @@
-import React, { CSSProperties, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Grid,
@@ -19,21 +19,21 @@ const AuthComponent = () => {
     setIsAuthShown(!auth.isLoggedIn);
   }, [auth.isLoggedIn]);
 
-  const titleStyle: CSSProperties = {
-    display: "flex",
-    justifyContent: "space-between",
-  };
-
-  const accordionToggler: CSSProperties = {
-    textAlign: "right",
-    margin: "2rem 0",
-  };
-
   return (
     <Container>
-      <div style={titleStyle}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
         <Logo />
-        <div style={accordionToggler}>
+        <div
+          style={{
+            textAlign: "right",
+            margin: "2rem 0",
+          }}
+        >
           Статус подключения к Mindbox:{" "}
           {auth.loginForProject ? (
             <>
