@@ -7,6 +7,7 @@ import {
   Container,
 } from "semantic-ui-react";
 import Logo from "../common/Logo";
+import AuthInfo from "./AuthInfo";
 import LoginByAdmin from "./LoginByAdmin";
 import useAuth from "./useAuth";
 
@@ -69,6 +70,7 @@ const AuthComponent = () => {
         visible={isAuthShown}
         animation="slide down"
         duration={500}
+        unmountOnHide={true}
       >
         <Grid columns={2} divided stackable>
           <Grid.Row>
