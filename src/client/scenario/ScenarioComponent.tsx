@@ -8,6 +8,7 @@ import { Container, Grid, Header } from "semantic-ui-react";
 
 import ScenarioInfo from "./ScenarioInfo";
 import ScenarioForm from "./ScenarioForm";
+import ScenarioInstruction from "./ScenarioInstruction";
 
 const ScenarioComponent = () => {
   const auth = useAuth();
@@ -27,6 +28,7 @@ const ScenarioComponent = () => {
             scenarioInfo={scenarioInfo}
             updateScenarioInfo={setScenarioInfo}
           />
+          <ScenarioInstruction />
         </Grid.Column>
         <Grid.Column width={10}>
           <ScenarioInfo
