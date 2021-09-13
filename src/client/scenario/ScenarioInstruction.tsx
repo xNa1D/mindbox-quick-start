@@ -1,9 +1,9 @@
 import React from 'react'
-import { Header, List, Message } from 'semantic-ui-react'
+import { Header, List, Segment } from 'semantic-ui-react'
 
 const ScenarioInstruction = () => {
   return (
-    <Message info>
+    <Segment color="yellow" raised>
       <Header as="h3">Как это работает?</Header>
       <List ordered>
         <List.Item>Авыторизуетесь в проекте</List.Item>
@@ -17,7 +17,7 @@ const ScenarioInstruction = () => {
           операции
         </List.Item>
       </List>
-    </Message>
+    </Segment>
   );
 }
 
