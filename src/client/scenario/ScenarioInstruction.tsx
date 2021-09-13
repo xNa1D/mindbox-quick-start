@@ -4,7 +4,7 @@ import { Header, List, Segment } from 'semantic-ui-react'
 const ScenarioInstruction = () => {
   return (
     <Segment color="yellow" raised>
-      <Header as="h3">Как это работает?</Header>
+      <Header as="h3">Как это работает:</Header>
       <List ordered>
         <List.Item>Авыторизуетесь в проекте</List.Item>
         <List.Item>Выбираете сценарий, кампанию и запускаете</List.Item>
@@ -15,6 +15,13 @@ const ScenarioInstruction = () => {
         <List.Item>
           Когда бот закончит, на почту прийдет письмо со статусом по каждой
           операции
+        </List.Item>
+        <List.Item>
+          После получения письма обязательно проверь все операции по ТЗ. Если
+          чего-то нет, то напиши про это в слаке{" "}
+          <a href={"https://mindbox.slack.com/archives/C01G12FQQ0Z"}>
+            #mindbox-quick-start{" "}
+          </a>
         </List.Item>
       </List>
     </Segment>
