@@ -76,13 +76,7 @@ const AuthComponent = () => {
               <LoginByAdmin />
             </Grid.Column>
             <Grid.Column>
-              <Header content="Подключение к проекту" textAlign="left" />
-              <p>
-                Введите данные для подключения к тому проекту, на котором нужно
-                развернуть операции
-              </p>
-              <p>Нужны: ссылка на проект, логин и пароль</p>
-              <p>Логины и пароли не сохраняются</p>
+              <AuthInfo />
             </Grid.Column>
           </Grid.Row>
         </Grid>
