@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  render,
-  screen,
-  fireEvent,
-  act,
-} from "@testing-library/react";
+import { render, screen, fireEvent, act } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { MemoryRouter } from "react-router-dom";
 import { createMemoryHistory } from "history";
@@ -74,15 +69,11 @@ describe("Scenario calls", () => {
   test("should call API with chosen options", async () => {
     render(<Main />);
 
-    const submitBtn = screen.getByText("Запустить");
-
     await act(async () => {
-      fireEvent.click(submitBtn);
+      fireEvent.click(screen.getByText("Запустить"));
     });
 
-    const successMessage = screen.getByText("Автозаведение запущено");
-
-    expect(successMessage).toBeInTheDocument();
+    expect(screen.getByText("Автозаведение запущено")).toBeInTheDocument();
   });
 
   test("should render error message on not AUTH error", async () => {
