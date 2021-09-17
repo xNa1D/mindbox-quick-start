@@ -26,6 +26,11 @@ const ScenarioInfo = ({ scenario }: ScenarioInfo) => {
     <>
       <Segment loading={isDescriptionLoading} basic>
         <Header content={scenario.name} />
+        {scenario.docs && (
+          <Button positive href={scenario.docs} id="lintToTZ" target="_blank">
+            <i className="file alternate outline icon"></i>Заготовка под ТЗ{" "}
+          </Button>
+        )}
         <ReactMarkdown>{scenarioDescription}</ReactMarkdown>
         {gettingDescriptionError && (
           <Message error visible content={gettingDescriptionError} />
