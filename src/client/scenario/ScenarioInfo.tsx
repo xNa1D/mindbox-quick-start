@@ -3,24 +3,24 @@ import { Button, Header, List, Message, Segment } from "semantic-ui-react";
 import ReactMarkdown from "react-markdown";
 
 import getScenarioDescription from "./getScenarioDescription";
+import { Scenario } from "src/declarations";
 
 type ScenarioInfo = {
-  documentationLink: string;
-  scenarioType: string;
+  scenario: Scenario;
 };
 
-const ScenarioInfo = ({ documentationLink, scenarioType }: ScenarioInfo) => {
+const ScenarioInfo = ({ scenario }: ScenarioInfo) => {
   const [scenarioDescription, setScenarioDescription] = useState("");
   const [isDescriptionLoading, setIsDescriptionLoading] = useState(false);
   const [gettingDescriptionError, setGettingDescriptionError] = useState("");
 
   useEffect(() => {
     setIsDescriptionLoading(true);
-    getScenarioDescription(scenarioType)
+    getScenarioDescription(scenario.type)
       .then((description) => setScenarioDescription(description))
       .catch((error) => setGettingDescriptionError(error.toString()))
       .finally(() => setIsDescriptionLoading(false));
-  }, [scenarioType]);
+  }, [scenario]);
 
   return (
     <>
