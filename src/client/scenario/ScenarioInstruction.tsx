@@ -1,5 +1,5 @@
-import React from 'react'
-import { Header, List, Segment } from 'semantic-ui-react'
+import React from "react";
+import { Header, List, Segment } from "semantic-ui-react";
 
 const ScenarioInstruction = () => {
   return (
@@ -26,6 +26,6 @@ const ScenarioInstruction = () => {
       </List>
     </Segment>
   );
-}
+};
 
-export default ScenarioInstruction
+export default ScenarioInstruction;
