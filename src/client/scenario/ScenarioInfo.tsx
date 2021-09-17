@@ -24,6 +24,7 @@ const ScenarioInfo = ({ scenario }: ScenarioInfo) => {
 
   return (
     <>
+      <Segment loading={isDescriptionLoading} basic>
         <Header content={scenario.name} />
         <ReactMarkdown>{scenarioDescription}</ReactMarkdown>
         {gettingDescriptionError && (
