@@ -5,6 +5,9 @@ import {
   Header,
   Transition,
   Container,
+  Segment,
+  Message,
+  Icon,
 } from "semantic-ui-react";
 import Logo from "../common/Logo";
 import AuthInfo from "./AuthInfo";
@@ -21,7 +24,7 @@ const AuthComponent = () => {
   }, [auth.isLoggedIn]);
 
   return (
-    <Container>
+    <Container fluid>
       <div
         style={{
           display: "flex",
@@ -65,24 +68,50 @@ const AuthComponent = () => {
 
       {/* <Icon name="dropdown" /> */}
 
-      <Transition
-        transitionOnMount
-        visible={isAuthShown}
-        animation="slide down"
-        duration={500}
-        unmountOnHide={true}
+      <div
+        style={{
+          position: "absolute",
+          right: "16px",
+          top: "90px",
+          zIndex: 100,
+        }}
       >
-        <Grid columns={2} divided stackable>
-          <Grid.Row>
-            <Grid.Column>
+        <Transition
+          transitionOnMount
+          visible={isAuthShown}
+          animation="scale"
+          duration={500}
+          unmountOnHide={true}
+        >
+          <>
+            {/* <Grid columns={2} divided stackable>
+            <Grid.Row>
+              <Grid.Column>
+                <LoginByAdmin />
+              </Grid.Column>
+              <Grid.Column>
+                <AuthInfo />
+              </Grid.Column>
+            </Grid.Row>
+          </Grid> */}
+            <Segment raised padded>
+              <Header>
+                Подключение к проекту
+                <Header.Subheader>
+                  Введите URL, логин и пароль от проекта, в котором нужно
+                  развернуть операции
+                </Header.Subheader>
+              </Header>
+
               <LoginByAdmin />
-            </Grid.Column>
-            <Grid.Column>
-              <AuthInfo />
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </Transition>
+              <Message warning>
+                <Icon name="warning" />
+                Логин и пароль не сохраняются
+              </Message>
+            </Segment>
+          </>
+        </Transition>
+      </div>
     </Container>
   );
 };
