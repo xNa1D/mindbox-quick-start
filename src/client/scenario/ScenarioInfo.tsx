@@ -36,11 +36,6 @@ const ScenarioInfo = ({ scenario }: ScenarioInfo) => {
           <Message error visible content={gettingDescriptionError} />
         )}
       </Segment>
-      {documentationLink && (
-        <Button positive href={documentationLink} id="lintToTZ" target="_blank">
-          <i className="file alternate outline icon"></i>Заготовка под ТЗ{" "}
-        </Button>
-      )}
     </>
   );
 };
