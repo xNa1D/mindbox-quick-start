@@ -20,7 +20,7 @@ const ScenarioComponent = () => {
     emailForNotification: "",
   } as StartScenarioBody);
   return (
-    <Container>
+    <Container fluid>
       <Header as="h1">Завести операции ...</Header>
       <Grid columns={2} stackable divided>
         <Grid.Column width={6}>
