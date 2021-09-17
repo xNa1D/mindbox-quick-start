@@ -4,6 +4,7 @@ import "@testing-library/jest-dom";
 
 import ScenarioInfo from "src/client/scenario/ScenarioInfo";
 import getScenarioDescription from "src/client/scenario/getScenarioDescription";
+import { Scenario } from "src/declarations";
 
 jest.mock("axios");
 jest.mock("client/scenario/getScenarioDescription");
@@ -23,20 +24,18 @@ const delay = (ms: number) => {
   });
 };
 
-const mockScenario = {
-  documentationLink: "myAwesomeLink",
-  scenarioType: "myAwesomeScenario",
+const mockScenario: Scenario = {
+  api: ["awesomeApi"],
+  docs: "awesomeDocs",
+  ghType: "new",
+  name: "awesomeName",
+  type: "testType",
 };
 
 test("should render info from gist", async () => {
   (getScenarioDescription as jest.Mock).mockRejectedValue("Описание сценария");
 
-  customRender(
-    <ScenarioInfo
-      documentationLink={mockScenario.documentationLink}
-      scenarioType={mockScenario.scenarioType}
-    />
-  );
+  customRender(<ScenarioInfo scenario={mockScenario} />);
 
   await delay(500);
 
@@ -47,8 +46,13 @@ test("should render info from gist", async () => {
 test("should not render button if link is empty", async () => {
   customRender(
     <ScenarioInfo
-      documentationLink=""
-      scenarioType={mockScenario.scenarioType}
+      scenario={{
+        api: ["awesomeApi"],
+        docs: "",
+        ghType: "new",
+        name: "awesomeName",
+        type: "testType",
+      }}
     />
   );
 

@@ -31,10 +31,7 @@ const ScenarioComponent = () => {
           <ScenarioInstruction />
         </Grid.Column>
         <Grid.Column width={10}>
-          <ScenarioInfo
-            documentationLink={scenarioInfo.scenario.docs}
-            scenarioType={scenarioInfo.scenario.type}
-          />
+          <ScenarioInfo scenario={scenarioInfo.scenario} />
         </Grid.Column>
       </Grid>
     </Container>
