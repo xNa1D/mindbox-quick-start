@@ -31,7 +31,9 @@ const ScenarioInfo = ({ scenario }: ScenarioInfo) => {
             <i className="file alternate outline icon"></i>Заготовка под ТЗ{" "}
           </Button>
         )}
-        <ReactMarkdown>{scenarioDescription}</ReactMarkdown>
+        <div style={{ maxWidth: "75ch", padding: "35px 0" }}>
+          <ReactMarkdown>{scenarioDescription}</ReactMarkdown>
+        </div>
         {gettingDescriptionError && (
           <Message error visible content={gettingDescriptionError} />
         )}
