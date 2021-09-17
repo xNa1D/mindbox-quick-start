@@ -13,7 +13,7 @@ const Main = () => {
       <Segment basic style={{ flexGrow: 1 }}>
         <AuthComponent />
       </Segment>
-      <Segment basic style={{ padding: "3em 0em", flexGrow: 3 }}>
+      <Segment basic style={{ flexGrow: 3 }}>
         <ScenarioComponent />
       </Segment>
       <Segment inverted vertical style={{ padding: "3em 0em" }}>
