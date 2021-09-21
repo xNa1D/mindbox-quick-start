@@ -25,9 +25,9 @@
   ],
   "jest": {
     "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/__mocks__/fileMock.js",
       "\\.(css|less)$": "<rootDir>/src/__mocks__/styleMock.js",
       "^client/(.*)": "<rootDir>/src/client/$1",
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/__mocks__/fileMock.js",
       "^src/(.*)": "<rootDir>/src/$1",
       "^server/(.*)": "<rootDir>/src/server/$1"
     }
@@ -50,6 +50,7 @@
     "path-browserify": "^1.0.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-markdown": "^7.0.1",
     "react-router-dom": "^5.2.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.3",

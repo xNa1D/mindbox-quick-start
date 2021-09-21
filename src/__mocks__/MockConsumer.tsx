@@ -1,5 +1,5 @@
 import React from "react";
-import useAuth from "client/script/hooks/useAuth";
+import useAuth from "client/auth/useAuth";
 
 const MockConsumer = () => {
   const auth = useAuth();
@@ -8,7 +8,7 @@ const MockConsumer = () => {
       <p>Auth: {auth.isLoggedIn.toString()}</p>
       <button
         onClick={() =>
-          auth.login({ email: "test", password: "test", project: "" }, false)
+          auth.login({ email: "test", password: "test", project: "" }, true)
         }
       >
         Login
