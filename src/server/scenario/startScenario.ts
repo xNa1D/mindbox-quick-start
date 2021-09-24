@@ -1,61 +1,92 @@
 import axios from "axios";
 import { ScenarioResult } from "src/ScenarioResult";
-import { StepsEntity } from "src/ScenarioResult";
 import parseStepsInfo from "./parseStepsInfo";
 
 import { Step, StartScenarioType } from "src/declarations";
+
+type ResultErrorType = {
+  errorMessage?: string;
+  videoLink?: string;
+};
+
+type StartScenarioResult = {
+  status: string;
+  error?: ResultErrorType;
+  steps: Step[];
+};
 
 const startScenario = async ({
   scenarioApiAddress,
   projectName,
   campaign,
   ghType,
-}: StartScenarioType) => {
-  let resultStatus;
-  let resultError = {
-    errorMessage: "",
-    videoLink: "",
+  adminPanelCookie,
+}: StartScenarioType): Promise<StartScenarioResult> => {
+  let resultStatus: string;
+  let resultError: ResultErrorType = {};
+  let resultSteps: Step[] = [];
+
+  const prepareScenarioSettings = (ghType: string) => (api: string) => {
+    const options = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    let token;
+    let body;
+    if (ghType === "old") {
+      token = process.env.GH_TOKEN;
+      body = { projectName, campaign };
+    } else {
+      token = process.env.GH_TOKEN_NEW;
+      body = { projectName, campaign, adminPanelCookie };
+    }
+
+    return {
+      options,
+      url: `https://api.ghostinspector.com/v1/tests/${api}/execute/?apiKey=${token}`,
+      body,
+    };
   };
 
-  let resultSteps: Step[] = [];
-  let i = 0;
+  const settingsForGh = prepareScenarioSettings(ghType);
 
-  const ghToken =
-    ghType === "old" ? process.env.GH_TOKEN : process.env.GH_TOKEN_NEW;
+  const runScenario = async (api: string) => {
+    const scenarioSettings = settingsForGh(api);
+
+    const result = await axios.post<ScenarioResult>(
+      scenarioSettings.url,
+      scenarioSettings.body,
+      scenarioSettings.options
+    );
+
+    if (result.data.code !== "SUCCESS") {
+      throw new Error("Internal error in Scenario Server");
+    }
+    return result.data.data;
+  };
+
   for await (const api of scenarioApiAddress) {
     try {
-      const result = await axios.post<ScenarioResult>(
-        `https://api.ghostinspector.com/v1/tests/${api}/execute/?apiKey=${ghToken}`,
-        { projectName, campaign },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const result = await runScenario(api);
 
-      resultSteps = [
-        ...resultSteps,
-        ...parseStepsInfo(result.data.data.steps || []),
-      ];
+      resultSteps = [...resultSteps, ...parseStepsInfo(result.steps || [])];
 
-      if (result.data.code !== "SUCCESS") {
+      if (!result.passing) {
         resultStatus = "ERROR";
-        resultError.errorMessage = "Internal error in Scenario Server";
-      } else if (!result.data.data.passing) {
-        resultStatus = "ERROR";
-        resultError.errorMessage = result.data.data.error?.details || "";
-        resultError.videoLink = result.data.data.video?.url || "";
+        resultError.errorMessage = result.error?.details;
+        resultError.videoLink = result.video?.url;
       } else {
         resultStatus = "SUCCESS";
       }
     } catch (error) {
       resultStatus = "ERROR";
-      resultError.errorMessage = error;
+      //@ts-ignore
+      resultError.errorMessage = error.message;
     }
   }
   return {
-    status: resultStatus,
+    status: resultStatus!,
     error: resultError,
     steps: resultSteps,
   };
