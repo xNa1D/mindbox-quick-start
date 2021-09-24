@@ -71,6 +71,7 @@ export type StartScenarioAndSendResultType = {
   projectName: string;
   scenario: Scenario;
   campaign: number;
+  adminPanelCookie: string;
 };
 
 export type StartScenarioType = {

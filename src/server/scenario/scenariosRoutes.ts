@@ -29,6 +29,7 @@ scenariosRoutes.post(
         projectName,
         scenario,
         campaign,
+        adminPanelCookie: user.tokenFromAdminPanel || ""
       });
     } catch (error) {
       res
