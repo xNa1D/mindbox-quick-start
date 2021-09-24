@@ -78,6 +78,7 @@ export type StartScenarioType = {
   projectName: string;
   campaign: number;
   ghType: "old" | "new";
+  adminPanelCookie: string;
 };
 
 export type UseProviderReturnedValue = {
