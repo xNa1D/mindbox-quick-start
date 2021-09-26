@@ -23,7 +23,7 @@ const mockScenario: Scenario = {
   name: "Мок запуска сценария",
   api: ["mockAddress"],
   docs: "mockDocs",
-  ghType: "old"
+  ghType: "old",
 };
 
 const mockSteps = [
@@ -55,7 +55,7 @@ const mockApiBody: StartScenarioBody = {
   scenario: mockScenario,
   projectName: "testProject",
   campaign: 1,
-  emailForNotification: "test@me.please"
+  emailForNotification: "test@me.please",
 };
 
 // const mockErrorMessageInstance = (ErrorMessage as jest.Mock).mock.instances[0];
@@ -83,7 +83,12 @@ describe("/scenario", () => {
   jest.setTimeout(30000);
   (startScenario as jest.Mock).mockResolvedValue(mockSuccessResponse);
 
-  const token = generateAccessToken({ email: "nikitin@mindbox.ru" });
+  const token = generateAccessToken({
+    email: "nikitin@mindbox.ru",
+    project: "myPoject",
+    tokenFromAdminPanel: "myToken",
+  });
+
   const tokenFromAdminPanel = generateAccessToken({
     email: "nikitin@mindbox.ru",
     project: "test",
@@ -172,4 +177,3 @@ describe("/scenario", () => {
     });
   });
 });
-
