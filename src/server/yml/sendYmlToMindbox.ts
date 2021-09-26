@@ -1,5 +1,4 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
-import FormData from "form-data";
 
 interface Area {
   externalId: string;
