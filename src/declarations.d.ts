@@ -62,8 +62,8 @@ export type ErrorMessageParameters = BaseMessageParameters & {
 
 export type JwtUser = {
   email: string;
-  project?: string;
-  tokenFromAdminPanel?: string;
+  project: string;
+  tokenFromAdminPanel: string;
 };
 
 export type StartScenarioAndSendResultType = {
