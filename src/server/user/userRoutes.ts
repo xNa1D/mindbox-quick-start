@@ -11,22 +11,7 @@ import { AuthRequestBody, AuthByAdminPanelRequestBody } from "src/declarations";
 userRoutes.post(
   "/auth",
   async (req: Request<{}, {}, AuthRequestBody>, res: Response) => {
-    try {
-      const user = new User(req.body.email, req.body.password);
-      const isLoggedSuccessfully = await user.loginStuff();
-
-      let accessToken: string;
-
-      if (isLoggedSuccessfully) {
-        accessToken = generateAccessToken({ email: user.email });
-
-        res.send(accessToken);
-      } else {
-        res.status(403).send("Неправильная почта или пароль");
-      }
-    } catch (error) {
-      res.status(503).send(error.response.data);
-    }
+    res.send(200);
   }
 );
 
