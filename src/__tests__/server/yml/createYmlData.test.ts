@@ -1,8 +1,5 @@
-import createYmlData, {
-  AuthParams,
-  Link,
-  Settings,
-} from "src/server/yml/createYmlData";
+import { AuthParams, Link, Settings } from "src/declarations";
+import createYmlData from "src/server/yml/createYmlData";
 import { YmlImportSetting } from "src/server/yml/sendYmlToMindbox";
 
 const mockLinks: Link = {

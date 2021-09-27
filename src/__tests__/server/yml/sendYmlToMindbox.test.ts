@@ -70,7 +70,7 @@ try {
   await sendYmlToMindbox([mockYmlSettings], mockProject, mockToken);
 } catch (error) {
   if (error instanceof Error) {
-     expect(error.message).toBe("Auth error");
+     expect(error.message).toBe("Mindbox error");
   }
  
 }

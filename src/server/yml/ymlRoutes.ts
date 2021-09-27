@@ -3,13 +3,10 @@ import { Request, Response, Router } from "express";
 import checkToken from "../user/checkTocken";
 
 import sendYmlToMindbox from "./sendYmlToMindbox";
-import createYmlData, { AuthParams, Link, Settings } from "./createYmlData";
+import createYmlData from "./createYmlData";
+import { YmlRequestType } from "src/declarations";
 
-export type YmlRequestType = {
-  links: Link[];
-  settings: Settings;
-  authParams?: AuthParams;
-};
+
 
 const ymlRoute = Router();
 ymlRoute.post(

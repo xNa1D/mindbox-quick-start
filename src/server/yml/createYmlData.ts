@@ -1,19 +1,7 @@
+import { Link, Settings, AuthParams } from "src/declarations";
 import { YmlImportSetting } from "./sendYmlToMindbox";
 
-type Url = string;
-type AreaId = string;
-type Name = string;
 
-export type Link = { url: Url; name: Name; externalId?: AreaId };
-export type AuthParams = {
-  password: string;
-  username: string;
-};
-export type Settings = {
-  brand: string;
-  externalSystem: string;
-  launchPeriod: number;
-};
 
 export type createYmlDataType = (
   links: Link[],

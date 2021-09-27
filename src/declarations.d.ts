@@ -89,3 +89,24 @@ export type UseProviderReturnedValue = {
   login: (user: AuthRequestBody, isLoginByAdmin: boolean) => Promise<void>;
   checkAuth: () => Promise<void>;
 };
+
+type Url = string;
+type AreaId = string;
+type Name = string;
+
+export type Link = { url: Url; name: Name; externalId?: AreaId };
+export type AuthParams = {
+  password: string;
+  username: string;
+};
+export type Settings = {
+  brand: string;
+  externalSystem: string;
+  launchPeriod: number;
+};
+
+export type YmlRequestType = {
+  links: Link[];
+  settings: Settings;
+  authParams?: AuthParams;
+};

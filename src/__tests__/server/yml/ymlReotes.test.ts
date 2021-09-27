@@ -1,8 +1,9 @@
 import supertest from "supertest";
 import { server } from "src/server/index";
 import generateAccessToken from "src/server/user/generateAccessToken";
-import { YmlRequestType } from "src/server/yml/ymlRoutes";
+
 import sendYmlToMindbox from "src/server/yml/sendYmlToMindbox";
+import { YmlRequestType } from "src/declarations";
 
 let agent: any;
 

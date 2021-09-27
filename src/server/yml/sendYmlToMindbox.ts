@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 
 interface Area {
-  externalId: string;
+  externalId?: string;
 }
 
 export interface YmlImportSetting {
@@ -10,7 +10,7 @@ export interface YmlImportSetting {
   name: string;
   url: string;
   launchPeriod: string;
-  area: Area | null;
+  area?: Area | null;
   username?: any;
   password?: any;
   nextStartDateTimeUtc?: Date;
@@ -24,16 +24,8 @@ type setYmlType = (
   authToken: string
 ) => Promise<void>;
 
-const ymlDataToString = (yml: YmlImportSetting[]) => {
-  let resultString: string = "";
-  yml.forEach((item) => {
-    resultString += JSON.stringify(item);
-  });
-  return resultString;
-};
-
 const sendYmlToMindbox: setYmlType = async (yml, project, authToken) => {
-  var data = `ReactJsonData[]={ymlImportSettings:[${ymlDataToString(yml)}]}`;
+  var data = `ReactJsonData[]={ymlImportSettings:[${yml.map((item) => JSON.stringify(item))}]}`;
 
   var config = {
     url: `https://${project}.mindbox.ru/products/import/yml/save`,
@@ -42,13 +34,13 @@ const sendYmlToMindbox: setYmlType = async (yml, project, authToken) => {
     },
     data,
   };
-
+// console.log(config);
   const result = await axios.post(config.url, config.data, {
     headers: config.headers,
   });
 
   if (isLoginFailed(result)) {
-    throw new Error("Auth error");
+    throw new Error("Mindbox error");
   }
 };
 
