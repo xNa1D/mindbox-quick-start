@@ -1,16 +1,10 @@
 import React, { FormEvent, useState } from "react";
 import {
-  Button,
   Container,
-  Divider,
-  Form,
   Grid,
   Header,
-  Label,
-  List,
   Message,
   Segment,
-  Table,
 } from "semantic-ui-react";
 import Papa, { ParseResult } from "papaparse";
 import axios from "axios";
