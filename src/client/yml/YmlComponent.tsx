@@ -27,7 +27,7 @@ const YmlComponent = () => {
 
   const [isSentSuccessfully, setIsSentSuccessfully] = useState<boolean>();
   const [errorsWithSending, setErrorsWithSending] = useState<string>("");
-  const [isSending, setIsSending] = useState<boolean>();
+  const [isSending, setIsSending] = useState<boolean>(false);
 
   const handleCompleteOfParsing = (results: ParseResult<Link>) => {
     setYmlTable(results.data);
@@ -48,20 +48,17 @@ const YmlComponent = () => {
     }
   };
 
-  const handleFormSubmit = async (e: FormEvent) => {
-    e.preventDefault();
+  const handleFormSubmit = async (event: FormEvent) => {
+    event.preventDefault();
     try {
       if (ymlTable) {
         setIsSending(true);
         validateCsv(ymlTable);
-        console.log(ymlTable);
-
-        const data: YmlRequestType = {
+        await sendData({
           links: ymlTable,
           settings: ymlSettings,
           authParams,
-        };
-        await sendData(data);
+        });
         setIsSentSuccessfully(true);
       }
     } catch (error) {
@@ -102,9 +99,9 @@ const YmlComponent = () => {
     }
   };
 
-  const handleFileSelected = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    if (e.target.files) {
-      const files = Array.from(e.target.files);
+  const handleFileSelected = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    if (event.target.files) {
+      const files = Array.from(event.target.files);
       Papa.parse(files[0], {
         complete: handleCompleteOfParsing,
         header: true,
@@ -128,8 +125,8 @@ const YmlComponent = () => {
               handleFormSubmit={handleFormSubmit}
               handleSettingsChange={handleSettingsChange}
               ymlSettings={ymlSettings}
-                  />
-              <YmlInstructions />
+            />
+            <YmlInstructions />
           </Segment>
         </Grid.Column>
         <Grid.Column width={10}>
