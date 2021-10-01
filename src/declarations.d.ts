@@ -10,7 +10,7 @@ export type Scenario = {
   name: string;
   docs: string;
   api: string[];
-  ghType: "old"|"new"
+  ghType: "old" | "new";
 };
 
 export type ScenarioNames = keyof ScenarioApiCalls;
@@ -31,7 +31,7 @@ export type AuthRequestBody = {
 export type RegistrationRequest = {
   email: string;
 };
-export type AuthByAdminPanelRequestBody =  {
+export type AuthByAdminPanelRequestBody = {
   login: string;
   password: string;
   project: string;
@@ -56,7 +56,6 @@ export type ErrorMessageParameters = BaseMessageParameters & {
   errorMessage: string;
   videoLink: string;
 };
-
 
 // JWT
 
@@ -95,10 +94,12 @@ type AreaId = string;
 type Name = string;
 
 export type Link = { url: Url; name: Name; externalId?: AreaId };
+
 export type AuthParams = {
   password: string;
   username: string;
 };
+
 export type Settings = {
   brand: string;
   externalSystem: string;
