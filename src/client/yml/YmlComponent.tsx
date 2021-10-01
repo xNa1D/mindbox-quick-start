@@ -17,6 +17,7 @@ import axios from "axios";
 
 import { YmlRequestType, Link, Settings, AuthParams } from "src/declarations";
 import YmlInstructions from "./YmlInstructions";
+import YmlForm from "./YmlForm";
 
 const YmlComponent = () => {
   const [ymlTable, setYmlTable] = useState<Link[]>();
@@ -122,93 +123,18 @@ const YmlComponent = () => {
       <Grid columns={2} stackable>
         <Grid.Column width={6} style={{ maxWidth: "450px" }}>
           <Segment style={{ position: "sticky", top: "15px" }}>
-            <>
-              <Form onSubmit={handleFormSubmit} id="scenario">
-                <Form.Field>
-                  <label htmlFor="csvWithYmlData">Файл с фидами</label>
-                  <input
-                    type="file"
-                    name="csvWithYmlData"
-                    id="csvWithYmlData"
-                    accept=".csv"
-                    required
-                    onChange={handleFileSelected}
+            <YmlForm
+              formState={{
+                errorsWithSending,
+                isSending,
+                isSentSuccessfully,
+              }}
+              handleFileSelected={handleFileSelected}
+              handleFormSubmit={handleFormSubmit}
+              handleSettingsChange={handleSettingsChange}
+              ymlSettings={ymlSettings}
                   />
-                </Form.Field>
-                <Message info>
-                  <Message.Header>Какой нужен файл:</Message.Header>
-                  <Message.Content>
-                    Формат файла: <code>.CSV</code>
-                  </Message.Content>
-                  <Message.Content>
-                    Названия колонок:
-                    <List bulleted>
-                      <List.Item>externalId</List.Item>
-                      <List.Item>name</List.Item>
-                      <List.Item>url</List.Item>
-                    </List>
-                    <a href="https://drive.google.com/file/d/1h-Ts-lZ0FGlkRYCAFP5-uTMhcxoSViMo/view?usp=sharing">
-                      Пример файла
-                    </a>
-                  </Message.Content>
-                </Message>
-                <Divider />
-                <Form.Field>
-                  <label htmlFor="brand">Системное имя бренда</label>
-                  <input
-                    type="text"
-                    name="brand"
-                    id="brand"
-                    value={ymlSettings.brand}
-                    required
-                    onChange={handleSettingsChange}
-                  />
-                </Form.Field>
-                <Form.Field>
-                  <label htmlFor="externalSystem">
-                    Индетификатор внешней системы
-                  </label>
-                  <input
-                    type="text"
-                    name="externalSystem"
-                    id="externalSystem"
-                    value={ymlSettings.externalSystem}
-                    required
-                    onChange={handleSettingsChange}
-                  />
-                </Form.Field>
-                <Form.Field>
-                  <label htmlFor="launchPeriod">Период загрузки</label>
-                  <input
-                    type="number"
-                    name="launchPeriod"
-                    id="launchPeriod"
-                    value={ymlSettings.launchPeriod}
-                    required
-                    onChange={handleSettingsChange}
-                  />
-                </Form.Field>
-                <Button positive loading={isSending} type="submit" primary>
-                  Загрузить фиды
-                </Button>
-                {!isSending && isSentSuccessfully ? (
-                  <Message
-                    visiblу={!isSending}
-                    success
-                    header="Ура"
-                    content="Данные успешно отправлены в Mindbox"
-                  />
-                ) : (
-                  <Message
-                    error
-                    visible={errorsWithSending !== ""}
-                    content={errorsWithSending}
-                    header="Ошибка"
-                  />
-                )}
-              </Form>
               <YmlInstructions />
-            </>
           </Segment>
         </Grid.Column>
         <Grid.Column width={10}>
