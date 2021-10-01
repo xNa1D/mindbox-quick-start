@@ -18,6 +18,7 @@ import axios from "axios";
 import { YmlRequestType, Link, Settings, AuthParams } from "src/declarations";
 import YmlInstructions from "./YmlInstructions";
 import YmlForm from "./YmlForm";
+import CsvDataPreview from "./CsvDataPreview";
 
 const YmlComponent = () => {
   const [ymlTable, setYmlTable] = useState<Link[]>();
@@ -140,31 +141,14 @@ const YmlComponent = () => {
         <Grid.Column width={10}>
           {ymlTable && ymlTable.length > 0 && (
             <>
-              <Table striped>
-                <Table.Header>
-                  <Table.Row>
-                    <Table.HeaderCell>externalId</Table.HeaderCell>
-                    <Table.HeaderCell>name</Table.HeaderCell>
-                    <Table.HeaderCell>url</Table.HeaderCell>
-                  </Table.Row>
-                </Table.Header>
-                <Table.Body>
-                  {ymlTable.map((row) => (
-                    <Table.Row>
-                      <Table.Cell>{row.externalId}</Table.Cell>
-                      <Table.Cell>{row.name}</Table.Cell>
-                      <Table.Cell>{row.url}</Table.Cell>
-                    </Table.Row>
-                  ))}
-                </Table.Body>
-              </Table>
               <Message
                 warning
                 icon="warning circle"
                 header="Проверьте данные"
                 content="Все колонки должны быть заполнены. Если колонка пустая, значит у нее неправильный заголовок.
                   Поправьте свой файл и загрузите заново"
-              ></Message>
+              />
+              <CsvDataPreview ymlTable={ymlTable} />
             </>
           )}
         </Grid.Column>
