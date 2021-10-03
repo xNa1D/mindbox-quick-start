@@ -10,7 +10,6 @@ import "@testing-library/jest-dom";
 
 import YmlForm from "src/client/yml/YmlForm";
 import { YmlFormProps } from "src/declarations";
-import { resolve } from "path";
 
 jest.mock("axios");
 
@@ -37,12 +36,14 @@ const setUpYmlForm = (props: YmlFormProps = mockYmlProps) => {
   const { parseCsv, sendData } = props;
 
   let component!: RenderResult;
+  
   act(() => {
     component = render(<YmlForm parseCsv={parseCsv} sendData={sendData} />);
   });
 
   const queryByLabelText = (searchString: string) =>
     component.queryByLabelText(searchString);
+  
   const queryByText = (searchString: string) =>
     component.queryByText(searchString);
 
@@ -89,7 +90,7 @@ describe("Rendering of form inputs", () => {
     if (fileInput) {
       changeInput(fileInput, csvFile);
     }
-
+    //@ts-ignore
     expect(mockYmlProps.parseCsv.mock.calls[0][0].name).toBe("table.csv");
   });
 
@@ -197,24 +198,39 @@ describe("On form submit", () => {
       },
     });
   });
-  //  test("should render error message if csv incorrect", async () => {
-  //    const csvFile = new File([inValidCsvString], "table.csv", {
-  //      type: "text/csv",
-  //    });
+  test("should render error message if csv incorrect", async () => {
+     const mockYmlProps: YmlFormProps = {
+       parseCsv: jest.fn().mockResolvedValue([
+         {
+           externalId: undefined,
+           name: "Санкт-Петербург",
+           url: undefined,
+         },
+       ]),
+       sendData: jest.fn(),
+     }; 
 
-  //    const { queryByLabelText, queryByText } = setUpYmlForm();
+     const csvFile = new File([inValidCsvString], "table.csv", {
+       type: "text/csv",
+     });
 
-  //    const fileInput = queryByLabelText("Файл с фидами");
-  //    const btn = queryByText("Загрузить фиды");
+     const { queryByLabelText, queryByText } = setUpYmlForm(mockYmlProps);
 
-  //    if (fileInput) {
-  //      changeInput(fileInput, csvFile);
-  //    }
+     const fileInput = queryByLabelText("Файл с фидами");
+     const brand = queryByLabelText("Системное имя бренда");
+     const btn = queryByText("Загрузить фиды");
 
-  //    if (btn) {
-  //      fireEvent.click(btn)
-  //    }
+     if (fileInput && brand) {
+       changeInput(fileInput, csvFile);
+       changeInput(brand, "myBrand");
+     }
 
-  //    expect(queryByText("Загружен некорректный файл")).toBeInTheDocument();
-  //  });
+     await delay(500);
+
+     if (btn) {
+       fireEvent.click(btn);
+     }
+
+     expect(queryByText("Загружен некорректный файл")).toBeInTheDocument();
+   });
 });
