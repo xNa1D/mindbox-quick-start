@@ -111,3 +111,10 @@ export type YmlRequestType = {
   settings: Settings;
   authParams?: AuthParams;
 };
+
+export type ParseCsv = (file: File) => Promise<Link[]>;
+
+export type YmlFormProps = {
+  parseCsv: (file: File) => Promise<Link[]>;
+  sendData: (data: YmlRequestType) => Promise<AxiosResponse<any>>;
+};
