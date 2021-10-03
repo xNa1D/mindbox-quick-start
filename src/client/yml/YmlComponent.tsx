@@ -1,15 +1,13 @@
-import React, { FormEvent, useState } from "react";
-import {
-  Container,
-  Grid,
-  Header,
-  Message,
-  Segment,
-} from "semantic-ui-react";
-import Papa, { ParseResult } from "papaparse";
+import React, { useState } from "react";
+import { Container, Grid, Header, Message, Segment } from "semantic-ui-react";
+import Papa, { ParseError, ParseResult } from "papaparse";
 import axios from "axios";
 
-import { YmlRequestType, Link, Settings, AuthParams } from "src/declarations";
+import {
+  YmlRequestType,
+  Link,
+  ParseCsv,
+} from "src/declarations";
 import YmlInstructions from "./YmlInstructions";
 import YmlForm from "./YmlForm";
 import CsvDataPreview from "./CsvDataPreview";
