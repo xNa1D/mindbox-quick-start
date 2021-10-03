@@ -1,26 +1,96 @@
-import React, { FormEvent } from "react";
+import React, { FormEvent, useState } from "react";
 import { Button, Divider, Form, List, Message } from "semantic-ui-react";
-import { Settings } from "src/declarations";
+import { AuthParams, Link, Settings, YmlFormProps } from "src/declarations";
 
-type YmlFormProps = {
-  handleFormSubmit: (event: FormEvent<HTMLFormElement>) => void;
-  handleFileSelected: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSettingsChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  ymlSettings: Settings;
-  formState: {
-    isSentSuccessfully?: boolean;
-    errorsWithSending: string;
-    isSending: boolean;
+const YmlForm = ({ parseCsv, sendData }: YmlFormProps) => {
+  const [isSentSuccessfully, setIsSentSuccessfully] = useState<boolean>();
+  const [errorsWithSending, setErrorsWithSending] = useState<string>("");
+  const [isSending, setIsSending] = useState<boolean>(false);
+
+  const [csvData, setCsvData] = useState<Link[]>();
+
+  const [ymlSettings, setYmlSettings] = useState<Settings>({
+    brand: "",
+    externalSystem: "Website",
+    launchPeriod: 2,
+  });
+
+  const [authParams, setAuthParams] = useState<AuthParams>();
+
+  const handleSettingsChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    switch (e.target.name) {
+      case "brand":
+        setYmlSettings({
+          ...ymlSettings,
+          brand: e.target.value,
+        });
+        break;
+      case "externalSystem":
+        setYmlSettings({
+          ...ymlSettings,
+          externalSystem: e.target.value,
+        });
+        break;
+      case "launchPeriod":
+        setYmlSettings({
+          ...ymlSettings,
+          launchPeriod: +e.target.value,
+        });
+        break;
+
+      default:
+        break;
+    }
   };
-};
 
-const YmlForm = ({
-  handleFormSubmit,
-  handleFileSelected,
-  ymlSettings,
-  handleSettingsChange,
-  formState,
-}: YmlFormProps) => {
+  const validateCsv = (links: Link[]) => {
+    const findRowsWithIncorrectFields = () =>
+      links.filter((link) => link.name === undefined || link.url === undefined);
+
+    if (findRowsWithIncorrectFields().length > 0) {
+      throw new Error("Загружен некорректный файл");
+    }
+  };
+
+  const handleFormSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+    console.log("handleFormSubmit");
+
+    try {
+
+      if (csvData) {
+        setIsSending(true);
+
+        validateCsv(csvData);
+        await sendData({
+          links: csvData,
+          settings: ymlSettings,
+          authParams,
+        });
+        setIsSentSuccessfully(true);
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        setErrorsWithSending(error.message);
+      }
+      setIsSentSuccessfully(false);
+    } finally {
+      setIsSending(false);
+    }
+  };
+
+  const handleFileSelected = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    if (event.target.files) {
+      const files = Array.from(event.target.files);
+
+      parseCsv(files[0]).then(setCsvData).catch(setErrorsWithSending);
+    }
+  };
+
   return (
     <>
       <Form onSubmit={handleFormSubmit} id="scenario">
@@ -86,12 +156,12 @@ const YmlForm = ({
             onChange={handleSettingsChange}
           />
         </Form.Field>
-        <Button positive loading={formState.isSending} type="submit" primary>
+        <Button positive loading={isSending} type="submit" primary>
           Загрузить фиды
         </Button>
-        {!formState.isSending && formState.isSentSuccessfully ? (
+        {!isSending && isSentSuccessfully ? (
           <Message
-            visiblу={!formState.isSending}
+            visiblу={!isSending}
             success
             header="Ура"
             content="Данные успешно отправлены в Mindbox"
@@ -99,8 +169,8 @@ const YmlForm = ({
         ) : (
           <Message
             error
-            visible={formState.errorsWithSending !== ""}
-            content={formState.errorsWithSending}
+            visible={errorsWithSending !== ""}
+            content={errorsWithSending}
             header="Ошибка"
           />
         )}
