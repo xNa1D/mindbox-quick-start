@@ -15,21 +15,17 @@ import CsvDataPreview from "./CsvDataPreview";
 const YmlComponent = () => {
   const [ymlTable, setYmlTable] = useState<Link[]>();
 
-  const [ymlSettings, setYmlSettings] = useState<Settings>({
-    brand: "",
-    externalSystem: "",
-    launchPeriod: 2,
-  });
-
-  const [authParams, setAuthParams] = useState<AuthParams>();
-
-  const [isSentSuccessfully, setIsSentSuccessfully] = useState<boolean>();
-  const [errorsWithSending, setErrorsWithSending] = useState<string>("");
-  const [isSending, setIsSending] = useState<boolean>(false);
-
-  const handleCompleteOfParsing = (results: ParseResult<Link>) => {
-    setYmlTable(results.data);
-    console.log(results.data);
+  const parseCsv: ParseCsv = (file) => {
+    return new Promise((resolve, reject) => {
+      Papa.parse(file, {
+        complete: (result: ParseResult<Link>) => {
+          setYmlTable(result.data);
+          resolve(result.data);
+        },
+        header: true,
+        error: (error: ParseError) => reject(error),
+      });
+    });
   };
 
   const sendData = async (data: YmlRequestType) =>
@@ -37,93 +33,13 @@ const YmlComponent = () => {
       headers: { "content-type": "application/json" },
     });
 
-  const findRowsWithIncorrectFields = (links: Link[]) =>
-    links.filter((link) => link.name === undefined || link.url === undefined);
-
-  const validateCsv = (links: Link[]) => {
-    if (findRowsWithIncorrectFields(links).length > 0) {
-      throw new Error("Загружен некорректный файл");
-    }
-  };
-
-  const handleFormSubmit = async (event: FormEvent) => {
-    event.preventDefault();
-    try {
-      if (ymlTable) {
-        setIsSending(true);
-        validateCsv(ymlTable);
-        await sendData({
-          links: ymlTable,
-          settings: ymlSettings,
-          authParams,
-        });
-        setIsSentSuccessfully(true);
-      }
-    } catch (error) {
-      if (error instanceof Error) {
-        setErrorsWithSending(error.message);
-      }
-      setIsSentSuccessfully(false);
-    } finally {
-      setIsSending(false);
-    }
-  };
-
-  const handleSettingsChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    switch (e.target.name) {
-      case "brand":
-        setYmlSettings({
-          ...ymlSettings,
-          brand: e.target.value,
-        });
-        break;
-      case "externalSystem":
-        setYmlSettings({
-          ...ymlSettings,
-          externalSystem: e.target.value,
-        });
-        break;
-      case "launchPeriod":
-        setYmlSettings({
-          ...ymlSettings,
-          launchPeriod: +e.target.value,
-        });
-        break;
-
-      default:
-        break;
-    }
-  };
-
-  const handleFileSelected = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    if (event.target.files) {
-      const files = Array.from(event.target.files);
-      Papa.parse(files[0], {
-        complete: handleCompleteOfParsing,
-        header: true,
-      });
-    }
-  };
-
   return (
     <Container fluid>
       <Header as="h1">Импорт YML фидов</Header>
       <Grid columns={2} stackable>
         <Grid.Column width={6} style={{ maxWidth: "450px" }}>
           <Segment style={{ position: "sticky", top: "15px" }}>
-            <YmlForm
-              formState={{
-                errorsWithSending,
-                isSending,
-                isSentSuccessfully,
-              }}
-              handleFileSelected={handleFileSelected}
-              handleFormSubmit={handleFormSubmit}
-              handleSettingsChange={handleSettingsChange}
-              ymlSettings={ymlSettings}
-            />
+            <YmlForm sendData={sendData} parseCsv={parseCsv} />
             <YmlInstructions />
           </Segment>
         </Grid.Column>
