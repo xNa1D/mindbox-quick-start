@@ -12,6 +12,8 @@ import YmlInstructions from "./YmlInstructions";
 import YmlForm from "./YmlForm";
 import CsvDataPreview from "./CsvDataPreview";
 
+import sendYmlData from "client/api/sendYmlData";
+
 const YmlComponent = () => {
   const [ymlTable, setYmlTable] = useState<Link[]>();
 
@@ -28,18 +30,13 @@ const YmlComponent = () => {
     });
   };
 
-  const sendData = async (data: YmlRequestType) =>
-    await axios.post("/api/yml/start", data, {
-      headers: { "content-type": "application/json" },
-    });
-
   return (
     <Container fluid>
       <Header as="h1">Импорт YML фидов</Header>
       <Grid columns={2} stackable>
         <Grid.Column width={6} style={{ maxWidth: "450px" }}>
           <Segment style={{ position: "sticky", top: "15px" }}>
-            <YmlForm sendData={sendData} parseCsv={parseCsv} />
+            <YmlForm sendData={sendYmlData} parseCsv={parseCsv} />
             <YmlInstructions />
           </Segment>
         </Grid.Column>
