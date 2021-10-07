@@ -10,7 +10,7 @@ import CsvDataPreview from "./CsvDataPreview";
 import sendYmlData from "client/api/sendYmlData";
 
 const YmlComponent = () => {
-  const [ymlTable, setYmlTable] = useState<Link[]>();
+  const [ymlTable, setYmlTable] = useState<Link[]>([]);
 
   const parseCsv: ParseCsv = (file) => {
     return new Promise((resolve, reject) => {
@@ -36,18 +36,14 @@ const YmlComponent = () => {
           </Segment>
         </Grid.Column>
         <Grid.Column width={10}>
-          {ymlTable && ymlTable.length > 0 && (
-            <>
-              <Message
-                warning
-                icon="warning circle"
-                header="Проверьте данные"
-                content="Все колонки должны быть заполнены. Если колонка пустая, значит у нее неправильный заголовок.
+          <Message
+            warning
+            icon="warning circle"
+            header="Проверьте данные"
+            content="Все колонки должны быть заполнены. Если колонка пустая, значит у нее неправильный заголовок.
                   Поправьте свой файл и загрузите заново"
-              />
-              <CsvDataPreview ymlTable={ymlTable} />
-            </>
-          )}
+          />
+          <CsvDataPreview ymlTable={ymlTable} />
         </Grid.Column>
       </Grid>
     </Container>
