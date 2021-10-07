@@ -38,7 +38,7 @@ const Main = () => {
     <div
       style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
     >
-      <Segment basic style={{ flexGrow: 1 }}>
+      <Segment basic style={{ flexGrow: 0 }}>
         <AuthComponent />
       </Segment>
       <Segment basic style={{ flexGrow: 3 }}>
