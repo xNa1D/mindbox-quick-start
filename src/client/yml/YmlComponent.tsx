@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Container, Grid, Header, Message, Segment } from "semantic-ui-react";
+import {
+  Container,
+  Grid,
+  Header,
+  Message,
+  Segment,
+  Table,
+} from "semantic-ui-react";
 import Papa, { ParseError, ParseResult } from "papaparse";
 
 import { Link, ParseCsv } from "src/declarations";
@@ -44,12 +51,45 @@ const YmlComponent = () => {
           </Segment>
         </Grid.Column>
         <Grid.Column width={10}>
+          <Segment attached>
+            <b>Какой нужен файл:</b> CSV табличка с 3 колонками.{" "}
+            <a href="https://drive.google.com/file/d/1h-Ts-lZ0FGlkRYCAFP5-uTMhcxoSViMo/view?usp=sharing">
+              Пример файла
+            </a>
+          </Segment>
+          <Table attached>
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell>Название колонки</Table.HeaderCell>
+                <Table.HeaderCell>Обязательность</Table.HeaderCell>
+                <Table.HeaderCell>Описание колонки</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>
+              <Table.Row>
+                <Table.Cell>name</Table.Cell>
+                <Table.Cell>обзятельно</Table.Cell>
+                <Table.Cell>название фида</Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell>url</Table.Cell>
+                <Table.Cell>обзятельно</Table.Cell>
+                <Table.Cell>ссылка на фид</Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell>areaExternalId</Table.Cell>
+                <Table.Cell>опционально</Table.Cell>
+                <Table.Cell>внешний идентификатор зоны</Table.Cell>
+              </Table.Row>
+            </Table.Body>
+          </Table>
+
           <Message
             warning
+            attached="bottom"
             icon="warning circle"
             header="Проверьте данные"
-            content="Все колонки должны быть заполнены. Если колонка пустая, значит у нее неправильный заголовок.
-                  Поправьте свой файл и загрузите заново"
+            content="Колонки name и url должны быть заполнены. Если пустые, значит неправильный заголовок в таблице. Нажо поправить и загрузить заново"
           />
           <CsvDataPreview ymlTable={ymlTable} />
         </Grid.Column>
