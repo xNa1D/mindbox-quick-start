@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 
 interface Area {
-  externalId?: string;
+  areaExternalId?: string;
 }
 
 export interface YmlImportSetting {

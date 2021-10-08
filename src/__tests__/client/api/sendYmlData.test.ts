@@ -9,7 +9,7 @@ const mockBody: YmlRequestType = {
     {
       name: "myName",
       url: "myLink",
-      externalId: "myArea",
+      areaExternalId: "myArea",
     },
   ],
   settings: {

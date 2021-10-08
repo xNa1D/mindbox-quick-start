@@ -18,7 +18,7 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 const inValidCsvString = `region_id;name;xml
 1;Санкт-Петербург;myLink`;
 
-const validCsvString = `externalId;name;url
+const validCsvString = `areaExternalId;name;url
 1;Санкт-Петербург;myLink`;
 
 const setUpComponent = () => {
@@ -67,7 +67,7 @@ test("should render info message", () => {
 test("should render header of table", () => {
   const { component } = setUpComponent();
 
-  expect(component.queryAllByText("externalId")).toHaveLength(2);
+  expect(component.queryAllByText("areaExternalId")).toHaveLength(2);
 });
 
 test("should render imported file", async () => {

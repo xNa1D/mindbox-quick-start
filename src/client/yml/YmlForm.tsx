@@ -113,7 +113,7 @@ const YmlForm = ({ parseCsv, sendData }: YmlFormProps) => {
           <Message.Content>
             Названия колонок:
             <List bulleted>
-              <List.Item>externalId</List.Item>
+              <List.Item>areaExternalId</List.Item>
               <List.Item>name</List.Item>
               <List.Item>url</List.Item>
             </List>

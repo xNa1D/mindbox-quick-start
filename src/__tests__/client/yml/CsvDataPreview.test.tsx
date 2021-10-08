@@ -15,13 +15,13 @@ const customRender = async (
 };
 
 const mockDataCorrect: Link[] = [
-  { name: "Бобруйск", url: "https://link.to", externalId: "babryisk" },
+  { name: "Бобруйск", url: "https://link.to", areaExternalId: "babryisk" },
 ];
 
 test("should render headers", async () => {
   await customRender(<CsvDataPreview ymlTable={mockDataCorrect} />);
 
-  expect(screen.getByText("externalId")).toBeInTheDocument();
+  expect(screen.getByText("areaExternalId")).toBeInTheDocument();
   expect(screen.getByText("name")).toBeInTheDocument();
   expect(screen.getByText("url")).toBeInTheDocument();
 });
