@@ -31,6 +31,14 @@ const YmlComponent = () => {
       <Grid columns={2} stackable>
         <Grid.Column width={6} style={{ maxWidth: "450px" }}>
           <Segment style={{ position: "sticky", top: "15px" }}>
+            <Message warning>
+              <b>ИМПОРТ ПЕРЕЗАТЕРАЕТ СТАРЫЕ ДАННЫЕ</b>
+              <p>
+                Если у вас сейчас что-то уже настроено в проекте, то импорт
+                перезатрет эти настройки. Увы, пока так. Старые настройки надо
+                будет восстановить руками после импорта
+              </p>
+            </Message>
             <YmlForm sendData={sendYmlData} parseCsv={parseCsv} />
             <YmlInstructions />
           </Segment>
