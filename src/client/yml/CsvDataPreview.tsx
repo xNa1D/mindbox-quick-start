@@ -18,7 +18,7 @@ const CsvDataPreview = ({ ymlTable }: CsvDataPreviewProps) => {
       </Table.Header>
       <Table.Body>
         {ymlTable.map((row) => (
-          <Table.Row>
+          <Table.Row key={`${row.name}-${row.url}`}>
             <Table.Cell>{row.name}</Table.Cell>
             <Table.Cell>{row.url}</Table.Cell>
             <Table.Cell>{row.areaExternalId}</Table.Cell>
