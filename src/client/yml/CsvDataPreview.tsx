@@ -11,17 +11,17 @@ const CsvDataPreview = ({ ymlTable }: CsvDataPreviewProps) => {
     <Table striped>
       <Table.Header>
         <Table.Row>
-          <Table.HeaderCell>externalId</Table.HeaderCell>
           <Table.HeaderCell>name</Table.HeaderCell>
           <Table.HeaderCell>url</Table.HeaderCell>
+          <Table.HeaderCell>areaExternalId</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
       <Table.Body>
         {ymlTable.map((row) => (
           <Table.Row>
-            <Table.Cell>{row.externalId}</Table.Cell>
             <Table.Cell>{row.name}</Table.Cell>
             <Table.Cell>{row.url}</Table.Cell>
+            <Table.Cell>{row.areaExternalId}</Table.Cell>
           </Table.Row>
         ))}
       </Table.Body>

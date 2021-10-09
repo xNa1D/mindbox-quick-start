@@ -5,7 +5,7 @@ import { YmlImportSetting } from "src/server/yml/sendYmlToMindbox";
 const mockLinks: Link = {
   url: "linkToFeed",
   name: "awesomeName",
-  externalId: "areaId",
+  areaExternalId: "areaId",
 };
 
 const mockSettings: Settings = {
@@ -21,7 +21,7 @@ const mockAuth: AuthParams = {
 
 const resultYml: YmlImportSetting = {
   area: {
-    externalId: mockLinks.externalId,
+    areaExternalId: mockLinks.areaExternalId,
   },
   name: mockLinks.name,
   url: mockLinks.url,
@@ -33,7 +33,7 @@ const resultYml: YmlImportSetting = {
 };
 const resultYmlWithAuth: YmlImportSetting = {
   area: {
-    externalId: mockLinks.externalId,
+    areaExternalId: mockLinks.areaExternalId,
   },
   name: mockLinks.name,
   url: mockLinks.url,

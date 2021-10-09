@@ -11,9 +11,9 @@ export type createYmlDataType = (
 
 const createYmlData: createYmlDataType = (links, settings, AuthParams) => {
   const ymlData = links.map((linkAndName) => {
-    const { url, name, externalId } = linkAndName;
+    const { url, name, areaExternalId } = linkAndName;
     
-    const area = externalId ? { externalId } : null;
+    const area = areaExternalId ? { areaExternalId } : null;
 
     return {
       area,

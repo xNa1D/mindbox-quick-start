@@ -1,5 +1,5 @@
 import React, { FormEvent, useState } from "react";
-import { Button, Divider, Form, List, Message } from "semantic-ui-react";
+import { Button, Divider, Form, List, Message, Table } from "semantic-ui-react";
 import { AuthParams, Link, Settings, YmlFormProps } from "src/declarations";
 
 const YmlForm = ({ parseCsv, sendData }: YmlFormProps) => {
@@ -20,29 +20,10 @@ const YmlForm = ({ parseCsv, sendData }: YmlFormProps) => {
   const handleSettingsChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ): void => {
-    switch (e.target.name) {
-      case "brand":
-        setYmlSettings({
-          ...ymlSettings,
-          brand: e.target.value,
-        });
-        break;
-      case "externalSystem":
-        setYmlSettings({
-          ...ymlSettings,
-          externalSystem: e.target.value,
-        });
-        break;
-      case "launchPeriod":
-        setYmlSettings({
-          ...ymlSettings,
-          launchPeriod: +e.target.value,
-        });
-        break;
-
-      default:
-        break;
-    }
+    setYmlSettings({
+      ...ymlSettings,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const validateCsv = (links: Link[]) => {
@@ -59,7 +40,6 @@ const YmlForm = ({ parseCsv, sendData }: YmlFormProps) => {
     console.log("handleFormSubmit");
 
     try {
-
       if (csvData) {
         setIsSending(true);
 
@@ -105,23 +85,7 @@ const YmlForm = ({ parseCsv, sendData }: YmlFormProps) => {
             onChange={handleFileSelected}
           />
         </Form.Field>
-        <Message info>
-          <Message.Header>Какой нужен файл:</Message.Header>
-          <Message.Content>
-            Формат файла: <code>.CSV</code>
-          </Message.Content>
-          <Message.Content>
-            Названия колонок:
-            <List bulleted>
-              <List.Item>externalId</List.Item>
-              <List.Item>name</List.Item>
-              <List.Item>url</List.Item>
-            </List>
-            <a href="https://drive.google.com/file/d/1h-Ts-lZ0FGlkRYCAFP5-uTMhcxoSViMo/view?usp=sharing">
-              Пример файла
-            </a>
-          </Message.Content>
-        </Message>
+       
         <Divider />
         <Form.Field>
           <label htmlFor="brand">Системное имя бренда</label>

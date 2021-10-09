@@ -16,7 +16,7 @@ jest.mock("axios");
 const mockYmlProps: YmlFormProps = {
   parseCsv: jest.fn().mockResolvedValue([
     {
-      externalId: "1",
+      areaExternalId: "1",
       name: "Санкт-Петербург",
       url: "myLink",
     },
@@ -29,7 +29,7 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 const inValidCsvString = `region_id;name;xml
 1;Санкт-Петербург;myLink`;
 
-const validCsvString = `externalId;name;url
+const validCsvString = `areaExternalId;name;url
 1;Санкт-Петербург;myLink`;
 
 const setUpYmlForm = (props: YmlFormProps = mockYmlProps) => {
@@ -190,7 +190,7 @@ describe("On form submit", () => {
 
     expect(mockYmlProps.sendData).toHaveBeenCalledWith({
       authParams: undefined,
-      links: [{ externalId: "1", name: "Санкт-Петербург", url: "myLink" }],
+      links: [{ areaExternalId: "1", name: "Санкт-Петербург", url: "myLink" }],
       settings: {
         brand: "myBrand",
         externalSystem: "Website",
@@ -202,7 +202,7 @@ describe("On form submit", () => {
      const mockYmlProps: YmlFormProps = {
        parseCsv: jest.fn().mockResolvedValue([
          {
-           externalId: undefined,
+           areaExternalId: undefined,
            name: "Санкт-Петербург",
            url: undefined,
          },

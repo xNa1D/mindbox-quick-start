@@ -32,7 +32,7 @@ const mockUserAuthToken = generateAccessToken({
 const mockYmlData: YmlRequestType = {
   links: [
     {
-      externalId: "myExternalId",
+      areaExternalId: "myareaExternalId",
       name: "awesomeFeed",
       url: "url",
     },
@@ -65,7 +65,7 @@ describe("send valid yml data with valid user token", () => {
     expect(sendYmlToMindbox).toHaveBeenCalledWith(
       [
         {
-          area: { externalId: "myExternalId" },
+          area: { areaExternalId: "myareaExternalId" },
           brandSystemName: "awesomeBrand",
           externalSystemSystemName: "awesomeExtSys",
           launchPeriod: "2",

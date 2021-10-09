@@ -4,7 +4,7 @@ import sendYmlToMindbox, {
 } from "src/server/yml/sendYmlToMindbox";
 
 const mockYmlSettings: YmlImportSetting = {
-  area: { externalId: "areaId" },
+  area: { areaExternalId: "areaId" },
   name: "awesomeName",
   url: "linkToFeed",
   brandSystemName: "myBrand",
