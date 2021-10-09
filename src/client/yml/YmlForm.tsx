@@ -37,7 +37,6 @@ const YmlForm = ({ parseCsv, sendData }: YmlFormProps) => {
 
   const handleFormSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    console.log("handleFormSubmit");
 
     try {
       if (csvData) {
@@ -85,7 +84,7 @@ const YmlForm = ({ parseCsv, sendData }: YmlFormProps) => {
             onChange={handleFileSelected}
           />
         </Form.Field>
-       
+
         <Divider />
         <Form.Field>
           <label htmlFor="brand">Системное имя бренда</label>
@@ -125,7 +124,7 @@ const YmlForm = ({ parseCsv, sendData }: YmlFormProps) => {
         </Button>
         {!isSending && isSentSuccessfully ? (
           <Message
-            visiblу={!isSending}
+            visible={!isSending}
             success
             header="Ура"
             content="Данные успешно отправлены в Mindbox"
