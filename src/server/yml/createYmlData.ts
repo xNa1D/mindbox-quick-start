@@ -1,7 +1,22 @@
-import { Link, Settings, AuthParams } from "src/declarations";
+// import { Link, Settings, AuthParams } from "src/declarations";
 import { YmlImportSetting } from "./sendYmlToMindbox";
 
+type Link = {
+  url: string;
+  name: string;
+  areaExternalId?: string | undefined;
+};
 
+type Settings = {
+  brand: string;
+  externalSystem: string;
+  launchPeriod: number;
+};
+
+type AuthParams = {
+  password: string;
+  username: string;
+};
 
 export type createYmlDataType = (
   links: Link[],
