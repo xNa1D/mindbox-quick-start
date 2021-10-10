@@ -93,7 +93,7 @@ type Url = string;
 type AreaId = string;
 type Name = string;
 
-export type Link = { url: Url; name: Name; areaExternalId?: AreaId };
+export type Link = { url: Url; name: Name; externalId?: AreaId };
 
 export type AuthParams = {
   password: string;

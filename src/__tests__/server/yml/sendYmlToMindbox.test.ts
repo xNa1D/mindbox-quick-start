@@ -4,7 +4,7 @@ import sendYmlToMindbox, {
 } from "src/server/yml/sendYmlToMindbox";
 
 const mockYmlSettings: YmlImportSetting = {
-  area: { areaExternalId: "areaId" },
+  area: { externalId: "areaId" },
   name: "awesomeName",
   url: "linkToFeed",
   brandSystemName: "myBrand",
@@ -41,13 +41,15 @@ test("should send correct settings", () => {
   expect(mockAxios.mock.calls[0][0]).toBe(
     "https://myProject.mindbox.ru/products/import/yml/save"
   );
+  expect(mockAxios.mock.calls[0][1]).toBe(
+    'ReactJsonData[]={ymlImportSettings:[{"area":{"externalId":"areaId"},"name":"awesomeName","url":"linkToFeed","brandSystemName":"myBrand","externalSystemSystemName":"mySystem","launchPeriod":"2","password":"myPassword","username":"iAm"}]}'
+  );
   expect(mockAxios.mock.calls[0][2]).toStrictEqual({
     headers: { Cookie: "myToken" },
   });
 });
 
-
-test("should throw auth exeption if answer content type === html", async () => {
+test("should throw auth exception if answer content type === html", async () => {
   const mockResponse: AxiosResponse = {
     status: 200,
     data: {
@@ -62,21 +64,14 @@ test("should throw auth exeption if answer content type === html", async () => {
     statusText: "OK",
     config: {},
   };
-    const mockAxios = axios.post as jest.Mock;
-    mockAxios.mockResolvedValue(mockResponse);
+  const mockAxios = axios.post as jest.Mock;
+  mockAxios.mockResolvedValue(mockResponse);
 
-try {
-  
-  await sendYmlToMindbox([mockYmlSettings], mockProject, mockToken);
-} catch (error) {
-  if (error instanceof Error) {
-     expect(error.message).toBe("Mindbox error");
+  try {
+    await sendYmlToMindbox([mockYmlSettings], mockProject, mockToken);
+  } catch (error) {
+    if (error instanceof Error) {
+      expect(error.message).toBe("Mindbox error");
+    }
   }
- 
-}
-
-
-
-
-  
 });
