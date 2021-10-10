@@ -6,6 +6,7 @@ import path from "path";
 
 import userRoutes from "./user/userRoutes";
 import scenariosRoutes from "./scenario/scenariosRoutes";
+import ymlRoute from "./yml/ymlRoutes";
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(cookieParser());
 // app.use("/", pagesRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/scenario", scenariosRoutes);
+app.use("/api/yml", ymlRoute);
 
 app.use(express.static(path.resolve(__dirname, "../client")));
 

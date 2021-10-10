@@ -4,7 +4,7 @@ import { Request, Response, NextFunction } from "express";
 
 describe("checkTocken", () => {
   it("should call next() function on valid token", () => {
-    const token = generateAccessToken({ email: "nikitin@mindbox.ru"});
+    const token = generateAccessToken({ email: "nikitin@mindbox.ru", project: "myProject", tokenFromAdminPanel: "myToken"});
     const result = checkTocken(token);
     expect(result.email).toBe("nikitin@mindbox.ru");
   });
