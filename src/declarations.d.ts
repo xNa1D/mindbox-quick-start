@@ -10,7 +10,7 @@ export type Scenario = {
   name: string;
   docs: string;
   api: string[];
-  ghType: "old"|"new"
+  ghType: "old" | "new";
 };
 
 export type ScenarioNames = keyof ScenarioApiCalls;
@@ -31,7 +31,7 @@ export type AuthRequestBody = {
 export type RegistrationRequest = {
   email: string;
 };
-export type AuthByAdminPanelRequestBody =  {
+export type AuthByAdminPanelRequestBody = {
   login: string;
   password: string;
   project: string;
@@ -57,13 +57,12 @@ export type ErrorMessageParameters = BaseMessageParameters & {
   videoLink: string;
 };
 
-
 // JWT
 
 export type JwtUser = {
   email: string;
-  project?: string;
-  tokenFromAdminPanel?: string;
+  project: string;
+  tokenFromAdminPanel: string;
 };
 
 export type StartScenarioAndSendResultType = {
@@ -88,4 +87,34 @@ export type UseProviderReturnedValue = {
   loginForProject: string;
   login: (user: AuthRequestBody, isLoginByAdmin: boolean) => Promise<void>;
   checkAuth: () => Promise<void>;
+};
+
+type Url = string;
+type AreaId = string;
+type Name = string;
+
+export type Link = { url: Url; name: Name; areaExternalId?: AreaId };
+
+export type AuthParams = {
+  password: string;
+  username: string;
+};
+
+export type Settings = {
+  brand: string;
+  externalSystem: string;
+  launchPeriod: number;
+};
+
+export type YmlRequestType = {
+  links: Link[];
+  settings: Settings;
+  authParams?: AuthParams;
+};
+
+export type ParseCsv = (file: File) => Promise<Link[]>;
+
+export type YmlFormProps = {
+  parseCsv: (file: File) => Promise<Link[]>;
+  sendData: (data: YmlRequestType) => Promise<AxiosResponse<any>>;
 };

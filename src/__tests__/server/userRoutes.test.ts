@@ -62,50 +62,7 @@ beforeAll(() => {
 afterAll(() => {
   server.close();
 });
-describe("/auth", () => {
-  it("should return access tocken", async (done) => {
-    jest.setTimeout(30000);
-    axios.post = jest.fn().mockResolvedValue({
-      status: 200,
-      data: {
-        status: "Success",
-        customer: {
-          processingStatus: "AuthenticationSucceeded",
-        },
-      },
-    });
 
-    const token = generateAccessToken({email: "nikitin@mindbox.ru"});
-
-    const res = await agent.post("/api/user/auth").send({
-      email: "nikitin@mindbox.ru",
-      password: "123",
-    });
-
-    expect(res.text).toBe(token);
-    done();
-  });
-
-  it("should return 403 when login fail", async (done) => {
-    axios.post = jest.fn().mockResolvedValue({
-      status: 200,
-      data: {
-        status: "Success",
-        customer: {
-          processingStatus: "AuthenticationFailed",
-        },
-      },
-    });
-
-    const res = await agent.post("/api/user/auth").send({
-      email: "nikitin@mindbox.ru",
-      password: "123",
-    });
-
-    expect(res.status).toBe(403);
-    done();
-  });
-});
 
 describe("/reg", () => {
   it("should return 200^ if stuff exist", async () => {
