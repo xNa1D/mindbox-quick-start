@@ -4,7 +4,7 @@ import { YmlImportSetting } from "./sendYmlToMindbox";
 type Link = {
   url: string;
   name: string;
-  externalId?: string | undefined;
+  areaExternalId?: string | undefined;
 };
 
 type Settings = {
@@ -26,9 +26,9 @@ export type createYmlDataType = (
 
 const createYmlData: createYmlDataType = (links, settings, AuthParams) => {
   const ymlData = links.map((linkAndName) => {
-    const { url, name, externalId } = linkAndName;
-    
-    const area = externalId ? { externalId } : null;
+    const { url, name, areaExternalId } = linkAndName;
+
+    const area = areaExternalId ? { externalId: areaExternalId } : null;
 
     return {
       area,
