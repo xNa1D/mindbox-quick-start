@@ -21,7 +21,7 @@ const mockAuth: AuthParams = {
 
 const resultYml: YmlImportSetting = {
   area: {
-    areaExternalId: mockLinks.areaExternalId,
+    externalId: mockLinks.areaExternalId,
   },
   name: mockLinks.name,
   url: mockLinks.url,
@@ -33,7 +33,7 @@ const resultYml: YmlImportSetting = {
 };
 const resultYmlWithAuth: YmlImportSetting = {
   area: {
-    areaExternalId: mockLinks.areaExternalId,
+    externalId: mockLinks.areaExternalId,
   },
   name: mockLinks.name,
   url: mockLinks.url,

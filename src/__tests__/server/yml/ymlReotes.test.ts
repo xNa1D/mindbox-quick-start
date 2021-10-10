@@ -65,7 +65,7 @@ describe("send valid yml data with valid user token", () => {
     expect(sendYmlToMindbox).toHaveBeenCalledWith(
       [
         {
-          area: { areaExternalId: "myareaExternalId" },
+          area: { externalId: "myareaExternalId" },
           brandSystemName: "awesomeBrand",
           externalSystemSystemName: "awesomeExtSys",
           launchPeriod: "2",
