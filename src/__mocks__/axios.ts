@@ -9,4 +9,5 @@ export default {
       use: jest.fn(),
     },
   },
+  isAxiosError: jest.fn().mockReturnValue(true)
 };
