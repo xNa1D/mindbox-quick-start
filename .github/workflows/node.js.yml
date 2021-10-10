@@ -45,4 +45,4 @@ jobs:
           git pull origin main
           npm install --production
           npm run build
-          pm2 restart index
+          pm2 restart qs
