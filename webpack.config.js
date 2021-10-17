@@ -33,7 +33,7 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        use: "awesome-typescript-loader",
+        use: "ts-loader",
         exclude: [path.resolve(__dirname, "./src/server/**/*"), /node_modules/],
       },
       {
