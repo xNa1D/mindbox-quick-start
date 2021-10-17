@@ -17,6 +17,8 @@ module.exports = {
     proxy: {
       "/api": "http://localhost:3030",
     },
+    overlay: true,
+    progress: true,
     historyApiFallback: true,
   },
   resolve: {
