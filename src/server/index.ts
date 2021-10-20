@@ -7,6 +7,9 @@ import path from "path";
 import userRoutes from "./user/userRoutes";
 import scenariosRoutes from "./scenario/scenariosRoutes";
 import ymlRoute from "./yml/ymlRoutes";
+import { initDb } from "./db";
+
+initDb();
 
 const app = express();
 
