@@ -1,6 +1,0 @@
-{
-  "production": {  
-    "dialect": "sqlite",
-    "storage": "./data/database.sqlite"
-  }
-}
