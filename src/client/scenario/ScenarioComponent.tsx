@@ -1,17 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import { StartScenarioBody } from "src/declarations";
+import { Scenario, StartScenarioBody } from "src/declarations";
 import useAuth from "client/auth/useAuth";
-import scenarios from "src/data";
+// import scenarios from "src/data";
 
 import { Container, Grid, Header, Segment } from "semantic-ui-react";
 
 import ScenarioInfo from "./ScenarioInfo";
 import ScenarioForm from "./ScenarioForm";
 import ScenarioInstruction from "./ScenarioInstruction";
+import { getAllScenarios } from "./getAllScenarios";
 
 const ScenarioComponent = () => {
   const auth = useAuth();
+
+  useEffect(() => {
+    getAllScenarios().then((data) => setScenarios(data));
+  }, []);
+  
+  const [scenarios, setScenarios] = useState<Scenario[]>([]);
 
   const [scenarioInfo, setScenarioInfo] = useState({
     scenario: scenarios[0],
