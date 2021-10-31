@@ -8,6 +8,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "build/client"),
     filename: "bundle.js",
+    chunkFilename: "chunk-[name].[contenthash].js",
   },
   target: "web",
   devServer: {
