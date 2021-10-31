@@ -1,10 +1,11 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 
 import AuthComponent from "./auth/AuthComponent";
 import { Segment, Tab } from "semantic-ui-react";
 import Footer from "./common/Footer";
-import ScenarioComponent from "./scenario/ScenarioComponent";
-import YmlComponent from "./yml/YmlComponent";
+
+const ScenarioComponent = lazy(() => import("./scenario/ScenarioComponent"));
+const YmlComponent = lazy(() => import("./yml/YmlComponent"));
 
 const Main = () => {
   const panes = [
@@ -12,7 +13,9 @@ const Main = () => {
       menuItem: "Заведение операций",
       render: () => (
         <Tab.Pane as="div">
-          <ScenarioComponent />
+          <Suspense fallback={<div>Загрузка...</div>}>
+            <ScenarioComponent />
+          </Suspense>
         </Tab.Pane>
       ),
     },
@@ -20,7 +23,9 @@ const Main = () => {
       menuItem: "Импорт YML фидов",
       render: () => (
         <Tab.Pane as="div">
-          <YmlComponent />
+          <Suspense fallback={<div>Загрузка...</div>}>
+            <YmlComponent />
+          </Suspense>
         </Tab.Pane>
       ),
     },
