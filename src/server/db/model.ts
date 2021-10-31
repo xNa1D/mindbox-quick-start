@@ -12,14 +12,32 @@ export const ScenarioModel = sequelize.define<Model<Scenario>>("Scenario", {
   ghType: { type: DataTypes.STRING },
 });
 
-export const getAllScenarios = async () => await ScenarioModel.findAll();
+export const getAllScenarios = async () => {
+  try {
+    const scenarios = await ScenarioModel.findAll();
+    return scenarios;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-export const addNewScenario = async (scenario: Scenario) =>
-  await ScenarioModel.create(scenario);
+export const addNewScenario = async (scenario: Scenario) => {
+  try {
+    const foundScenario = await ScenarioModel.create(scenario);
+    return foundScenario;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-export const updateScenario = async (scenario: Scenario) =>
-  ScenarioModel.update(scenario, {
-    where: {
-      type: scenario.type,
-    },
-  });
+export const updateScenario = async (scenario: Scenario) => {
+  try {
+    return ScenarioModel.update(scenario, {
+      where: {
+        type: scenario.type,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
