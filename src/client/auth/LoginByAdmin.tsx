@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Form,
-  Header,
-  Input,
-  Message,
-} from "semantic-ui-react";
+import { Button, Form, Header, Input, Message } from "semantic-ui-react";
 import useAuth from "./useAuth";
 import { handleProjectNameInput } from "./inputChanges";
 
@@ -23,10 +17,14 @@ const LoginByAdmin = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleLoginFromSubmit = async (event: React.SyntheticEvent) => {
-    event.preventDefault();
-    setIsLoading(true);
-    await auth.login(user, true);
-    setIsLoading(false);
+    try {
+      event.preventDefault();
+      setIsLoading(true);
+      await auth.login(user, true);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -49,7 +47,7 @@ const LoginByAdmin = () => {
             }
           />
         </label>
-        <p style={{ color: "#b9b9b9", fontSize: '.9rem' }}>
+        <p style={{ color: "#b9b9b9", fontSize: ".9rem" }}>
           Можно вставить ссылку прямо вот так:{" "}
           <i>https://demo-new.mindbox.ru/</i>, она подрежится сама
         </p>
