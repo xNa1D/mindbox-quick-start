@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import { Scenario } from "src/declarations";
 
-const fileWithScenarios = "../../scenarios.json";
+const fileWithScenarios = "../../../data/scenarios.json";
 
 const convertToScenarioJSON = (rawScenario: Buffer): Scenario[] =>
   JSON.parse(rawScenario.toString());
