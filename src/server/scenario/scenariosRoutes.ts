@@ -4,8 +4,9 @@ import checkToken from "../user/checkTocken";
 import startScenarioAndSendResult from "./startScenarioAndSendResult";
 
 import { StartScenarioBody, JwtUser } from "src/declarations";
-import { addNewScenario, getAllScenarios, updateScenario } from "../db/model";
+
 import { config } from "../../config";
+import { addNewScenario, getAllScenarios, updateScenario } from "./scenarioController";
 
 const scenariosRoutes = Router();
 
