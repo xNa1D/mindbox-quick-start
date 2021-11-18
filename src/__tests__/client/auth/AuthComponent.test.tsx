@@ -90,6 +90,7 @@ describe("toggling auth panel", () => {
       data: "myProject",
     });
 
+    await delay(500);
     customRender(<AuthComponent />);
     await delay(500);
     const statusBar = screen.getByText("Авторизован в myProject.mindbox.ru");
