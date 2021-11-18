@@ -4,17 +4,42 @@ import "@testing-library/jest-dom";
 import { MemoryRouter } from "react-router-dom";
 import { createMemoryHistory } from "history";
 
-import Main from "src/client/Main";
-
 import startScenario from "src/client/api/scenarioRequests";
+import ScenarioComponent from "src/client/scenario/ScenarioComponent";
 
-jest.mock("axios");
+import { getAllScenarios } from "src/client/scenario/getAllScenarios";
+
 jest.mock("client/api/scenarioRequests");
+jest.mock("src/client/scenario/getAllScenarios");
+
+(getAllScenarios as jest.Mock).mockResolvedValue([
+  {
+    type: "ecommerce",
+    name: "Интернет магазин: базовые операции",
+    docs: "https://docs.google.com/document/d/1VoY1pre3ZqdBBuIxb4-1IIiZr5W-NkTUUrAimxeCfW4/edit",
+    api: ["5ec6c26197e4531b3a9d9864", "607994e335da151e07a5afa6"],
+    ghType: "old",
+  },
+  {
+    type: "mobilePush",
+    name: "Мобильное приложение: базовые операции",
+    docs: "https://docs.google.com/document/d/1glcthFoGqwcj1hzAt8PG4Y6YO_Sw6MlUmhiOj2cPa1o/edit",
+    api: ["5fb2689f89be016e97029052", "6134b7bc6fbaac15baf8c9b6"],
+    ghType: "old",
+  },
+  {
+    type: "loyaltyOnline",
+    name: "Программа лояльности: онлайн на сайте",
+    docs: "https://docs.google.com/document/d/13XJIqU1CSv5yaTFeAFu7J1L94edaMAQNQAAwHJxqAOc/edit",
+    api: ["5ed5315fe1d6aa3e73eeac22", "6134b10278fff919767c256d"],
+    ghType: "old",
+  },
+]);
 
 describe("Scenario rendering", () => {
   test("should render 2 inputs and selector", async () => {
     await act(async () => {
-      render(<Main />);
+      render(<ScenarioComponent />);
     });
 
     const campaignNumberField = screen.getByLabelText("Номер кампании");
@@ -29,7 +54,9 @@ describe("Scenario rendering", () => {
 
 describe("Scenario calls", () => {
   test("should call API with chosen options", async () => {
-    render(<Main />);
+    await act(async () => {
+      render(<ScenarioComponent />);
+    });
 
     const campaignNumberField = screen.getByLabelText("Номер кампании");
     const taskNameField = screen.getByLabelText("Какие операции заводить");
@@ -67,7 +94,9 @@ describe("Scenario calls", () => {
   });
 
   test("should call API with chosen options", async () => {
-    render(<Main />);
+    await act(async () => {
+      render(<ScenarioComponent />);
+    });
 
     await act(async () => {
       fireEvent.click(screen.getByText("Запустить"));
@@ -81,7 +110,9 @@ describe("Scenario calls", () => {
     rejectedApiCall.mockRejectedValue({
       response: { status: 503, data: "Server error" },
     });
-    render(<Main />);
+    await act(async () => {
+      render(<ScenarioComponent />);
+    });
 
     await act(async () => {
       fireEvent.click(screen.getByText("Запустить"));
@@ -96,11 +127,13 @@ describe("Scenario calls", () => {
     });
     const history = createMemoryHistory();
 
-    render(
-      <MemoryRouter>
-        <Main />
-      </MemoryRouter>
-    );
+    await act(async () => {
+      render(
+        <MemoryRouter>
+          <ScenarioComponent />
+        </MemoryRouter>
+      );
+    });
 
     await act(async () => {
       fireEvent.click(screen.getByText("Запустить"));

@@ -1,24 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import { StartScenarioBody } from "src/declarations";
+import { Scenario, StartScenarioBody } from "src/declarations";
 import useAuth from "client/auth/useAuth";
-import scenarios from "src/data";
+// import scenarios from "src/data";
 
 import { Container, Grid, Header, Segment } from "semantic-ui-react";
 
 import ScenarioInfo from "./ScenarioInfo";
-import ScenarioForm from "./ScenarioForm";
+import ScenarioForm, { fallbackScenario } from "./ScenarioForm";
 import ScenarioInstruction from "./ScenarioInstruction";
+import { getAllScenarios } from "./getAllScenarios";
 
 const ScenarioComponent = () => {
   const auth = useAuth();
+  const [scenarios, setScenarios] = useState<Scenario[]>([]);
+  const [selectedScenario, setSelectedScenario] = useState<string>("");
 
-  const [scenarioInfo, setScenarioInfo] = useState({
-    scenario: scenarios[0],
-    projectName: auth.loginForProject,
-    campaign: 0,
-    emailForNotification: "",
-  } as StartScenarioBody);
+  useEffect(() => {
+    getAllScenarios()
+      .then((data) => {
+        setScenarios(data);
+      })
+      .catch(console.log);
+  }, []);
+
   return (
     <Container fluid>
       <Header as="h1">Завести операции ...</Header>
@@ -26,14 +31,22 @@ const ScenarioComponent = () => {
         <Grid.Column width={6} style={{ maxWidth: "450px" }}>
           <Segment style={{ position: "sticky", top: "15px" }}>
             <ScenarioForm
-              scenarioInfo={scenarioInfo}
-              updateScenarioInfo={setScenarioInfo}
+              allScenarios={scenarios}
+              selectedScenario={selectedScenario}
+              onChangeSelectedScenario={setSelectedScenario}
             />
             <ScenarioInstruction />
           </Segment>
         </Grid.Column>
         <Grid.Column width={10}>
-          <ScenarioInfo scenario={scenarioInfo.scenario} />
+          {scenarios && selectedScenario && (
+            <ScenarioInfo
+              scenario={
+                scenarios.find((s) => s.type === selectedScenario) ||
+                fallbackScenario
+              }
+            />
+          )}
         </Grid.Column>
       </Grid>
     </Container>

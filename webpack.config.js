@@ -8,6 +8,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "build/client"),
     filename: "bundle.js",
+    chunkFilename: "chunk-[name].[contenthash].js",
   },
   target: "web",
   devServer: {
@@ -17,7 +18,10 @@ module.exports = {
     proxy: {
       "/api": "http://localhost:3030",
     },
+    overlay: true,
+    progress: true,
     historyApiFallback: true,
+    hotOnly: true,
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".css", ".scss"],
@@ -33,7 +37,7 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        use: "awesome-typescript-loader",
+        use: "ts-loader",
         exclude: [path.resolve(__dirname, "./src/server/**/*"), /node_modules/],
       },
       {
