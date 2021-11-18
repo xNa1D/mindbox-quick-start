@@ -12,6 +12,10 @@ import scenarios from "src/data";
 jest.mock("axios");
 jest.mock("client/api/userRequests");
 
+beforeEach(() => {
+  jest.clearAllMocks();
+});
+
 const customRender = async (
   ui: any,
   { providerProps, ...renderOptions }: any = {}
@@ -27,8 +31,8 @@ const customRender = async (
 };
 
 beforeEach(() => {
-  jest.clearAllMocks()
-})
+  jest.clearAllMocks();
+});
 
 const delay = (ms: number) => {
   return new Promise((resolve) => {
@@ -70,12 +74,12 @@ describe("check rendering", () => {
 describe("toggling auth panel", () => {
   test("should hide auth panel on click if not logged in", async () => {
     customRender(<AuthComponent />);
-    await delay(500) 
+    await delay(500);
     const statusBar = screen.getByText("Нужно авторизоваться");
     await act(async () => {
       fireEvent.click(statusBar);
     });
-    await delay(600) 
+    await delay(600);
     const projectField = screen.queryByText("Системное имя проекта");
     expect(projectField).not.toBeInTheDocument();
   });
@@ -85,21 +89,21 @@ describe("toggling auth panel", () => {
       status: 200,
       data: "myProject",
     });
-    
+
     customRender(<AuthComponent />);
-    await delay(500) 
+    await delay(500);
     const statusBar = screen.getByText("Авторизован в myProject.mindbox.ru");
     await act(async () => {
       fireEvent.click(statusBar);
     });
-    await delay(600) 
+    await delay(600);
     const projectField = screen.queryByText("Системное имя проекта");
     expect(projectField).toBeInTheDocument();
   });
 });
 
-describe('clearing auth info', () => {
-  test('should render not logged in status on click button for changing project', async () => {
+describe("clearing auth info", () => {
+  test("should render not logged in status on click button for changing project", async () => {
     (checkToken as jest.Mock).mockResolvedValueOnce({
       status: 200,
       data: "myProject",
@@ -114,7 +118,5 @@ describe('clearing auth info', () => {
     await delay(600);
     const projectField = screen.getByText("Системное имя проекта");
     expect(projectField).toBeInTheDocument();
-  })
-  
-})
-
+  });
+});
