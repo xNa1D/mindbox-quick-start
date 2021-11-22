@@ -21,7 +21,7 @@ const startScenarioAndSendResult = async ({
     campaign,
     ghType: scenario.ghType,
     projectName,
-    scenarioApiAddress: scenario.api,
+    scenarioApiAddress: (scenario.api as unknown as string).split(","),
     adminPanelCookie,
   };
 
@@ -42,8 +42,8 @@ const startScenarioAndSendResult = async ({
   } else {
     const errorMessagePayload: ErrorMessageParameters = {
       projectName,
-      videoLink: scenarioResult.error?.videoLink as string,
-      errorMessage: scenarioResult.error?.errorMessage as string,
+      videoLink: scenarioResult.error?.videoLink as string || "",
+      errorMessage: scenarioResult.error?.errorMessage as string || "",
       steps: scenarioResult.steps,
       task: scenario.name,
     };
