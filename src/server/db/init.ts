@@ -10,7 +10,7 @@ export const sequelize = new Sequelize({
 export const initDb = async () => {
   try {
     await sequelize.authenticate();
-    sequelize.sync({ force: true });
+    sequelize.sync({ alter: true });
 
     console.log("Connection has been established successfully.");
   } catch (error) {
