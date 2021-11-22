@@ -40,7 +40,6 @@ const startScenarioAndSendResult = async ({
       operation: operations.messages.success,
     });
   } else {
-
     const errorMessagePayload: ErrorMessageParameters = {
       projectName,
       videoLink: scenarioResult.error?.videoLink as string || "",
