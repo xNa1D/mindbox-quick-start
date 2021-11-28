@@ -6,17 +6,32 @@ import generateAccessToken from "src/server/user/generateAccessToken";
 import mockScenarioResultSuccess from "../../__mocks__/mockScenarioResultSuccess.json";
 import mockScenarioResultError from "../../__mocks__/mockScenarioResultError.json";
 
-import { server } from "src/server/index";
+import { app } from "src/server/app";
 
 import { StartScenarioBody, Scenario } from "src/declarations";
 
 jest.mock("jest");
+jest.mock("sequelize");
 jest.mock("src/server/scenario/startScenario");
 jest.mock("src/server/scenario/sendMessage");
 
 // import scenarios from "src/data";
 
 let agent: any;
+let server: any;
+
+beforeAll(() => {
+  server = app.listen(9991);
+  agent = supertest(server);
+});
+
+afterEach(() => {
+  jest.clearAllMocks();
+});
+
+afterAll(() => {
+  server.close();
+});
 
 const mockScenario: Scenario = {
   type: "mockType",
@@ -61,23 +76,7 @@ const mockApiBody: StartScenarioBody = {
 // const mockErrorMessageInstance = (ErrorMessage as jest.Mock).mock.instances[0];
 // const sendErrorMessage = mockErrorMessageInstance.sendMessage;
 
-beforeEach(() => {
-  // Clear all instances and calls to constructor and all methods:
-  // (SuccessMessage as jest.Mock).mockClear();
-  // (ErrorMessage as jest.Mock).mockClear();
-});
 
-afterEach(() => {
-  jest.clearAllMocks();
-});
-
-beforeAll(() => {
-  agent = supertest(server);
-});
-
-afterAll(() => {
-  server.close();
-});
 
 describe("/scenario", () => {
   jest.setTimeout(30000);
