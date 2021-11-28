@@ -1,21 +1,32 @@
 import supertest from "supertest";
-import { server } from "src/server/index";
+import { app } from "src/server/app";
 import generateAccessToken from "src/server/user/generateAccessToken";
 
 import sendYmlToMindbox from "src/server/yml/sendYmlToMindbox";
 import { YmlRequestType } from "src/declarations";
 
-let agent: any;
-
 jest.mock("src/server/yml/sendYmlToMindbox");
+jest.mock("sequelize", () => {
+  const mSequelize = {
+    authenticate: jest.fn(),
+    define: jest.fn(),
+  };
+  const actualSequelize = jest.requireActual("sequelize");
+  return {
+    Sequelize: jest.fn(() => mSequelize),
+    DataTypes: actualSequelize.DataTypes,
+  };
+});
 
-beforeEach(() => {});
+let agent: any;
+let server: any;
 
 afterEach(() => {
   jest.clearAllMocks();
 });
 
-beforeEach(() => {
+beforeAll(() => {
+  server = app.listen(9990);
   agent = supertest(server);
 });
 
@@ -89,5 +100,3 @@ describe("send valid yml data with valid user token", () => {
     expect(res.text).toBe("Настройки фидов отправлены");
   });
 });
-
-
