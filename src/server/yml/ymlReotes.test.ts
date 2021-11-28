@@ -21,13 +21,14 @@ jest.mock("sequelize", () => {
 let agent: any;
 let server: any;
 
-afterEach(() => {
-  jest.clearAllMocks();
-});
 
 beforeAll(() => {
   server = app.listen(9990);
   agent = supertest(server);
+});
+
+afterEach(() => {
+  jest.clearAllMocks();
 });
 
 afterAll(() => {
