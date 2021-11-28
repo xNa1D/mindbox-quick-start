@@ -1,9 +1,9 @@
-import axios from "../../__mocks__/axios";
+import axios from "axios";
+
 import startScenario from "./startScenario";
-import mockScenarioResultError from "../../__mocks__/mockScenarioResultError.json";
-import mockScenarioResultSuccess from "../../__mocks__/mockScenarioResultSuccess.json";
-import mockScenarioResultPartlySuccess from "../../__mocks__/mockScenarioResultPartlySuccess.json";
+
 import { StartScenarioType, Step } from "src/declarations";
+import { parseStepsInfo } from "./utils/parseStepsInfo";
 
 const mockBody: StartScenarioType = {
   scenarioApiAddress: ["testApi"],
@@ -13,18 +13,29 @@ const mockBody: StartScenarioType = {
   adminPanelCookie: "myAwesomeCookie",
 };
 
+jest.mock("./utils/parseStepsInfo.ts");
+
 const expectedSteps: Step[] = [
   { name: "Вход на проект", status: null },
   { name: "ШД для импорта клиентов", status: true },
   { name: "ШД для создания клиентов администратором", status: false },
 ];
 
-describe("start scenario and", () => {
-  it("should return object with SUCCESS results and partly failed steps", async () => {
-    axios.post = jest.fn().mockResolvedValue({
-      status: 200,
-      data: mockScenarioResultSuccess,
-    });
+const mockSuccessResult = {
+  status: 200,
+  data: {
+    code: "SUCCESS",
+    data: {
+      passing: true,
+    },
+  },
+};
+
+(parseStepsInfo as jest.Mock).mockReturnValue(expectedSteps);
+
+describe("startScenario", () => {
+  it("When execution ends OK, should return object with SUCCESS results with proper steps", async () => {
+    axios.post = jest.fn().mockResolvedValue(mockSuccessResult);
 
     const res = await startScenario(mockBody);
     expect(res).toStrictEqual({
@@ -34,29 +45,9 @@ describe("start scenario and", () => {
     });
   });
 
-  it("should return object with SUCCESS results and all done steps", async () => {
-    axios.post = jest.fn().mockResolvedValue({
-      status: 200,
-      data: mockScenarioResultPartlySuccess,
-    });
-
-    const res = await startScenario(mockBody);
-    expect(res).toStrictEqual({
-      error: {},
-      status: "SUCCESS",
-      steps: [
-        { name: "Вход на проект", status: true },
-        { name: "ШД для импорта клиентов", status: true },
-        { name: "ШД для создания клиентов администратором", status: true },
-      ],
-    });
-  });
-
   it("should start 2 scenarios and return status with both steps", async () => {
-    axios.post = jest.fn().mockResolvedValue({
-      status: 200,
-      data: mockScenarioResultSuccess,
-    });
+    axios.post = jest.fn().mockResolvedValue(mockSuccessResult);
+    
     const mockBodyWith2apis = {
       ...mockBody,
       scenarioApiAddress: ["test1", "test2"],
@@ -67,25 +58,6 @@ describe("start scenario and", () => {
       error: {},
       status: "SUCCESS",
       steps: [...expectedSteps, ...expectedSteps],
-    });
-  });
-
-  it("should return correct object with error result", async () => {
-    axios.post = jest.fn().mockResolvedValue({
-      status: 200,
-      data: mockScenarioResultError,
-    });
-
-    const res = await startScenario(mockBody);
-
-    expect(res).toStrictEqual({
-      error: {
-        errorMessage: "Test run reached 10 minute time limit and was stopped",
-        videoLink:
-          "https://ghostinspector-prod.s3.amazonaws.com/videos/a6306a8a-059a-4fda-a1ae-74c973d362b4.mp4",
-      },
-      status: "ERROR",
-      steps: [...expectedSteps],
     });
   });
 });
@@ -136,53 +108,3 @@ it("should throw internal error of code not SUCCESS", async () => {
   );
 });
 
-describe("create different settings of scenario ", () => {
-  const oldScenarioMock: StartScenarioType = {
-    scenarioApiAddress: ["testApi"],
-    projectName: "testProject",
-    campaign: 1,
-    ghType: "old",
-    adminPanelCookie: "myAwesomeCookie",
-  };
-  const newScenarioMock: StartScenarioType = {
-    scenarioApiAddress: ["testApi"],
-    projectName: "testProject",
-    campaign: 1,
-    ghType: "new",
-    adminPanelCookie: "myAwesomeCookie",
-  };
-
-  process.env = {
-    GH_TOKEN: "oldToken",
-    GH_TOKEN_NEW: "newToken",
-  };
-
-  test("should call OLD api", async () => {
-    axios.post = jest.fn();
-
-    await startScenario(oldScenarioMock);
-    expect(axios.post).toHaveBeenCalledWith(
-      "https://api.ghostinspector.com/v1/tests/testApi/execute/?apiKey=oldToken",
-      {
-        campaign: 1,
-        projectName: "testProject",
-      },
-      { headers: { "Content-Type": "application/json" } }
-    );
-  });
-
-  test("should call NEW GH api", async () => {
-    axios.post = jest.fn();
-
-    await startScenario(newScenarioMock);
-    expect(axios.post).toHaveBeenCalledWith(
-      "https://api.ghostinspector.com/v1/tests/testApi/execute/?apiKey=newToken",
-      {
-        adminPanelCookie: "myAwesomeCookie",
-        campaign: 1,
-        projectName: "testProject",
-      },
-      { headers: { "Content-Type": "application/json" } }
-    );
-  });
-});
