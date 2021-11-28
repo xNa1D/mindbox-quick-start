@@ -6,6 +6,8 @@ import sendYmlToMindbox from "src/server/yml/sendYmlToMindbox";
 import { YmlRequestType } from "src/declarations";
 
 jest.mock("src/server/yml/sendYmlToMindbox");
+jest.mock("../db/init.ts");
+
 jest.mock("sequelize", () => {
   const mSequelize = {
     authenticate: jest.fn(),
@@ -19,20 +21,14 @@ jest.mock("sequelize", () => {
 });
 
 let agent: any;
-let server: any;
 
 
 beforeAll(() => {
-  server = app.listen(9990);
-  agent = supertest(server);
+  agent = supertest(app);
 });
 
 afterEach(() => {
   jest.clearAllMocks();
-});
-
-afterAll(() => {
-  server.close();
 });
 
 const mockUserAuthToken = generateAccessToken({
