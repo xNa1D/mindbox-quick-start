@@ -1,9 +1,8 @@
 import supertest from "supertest";
-import axios from "../../__mocks__/axios";
+import axios from "axios";
 
-import generateAccessToken from "./generateAccessToken";
-
-import { app } from "../app";
+import { generateAccessToken } from "server/auth";
+import { app } from "server/app";
 
 let agent: any;
 
@@ -17,23 +16,20 @@ afterEach(() => {
 
 jest.mock("../db/init.ts");
 
-
 const mockUser = {
   login: "testUser",
   password: "testPassword",
-  projectName: "testProject"
+  projectName: "testProject",
 };
 
-const mockAdminToken = ".ASPXAUTH=MyAwesomeAuthCookie"
+const mockAdminToken = ".ASPXAUTH=MyAwesomeAuthCookie";
 
 const mockAdminAuthSuccessResponse = {
   status: 200,
   headers: {
     "cache-control": "private",
     "content-type": "application/json; charset=utf-8",
-    "set-cookie": [
-      `${mockAdminToken}; path=/; HttpOnly; SameSite=Lax; Secure`
-    ],
+    "set-cookie": [`${mockAdminToken}; path=/; HttpOnly; SameSite=Lax; Secure`],
   },
   data: {
     userName: mockUser.login,
@@ -64,19 +60,15 @@ const mockAdminAuthErrorResponse = {
   },
 };
 
-
-
 describe("/authByAdminPanel", () => {
-  it('when Mindbox auth OK, should return JWT token', async () => {
+  it("when Mindbox auth OK, should return JWT token", async () => {
     axios.post = jest.fn().mockResolvedValue(mockAdminAuthSuccessResponse);
 
-    
     const res = await agent.post("/api/user/authByAdminPanel").send({
       email: mockUser.login,
       password: mockUser.password,
-      project: mockUser.projectName
+      project: mockUser.projectName,
     });
-    
 
     const token = generateAccessToken({
       email: mockUser.login,
@@ -87,16 +79,14 @@ describe("/authByAdminPanel", () => {
     expect(res.text).toBe(token);
   });
 
-  it('when Mindbox auth error, should return error text', async () => {
+  it("when Mindbox auth error, should return error text", async () => {
     axios.post = jest.fn().mockResolvedValue(mockAdminAuthErrorResponse);
 
-    
     const res = await agent.post("/api/user/authByAdminPanel").send({
       email: mockUser.login,
       password: mockUser.password,
-      project: mockUser.projectName
+      project: mockUser.projectName,
     });
-    
 
     expect(res.status).toBe(503);
     expect(res.text).toBe(
