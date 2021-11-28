@@ -6,7 +6,11 @@ import startScenarioAndSendResult from "./startScenarioAndSendResult";
 import { StartScenarioBody, JwtUser } from "src/declarations";
 
 import { config } from "../../config";
-import { addNewScenario, getAllScenarios, updateScenario } from "./scenarioController";
+import {
+  addNewScenario,
+  getAllScenarios,
+  updateScenario,
+} from "./scenarioController";
 
 const scenariosRoutes = Router();
 
@@ -53,21 +57,16 @@ scenariosRoutes.post(
     let user: JwtUser;
     try {
       user = checkToken(req.cookies.token);
-      // jwt is OK. will start scenario async
-      res.sendStatus(200);
 
-      const projectName = user.project || "";
-      const scenario = req.body.scenario;
-      const campaign = req.body.campaign;
-      const email = req.body.emailForNotification;
-
-      await startScenarioAndSendResult({
-        email,
-        projectName,
-        scenario,
-        campaign,
-        adminPanelCookie: user.tokenFromAdminPanel || "",
+      startScenarioAndSendResult({
+        email: req.body.emailForNotification,
+        projectName: user.project,
+        scenario: req.body.scenario,
+        campaign: req.body.campaign,
+        adminPanelCookie: user.tokenFromAdminPanel,
       });
+
+      res.sendStatus(200);
     } catch (error) {
       res
         .status(403)
