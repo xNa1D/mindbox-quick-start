@@ -1,10 +1,8 @@
 import supertest from "supertest";
 import startScenario from "src/server/scenario/startScenario";
-import sendMessage from "src/server/scenario/sendMessage";
+import { sendMessage } from "server/notification";
 
 import generateAccessToken from "src/server/auth/generateAccessToken";
-import mockScenarioResultSuccess from "../../../__mocks__/mockScenarioResultSuccess.json";
-import mockScenarioResultError from "../../../__mocks__/mockScenarioResultError.json";
 
 import { getAllScenarios } from "../scenarioController";
 
@@ -14,9 +12,8 @@ import { StartScenarioBody, Scenario } from "src/declarations";
 
 jest.mock("../../db/init.ts");
 jest.mock("src/server/scenario/startScenario");
-jest.mock("src/server/scenario/sendMessage");
+jest.mock("server/notification/sendMessage");
 jest.mock("../scenarioController.ts");
-
 
 let agent: any;
 
@@ -68,10 +65,6 @@ const mockApiBody: StartScenarioBody = {
   emailForNotification: "test@me.please",
 };
 
-
-// const mockErrorMessageInstance = (ErrorMessage as jest.Mock).mock.instances[0];
-// const sendErrorMessage = mockErrorMessageInstance.sendMessage;
-
 jest.setTimeout(30000);
 
 const token = generateAccessToken({
@@ -80,11 +73,6 @@ const token = generateAccessToken({
   tokenFromAdminPanel: "myToken",
 });
 
-const tokenFromAdminPanel = generateAccessToken({
-  email: "nikitin@mindbox.ru",
-  project: "test",
-  tokenFromAdminPanel: "testToken",
-});
 
 describe("/scenario", () => {
   describe("POST to /api/scenario/start ", () => {
