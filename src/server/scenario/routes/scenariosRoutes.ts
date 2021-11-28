@@ -1,9 +1,9 @@
-import { Request, Response, NextFunction, Router } from "express";
+import { Request, Response, Router } from "express";
 
-import checkToken from "../../auth/checkTocken";
+import { authMiddleware } from "server/auth";
 import handleScenarioStart from "../startScenarioAndSendResult";
 
-import { StartScenarioBody, JwtUser } from "src/declarations";
+import { StartScenarioBody } from "src/declarations";
 
 import { config } from "../../../config";
 import {
@@ -49,21 +49,18 @@ scenariosRoutes.post("/update", async (req, res) => {
 
 scenariosRoutes.post(
   "/start",
+  authMiddleware,
   async (
     req: Request<{}, {}, StartScenarioBody>,
     res: Response,
-    next: NextFunction
   ) => {
-    let user: JwtUser;
     try {
-      user = checkToken(req.cookies.token);
-
       handleScenarioStart({
         email: req.body.emailForNotification,
-        projectName: user.project,
+        projectName: res.locals.project,
         scenario: req.body.scenario,
         campaign: req.body.campaign,
-        adminPanelCookie: user.tokenFromAdminPanel,
+        adminPanelCookie: res.locals.tokenFromAdminPanel,
       });
 
       res.sendStatus(200);
@@ -71,7 +68,6 @@ scenariosRoutes.post(
       res
         .status(403)
         .send("Ошибка запуска. Перезагрузите страницу и попробуйте еще раз");
-      next();
     }
   }
 );
