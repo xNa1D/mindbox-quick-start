@@ -1,16 +1,16 @@
 import { Request, Response, NextFunction, Router } from "express";
 
-import checkToken from "../user/checkTocken";
-import handleScenarioStart from "./startScenarioAndSendResult";
+import checkToken from "../../auth/checkTocken";
+import handleScenarioStart from "../startScenarioAndSendResult";
 
 import { StartScenarioBody, JwtUser } from "src/declarations";
 
-import { config } from "../../config";
+import { config } from "../../../config";
 import {
   addNewScenario,
   getAllScenarios,
   updateScenario,
-} from "./scenarioController";
+} from "../scenarioController";
 
 const scenariosRoutes = Router();
 

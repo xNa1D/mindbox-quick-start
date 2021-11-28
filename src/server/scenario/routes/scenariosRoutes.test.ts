@@ -3,18 +3,20 @@ import startScenario from "src/server/scenario/startScenario";
 import sendMessage from "src/server/scenario/sendMessage";
 
 import generateAccessToken from "src/server/user/generateAccessToken";
-import mockScenarioResultSuccess from "../../__mocks__/mockScenarioResultSuccess.json";
-import mockScenarioResultError from "../../__mocks__/mockScenarioResultError.json";
+import mockScenarioResultSuccess from "../../../__mocks__/mockScenarioResultSuccess.json";
+import mockScenarioResultError from "../../../__mocks__/mockScenarioResultError.json";
 
-import { getAllScenarios } from "./scenarioController";
+import { getAllScenarios } from "../scenarioController";
 
 import { app } from "src/server/app";
 
 import { StartScenarioBody, Scenario } from "src/declarations";
 
-jest.mock("../db/init.ts");
+jest.mock("../../db/init.ts");
 jest.mock("src/server/scenario/startScenario");
 jest.mock("src/server/scenario/sendMessage");
+jest.mock("../scenarioController.ts");
+
 
 let agent: any;
 
@@ -66,7 +68,6 @@ const mockApiBody: StartScenarioBody = {
   emailForNotification: "test@me.please",
 };
 
-jest.mock("./scenarioController.ts");
 
 // const mockErrorMessageInstance = (ErrorMessage as jest.Mock).mock.instances[0];
 // const sendErrorMessage = mockErrorMessageInstance.sendMessage;
