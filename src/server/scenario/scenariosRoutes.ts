@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction, Router } from "express";
 
 import checkToken from "../user/checkTocken";
-import startScenarioAndSendResult from "./startScenarioAndSendResult";
+import handleScenarioStart from "./startScenarioAndSendResult";
 
 import { StartScenarioBody, JwtUser } from "src/declarations";
 
@@ -58,7 +58,7 @@ scenariosRoutes.post(
     try {
       user = checkToken(req.cookies.token);
 
-      startScenarioAndSendResult({
+      handleScenarioStart({
         email: req.body.emailForNotification,
         projectName: user.project,
         scenario: req.body.scenario,

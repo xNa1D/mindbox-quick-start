@@ -9,7 +9,7 @@ import {
   StartScenarioType,
 } from "src/declarations";
 
-const startScenarioAndSendResult = async ({
+const handleScenarioStart = async ({
   email,
   projectName,
   scenario,
@@ -21,7 +21,7 @@ const startScenarioAndSendResult = async ({
     campaign,
     ghType: scenario.ghType,
     projectName,
-    scenarioApiAddress: (scenario.api as unknown as string).split(","),
+    scenarioApiAddress: scenario.api,
     adminPanelCookie,
   };
 
@@ -64,4 +64,4 @@ const startScenarioAndSendResult = async ({
   }
 };
 
-export default startScenarioAndSendResult;
+export default handleScenarioStart;
