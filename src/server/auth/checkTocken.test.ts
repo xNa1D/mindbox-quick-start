@@ -1,6 +1,5 @@
-import checkTocken from "./checkTocken";
-import generateAccessToken from "../user/generateAccessToken";
-import { Request, Response, NextFunction } from "express";
+import { checkToken } from ".";
+import generateAccessToken from "./generateAccessToken";
 
 const token = generateAccessToken({
   email: "nikitin@mindbox.ru",
@@ -10,13 +9,15 @@ const token = generateAccessToken({
 
 describe("checkTocken", () => {
   it("When JWT is valid, should return decoded user", () => {
-    const result = checkTocken(token);
+    
+    const result = checkToken(token);
+
     expect(result.email).toBe("nikitin@mindbox.ru");
   });
 
   it("When JWT is incorrect, should throw error", () => {
     try {
-      checkTocken("123");
+      checkToken("123");
     } catch (error) {
       if (error instanceof Error) {
         expect(error.toString()).toBe("JsonWebTokenError: jwt malformed");
