@@ -1,19 +1,12 @@
 import axios from "axios";
 import { ScenarioResult } from "src/ScenarioResult";
-import parseStepsInfo from "./parseStepsInfo";
+import parseStepsInfo from "./utils/parseStepsInfo";
 
-import { Step, StartScenarioType } from "src/declarations";
+import { Step } from "src/declarations";
+import { StartScenarioType } from "./model";
 
-type ResultErrorType = {
-  errorMessage?: string;
-  videoLink?: string;
-};
-
-type StartScenarioResult = {
-  status: string;
-  error?: ResultErrorType;
-  steps: Step[];
-};
+import { createSettings } from "./utils/createSettings";
+import { StartScenarioResult, ResultErrorType } from "./model";
 
 const startScenario = async ({
   scenarioApiAddress,
@@ -26,30 +19,12 @@ const startScenario = async ({
   let resultError: ResultErrorType = {};
   let resultSteps: Step[] = [];
 
-  const prepareScenarioSettings = (ghType: string) => (api: string) => {
-    const options = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    let token;
-    let body;
-    if (ghType === "old") {
-      token = process.env.GH_TOKEN;
-      body = { projectName, campaign };
-    } else {
-      token = process.env.GH_TOKEN_NEW;
-      body = { projectName, campaign, adminPanelCookie };
-    }
-
-    return {
-      options,
-      url: `https://api.ghostinspector.com/v1/tests/${api}/execute/?apiKey=${token}`,
-      body,
-    };
-  };
-
-  const settingsForGh = prepareScenarioSettings(ghType);
+  const settingsForGh = createSettings({
+    ghType,
+    projectName,
+    campaign,
+    adminPanelCookie,
+  });
 
   const runScenario = async (api: string) => {
     const scenarioSettings = settingsForGh(api);

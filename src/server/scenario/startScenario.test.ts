@@ -2,8 +2,9 @@ import axios from "axios";
 
 import startScenario from "./startScenario";
 
-import { StartScenarioType, Step } from "src/declarations";
+import { Step } from "src/declarations";
 import { parseStepsInfo } from "./utils/parseStepsInfo";
+import { StartScenarioType } from "./model";
 
 const mockBody: StartScenarioType = {
   scenarioApiAddress: ["testApi"],
