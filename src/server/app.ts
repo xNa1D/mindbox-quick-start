@@ -6,7 +6,7 @@ import path from "path";
 
 import userRoutes from "./user/userRoutes";
 import scenariosRoutes from "./scenario/routes/scenariosRoutes";
-import ymlRoute from "./yml/ymlRoutes";
+import ymlRoute from "./yml/routes/ymlRoutes";
 import { initDb } from "./db";
 
 initDb();
