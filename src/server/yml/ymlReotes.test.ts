@@ -1,6 +1,6 @@
 import supertest from "supertest";
 import { app } from "src/server/app";
-import generateAccessToken from "src/server/user/generateAccessToken";
+import { generateAccessToken } from "server/auth/";
 
 import sendYmlToMindbox from "src/server/yml/sendYmlToMindbox";
 import { YmlRequestType } from "src/declarations";
@@ -8,20 +8,7 @@ import { YmlRequestType } from "src/declarations";
 jest.mock("src/server/yml/sendYmlToMindbox");
 jest.mock("../db/init.ts");
 
-jest.mock("sequelize", () => {
-  const mSequelize = {
-    authenticate: jest.fn(),
-    define: jest.fn(),
-  };
-  const actualSequelize = jest.requireActual("sequelize");
-  return {
-    Sequelize: jest.fn(() => mSequelize),
-    DataTypes: actualSequelize.DataTypes,
-  };
-});
-
 let agent: any;
-
 
 beforeAll(() => {
   agent = supertest(app);
