@@ -1,30 +1,45 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
-import { setYmlType } from ".";
+import { setYmlType, YmlImportSetting } from ".";
 
-const sendYmlToMindbox: setYmlType = async (yml, project, authToken) => {
-  var data = `ReactJsonData[]={ymlImportSettings:[${yml.map((item) =>
+const ymlArrayToMindboxString = (array: YmlImportSetting[]) => {
+  return `ReactJsonData[]={ymlImportSettings:[${array.map((item) =>
     JSON.stringify(item)
   )}]}`;
+};
 
-  var config = {
+const isLoginFailed = (result: AxiosResponse): boolean => {
+  if (result.headers["content-type"] === "text/html; charset=utf-8") {
+    throw new Error("Mindbox error");
+  }
+  return true;
+};
+
+const createConfig = ({
+  authCookie,
+  yml,
+  project,
+}: {
+  authCookie: string;
+  yml: YmlImportSetting[];
+  project: string;
+}) => {
+  return {
     url: `https://${project}.mindbox.ru/products/import/yml/save`,
     headers: {
-      Cookie: authToken,
+      Cookie: authCookie,
     },
-    data,
+    data: ymlArrayToMindboxString(yml),
   };
+};
+
+const sendYmlToMindbox: setYmlType = async (yml, project, authToken) => {
+  const config = createConfig({ yml, authCookie: authToken, project });
 
   const result = await axios.post(config.url, config.data, {
     headers: config.headers,
   });
 
-  if (isLoginFailed(result)) {
-    throw new Error("Mindbox error");
-  }
-};
-
-const isLoginFailed = (result: AxiosResponse): boolean => {
-  return result.headers["content-type"] === "text/html; charset=utf-8";
+  isLoginFailed(result);
 };
 
 export default sendYmlToMindbox;
