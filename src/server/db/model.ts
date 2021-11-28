@@ -8,8 +8,8 @@ export const ScenarioModel = sequelize.define<Model<Scenario>>("Scenario", {
   type: { type: DataTypes.STRING, allowNull: false, unique: true },
   name: { type: DataTypes.STRING, allowNull: false },
   docs: { type: DataTypes.STRING },
-  api: { type: DataTypes.ENUM, allowNull: false, values: ["old", "new"] },
-  ghType: { type: DataTypes.STRING },
+  api: { type: DataTypes.STRING, allowNull: false },
+  ghType: { type: DataTypes.ENUM, allowNull: false, values: ["old", "new"] },
 });
 
 export const getAll = async () => {
