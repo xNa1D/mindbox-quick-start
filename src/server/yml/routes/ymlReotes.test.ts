@@ -6,7 +6,7 @@ import sendYmlToMindbox from "src/server/yml/sendYmlToMindbox";
 import { YmlRequestType } from "src/declarations";
 
 jest.mock("src/server/yml/sendYmlToMindbox");
-jest.mock("../db/init.ts");
+jest.mock("server/db/init.ts");
 
 let agent: any;
 

@@ -2,8 +2,8 @@ import { Request, Response, Router } from "express";
 
 import { authMiddleware, checkToken } from "server/auth";
 
-import sendYmlToMindbox from "./sendYmlToMindbox";
-import { createYmlData } from "./createYmlData";
+import sendYmlToMindbox from "../sendYmlToMindbox";
+import { createYmlData } from "../createYmlData";
 import { YmlRequestType } from "src/declarations";
 
 const ymlRoute = Router();
