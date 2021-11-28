@@ -1,12 +1,16 @@
-import { Request, Response, NextFunction, Router } from "express";
+import { Request, Response, Router } from "express";
 
-import checkToken from "../user/checkTocken";
-import startScenarioAndSendResult from "./startScenarioAndSendResult";
+import { authMiddleware } from "../../auth";
+import handleScenarioStart from "../startScenarioAndSendResult";
 
-import { StartScenarioBody, JwtUser } from "src/declarations";
+import { StartScenarioBody } from "src/declarations";
 
-import { config } from "../../config";
-import { addNewScenario, getAllScenarios, updateScenario } from "./scenarioController";
+import { config } from "../../../config";
+import {
+  addNewScenario,
+  getAllScenarios,
+  updateScenario,
+} from "../scenarioController";
 
 const scenariosRoutes = Router();
 
@@ -45,34 +49,22 @@ scenariosRoutes.post("/update", async (req, res) => {
 
 scenariosRoutes.post(
   "/start",
-  async (
-    req: Request<{}, {}, StartScenarioBody>,
-    res: Response,
-    next: NextFunction
-  ) => {
-    let user: JwtUser;
+  authMiddleware,
+  async (req: Request<{}, {}, StartScenarioBody>, res: Response) => {
     try {
-      user = checkToken(req.cookies.token);
-      // jwt is OK. will start scenario async
-      res.sendStatus(200);
-
-      const projectName = user.project || "";
-      const scenario = req.body.scenario;
-      const campaign = req.body.campaign;
-      const email = req.body.emailForNotification;
-
-      await startScenarioAndSendResult({
-        email,
-        projectName,
-        scenario,
-        campaign,
-        adminPanelCookie: user.tokenFromAdminPanel || "",
+      handleScenarioStart({
+        email: req.body.emailForNotification,
+        projectName: res.locals.project,
+        scenario: req.body.scenario,
+        campaign: req.body.campaign,
+        adminPanelCookie: res.locals.tokenFromAdminPanel,
       });
+
+      res.sendStatus(200);
     } catch (error) {
       res
         .status(403)
         .send("Ошибка запуска. Перезагрузите страницу и попробуйте еще раз");
-      next();
     }
   }
 );

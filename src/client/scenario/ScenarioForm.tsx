@@ -6,6 +6,7 @@ import startScenario from "src/client/api/scenarioRequests";
 
 import { Button, Divider, Form, Icon, Input, Message } from "semantic-ui-react";
 import useAuth from "../auth/useAuth";
+import { fallbackScenario } from "./ScenarioComponent";
 
 type ScenarioFormProps = {
   allScenarios: Scenario[];
@@ -13,13 +14,7 @@ type ScenarioFormProps = {
   onChangeSelectedScenario: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export const fallbackScenario: Scenario = {
-  type: "ecommerce",
-  name: "Интернет магазин: базовые операции",
-  docs: "https://docs.google.com/document/d/1VoY1pre3ZqdBBuIxb4-1IIiZr5W-NkTUUrAimxeCfW4/edit",
-  api: ["5ec6c26197e4531b3a9d9864", "607994e335da151e07a5afa6"],
-  ghType: "old",
-};
+
 
 const ScenarioForm = ({
   allScenarios,
@@ -33,19 +28,18 @@ const ScenarioForm = ({
   const [error, setError] = useState("");
 
   const [formState, setFormState] = useState<StartScenarioBody>({
-    scenario:
-      allScenarios?.find((s) => s.type === selected) || fallbackScenario,
+    scenario: fallbackScenario,
     projectName: auth.loginForProject,
     campaign: 0,
     emailForNotification: "",
   });
 
-  useEffect(() => {
-    const selectedScenario =
-      allScenarios.find((scenario) => scenario.type === selected) ||
-      fallbackScenario;
-    setFormState({ ...formState, scenario: selectedScenario });
-  }, [allScenarios]);
+  // useEffect(() => {
+  //   const selectedScenario =
+  //     allScenarios.find((scenario) => scenario.type === selected) ||
+  //     fallbackScenario;
+  //   setFormState({ ...formState, scenario: selectedScenario });
+  // }, [allScenarios]);
 
   const handleFormSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();

@@ -1,86 +1,44 @@
-import { Request, Response, NextFunction, Router } from "express";
-
+import { Request, Response, Router } from "express";
 import axios from "axios";
 
-import User from "./User";
-import generateAccessToken from "./generateAccessToken";
-import checkTocken from "./checkTocken";
+import { authMiddleware, generateAccessToken } from "../auth";
+
+import { AuthRequestBody } from "src/declarations";
+import { authenticateByAdminPanel } from "./authInMindboxPanel";
 
 const userRoutes = Router();
-
-import { AuthRequestBody, AuthByAdminPanelRequestBody } from "src/declarations";
-
-userRoutes.post(
-  "/auth",
-  async (req: Request<{}, {}, AuthRequestBody>, res: Response) => {
-    res.send(200);
-  }
-);
 
 userRoutes.post(
   "/authByAdminPanel",
   async (req: Request<{}, string, AuthRequestBody>, res: Response) => {
     try {
-      const user = new User(req.body.email, req.body.password);
-      const tokenFromAdminPanel = await user.authenticateByAdminPanel(
-        req.body.project
-      );
+      const { email, password, project } = req.body;
 
-      let accessToken: string;
+      const mindboxAuthToken = await authenticateByAdminPanel({
+        email,
+        password,
+        project,
+      });
 
-      accessToken = generateAccessToken({
-        email: user.email,
+      const accessToken = generateAccessToken({
+        email: req.body.email,
         project: req.body.project,
-        tokenFromAdminPanel,
+        tokenFromAdminPanel: mindboxAuthToken,
       });
 
       res.send(accessToken);
     } catch (error) {
       let errorText;
+
       if (axios.isAxiosError(error)) {
-        if (error.response?.data) {
-          errorText = error.response?.data;
-        } else {
-          errorText = error.toString();
-        }
+        errorText = error.response?.data || error.toString();
       }
+
       res.status(503).send(errorText);
     }
   }
 );
 
-userRoutes.post("/reg", async (req: Request, res: Response) => {
-  const user = new User(req.body.email, req.body.password);
-  try {
-    const isUserExist = await user.isStuffExistInMindbox();
-    if (isUserExist) {
-      await user.registrStuff();
-      res.sendStatus(200);
-    } else {
-      res.status(403).send("Такого пользователя на существует");
-    }
-  } catch (error) {
-    // console.log(error);
-    let errorMessage: string = "";
-    if (axios.isAxiosError(error)) {
-      if (error.response?.data?.errorMessage) {
-        errorMessage = error.response?.data?.errorMessage;
-      } else {
-        errorMessage = error.response?.data;
-      }
-    }
-
-    res.status(503).send(errorMessage);
-  }
-});
-
-userRoutes.get("/checkToken", (req: Request, res: Response) => {
-  try {
-    const user = checkTocken(req.cookies.token || "");
-    res.send(user.project);
-  } catch (error) {
-    res.sendStatus(403);
-  }
-});
+userRoutes.get("/checkToken", authMiddleware);
 
 export default userRoutes;

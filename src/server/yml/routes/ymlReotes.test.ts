@@ -1,26 +1,21 @@
 import supertest from "supertest";
-import { server } from "src/server/index";
-import generateAccessToken from "src/server/user/generateAccessToken";
+import { app } from "src/server/app";
+import { generateAccessToken } from "server/auth/";
 
 import sendYmlToMindbox from "src/server/yml/sendYmlToMindbox";
 import { YmlRequestType } from "src/declarations";
 
+jest.mock("src/server/yml/sendYmlToMindbox");
+jest.mock("server/db/init.ts");
+
 let agent: any;
 
-jest.mock("src/server/yml/sendYmlToMindbox");
-
-beforeEach(() => {});
+beforeAll(() => {
+  agent = supertest(app);
+});
 
 afterEach(() => {
   jest.clearAllMocks();
-});
-
-beforeEach(() => {
-  agent = supertest(server);
-});
-
-afterAll(() => {
-  server.close();
 });
 
 const mockUserAuthToken = generateAccessToken({
@@ -89,5 +84,3 @@ describe("send valid yml data with valid user token", () => {
     expect(res.text).toBe("Настройки фидов отправлены");
   });
 });
-
-

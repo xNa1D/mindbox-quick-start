@@ -7,19 +7,27 @@ import useAuth from "client/auth/useAuth";
 import { Container, Grid, Header, Segment } from "semantic-ui-react";
 
 import ScenarioInfo from "./ScenarioInfo";
-import ScenarioForm, { fallbackScenario } from "./ScenarioForm";
+import ScenarioForm from "./ScenarioForm";
 import ScenarioInstruction from "./ScenarioInstruction";
 import { getAllScenarios } from "./getAllScenarios";
 
+export const fallbackScenario: Scenario = {
+  type: "",
+  name: "----",
+  docs: "",
+  api: [],
+  ghType: "new",
+};
+
 const ScenarioComponent = () => {
   const auth = useAuth();
-  const [scenarios, setScenarios] = useState<Scenario[]>([]);
+  const [scenarios, setScenarios] = useState<Scenario[]>([fallbackScenario]);
   const [selectedScenario, setSelectedScenario] = useState<string>("");
 
   useEffect(() => {
     getAllScenarios()
       .then((data) => {
-        setScenarios(data);
+        setScenarios((prev) => [...prev, ...data]);
       })
       .catch(console.log);
   }, []);

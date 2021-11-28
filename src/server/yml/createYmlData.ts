@@ -1,30 +1,20 @@
-// import { Link, Settings, AuthParams } from "src/declarations";
-import { YmlImportSetting } from "./sendYmlToMindbox";
+import { createYmlDataType } from "./";
+import { Link } from "./";
 
-type Link = {
-  url: string;
-  name: string;
-  areaExternalId?: string | undefined;
+const validateYmlLenth = (links: Link[]) => {
+  if (links.length > 500) {
+    throw new Error("Maximum 500 Yml");
+  }
+  return true;
 };
 
-type Settings = {
-  brand: string;
-  externalSystem: string;
-  launchPeriod: number;
-};
+export const createYmlData: createYmlDataType = (
+  links,
+  settings,
+  authParams
+) => {
+  validateYmlLenth(links);
 
-type AuthParams = {
-  password: string;
-  username: string;
-};
-
-export type createYmlDataType = (
-  links: Link[],
-  settings: Settings,
-  AuthParams?: AuthParams
-) => YmlImportSetting[];
-
-const createYmlData: createYmlDataType = (links, settings, AuthParams) => {
   const ymlData = links.map((linkAndName) => {
     const { url, name, areaExternalId } = linkAndName;
 
@@ -37,12 +27,10 @@ const createYmlData: createYmlDataType = (links, settings, AuthParams) => {
       brandSystemName: settings.brand,
       externalSystemSystemName: settings.externalSystem,
       launchPeriod: settings.launchPeriod.toString(),
-      password: AuthParams?.password || null,
-      username: AuthParams?.username || null,
+      password: authParams?.password || null,
+      username: authParams?.username || null,
     };
   });
 
   return ymlData;
 };
-
-export default createYmlData;

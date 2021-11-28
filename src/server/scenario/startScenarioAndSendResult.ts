@@ -1,32 +1,30 @@
-import sendMessage from "./sendMessage";
+import { sendMessage } from "../notification";
 import { operations } from "../../config";
 import startScenario from "./startScenario";
+
+import { StartScenarioType, StartScenarioAndSendResultType } from "./model";
 
 import {
   SuccessMessageParameters,
   ErrorMessageParameters,
-  StartScenarioAndSendResultType,
-  StartScenarioType,
 } from "src/declarations";
 
-const startScenarioAndSendResult = async ({
+const handleScenarioStart = async ({
   email,
   projectName,
   scenario,
   campaign,
   adminPanelCookie,
 }: StartScenarioAndSendResultType) => {
-
   const scenarioData: StartScenarioType = {
     campaign,
     ghType: scenario.ghType,
     projectName,
-    scenarioApiAddress: (scenario.api as unknown as string).split(","),
+    scenarioApiAddress: scenario.api,
     adminPanelCookie,
   };
 
   const scenarioResult = await startScenario(scenarioData);
-
 
   if (scenarioResult.status === "SUCCESS") {
     sendMessage<SuccessMessageParameters>({
@@ -42,8 +40,8 @@ const startScenarioAndSendResult = async ({
   } else {
     const errorMessagePayload: ErrorMessageParameters = {
       projectName,
-      videoLink: scenarioResult.error?.videoLink as string || "",
-      errorMessage: scenarioResult.error?.errorMessage as string || "",
+      videoLink: (scenarioResult.error?.videoLink as string) || "",
+      errorMessage: (scenarioResult.error?.errorMessage as string) || "",
       steps: scenarioResult.steps,
       task: scenario.name,
     };
@@ -64,4 +62,4 @@ const startScenarioAndSendResult = async ({
   }
 };
 
-export default startScenarioAndSendResult;
+export default handleScenarioStart;

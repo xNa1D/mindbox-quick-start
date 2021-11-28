@@ -1,51 +1,45 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import { setYmlType, YmlImportSetting } from ".";
 
-interface Area {
-  externalId?: string;
-}
+const ymlArrayToMindboxString = (array: YmlImportSetting[]) => {
+  return `ReactJsonData[]={ymlImportSettings:[${array.map((item) =>
+    JSON.stringify(item)
+  )}]}`;
+};
 
-export interface YmlImportSetting {
-  brandSystemName: string;
-  externalSystemSystemName: string;
-  name: string;
-  url: string;
-  launchPeriod: string;
-  area?: Area | null;
-  username?: any;
-  password?: any;
-  nextStartDateTimeUtc?: Date;
-  lastSuccessDateTimeUtc?: Date;
-  isFaulty?: boolean;
-}
+const isLoginFailed = (result: AxiosResponse): boolean => {
+  if (result.headers["content-type"] === "text/html; charset=utf-8") {
+    throw new Error("Mindbox error");
+  }
+  return true;
+};
 
-type setYmlType = (
-  yml: YmlImportSetting[],
-  project: string,
-  authToken: string
-) => Promise<void>;
-
-const sendYmlToMindbox: setYmlType = async (yml, project, authToken) => {
-  var data = `ReactJsonData[]={ymlImportSettings:[${yml.map((item) => JSON.stringify(item))}]}`;
-
-  var config = {
+const createConfig = ({
+  authCookie,
+  yml,
+  project,
+}: {
+  authCookie: string;
+  yml: YmlImportSetting[];
+  project: string;
+}) => {
+  return {
     url: `https://${project}.mindbox.ru/products/import/yml/save`,
     headers: {
-      Cookie: authToken,
+      Cookie: authCookie,
     },
-    data,
+    data: ymlArrayToMindboxString(yml),
   };
-// console.log(config);
+};
+
+const sendYmlToMindbox: setYmlType = async (yml, project, authToken) => {
+  const config = createConfig({ yml, authCookie: authToken, project });
+
   const result = await axios.post(config.url, config.data, {
     headers: config.headers,
   });
 
-  if (isLoginFailed(result)) {
-    throw new Error("Mindbox error");
-  }
-};
-
-const isLoginFailed = (result: AxiosResponse): boolean => {
-  return result.headers["content-type"] === "text/html; charset=utf-8";
+  isLoginFailed(result);
 };
 
 export default sendYmlToMindbox;
