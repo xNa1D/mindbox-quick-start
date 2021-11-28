@@ -1,5 +1,5 @@
 import axios from "../../__mocks__/axios";
-import startScenario from "../../server/scenario/startScenario";
+import startScenario from "./startScenario";
 import mockScenarioResultError from "../../__mocks__/mockScenarioResultError.json";
 import mockScenarioResultSuccess from "../../__mocks__/mockScenarioResultSuccess.json";
 import mockScenarioResultPartlySuccess from "../../__mocks__/mockScenarioResultPartlySuccess.json";
