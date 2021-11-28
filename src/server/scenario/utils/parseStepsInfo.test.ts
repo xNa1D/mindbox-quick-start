@@ -1,6 +1,3 @@
-import mockScenarioResultError from "src/__mocks__/mockScenarioResultError.json";
-import mockScenarioResultSuccess from "src/__mocks__/mockScenarioResultSuccess.json";
-import mockScenarioResultPartlySuccess from "src/__mocks__/mockScenarioResultPartlySuccess.json";
 
 import { parseStepsInfo } from "./parseStepsInfo";
 
