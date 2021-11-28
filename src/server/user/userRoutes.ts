@@ -1,19 +1,12 @@
 import { Request, Response, Router } from "express";
 import axios from "axios";
 
-import { authMiddleware, generateAccessToken } from "server/auth";
+import { authMiddleware, generateAccessToken } from "../auth";
 
 import { AuthRequestBody } from "src/declarations";
 import { authenticateByAdminPanel } from "./authInMindboxPanel";
 
 const userRoutes = Router();
-
-userRoutes.post(
-  "/auth",
-  async (req: Request<{}, {}, AuthRequestBody>, res: Response) => {
-    res.send(200);
-  }
-);
 
 userRoutes.post(
   "/authByAdminPanel",

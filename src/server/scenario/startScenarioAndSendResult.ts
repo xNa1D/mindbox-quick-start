@@ -1,4 +1,4 @@
-import { sendMessage } from "server/notification";
+import { sendMessage } from "../notification";
 import { operations } from "../../config";
 import startScenario from "./startScenario";
 

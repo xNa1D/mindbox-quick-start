@@ -1,6 +1,6 @@
 import { Request, Response, Router } from "express";
 
-import { authMiddleware } from "server/auth";
+import { authMiddleware } from "../../auth";
 import handleScenarioStart from "../startScenarioAndSendResult";
 
 import { StartScenarioBody } from "src/declarations";
@@ -50,10 +50,7 @@ scenariosRoutes.post("/update", async (req, res) => {
 scenariosRoutes.post(
   "/start",
   authMiddleware,
-  async (
-    req: Request<{}, {}, StartScenarioBody>,
-    res: Response,
-  ) => {
+  async (req: Request<{}, {}, StartScenarioBody>, res: Response) => {
     try {
       handleScenarioStart({
         email: req.body.emailForNotification,

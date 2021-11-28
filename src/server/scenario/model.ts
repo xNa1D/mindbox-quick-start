@@ -1,11 +1,9 @@
-
 import { Scenario, Step } from "src/declarations";
 
 import { DataTypes } from "sequelize";
 import { Model } from "sequelize/types";
 
-import { sequelize } from "server/db/";
-
+import { sequelize } from "../db";
 
 export type ResultErrorType = {
   errorMessage?: string;
@@ -40,14 +38,26 @@ export type StartScenarioType = {
   adminPanelCookie: string;
 };
 
+type Modify<T, R> = Omit<T, keyof R> & R;
 
+type ScenarioForDB = Modify<Scenario, {
+  api: string;
+}>
 
-
-export const ScenarioModel = sequelize.define<Model<Scenario>>("Scenario", {
+export const ScenarioModel = sequelize.define("Scenario", {
   type: { type: DataTypes.STRING, allowNull: false, unique: true },
   name: { type: DataTypes.STRING, allowNull: false },
   docs: { type: DataTypes.STRING },
-  api: { type: DataTypes.STRING, allowNull: false },
+  api: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    get() {
+      return JSON.parse(this.getDataValue("api"));
+    },
+    set(value) {
+      this.setDataValue("api", JSON.stringify(value));
+    },
+  },
   ghType: { type: DataTypes.ENUM, allowNull: false, values: ["old", "new"] },
 });
 

@@ -1,6 +1,6 @@
 import { Request, Response, Router } from "express";
 
-import { authMiddleware, checkToken } from "server/auth";
+import { authMiddleware, checkToken } from "../../auth";
 
 import sendYmlToMindbox from "../sendYmlToMindbox";
 import { createYmlData } from "../createYmlData";
