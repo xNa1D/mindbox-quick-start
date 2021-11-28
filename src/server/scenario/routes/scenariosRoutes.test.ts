@@ -2,7 +2,7 @@ import supertest from "supertest";
 import startScenario from "src/server/scenario/startScenario";
 import sendMessage from "src/server/scenario/sendMessage";
 
-import generateAccessToken from "src/server/user/generateAccessToken";
+import generateAccessToken from "src/server/auth/generateAccessToken";
 import mockScenarioResultSuccess from "../../../__mocks__/mockScenarioResultSuccess.json";
 import mockScenarioResultError from "../../../__mocks__/mockScenarioResultError.json";
 
