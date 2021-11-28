@@ -17,13 +17,14 @@ ymlRoute.post(
       const { project, tokenFromAdminPanel } = user;
       const { links, settings, authParams } = req.body;
 
-      const ymlData = createYmlData(links, settings, authParams);
-      await sendYmlToMindbox(ymlData, project, tokenFromAdminPanel);
+      await sendYmlToMindbox(
+        createYmlData(links, settings, authParams),
+        project,
+        tokenFromAdminPanel
+      );
 
       res.status(200).send("Настройки фидов отправлены");
     } catch (error) {
-      console.log(error);
-
       res
         .status(403)
         .send("Ошибка отправки фидов. Проверьте авторизацию в проекте");
