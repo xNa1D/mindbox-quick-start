@@ -1,6 +1,6 @@
 import { AuthParams, Link, Settings } from "src/declarations";
-import createYmlData from "src/server/yml/createYmlData";
-import { YmlImportSetting } from "src/server/yml/sendYmlToMindbox";
+import { createYmlData } from "./createYmlData";
+import { YmlImportSetting } from "./";
 
 const mockLinks: Link = {
   url: "linkToFeed",
@@ -52,6 +52,6 @@ test("should return settings without auth", () => {
 
 test("should return settings with auth", () => {
   const ymlData = createYmlData([mockLinks], mockSettings, mockAuth);
-  
+
   expect(ymlData).toStrictEqual([resultYmlWithAuth]);
 });
