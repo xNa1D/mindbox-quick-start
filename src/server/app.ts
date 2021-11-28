@@ -5,7 +5,7 @@ import * as dotenv from "dotenv";
 import path from "path";
 
 import userRoutes from "./user/userRoutes";
-import scenariosRoutes from "./scenario/scenariosRoutes";
+import scenariosRoutes from "./scenario/routes/scenariosRoutes";
 import ymlRoute from "./yml/ymlRoutes";
 import { initDb } from "./db";
 
