@@ -1,6 +1,6 @@
 import { AuthParams, Link, Settings } from "src/declarations";
 import { createYmlData } from "./createYmlData";
-import { YmlImportSetting } from "./";
+import { YmlImportSetting } from ".";
 
 const mockLinks: Link = {
   url: "linkToFeed",
