@@ -65,21 +65,7 @@ export type JwtUser = {
   tokenFromAdminPanel: string;
 };
 
-export type StartScenarioAndSendResultType = {
-  email: string;
-  projectName: string;
-  scenario: Scenario;
-  campaign: number;
-  adminPanelCookie: string;
-};
 
-export type StartScenarioType = {
-  scenarioApiAddress: string[];
-  projectName: string;
-  campaign: number;
-  ghType: "old" | "new";
-  adminPanelCookie: string;
-};
 
 export type UseProviderReturnedValue = {
   isLoggedIn: boolean;
