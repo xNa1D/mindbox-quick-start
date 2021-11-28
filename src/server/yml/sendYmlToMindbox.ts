@@ -1,31 +1,10 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
-
-interface Area {
-  externalId?: string;
-}
-
-export interface YmlImportSetting {
-  brandSystemName: string;
-  externalSystemSystemName: string;
-  name: string;
-  url: string;
-  launchPeriod: string;
-  area?: Area | null;
-  username?: any;
-  password?: any;
-  nextStartDateTimeUtc?: Date;
-  lastSuccessDateTimeUtc?: Date;
-  isFaulty?: boolean;
-}
-
-type setYmlType = (
-  yml: YmlImportSetting[],
-  project: string,
-  authToken: string
-) => Promise<void>;
+import { setYmlType } from ".";
 
 const sendYmlToMindbox: setYmlType = async (yml, project, authToken) => {
-  var data = `ReactJsonData[]={ymlImportSettings:[${yml.map((item) => JSON.stringify(item))}]}`;
+  var data = `ReactJsonData[]={ymlImportSettings:[${yml.map((item) =>
+    JSON.stringify(item)
+  )}]}`;
 
   var config = {
     url: `https://${project}.mindbox.ru/products/import/yml/save`,
@@ -34,7 +13,7 @@ const sendYmlToMindbox: setYmlType = async (yml, project, authToken) => {
     },
     data,
   };
-// console.log(config);
+
   const result = await axios.post(config.url, config.data, {
     headers: config.headers,
   });
