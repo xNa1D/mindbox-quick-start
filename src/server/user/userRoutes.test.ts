@@ -15,6 +15,9 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
+jest.mock("../db/init.ts");
+
+
 const mockUser = {
   login: "testUser",
   password: "testPassword",
