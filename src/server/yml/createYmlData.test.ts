@@ -44,14 +44,28 @@ const resultYmlWithAuth: YmlImportSetting = {
   username: mockAuth.username,
 };
 
-test("should return settings without auth", () => {
-  const ymlData = createYmlData([mockLinks], mockSettings);
+describe("createYmlData", () => {
+  test("When auth is not set, should return settings without auth === null", () => {
+    const ymlData = createYmlData([mockLinks], mockSettings);
 
-  expect(ymlData).toStrictEqual([resultYml]);
-});
+    expect(ymlData).toStrictEqual([resultYml]);
+  });
 
-test("should return settings with auth", () => {
-  const ymlData = createYmlData([mockLinks], mockSettings, mockAuth);
+  test("When auth is set, should return settings with auth", () => {
+    const ymlData = createYmlData([mockLinks], mockSettings, mockAuth);
 
-  expect(ymlData).toStrictEqual([resultYmlWithAuth]);
+    expect(ymlData).toStrictEqual([resultYmlWithAuth]);
+  });
+
+  test("When passing 500+ links, should throw validation error ", () => {
+    const tooManyLinks = Array(501).map((item) => mockLinks);
+
+    try {
+      createYmlData(tooManyLinks, mockSettings, mockAuth);
+    } catch (error) {
+      if (error instanceof Error) {
+        expect(error.message).toBe("Maximum 500 Yml");
+      }
+    }
+  });
 });
