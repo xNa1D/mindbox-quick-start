@@ -2,7 +2,7 @@ import * as jwt from "jsonwebtoken";
 
 import { JwtUser } from "src/declarations";
 
-const generateAccessToken = ({
+export const generateAccessToken = ({
   email,
   project,
   tokenFromAdminPanel,
