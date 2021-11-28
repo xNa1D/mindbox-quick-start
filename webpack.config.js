@@ -23,6 +23,21 @@ module.exports = {
     historyApiFallback: true,
     hotOnly: true,
   },
+  optimization: {
+    minimize: true,
+    splitChunks: {
+      cacheGroups: {
+        vendors: {
+          test: /node_modules/,
+          chunks: "initial",
+          filename: "vendors.[contenthash].js",
+          priority: 1,
+          maxInitialRequests: 2, // create only one vendor file
+          minChunks: 1,
+        },
+      },
+    },
+  },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".css", ".scss"],
     plugins: [new TsconfigPathsPlugin()],
