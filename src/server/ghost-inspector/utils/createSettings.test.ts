@@ -10,12 +10,10 @@ describe("createSettings ", () => {
     ghType: "old",
     adminPanelCookie: "myAwesomeCookie",
   };
+
   const newScenarioMock: StartScenarioType = {
-    scenarioApiAddress: ["testApi"],
-    projectName: "testProject",
-    campaign: 1,
+    ...oldScenarioMock,
     ghType: "new",
-    adminPanelCookie: "myAwesomeCookie",
   };
 
   process.env = {
@@ -34,12 +32,16 @@ describe("createSettings ", () => {
   });
 
   test("When scenario is New, should return settings for New", async () => {
-    const configForApi = createSettings(oldScenarioMock);
+    const configForApi = createSettings(newScenarioMock);
 
     expect(configForApi("testApi")).toStrictEqual({
       options: { headers: { "Content-Type": "application/json" } },
-      url: "https://api.ghostinspector.com/v1/tests/testApi/execute/?apiKey=oldToken",
-      body: { projectName: "testProject", campaign: 1 },
+      url: "https://api.ghostinspector.com/v1/tests/testApi/execute/?apiKey=newToken",
+      body: {
+        projectName: "testProject",
+        campaign: 1,
+        adminPanelCookie: "myAwesomeCookie",
+      },
     });
   });
 });
