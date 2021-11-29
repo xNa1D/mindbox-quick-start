@@ -1,5 +1,4 @@
 import express from "express";
-import * as bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import * as dotenv from "dotenv";
 import path from "path";
@@ -8,6 +7,7 @@ import userRoutes from "./user/userRoutes";
 import scenariosRoutes from "./scenario/routes/scenariosRoutes";
 import ymlRoute from "./yml/routes/ymlRoutes";
 import { initDb } from "./db";
+import addingCfRoutes from "./custom-fields/routes/addCfRoute";
 
 initDb();
 
@@ -16,12 +16,12 @@ export const app = express();
 dotenv.config();
 
 app.use(
-  bodyParser.urlencoded({
+  express.urlencoded({
     extended: true,
   })
 );
 
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(cookieParser());
 
 // app.use("/", pagesRoutes);
