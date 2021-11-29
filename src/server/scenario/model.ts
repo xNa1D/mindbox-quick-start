@@ -5,6 +5,28 @@ import { Model } from "sequelize/types";
 
 import { sequelize } from "../db";
 
+export type commonGhostInspectorFields = {
+  projectName: string;
+  adminPanelCookie: string;
+};
+
+export type prepareScenarioSettingsArgs = {
+  ghType: string;
+  campaign: number;
+} & commonGhostInspectorFields;
+
+export type StartScenarioAndSendResultType = {
+  email: string;
+  scenario: Scenario;
+  campaign: number;
+} & commonGhostInspectorFields;
+
+export type StartScenarioType = {
+  scenarioApiAddress: string[];
+  campaign: number;
+  ghType: "old" | "new";
+} & commonGhostInspectorFields;
+
 export type ResultErrorType = {
   errorMessage?: string;
   videoLink?: string;
@@ -14,35 +36,6 @@ export type StartScenarioResult = {
   error?: ResultErrorType;
   steps: Step[];
 };
-
-export type prepareScenarioSettingsArgs = {
-  ghType: string;
-  projectName: string;
-  campaign: number;
-  adminPanelCookie: string;
-};
-
-export type StartScenarioAndSendResultType = {
-  email: string;
-  projectName: string;
-  scenario: Scenario;
-  campaign: number;
-  adminPanelCookie: string;
-};
-
-export type StartScenarioType = {
-  scenarioApiAddress: string[];
-  projectName: string;
-  campaign: number;
-  ghType: "old" | "new";
-  adminPanelCookie: string;
-};
-
-type Modify<T, R> = Omit<T, keyof R> & R;
-
-type ScenarioForDB = Modify<Scenario, {
-  api: string;
-}>
 
 export const ScenarioModel = sequelize.define("Scenario", {
   type: { type: DataTypes.STRING, allowNull: false, unique: true },
