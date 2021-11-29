@@ -28,6 +28,7 @@ app.use(cookieParser());
 app.use("/api/user", userRoutes);
 app.use("/api/scenario", scenariosRoutes);
 app.use("/api/yml", ymlRoute);
+app.use("/api/cf", addingCfRoutes);
 
 app.use(express.static(path.resolve(__dirname, "../client")));
 
