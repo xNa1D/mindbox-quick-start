@@ -2,10 +2,6 @@ import { Request, Response, Router } from "express";
 
 import { authMiddleware } from "../../auth";
 import { runAndNotify } from "../runAndNotify";
-
-import { StartScenarioBody } from "src/declarations";
-
-import { config } from "../../../config";
 import { CustomFieldObject } from "..";
 
 const addingCfRoutes = Router();
