@@ -1,4 +1,4 @@
-import { prepareScenarioSettingsArgs } from "../model";
+import { prepareScenarioSettingsArgs } from "../../scenario/model";
 
 export const createSettings =
   ({

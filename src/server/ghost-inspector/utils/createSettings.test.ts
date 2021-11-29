@@ -1,5 +1,5 @@
 import axios from "axios";
-import { StartScenarioType } from "../model";
+import { StartScenarioType } from "../../scenario/model";
 import { createSettings } from "./createSettings";
 
 describe("createSettings ", () => {
