@@ -3,7 +3,7 @@ import axios from "axios";
 import startScenario from "./startScenario";
 
 import { Step } from "src/declarations";
-import { parseStepsInfo } from "./utils/parseStepsInfo";
+import { parseStepsInfo } from "../ghost-inspector/utils/parseStepsInfo";
 import { StartScenarioType } from "./model";
 
 const mockBody: StartScenarioType = {
@@ -14,7 +14,7 @@ const mockBody: StartScenarioType = {
   adminPanelCookie: "myAwesomeCookie",
 };
 
-jest.mock("./utils/parseStepsInfo.ts");
+jest.mock("../ghost-inspector/utils/parseStepsInfo.ts");
 
 const expectedSteps: Step[] = [
   { name: "Вход на проект", status: null },
