@@ -7,7 +7,7 @@ import { StartScenarioType } from "./model";
 
 import { createSettings } from "../ghost-inspector/utils/createSettings";
 import { StartScenarioResult, ResultErrorType } from "./model";
-import { runScenario } from "../ghost-inspector";
+import { runOneTask } from "../ghost-inspector";
 
 const startScenario = async ({
   scenarioApiAddress,
@@ -29,7 +29,7 @@ const startScenario = async ({
 
   for await (const api of scenarioApiAddress) {
     try {
-      const result = await runScenario(settingsForGh(api));
+      const result = await runOneTask(settingsForGh(api));
 
       resultSteps = [...resultSteps, ...parseStepsInfo(result.steps || [])];
 

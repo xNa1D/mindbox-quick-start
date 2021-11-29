@@ -8,7 +8,7 @@ const isSuccessfulStart = (result: AxiosResponse<any>) => {
   }
 };
 
-export const runScenario = async <requestBody>(
+export const runOneTask = async <requestBody>(
   setting: settings<requestBody>
 ) => {
   const result = await axios.post<ScenarioResult>(
