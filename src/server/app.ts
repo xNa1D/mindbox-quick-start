@@ -24,7 +24,6 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
-// app.use("/", pagesRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/scenario", scenariosRoutes);
 app.use("/api/yml", ymlRoute);
@@ -47,4 +46,3 @@ process.on("uncaughtException", (err) => {
   console.error("There was an uncaught error", err);
   // process.exit(1); //mandatory (as per the Node.js docs)
 });
-
