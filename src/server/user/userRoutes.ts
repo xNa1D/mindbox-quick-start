@@ -39,6 +39,12 @@ userRoutes.post(
   }
 );
 
-userRoutes.get("/checkToken", authMiddleware);
+userRoutes.get(
+  "/checkToken",
+  authMiddleware,
+  async (req: Request, res: Response) => {
+    res.send(res.locals.user.project)
+  }
+);
 
 export default userRoutes;
