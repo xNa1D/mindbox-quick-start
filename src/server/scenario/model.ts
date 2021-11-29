@@ -11,7 +11,7 @@ export type commonGhostInspectorFields = {
 };
 
 export type prepareScenarioSettingsArgs = {
-  ghType: string;
+  ghType?: string;
   campaign: number;
 } & commonGhostInspectorFields;
 
