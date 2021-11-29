@@ -1,12 +1,13 @@
 import axios from "axios";
-import { ScenarioResult } from "src/ScenarioResult";
-import parseStepsInfo from "./utils/parseStepsInfo";
+import { ScenarioResult } from "src/server/ghost-inspector/ScenarioResult";
+import parseStepsInfo from "../ghost-inspector/utils/parseStepsInfo";
 
 import { Step } from "src/declarations";
 import { StartScenarioType } from "./model";
 
-import { createSettings } from "./utils/createSettings";
+import { createSettings } from "../ghost-inspector/utils/createSettings";
 import { StartScenarioResult, ResultErrorType } from "./model";
+import { runScenario } from "../ghost-inspector";
 
 const startScenario = async ({
   scenarioApiAddress,
@@ -26,24 +27,9 @@ const startScenario = async ({
     adminPanelCookie,
   });
 
-  const runScenario = async (api: string) => {
-    const scenarioSettings = settingsForGh(api);
-
-    const result = await axios.post<ScenarioResult>(
-      scenarioSettings.url,
-      scenarioSettings.body,
-      scenarioSettings.options
-    );
-
-    if (result.data.code !== "SUCCESS") {
-      throw new Error("Internal error in Scenario Server");
-    }
-    return result.data.data;
-  };
-
   for await (const api of scenarioApiAddress) {
     try {
-      const result = await runScenario(api);
+      const result = await runScenario(settingsForGh(api));
 
       resultSteps = [...resultSteps, ...parseStepsInfo(result.steps || [])];
 
