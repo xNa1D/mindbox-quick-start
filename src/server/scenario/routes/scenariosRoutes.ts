@@ -51,13 +51,14 @@ scenariosRoutes.post(
   "/start",
   authMiddleware,
   async (req: Request<{}, {}, StartScenarioBody>, res: Response) => {
+    
     try {
       handleScenarioStart({
         email: req.body.emailForNotification,
-        projectName: res.locals.project,
+        projectName: res.locals.user.project,
         scenario: req.body.scenario,
         campaign: req.body.campaign,
-        adminPanelCookie: res.locals.tokenFromAdminPanel,
+        adminPanelCookie: res.locals.user.tokenFromAdminPanel,
       });
 
       res.sendStatus(200);
