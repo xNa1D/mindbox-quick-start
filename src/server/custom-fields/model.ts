@@ -27,6 +27,8 @@ export const valueTypes = [
   "Идентификатор",
 ];
 
+export const ghostInspectorScriptId = "615f0fc8df58a66e5d0794ab";
+
 export type CustomFieldObject = {
   CustomFieldEntity: string;
   CustomFieldValueTypes: string;
