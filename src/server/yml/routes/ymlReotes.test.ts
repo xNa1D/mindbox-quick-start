@@ -3,7 +3,8 @@ import { app } from "src/server/app";
 import { generateAccessToken } from "server/auth/";
 
 import sendYmlToMindbox from "src/server/yml/sendYmlToMindbox";
-import { YmlRequestType } from "src/declarations";
+import { YmlRequestType } from "./ymlRoutes";
+
 
 jest.mock("src/server/yml/sendYmlToMindbox");
 jest.mock("server/db/init.ts");

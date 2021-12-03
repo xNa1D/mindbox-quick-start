@@ -4,7 +4,30 @@ import { authMiddleware, checkToken } from "../../auth";
 
 import sendYmlToMindbox from "../sendYmlToMindbox";
 import { createYmlData } from "../createYmlData";
-import { YmlRequestType } from "src/declarations";
+
+
+type Url = string;
+type AreaId = string;
+type Name = string;
+
+export type YmlRequestType = {
+  links: Link[];
+  settings: Settings;
+  authParams?: AuthParams;
+};
+
+export type Link = { url: Url; name: Name; areaExternalId?: AreaId };
+
+export type AuthParams = {
+  password: string;
+  username: string;
+};
+
+export type Settings = {
+  brand: string;
+  externalSystem: string;
+  launchPeriod: number;
+};
 
 const ymlRoute = Router();
 

@@ -1,4 +1,4 @@
-import { AuthParams, Link, Settings } from "src/declarations";
+import { AuthParams, Link, Settings } from "./routes/ymlRoutes";
 import { createYmlData } from "./createYmlData";
 import { YmlImportSetting } from ".";
 
