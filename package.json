@@ -62,7 +62,8 @@
     "sqlite3": "^5.0.2",
     "universal-cookie": "^4.0.4",
     "url": "^0.11.0",
-    "util": "^0.12.3"
+    "util": "^0.12.3",
+    "v8-compile-cache": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
