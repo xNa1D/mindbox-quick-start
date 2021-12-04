@@ -40,8 +40,16 @@ const mockYmlData: YmlRequestType = {
   },
 };
 
-describe("send invalid auth token", () => {
-  it("should return 403 and status", async () => {
+const hugeYml = Array(501).map((_, index) => ({
+  areaExternalId: `myareaExternalId-${index}`,
+  name: "awesomeFeed",
+  url: "url",
+}));
+
+const mockHugeYml = {
+  ...mockYmlData,
+  links: hugeYml,
+};
     const res = await agent
       .post("/api/yml/start")
       .set("Cookie", [`token=12345`])
@@ -83,5 +91,24 @@ describe("send valid yml data with valid user token", () => {
 
     expect(res.status).toBe(200);
     expect(res.text).toBe("Настройки фидов отправлены");
+  });
+
+  it("when pass 501+ yml, should return validation error", async () => {
+    const res = await agent
+      .post("/api/yml/start")
+      .set("Cookie", [`token=${mockUserAuthToken}`])
+      .send(mockHugeYml);
+
+    expect(res.status).toBe(403);
+    expect(res.text).toBe("Maximum 500 Yml");
+  });
+
+  it("When auth is failed, should return 403", async () => {
+    const res = await agent
+      .post("/api/yml/start")
+      .set("Cookie", [`token=12345`])
+      .send(mockYmlData);
+
+    expect(res.status).toBe(403);
   });
 });
