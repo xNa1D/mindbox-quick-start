@@ -2,6 +2,7 @@ const path = require("path");
 const { merge } = require("webpack-merge");
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const {ProvidePlugin} = require("webpack")
 
 
 module.exports = {
@@ -19,6 +20,9 @@ module.exports = {
       src: path.resolve(__dirname, "../src/"),
       client: path.resolve(__dirname, "../src/client/"),
       server: path.resolve(__dirname, "../src/server/"),
+    },
+    fallback: {
+      assert: require.resolve("assert/"), 
     },
   },
   module: {
@@ -46,6 +50,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       inject: true,
       template: path.join(__dirname, "../src/client", "index.html"),
+    }),
+    new ProvidePlugin({
+      process: "process/browser",
     }),
   ],
 };
