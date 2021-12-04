@@ -7,16 +7,21 @@ const developmentConfig = {
   mode: "development",
   devtool: "inline-source-map",
   devServer: {
-    contentBase: path.join(__dirname, "../build/client"),
-    compress: true,
+    static: {
+      directory: path.join(__dirname, "../build/client"),
+    },
+    hot: true,
+    liveReload: false,
     port: 9000,
     proxy: {
       "/api": "http://localhost:3030",
     },
-    overlay: true,
-    progress: true,
+    client: {
+      overlay: true,
+      progress: true,
+    },
     historyApiFallback: true,
-    watchContentBase: true,
+    // watchContentBase: true,
   },
 };
 
