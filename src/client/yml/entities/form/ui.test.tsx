@@ -189,7 +189,7 @@ describe("On form submit", () => {
       changeInput(login, "login");
       changeInput(password, "pass");
     }
-
+    
     await delay(500);
 
     if (btn) {
