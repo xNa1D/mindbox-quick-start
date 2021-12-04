@@ -1,7 +1,7 @@
 import React from "react";
-import { Divider, Header, List, Segment } from "semantic-ui-react";
+import { Header, List, Segment } from "semantic-ui-react";
 
-const YmlInstructions = () => {
+export const YmlInstructions = () => {
   return (
     <Segment color="yellow" raised>
       <Header as="h3">Как это работает:</Header>
@@ -21,7 +21,6 @@ const YmlInstructions = () => {
             #mindbox-quick-start
           </a>
         </List.Item>
-        
       </List>
     </Segment>
   );

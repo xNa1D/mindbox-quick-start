@@ -1,7 +1,7 @@
 import React from "react";
 import { Header, Segment, Table } from "semantic-ui-react";
 
-const CsvDataInstruction = () => {
+export const CsvDataInstruction = () => {
   return (
     <>
       <Header as="h3">

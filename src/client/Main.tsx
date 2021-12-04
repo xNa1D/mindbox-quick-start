@@ -5,7 +5,7 @@ import { Segment, Tab } from "semantic-ui-react";
 import Footer from "./common/Footer";
 
 const ScenarioComponent = lazy(() => import("./scenario/ScenarioComponent"));
-const YmlComponent = lazy(() => import("./yml/YmlComponent"));
+const YmlComponent = lazy(() => import("./yml/pages/YmlComponent"));
 
 const Main = () => {
   const panes = [
