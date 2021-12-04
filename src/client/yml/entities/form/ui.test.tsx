@@ -168,8 +168,8 @@ describe("Rendering of form inputs", () => {
   });
 });
 
-describe("On form submit", () => {
-  test("should call sendData", async () => {
+describe("sendData", () => {
+  test("When all fields filledin, should pass their data", async () => {
     const csvFile = new File([validCsvString], "table.csv", {
       type: "text/csv",
     });
@@ -189,7 +189,7 @@ describe("On form submit", () => {
       changeInput(login, "login");
       changeInput(password, "pass");
     }
-    
+
     await delay(500);
 
     if (btn) {
@@ -200,6 +200,42 @@ describe("On form submit", () => {
       authParams: {
         password: "pass",
         username: "login",
+      },
+      links: [{ areaExternalId: "1", name: "Санкт-Петербург", url: "myLink" }],
+      settings: {
+        brand: "myBrand",
+        externalSystem: "Website",
+        launchPeriod: 2,
+      },
+    });
+  });
+  test("When filled only required fields, other empty", async () => {
+    const csvFile = new File([validCsvString], "table.csv", {
+      type: "text/csv",
+    });
+
+    const { queryByLabelText, queryByText, component } = setUpYmlForm();
+
+    const fileInput = queryByLabelText("Файл с фидами");
+    const brand = queryByLabelText("Системное имя бренда");
+    const btn = queryByText("Загрузить фиды");
+
+
+    if (fileInput && brand) {
+      changeInput(fileInput, csvFile);
+      changeInput(brand, "myBrand");
+    }
+
+    await delay(500);
+
+    if (btn) {
+      fireEvent.click(btn);
+    }
+
+    expect(mockYmlProps.sendData).toHaveBeenCalledWith({
+      authParams: {
+        password: "",
+        username: "",
       },
       links: [{ areaExternalId: "1", name: "Санкт-Петербург", url: "myLink" }],
       settings: {
