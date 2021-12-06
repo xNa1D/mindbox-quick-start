@@ -4,7 +4,29 @@ import { authMiddleware, checkToken } from "../../auth";
 
 import sendYmlToMindbox from "../sendYmlToMindbox";
 import { createYmlData } from "../createYmlData";
-import { YmlRequestType } from "src/declarations";
+
+type Url = string;
+type AreaId = string;
+type Name = string;
+
+export type YmlRequestType = {
+  links: Link[];
+  settings: Settings;
+  authParams?: AuthParams;
+};
+
+export type Link = { url: Url; name: Name; areaExternalId?: AreaId };
+
+export type AuthParams = {
+  password: string;
+  username: string;
+};
+
+export type Settings = {
+  brand: string;
+  externalSystem: string;
+  launchPeriod: number;
+};
 
 const ymlRoute = Router();
 
@@ -24,9 +46,14 @@ ymlRoute.post(
 
       res.status(200).send("Настройки фидов отправлены");
     } catch (error) {
-      res
-        .status(403)
-        .send("Ошибка отправки фидов. Проверьте авторизацию в проекте");
+      let message: string =
+        "Ошибка отправки фидов. Проверьте авторизацию в проекте";
+
+      if (error instanceof Error) {
+        message = error.message;
+      }
+
+      res.status(403).send(message);
     }
   }
 );

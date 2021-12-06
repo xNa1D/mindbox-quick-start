@@ -75,32 +75,7 @@ export type UseProviderReturnedValue = {
   checkAuth: () => Promise<void>;
 };
 
-type Url = string;
-type AreaId = string;
-type Name = string;
 
-export type Link = { url: Url; name: Name; areaExternalId?: AreaId };
 
-export type AuthParams = {
-  password: string;
-  username: string;
-};
 
-export type Settings = {
-  brand: string;
-  externalSystem: string;
-  launchPeriod: number;
-};
 
-export type YmlRequestType = {
-  links: Link[];
-  settings: Settings;
-  authParams?: AuthParams;
-};
-
-export type ParseCsv = (file: File) => Promise<Link[]>;
-
-export type YmlFormProps = {
-  parseCsv: (file: File) => Promise<Link[]>;
-  sendData: (data: YmlRequestType) => Promise<AxiosResponse<any>>;
-};

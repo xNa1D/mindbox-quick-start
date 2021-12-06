@@ -1,12 +1,12 @@
 import React from "react";
 import { Header, Message, Table } from "semantic-ui-react";
-import { Link } from "src/declarations";
+import { Link } from "../form";
 
 type CsvDataPreviewProps = {
   ymlTable: Link[];
 };
 
-const CsvDataPreview = ({ ymlTable }: CsvDataPreviewProps) => {
+export const CsvDataPreview = ({ ymlTable }: CsvDataPreviewProps) => {
   return (
     <>
       <Header as="h3">Загруженные данные</Header>

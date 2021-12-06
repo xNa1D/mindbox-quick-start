@@ -1,4 +1,4 @@
-import React from "react";
+import React, { SetStateAction } from "react";
 import {
   render,
   screen,
@@ -8,8 +8,8 @@ import {
 } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
-import YmlForm from "src/client/yml/YmlForm";
-import { YmlFormProps } from "src/declarations";
+import YmlForm from "src/client/yml/entities/form/ui";
+import { Link, YmlFormProps } from ".";
 
 jest.mock("axios");
 
@@ -22,6 +22,7 @@ const mockYmlProps: YmlFormProps = {
     },
   ]),
   sendData: jest.fn(),
+  setYmlTable: jest.fn(),
 };
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -36,14 +37,16 @@ const setUpYmlForm = (props: YmlFormProps = mockYmlProps) => {
   const { parseCsv, sendData } = props;
 
   let component!: RenderResult;
-  
+
   act(() => {
-    component = render(<YmlForm parseCsv={parseCsv} sendData={sendData} />);
+    component = render(
+      <YmlForm parseCsv={parseCsv} sendData={sendData} setYmlTable={jest.fn} />
+    );
   });
 
   const queryByLabelText = (searchString: string) =>
     component.queryByLabelText(searchString);
-  
+
   const queryByText = (searchString: string) =>
     component.queryByText(searchString);
 
@@ -165,13 +168,103 @@ describe("Rendering of form inputs", () => {
   });
 });
 
-describe("On form submit", () => {
-  test("should call sendData", async () => {
+describe("sendData", () => {
+  test("When all fields filledin, should pass their data", async () => {
     const csvFile = new File([validCsvString], "table.csv", {
       type: "text/csv",
     });
 
     const { queryByLabelText, queryByText, component } = setUpYmlForm();
+
+    const fileInput = queryByLabelText("Файл с фидами");
+    const brand = queryByLabelText("Системное имя бренда");
+    const btn = queryByText("Загрузить фиды");
+
+    const login = queryByLabelText("Логин");
+    const password = queryByLabelText("Пароль");
+
+    if (fileInput && brand && login && password) {
+      changeInput(fileInput, csvFile);
+      changeInput(brand, "myBrand");
+      changeInput(login, "login");
+      changeInput(password, "pass");
+    }
+
+    await delay(500);
+
+    if (btn) {
+      fireEvent.click(btn);
+    }
+
+    expect(mockYmlProps.sendData).toHaveBeenCalledWith({
+      authParams: {
+        password: "pass",
+        username: "login",
+      },
+      links: [{ areaExternalId: "1", name: "Санкт-Петербург", url: "myLink" }],
+      settings: {
+        brand: "myBrand",
+        externalSystem: "Website",
+        launchPeriod: 2,
+      },
+    });
+  });
+  test("When filled only required fields, other empty", async () => {
+    const csvFile = new File([validCsvString], "table.csv", {
+      type: "text/csv",
+    });
+
+    const { queryByLabelText, queryByText, component } = setUpYmlForm();
+
+    const fileInput = queryByLabelText("Файл с фидами");
+    const brand = queryByLabelText("Системное имя бренда");
+    const btn = queryByText("Загрузить фиды");
+
+
+    if (fileInput && brand) {
+      changeInput(fileInput, csvFile);
+      changeInput(brand, "myBrand");
+    }
+
+    await delay(500);
+
+    if (btn) {
+      fireEvent.click(btn);
+    }
+
+    expect(mockYmlProps.sendData).toHaveBeenCalledWith({
+      authParams: {
+        password: "",
+        username: "",
+      },
+      links: [{ areaExternalId: "1", name: "Санкт-Петербург", url: "myLink" }],
+      settings: {
+        brand: "myBrand",
+        externalSystem: "Website",
+        launchPeriod: 2,
+      },
+    });
+  });
+  test("should render error message if csv incorrect", async () => {
+    const mockYmlProps: YmlFormProps = {
+      parseCsv: jest.fn().mockResolvedValue([
+        {
+          areaExternalId: undefined,
+          name: "Санкт-Петербург",
+          url: undefined,
+        },
+      ]),
+      sendData: jest.fn(),
+      setYmlTable: function (value: SetStateAction<Link[]>): void {
+        throw new Error("Function not implemented.");
+      },
+    };
+
+    const csvFile = new File([inValidCsvString], "table.csv", {
+      type: "text/csv",
+    });
+
+    const { queryByLabelText, queryByText } = setUpYmlForm(mockYmlProps);
 
     const fileInput = queryByLabelText("Файл с фидами");
     const brand = queryByLabelText("Системное имя бренда");
@@ -183,54 +276,11 @@ describe("On form submit", () => {
     }
 
     await delay(500);
-    
+
     if (btn) {
       fireEvent.click(btn);
     }
 
-    expect(mockYmlProps.sendData).toHaveBeenCalledWith({
-      authParams: undefined,
-      links: [{ areaExternalId: "1", name: "Санкт-Петербург", url: "myLink" }],
-      settings: {
-        brand: "myBrand",
-        externalSystem: "Website",
-        launchPeriod: 2,
-      },
-    });
+    expect(queryByText("Загружен некорректный файл")).toBeInTheDocument();
   });
-  test("should render error message if csv incorrect", async () => {
-     const mockYmlProps: YmlFormProps = {
-       parseCsv: jest.fn().mockResolvedValue([
-         {
-           areaExternalId: undefined,
-           name: "Санкт-Петербург",
-           url: undefined,
-         },
-       ]),
-       sendData: jest.fn(),
-     }; 
-
-     const csvFile = new File([inValidCsvString], "table.csv", {
-       type: "text/csv",
-     });
-
-     const { queryByLabelText, queryByText } = setUpYmlForm(mockYmlProps);
-
-     const fileInput = queryByLabelText("Файл с фидами");
-     const brand = queryByLabelText("Системное имя бренда");
-     const btn = queryByText("Загрузить фиды");
-
-     if (fileInput && brand) {
-       changeInput(fileInput, csvFile);
-       changeInput(brand, "myBrand");
-     }
-
-     await delay(500);
-
-     if (btn) {
-       fireEvent.click(btn);
-     }
-
-     expect(queryByText("Загружен некорректный файл")).toBeInTheDocument();
-   });
 });

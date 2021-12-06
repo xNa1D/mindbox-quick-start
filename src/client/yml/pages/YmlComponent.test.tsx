@@ -8,8 +8,7 @@ import {
 } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
-import YmlComponent from "src/client/yml/YmlComponent";
-import { YmlFormProps } from "src/declarations";
+import YmlComponent from "src/client/yml/pages/YmlComponent";
 
 jest.mock("axios");
 
