@@ -83,7 +83,7 @@ describe("send valid yml data with valid user token", () => {
     );
   });
   it("when pass valid data with auth, should call sendYmlToMindbox", async () => {
-    const res = await agent
+    await agent
       .post("/api/yml/start")
       .set("Cookie", [`token=${mockUserAuthToken}`])
       .send(mockYmlDataWithAuth);

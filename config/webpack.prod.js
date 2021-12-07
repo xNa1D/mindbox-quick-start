@@ -1,12 +1,10 @@
-const path = require("path");
-const { merge } = require("webpack-merge");
+import { merge } from "webpack-merge";
 
-const BundleAnalyzerPlugin =
-  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
 
-const commonConfig = require("./webpack.common");
+import commonConfig from "./webpack.common";
 
 const productionConfig = {
   mode: "production",
@@ -40,4 +38,4 @@ const productionConfig = {
   },
 };
 
-module.exports = merge(commonConfig, productionConfig);
+export default merge(commonConfig, productionConfig);

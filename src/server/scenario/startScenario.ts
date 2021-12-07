@@ -1,5 +1,3 @@
-import axios from "axios";
-import { ScenarioResult } from "src/server/ghost-inspector/ScenarioResult";
 import parseStepsInfo from "../ghost-inspector/utils/parseStepsInfo";
 
 import { Step } from "src/declarations";

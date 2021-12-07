@@ -9,7 +9,10 @@ const addingCfRoutes = Router();
 addingCfRoutes.post(
   "/start",
   authMiddleware,
-  async (req: Request<{}, {}, { cfs: CustomFieldObject[] }>, res: Response) => {
+  async (
+    req: Request<unknown, unknown, { cfs: CustomFieldObject[] }>,
+    res: Response
+  ) => {
     try {
       runAndNotify(req.body.cfs, res.locals.user);
 
