@@ -13,7 +13,7 @@
     "build:back": "rm -rf ./build/server && tsc --project tsconfic.server.json",
     "build": "npm run build:front && npm run build:back",
     "webpack": "webpack --mode=production",
-    "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
+    "lint": "eslint --ignore-path .eslintignore --ext .js,.ts --fix .",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\""
   },
   "repository": {
