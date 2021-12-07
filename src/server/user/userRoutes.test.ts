@@ -4,7 +4,7 @@ import axios from "axios";
 import { generateAccessToken } from "server/auth";
 import { app } from "server/app";
 
-let agent: any;
+let agent: unknown;
 
 beforeAll(() => {
   agent = supertest(app);

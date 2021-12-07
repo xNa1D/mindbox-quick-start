@@ -1,8 +1,8 @@
-export interface ScenarioResult {
+export type ScenarioResult = {
   code?: string;
   data: Data;
 }
-export interface Data {
+export type Data = {
   error?: Error;
   user?: User;
   video?: Video;
@@ -48,34 +48,34 @@ export interface Data {
   screenshotCompare?: ScreenshotCompare;
   screenshotCompareBaselineResult?: string;
 }
-export interface Error {
+export type Error = {
   details?: string;
 }
-export interface User {
+export type User = {
   _id?: string;
   name?: string;
 }
-export interface Video {
+export type Video = {
   dims?: Dims;
   path?: string;
   url?: string;
 }
-export interface Dims {
+export type Dims = {
   w?: number;
   h?: number;
 }
-export interface ViewportSize {
+export type ViewportSize = {
   width?: number;
   height?: number;
 }
-export interface ConsoleEntity {
+export type ConsoleEntity = {
   _id?: string;
   dateExecuted?: string;
   error?: boolean;
   output?: string;
   url?: string;
 }
-export interface StepsEntity {
+export type StepsEntity = {
   sequence?: number;
   condition?: Condition | null;
   private?: boolean;
@@ -92,43 +92,43 @@ export interface StepsEntity {
   dateExecuted?: string | null;
   error?: string | null;
 }
-export interface Condition {
+export type Condition = {
   statement?: string;
   result?: boolean;
 }
-export interface OriginalTargetEntityOrTargetEntity {
+export type OriginalTargetEntityOrTargetEntity = {
   selector?: string;
 }
-export interface Extra {
+export type Extra = {
   source?: Source;
   rootSequence?: number;
   originalTarget?: OriginalTargetEntityOrTargetEntity[] | null;
 }
-export interface Source {
+export type Source = {
   test?: string;
   sequence?: number;
 }
-export interface Test {
+export type Test = {
   name?: string;
   _id?: string;
   organization?: string;
   suite?: string;
 }
-export interface Variables {
+export type Variables = {
   projectName?: string;
   campaign?: string;
 }
-export interface Screenshot {
+export type Screenshot = {
   small?: SmallOrOriginalOrCompareSmallOrCompareOriginal;
   original?: SmallOrOriginalOrCompareSmallOrCompareOriginal;
 }
-export interface SmallOrOriginalOrCompareSmallOrCompareOriginal {
+export type SmallOrOriginalOrCompareSmallOrCompareOriginal = {
   path?: string;
   defaultUrl?: string;
   size?: number;
   dims?: Dims;
 }
-export interface ScreenshotCompare {
+export type ScreenshotCompare = {
   compareSmall?: SmallOrOriginalOrCompareSmallOrCompareOriginal;
   compareOriginal?: SmallOrOriginalOrCompareSmallOrCompareOriginal;
 }

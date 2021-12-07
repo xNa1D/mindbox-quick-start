@@ -10,7 +10,7 @@ const userRoutes = Router();
 
 userRoutes.post(
   "/authByAdminPanel",
-  async (req: Request<{}, string, AuthRequestBody>, res: Response) => {
+  async (req: Request<unknown, string, AuthRequestBody>, res: Response) => {
     try {
       const { email, password, project } = req.body;
 

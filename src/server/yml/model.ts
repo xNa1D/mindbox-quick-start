@@ -32,8 +32,8 @@ export type YmlImportSetting = {
   url: string;
   launchPeriod: string;
   area?: Area | null;
-  username?: any;
-  password?: any;
+  username?: unknown;
+  password?: unknown;
   nextStartDateTimeUtc?: Date;
   lastSuccessDateTimeUtc?: Date;
   isFaulty?: boolean;

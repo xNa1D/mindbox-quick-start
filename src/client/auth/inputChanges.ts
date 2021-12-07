@@ -1,7 +1,3 @@
-import React from "react";
-import { ScenarioNames } from "src/declarations";
-import config from "src/data";
-
 const clearButtonDisabledAttribute = () => {
   const submitBtn = document.querySelector("#submit");
   submitBtn?.removeAttribute("disabled");

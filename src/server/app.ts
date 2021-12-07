@@ -35,8 +35,6 @@ app.get("*", (req, res) =>
   res.sendFile(path.resolve(__dirname, "../client", "index.html"))
 );
 
-const port = process.env.PORT || 3000;
-
 process.on("unhandledRejection", error => {
   // Will print "unhandledRejection err is not defined"
   console.log("unhandledRejection", error);

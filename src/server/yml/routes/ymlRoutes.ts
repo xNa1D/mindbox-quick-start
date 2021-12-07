@@ -1,6 +1,6 @@
 import { Request, Response, Router } from "express";
 
-import { authMiddleware, checkToken } from "../../auth";
+import { authMiddleware } from "../../auth";
 
 import sendYmlToMindbox from "../sendYmlToMindbox";
 import { createYmlData } from "../createYmlData";
@@ -33,7 +33,7 @@ const ymlRoute = Router();
 ymlRoute.post(
   "/start",
   authMiddleware,
-  async (req: Request<{}, {}, YmlRequestType>, res: Response) => {
+  async (req: Request<unknown, unknown, YmlRequestType>, res: Response) => {
     try {
       const { project, tokenFromAdminPanel } = res.locals.user;
       const { links, settings, authParams } = req.body;

@@ -8,7 +8,7 @@ import { YmlRequestType } from "./ymlRoutes";
 jest.mock("src/server/yml/sendYmlToMindbox");
 jest.mock("server/db/init.ts");
 
-let agent: any;
+let agent: unknown;
 
 beforeAll(() => {
   agent = supertest(app);
@@ -52,7 +52,7 @@ describe("send invalid auth token", () => {
 
 describe("send valid yml data with valid user token", () => {
   it("should call 'sendYmlToMindbox' with correct params", async () => {
-    const res = await agent
+    await agent
       .post("/api/yml/start")
       .set("Cookie", [`token=${mockUserAuthToken}`])
       .send(mockYmlData);

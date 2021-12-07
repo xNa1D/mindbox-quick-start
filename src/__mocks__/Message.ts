@@ -1,14 +1,8 @@
 const sendMessage = {
   ok: jest
-    .fn()
-    .mockImplementation(
-      (projectName: string, taskName: string, email: string) => ""
-    ),
+    .fn(),
   fail: jest
-    .fn()
-    .mockImplementation(
-      (projectName: string, taskName: string, email: string) => ""
-    ),
+    .fn(),
 };
 
 export default sendMessage;

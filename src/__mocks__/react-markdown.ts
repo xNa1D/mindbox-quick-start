@@ -1,4 +1,4 @@
-const reactRender = ({ children }: any) => {
+const reactRender = ({ children }: never) => {
   return `<div>${children}</div>`;
 };
 

@@ -12,7 +12,7 @@ export const validateCsv = (links: Link[]) => {
 
 export type YmlFormProps = {
   parseCsv: ParseCsv;
-  sendData: (data: YmlRequestType) => Promise<AxiosResponse<any>>;
+  sendData: (data: YmlRequestType) => Promise<AxiosResponse<unknown>>;
   setYmlTable: React.Dispatch<React.SetStateAction<Link[]>>;
 };
 
@@ -51,7 +51,7 @@ export const statuses = {
   error: "error",
 };
 
-type Action = { type: string; payload?: any };
+type Action = { type: string; payload?: unknown };
 
 export const initialState: State = {
   status: statuses.notSent,

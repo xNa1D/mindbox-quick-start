@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction, Router } from "express";
+import { Request, Response, NextFunction } from "express";
 
 import { checkToken } from ".";
 

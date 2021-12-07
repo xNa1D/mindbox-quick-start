@@ -50,7 +50,7 @@ scenariosRoutes.post("/update", async (req, res) => {
 scenariosRoutes.post(
   "/start",
   authMiddleware,
-  async (req: Request<{}, {}, StartScenarioBody>, res: Response) => {
+  async (req: Request<unknown, unknown, StartScenarioBody>, res: Response) => {
     try {
       handleScenarioStart({
         email: req.body.emailForNotification,

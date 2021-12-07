@@ -1,7 +1,6 @@
 import { Scenario, Step } from "src/declarations";
 
 import { DataTypes } from "sequelize";
-import { Model } from "sequelize/types";
 
 import { sequelize } from "../db";
 
@@ -37,15 +36,6 @@ export type StartScenarioType = {
   ghType: "old" | "new";
   adminPanelCookie: string;
 };
-
-type Modify<T, R> = Omit<T, keyof R> & R;
-
-type ScenarioForDB = Modify<
-  Scenario,
-  {
-    api: string;
-  }
->;
 
 export const ScenarioModel = sequelize.define("Scenario", {
   type: { type: DataTypes.STRING, allowNull: false, unique: true },

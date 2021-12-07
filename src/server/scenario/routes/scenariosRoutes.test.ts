@@ -48,15 +48,6 @@ const mockSuccessResponse = {
   steps: mockSteps,
 };
 
-const mockErrorResponse = {
-  error: {
-    errorMessage: "Test run reached 10 minute time limit and was stopped",
-    videoLink:
-      "https://ghostinspector-prod.s3.amazonaws.com/videos/a6306a8a-059a-4fda-a1ae-74c973d362b4.mp4",
-  },
-  status: "ERROR",
-  steps: mockSteps,
-};
 
 const mockApiBody: StartScenarioBody = {
   scenario: mockScenario,
@@ -137,7 +128,7 @@ describe("/scenario", () => {
           status: 503,
         });
         try {
-          const res = await agent
+          await agent
             .post("/api/scenario/start")
             .set("Cookie", [`token=123`])
             .send(mockApiBody);
@@ -158,5 +149,4 @@ describe("/scenario", () => {
       expect(JSON.parse(res.text)).toStrictEqual([mockScenario]);
     });
   });
-  describe("POST to /api/scenario/start ", () => {});
 });

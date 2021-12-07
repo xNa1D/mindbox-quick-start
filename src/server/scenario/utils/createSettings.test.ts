@@ -1,4 +1,3 @@
-import axios from "axios";
 import { StartScenarioType } from "../model";
 import { createSettings } from "./createSettings";
 
@@ -8,13 +7,6 @@ describe("createSettings ", () => {
     projectName: "testProject",
     campaign: 1,
     ghType: "old",
-    adminPanelCookie: "myAwesomeCookie",
-  };
-  const newScenarioMock: StartScenarioType = {
-    scenarioApiAddress: ["testApi"],
-    projectName: "testProject",
-    campaign: 1,
-    ghType: "new",
     adminPanelCookie: "myAwesomeCookie",
   };
 

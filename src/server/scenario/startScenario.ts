@@ -16,7 +16,7 @@ const startScenario = async ({
   adminPanelCookie,
 }: StartScenarioType): Promise<StartScenarioResult> => {
   let resultStatus: string;
-  let resultError: ResultErrorType = {};
+  const resultError: ResultErrorType = {};
   let resultSteps: Step[] = [];
 
   const settingsForGh = createSettings({
@@ -56,8 +56,9 @@ const startScenario = async ({
       }
     } catch (error) {
       resultStatus = "ERROR";
-      //@ts-ignore
-      resultError.errorMessage = error.message;
+      if (error instanceof Error) {
+        resultError.errorMessage = error.message;
+      }
     }
   }
   return {
