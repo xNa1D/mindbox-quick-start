@@ -1,7 +1,7 @@
 export type ScenarioResult = {
   code?: string;
   data: Data;
-}
+};
 export type Data = {
   error?: Error;
   user?: User;
@@ -47,34 +47,34 @@ export type Data = {
   screenshot?: Screenshot;
   screenshotCompare?: ScreenshotCompare;
   screenshotCompareBaselineResult?: string;
-}
+};
 export type Error = {
   details?: string;
-}
+};
 export type User = {
   _id?: string;
   name?: string;
-}
+};
 export type Video = {
   dims?: Dims;
   path?: string;
   url?: string;
-}
+};
 export type Dims = {
   w?: number;
   h?: number;
-}
+};
 export type ViewportSize = {
   width?: number;
   height?: number;
-}
+};
 export type ConsoleEntity = {
   _id?: string;
   dateExecuted?: string;
   error?: boolean;
   output?: string;
   url?: string;
-}
+};
 export type StepsEntity = {
   sequence?: number;
   condition?: Condition | null;
@@ -91,44 +91,44 @@ export type StepsEntity = {
   url?: string | null;
   dateExecuted?: string | null;
   error?: string | null;
-}
+};
 export type Condition = {
   statement?: string;
   result?: boolean;
-}
+};
 export type OriginalTargetEntityOrTargetEntity = {
   selector?: string;
-}
+};
 export type Extra = {
   source?: Source;
   rootSequence?: number;
   originalTarget?: OriginalTargetEntityOrTargetEntity[] | null;
-}
+};
 export type Source = {
   test?: string;
   sequence?: number;
-}
+};
 export type Test = {
   name?: string;
   _id?: string;
   organization?: string;
   suite?: string;
-}
+};
 export type Variables = {
   projectName?: string;
   campaign?: string;
-}
+};
 export type Screenshot = {
   small?: SmallOrOriginalOrCompareSmallOrCompareOriginal;
   original?: SmallOrOriginalOrCompareSmallOrCompareOriginal;
-}
+};
 export type SmallOrOriginalOrCompareSmallOrCompareOriginal = {
   path?: string;
   defaultUrl?: string;
   size?: number;
   dims?: Dims;
-}
+};
 export type ScreenshotCompare = {
   compareSmall?: SmallOrOriginalOrCompareSmallOrCompareOriginal;
   compareOriginal?: SmallOrOriginalOrCompareSmallOrCompareOriginal;
-}
+};

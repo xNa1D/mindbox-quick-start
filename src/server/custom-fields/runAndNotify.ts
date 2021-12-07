@@ -14,7 +14,7 @@ export const runAndNotify = async (cfs: CustomFieldObject[], user: JwtUser) => {
       task: "Добавление доп полей",
       projectName: user.project,
       documentationLink: "",
-      steps: result.map((item) => ({
+      steps: result.map(item => ({
         name: item.CustomFieldName,
         status: item.status,
       })),

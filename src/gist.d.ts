@@ -6,11 +6,11 @@ export type File = {
   size: number;
   truncated: boolean;
   content: string;
-}
+};
 
 export type Files = {
   [x: string]: File;
-}
+};
 
 export type Owner = {
   login: string;
@@ -31,7 +31,7 @@ export type Owner = {
   received_events_url: string;
   type: string;
   site_admin: boolean;
-}
+};
 
 export type User = {
   login: string;
@@ -52,13 +52,13 @@ export type User = {
   received_events_url: string;
   type: string;
   site_admin: boolean;
-}
+};
 
 export type ChangeStatus = {
   total: number;
   additions: number;
   deletions: number;
-}
+};
 
 export type History = {
   user: User;
@@ -66,7 +66,7 @@ export type History = {
   committed_at: Date;
   change_status: ChangeStatus;
   url: string;
-}
+};
 
 export type RootObject = {
   url: string;
@@ -89,4 +89,4 @@ export type RootObject = {
   forks: unknown[];
   history: History[];
   truncated: boolean;
-}
+};

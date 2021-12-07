@@ -1,7 +1,13 @@
 export type ScenarioApiCalls = {
   ecommerce: (projectName: string, campaignNumber: number) => Promise<unknown>;
-  loyaltyOnline: (projectName: string, campaignNumber: number) => Promise<unknown>;
-  loyaltyOffline: (projectName: string, campaignNumber: number) => Promise<unknown>;
+  loyaltyOnline: (
+    projectName: string,
+    campaignNumber: number
+  ) => Promise<unknown>;
+  loyaltyOffline: (
+    projectName: string,
+    campaignNumber: number
+  ) => Promise<unknown>;
   mobilePush: (projectName: string, campaignNumber: number) => Promise<unknown>;
 };
 

@@ -46,8 +46,7 @@ ymlRoute.post(
 
       res.status(200).send("Настройки фидов отправлены");
     } catch (error) {
-      let message: string =
-        "Ошибка отправки фидов. Проверьте авторизацию в проекте";
+      let message = "Ошибка отправки фидов. Проверьте авторизацию в проекте";
 
       if (error instanceof Error) {
         message = error.message;

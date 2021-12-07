@@ -48,7 +48,6 @@ const mockSuccessResponse = {
   steps: mockSteps,
 };
 
-
 const mockApiBody: StartScenarioBody = {
   scenario: mockScenario,
   projectName: "testProject",

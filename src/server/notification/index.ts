@@ -1,2 +1,2 @@
-export * from './sendMessage';
-export * from './notificationEventsManager'; 
+export * from "./sendMessage";
+export * from "./notificationEventsManager";

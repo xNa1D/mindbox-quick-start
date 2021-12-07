@@ -24,7 +24,7 @@ const productionConfig = {
     moduleIds: "deterministic",
     minimize: true,
     innerGraph: true,
-    flagIncludedChunks: true, 
+    flagIncludedChunks: true,
     runtimeChunk: {
       name: "runtime",
     },

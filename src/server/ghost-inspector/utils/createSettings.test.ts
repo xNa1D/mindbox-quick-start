@@ -1,4 +1,3 @@
-import axios from "axios";
 import { StartScenarioType } from "../../scenario/model";
 import { createSettings } from "./createSettings";
 

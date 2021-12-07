@@ -2,8 +2,7 @@ const path = require("path");
 const { merge } = require("webpack-merge");
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const {ProvidePlugin} = require("webpack")
-
+const { ProvidePlugin } = require("webpack");
 
 module.exports = {
   entry: path.resolve(__dirname, "../src/client", "index.tsx"),
@@ -22,7 +21,7 @@ module.exports = {
       server: path.resolve(__dirname, "../src/server/"),
     },
     fallback: {
-      assert: require.resolve("assert/"), 
+      assert: require.resolve("assert/"),
     },
   },
   module: {

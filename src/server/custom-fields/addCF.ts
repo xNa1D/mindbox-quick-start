@@ -10,7 +10,7 @@ export const addCF = async (
   projectName: string,
   adminPanelCookie: string
 ) => {
-  let resultedArray = [];
+  const resultedArray = [];
 
   for await (const cf of cfs) {
     try {

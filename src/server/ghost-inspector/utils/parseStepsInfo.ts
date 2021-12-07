@@ -1,4 +1,4 @@
-import { StartScenarioBody, Step } from "src/declarations";
+import { Step } from "src/declarations";
 import { StepsEntity } from "src/server/ghost-inspector/ScenarioResult";
 
 type reducedStepsType = {
