@@ -51,6 +51,10 @@ const YmlForm = ({ parseCsv, sendData, setYmlTable }: YmlFormProps) => {
     });
   };
 
+  const handleAuthSettingsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAuthParams({ ...authParams, [e.target.name]: e.target.value || "" });
+  };
+
   const handleFormSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
@@ -98,32 +102,20 @@ const YmlForm = ({ parseCsv, sendData, setYmlTable }: YmlFormProps) => {
         <label htmlFor="auth_login">Логин</label>
         <input
           type="text"
-          name="auth_login"
+          name="username"
           id="auth_login"
           value={authParams.username}
-          required
-          onChange={(event) =>
-            setAuthParams((state) => ({
-              ...state,
-              username: event.target.value || "",
-            }))
-          }
+          onChange={handleAuthSettingsChange}
         />
       </Form.Field>
       <Form.Field>
         <label htmlFor="auth_password">Пароль</label>
         <input
           type="password"
-          name="auth_password"
+          name="password"
           id="auth_password"
           value={authParams.password}
-          required
-          onChange={(event) =>
-            setAuthParams((state) => ({
-              ...state,
-              password: event.target.value || "",
-            }))
-          }
+          onChange={handleAuthSettingsChange}
         />
       </Form.Field>
     </>

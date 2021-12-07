@@ -1,0 +1,225 @@
+{
+  "entityType": null,
+  "name": null,
+  "systemName": null,
+  "fieldType": "String",
+  "isMultiple": false,
+  "canModifyMultiplyValue": true,
+  "canBeNulled": false,
+  "isNew": true,
+  "entityTypes": [
+    { "systemName": "HC", "name": "Клиент", "pluralFormName": null },
+    { "systemName": "CA", "name": "Действие клиента", "pluralFormName": null },
+    { "systemName": "POC", "name": "Точка контакта", "pluralFormName": null },
+    { "systemName": "ProductInfo", "name": "Продукт", "pluralFormName": null },
+    { "systemName": "RO", "name": "Заказ", "pluralFormName": null },
+    { "systemName": "PA", "name": "Промоакция", "pluralFormName": null },
+    { "systemName": "RP", "name": "Позиция заказа", "pluralFormName": null },
+    { "systemName": "AR", "name": "Зона", "pluralFormName": null },
+    { "systemName": "DC", "name": "Дисконтная карта", "pluralFormName": null },
+    {
+      "systemName": "PLP",
+      "name": "Линия списка продуктов",
+      "pluralFormName": null
+    },
+    { "systemName": "PRIZE", "name": "Приз", "pluralFormName": null }
+  ],
+  "componentsMap": {
+    "Integer": {
+      "name": "Целочисленный",
+      "componentName": "DirectCrm.DefaultCustomFieldKindComponent",
+      "constantComponentData": {
+        "tooltipMessage": "Пример: 123456",
+        "canModifyMultiplyValue": true,
+        "type": "Integer"
+      }
+    },
+    "String": {
+      "name": "Строковый",
+      "componentName": "DirectCrm.DefaultCustomFieldKindComponent",
+      "constantComponentData": {
+        "tooltipMessage": "Пример: \"пример\"",
+        "canModifyMultiplyValue": true,
+        "type": "String"
+      }
+    },
+    "Bool": {
+      "name": "Логический",
+      "componentName": "DirectCrm.DefaultCustomFieldKindComponent",
+      "constantComponentData": {
+        "tooltipMessage": "Пример: true, 1, false, 0",
+        "canModifyMultiplyValue": false,
+        "type": "Bool"
+      }
+    },
+    "Decimal": {
+      "name": "Десятичный",
+      "componentName": "DirectCrm.DefaultCustomFieldKindComponent",
+      "constantComponentData": {
+        "tooltipMessage": "Пример: 12345,67",
+        "canModifyMultiplyValue": true,
+        "type": "Decimal"
+      }
+    },
+    "Date": {
+      "name": "Дата",
+      "componentName": "DirectCrm.DefaultCustomFieldKindComponent",
+      "constantComponentData": {
+        "tooltipMessage": "Пример: 2011.11.21",
+        "canModifyMultiplyValue": true,
+        "type": "Date"
+      }
+    },
+    "DateTime": {
+      "name": "Дата и время",
+      "componentName": "DirectCrm.DefaultCustomFieldKindComponent",
+      "constantComponentData": {
+        "tooltipMessage": "Пример: 2011.11.21 11:11:11.111",
+        "canModifyMultiplyValue": true,
+        "type": "DateTime"
+      }
+    },
+    "Enum": {
+      "name": "Перечисление",
+      "componentName": "DirectCrm.EnumCustomFieldKindComponent",
+      "constantComponentData": {
+        "selectedEnumValues": null,
+        "forceCreateEnumValue": false,
+        "tooltipMessage": "Пример: Внешний идентификатор - \"ExternalId\", Имя - \"Тест123\"",
+        "canModifyMultiplyValue": true,
+        "type": "Enum"
+      }
+    },
+    "ExternalIdentity": {
+      "name": "Внешний идентификатор",
+      "componentName": "DirectCrm.DefaultCustomFieldKindComponent",
+      "constantComponentData": {
+        "tooltipMessage": "Пример: \"пример\"",
+        "canModifyMultiplyValue": false,
+        "type": "ExternalIdentity"
+      }
+    },
+    "TechnicalIdentity": {
+      "name": "Уникальный идентификатор",
+      "componentName": "DirectCrm.TechnicalIdentityCustomFieldKindComponent",
+      "constantComponentData": {
+        "tooltipMessage": "Генерируется системой клиента, без ведома клиента. Например: BitrixID, WebSiteID, SalesID и т.п.",
+        "isMergeContradiction": false,
+        "canModifyMultiplyValue": false,
+        "type": "TechnicalIdentity"
+      }
+    },
+    "SocialNetworkIdentity": {
+      "name": "Идентификатор",
+      "componentName": "DirectCrm.DefaultCustomFieldKindComponent",
+      "constantComponentData": {
+        "tooltipMessage": "Идентификатор клиента. Допускает повторную регистрацию. Возможно объединение клиентов с разными ID, если нет противоречий в контактах. Нет поиска по истории, т.к. один и тот же ID может оказаться в истории у разных клиентов. После объединения к клиенту можно обратиться только по актуальному ID. Если нельзя объединить, то ID остается у приоритетного клиента.",
+        "canModifyMultiplyValue": false,
+        "type": "SocialNetworkIdentity"
+      }
+    }
+  },
+  "typedViewModel": {
+    "tooltipMessage": "Пример: \"пример\"",
+    "canModifyMultiplyValue": true,
+    "type": "String"
+  },
+  "id": 0,
+  "entitiesWithExternalIdentityType": ["HC", "CA", "RE", "RO", "DC", "RO"],
+  "availableFieldTypes": {
+    "HC": [
+      "Integer",
+      "String",
+      "Bool",
+      "Decimal",
+      "Date",
+      "DateTime",
+      "Enum",
+      "TechnicalIdentity",
+      "SocialNetworkIdentity"
+    ],
+    "CA": [
+      "Integer",
+      "String",
+      "Bool",
+      "Decimal",
+      "Date",
+      "DateTime",
+      "Enum",
+      "ExternalIdentity"
+    ],
+    "POC": ["Integer", "String", "Bool", "Decimal", "Date", "DateTime", "Enum"],
+    "ProductInfo": [
+      "Integer",
+      "String",
+      "Bool",
+      "Decimal",
+      "Date",
+      "DateTime",
+      "Enum"
+    ],
+    "RE": ["ExternalIdentity"],
+    "RO": [
+      "Integer",
+      "String",
+      "Bool",
+      "Decimal",
+      "Date",
+      "DateTime",
+      "Enum",
+      "ExternalIdentity"
+    ],
+    "PA": ["Integer", "String", "Bool", "Decimal", "Date", "DateTime", "Enum"],
+    "RP": ["Integer", "String", "Bool", "Decimal", "Date", "DateTime", "Enum"],
+    "AR": ["Integer", "String", "Bool", "Decimal", "Date", "DateTime", "Enum"],
+    "DC": [
+      "Integer",
+      "String",
+      "Bool",
+      "Decimal",
+      "Date",
+      "DateTime",
+      "Enum",
+      "ExternalIdentity"
+    ],
+    "PLP": ["Integer", "String", "Bool", "Decimal", "Date", "DateTime", "Enum"],
+    "PRIZE": [
+      "Integer",
+      "String",
+      "Bool",
+      "Decimal",
+      "Date",
+      "DateTime",
+      "Enum"
+    ]
+  },
+  "mergeStrategy": null,
+  "mergeStrategies": [
+    {
+      "systemName": "AddFromPriority",
+      "name": "Дописать из приоритетного",
+      "description": "результирующее значение будет дописано из приоритетного клиента в случае, если отсутствуют противоречия",
+      "allowedCustomFieldTypes": [
+        "Integer",
+        "String",
+        "Bool",
+        "Decimal",
+        "Date",
+        "DateTime",
+        "Enum",
+        "ExternalIdentity",
+        "TechnicalIdentity",
+        "SocialNetworkIdentity"
+      ],
+      "multipleCustomFieldValueUsingRestrictionMode": 1
+    },
+    {
+      "systemName": "TakeMax",
+      "name": "Взять наибольшее значение",
+      "description": "результирующим значением будет максимальное из всех значений дополнительного поля клиентов",
+      "allowedCustomFieldTypes": ["Decimal", "Integer"],
+      "multipleCustomFieldValueUsingRestrictionMode": 3
+    }
+  ],
+  "isPublic": false
+}
