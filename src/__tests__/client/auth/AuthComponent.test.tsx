@@ -7,7 +7,6 @@ import { ProvideAuth } from "client/auth/useAuth";
 import AuthComponent from "client/auth/AuthComponent";
 
 import { checkToken } from "src/client/api/userRequests";
-import scenarios from "src/data";
 
 jest.mock("axios");
 jest.mock("client/api/userRequests");
