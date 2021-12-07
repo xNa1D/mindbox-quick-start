@@ -48,7 +48,7 @@ describe("startScenario", () => {
 
   it("should start 2 scenarios and return status with both steps", async () => {
     axios.post = jest.fn().mockResolvedValue(mockSuccessResult);
-    
+
     const mockBodyWith2apis = {
       ...mockBody,
       scenarioApiAddress: ["test1", "test2"],
@@ -108,4 +108,3 @@ it("should throw internal error of code not SUCCESS", async () => {
     "Test run reached 10 minute time limit and was stopped"
   );
 });
-

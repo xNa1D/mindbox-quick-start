@@ -58,7 +58,7 @@ describe("createYmlData", () => {
   });
 
   test("When passing 500+ links, should throw validation error ", () => {
-    const tooManyLinks = Array(501).map((item) => mockLinks);
+    const tooManyLinks = Array(501).map(item => mockLinks);
 
     try {
       createYmlData(tooManyLinks, mockSettings, mockAuth);

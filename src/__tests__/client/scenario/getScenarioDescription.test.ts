@@ -11,7 +11,7 @@ describe("get scenario info", () => {
       .mockResolvedValue({ status: 200, data: mockSuccessGistAnswer });
 
     const answer = await getScenarioDescription(mockFileName);
-    
+
     expect(answer).toBe(mockSuccessGistAnswer.files["AwesomeFile.md"].content);
   });
   test("should return valid MD", async () => {
@@ -20,8 +20,7 @@ describe("get scenario info", () => {
       .mockResolvedValue({ status: 200, data: mockSuccessGistAnswer });
 
     const answer = await getScenarioDescription("fakeFile");
-    
-    expect(answer).toBe(undefined);
 
+    expect(answer).toBe(undefined);
   });
 });

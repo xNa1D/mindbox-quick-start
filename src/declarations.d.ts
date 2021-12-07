@@ -65,8 +65,6 @@ export type JwtUser = {
   tokenFromAdminPanel: string;
 };
 
-
-
 export type UseProviderReturnedValue = {
   isLoggedIn: boolean;
   loginErrors: string;
@@ -74,8 +72,3 @@ export type UseProviderReturnedValue = {
   login: (user: AuthRequestBody, isLoginByAdmin: boolean) => Promise<void>;
   checkAuth: () => Promise<void>;
 };
-
-
-
-
-

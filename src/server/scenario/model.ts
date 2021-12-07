@@ -40,9 +40,12 @@ export type StartScenarioType = {
 
 type Modify<T, R> = Omit<T, keyof R> & R;
 
-type ScenarioForDB = Modify<Scenario, {
-  api: string;
-}>
+type ScenarioForDB = Modify<
+  Scenario,
+  {
+    api: string;
+  }
+>;
 
 export const ScenarioModel = sequelize.define("Scenario", {
   type: { type: DataTypes.STRING, allowNull: false, unique: true },

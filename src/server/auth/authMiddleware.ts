@@ -10,9 +10,8 @@ export const authMiddleware = async (
   try {
     const user = checkToken(req.cookies.token);
     res.locals.user = user;
-    next(); 
+    next();
   } catch (error) {
-   
     res.sendStatus(403);
   }
 };

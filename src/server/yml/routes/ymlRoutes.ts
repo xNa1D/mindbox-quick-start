@@ -5,7 +5,6 @@ import { authMiddleware, checkToken } from "../../auth";
 import sendYmlToMindbox from "../sendYmlToMindbox";
 import { createYmlData } from "../createYmlData";
 
-
 type Url = string;
 type AreaId = string;
 type Name = string;

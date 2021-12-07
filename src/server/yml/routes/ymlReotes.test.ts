@@ -5,7 +5,6 @@ import { generateAccessToken } from "server/auth/";
 import sendYmlToMindbox from "src/server/yml/sendYmlToMindbox";
 import { YmlRequestType } from "./ymlRoutes";
 
-
 jest.mock("src/server/yml/sendYmlToMindbox");
 jest.mock("server/db/init.ts");
 

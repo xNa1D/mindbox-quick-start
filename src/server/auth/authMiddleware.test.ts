@@ -20,7 +20,7 @@ const mockRequestWithInValidJWT = {
 
 const mockResponse = {
   sendStatus: jest.fn(),
-  locals: {}
+  locals: {},
 } as unknown as Response;
 
 const mockNextFn = jest.fn() as NextFunction;
@@ -32,9 +32,9 @@ describe("authMiddleware", () => {
     expect(mockNextFn).toBeCalled();
   });
 
-    test("When JWT is incorrect, should call sendStatus() with 403", () => {
-      authMiddleware(mockRequestWithInValidJWT, mockResponse, mockNextFn);
+  test("When JWT is incorrect, should call sendStatus() with 403", () => {
+    authMiddleware(mockRequestWithInValidJWT, mockResponse, mockNextFn);
 
-      expect(mockResponse.sendStatus).toBeCalledWith(403);
-    });
+    expect(mockResponse.sendStatus).toBeCalledWith(403);
+  });
 });

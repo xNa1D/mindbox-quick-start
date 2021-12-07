@@ -3,7 +3,7 @@ import { ParseCsv } from "../../process";
 
 export const validateCsv = (links: Link[]) => {
   const findRowsWithIncorrectFields = () =>
-    links.filter((link) => link.name === undefined || link.url === undefined);
+    links.filter(link => link.name === undefined || link.url === undefined);
 
   if (findRowsWithIncorrectFields().length > 0) {
     throw new Error("Загружен некорректный файл");

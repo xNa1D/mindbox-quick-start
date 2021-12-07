@@ -1,6 +1,6 @@
-import React from 'react'
-import { ScenarioNames } from "src/declarations"
-import config from "src/data"
+import React from "react";
+import { ScenarioNames } from "src/declarations";
+import config from "src/data";
 
 const clearButtonDisabledAttribute = () => {
   const submitBtn = document.querySelector("#submit");
@@ -9,13 +9,13 @@ const clearButtonDisabledAttribute = () => {
 
 export const handleEmailInput = (inputValue: string) => {
   if (inputValue.indexOf("@") > 0) {
-   return  inputValue.split("@")[0];
+    return inputValue.split("@")[0];
   }
-  return inputValue; 
+  return inputValue;
 };
 
 export const handleProjectNameInput = (inputValue: string) => {
-  let resultValue = inputValue; 
+  let resultValue = inputValue;
   if (inputValue.indexOf("http://") >= 0) {
     resultValue = resultValue.replace("http://", "");
   }
@@ -26,7 +26,7 @@ export const handleProjectNameInput = (inputValue: string) => {
     resultValue = resultValue.split(".")[0];
   }
 
-  return resultValue; 
+  return resultValue;
 };
 
 export const handleCampaignNumberChange = () => {

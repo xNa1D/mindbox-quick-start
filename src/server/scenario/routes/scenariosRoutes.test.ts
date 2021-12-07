@@ -73,7 +73,6 @@ const token = generateAccessToken({
   tokenFromAdminPanel: "myToken",
 });
 
-
 describe("/scenario", () => {
   describe("POST to /api/scenario/start ", () => {
     describe("Checking status of response", () => {

@@ -15,7 +15,7 @@ export const createYmlData: createYmlDataType = (
 ) => {
   validateYmlLenth(links);
 
-  const ymlData = links.map((linkAndName) => {
+  const ymlData = links.map(linkAndName => {
     const { url, name, areaExternalId } = linkAndName;
 
     const area = areaExternalId ? { externalId: areaExternalId } : null;

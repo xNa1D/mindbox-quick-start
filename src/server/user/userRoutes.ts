@@ -43,7 +43,7 @@ userRoutes.get(
   "/checkToken",
   authMiddleware,
   async (req: Request, res: Response) => {
-    res.send(res.locals.user.project)
+    res.send(res.locals.user.project);
   }
 );
 

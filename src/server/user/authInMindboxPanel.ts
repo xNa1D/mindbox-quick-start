@@ -37,7 +37,7 @@ export const authenticateByAdminPanel = async ({
           "content-type": "application/json",
         },
       }
-    );    
+    );
 
     checkMindboxAuth(response);
 

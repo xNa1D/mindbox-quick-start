@@ -11,5 +11,5 @@ export const operations = {
 };
 
 export const config = {
-  SECRET_FOR_ADDING_SCENARIO: "X+:GK>9ueqxa"
-}
+  SECRET_FOR_ADDING_SCENARIO: "X+:GK>9ueqxa",
+};

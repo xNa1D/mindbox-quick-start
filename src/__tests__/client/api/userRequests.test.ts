@@ -1,11 +1,6 @@
-import {
-  checkToken,
-  loginUserByAdminPanel
-} from "client/api/userRequests";
+import { checkToken, loginUserByAdminPanel } from "client/api/userRequests";
 
-import {
-  AuthByAdminPanelRequestBody,
-} from "src/declarations";
+import { AuthByAdminPanelRequestBody } from "src/declarations";
 
 import axios from "src/__mocks__/axios";
 

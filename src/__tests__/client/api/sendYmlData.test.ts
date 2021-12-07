@@ -3,8 +3,6 @@ import axios from "src/__mocks__/axios";
 import startScenario from "client/api/sendYmlData";
 import { YmlRequestType } from "src/client/yml/entities/form";
 
-
-
 const mockBody: YmlRequestType = {
   links: [
     {

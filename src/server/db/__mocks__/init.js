@@ -1,1 +1,1 @@
-export const initDb = jest.fn().mockResolvedValue(); 
+export const initDb = jest.fn().mockResolvedValue();

@@ -1,11 +1,12 @@
 import axios from "axios";
 
-import { AuthRequestBody, RegistrationRequest, AuthByAdminPanelRequestBody } from "src/declarations";
+import {
+  AuthRequestBody,
+  RegistrationRequest,
+  AuthByAdminPanelRequestBody,
+} from "src/declarations";
 
-export const loginUser = (
-  user: AuthRequestBody,
-  isLoginByAdmin: boolean
-) => {
+export const loginUser = (user: AuthRequestBody, isLoginByAdmin: boolean) => {
   const authUrl = isLoginByAdmin ? "authByAdminPanel" : "auth";
 
   return axios.post(`/api/user/${authUrl}`, user, {
@@ -29,5 +30,3 @@ export const createUser = (user: RegistrationRequest) => {
     headers: { "content-type": "application/json" },
   });
 };
-
-

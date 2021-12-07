@@ -16,9 +16,7 @@ const mockYmlSettings: YmlImportSetting = {
 const mockProject = "myProject";
 const mockToken = "myToken";
 
-
 describe("sendYmlToMindbox", () => {
-
   test("when passed correct data, should send call axios with passed params", () => {
     const mockResponse: AxiosResponse = {
       status: 200,
@@ -104,8 +102,4 @@ describe("sendYmlToMindbox", () => {
       }
     }
   });
-
-  
-
 });
-

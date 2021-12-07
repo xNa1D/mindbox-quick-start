@@ -1,4 +1,3 @@
-
 import { parseStepsInfo } from "./parseStepsInfo";
 
 const rawSteps = {
@@ -127,8 +126,6 @@ const reducedSteps = {
     { name: "Переход на страницу 2", status: true },
   ],
 };
-
-
 
 describe("parseStepsInfo", () => {
   test("When all steps OK, should return reduced object with OK steps", () => {

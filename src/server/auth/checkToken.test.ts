@@ -9,7 +9,6 @@ const token = generateAccessToken({
 
 describe("checkTocken", () => {
   it("When JWT is valid, should return decoded user", () => {
-    
     const result = checkToken(token);
 
     expect(result.email).toBe("nikitin@mindbox.ru");
