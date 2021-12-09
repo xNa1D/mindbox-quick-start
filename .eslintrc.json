@@ -9,7 +9,6 @@
     "prettier",
     "plugin:sonarjs/recommended",
     "plugin:jest/recommended",
-    "eslint:recommended",
     "plugin:react/recommended"
   ],
   "parser": "@typescript-eslint/parser",
