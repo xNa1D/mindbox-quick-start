@@ -1,5 +1,20 @@
 import { parseStepsInfo } from "./parseStepsInfo";
 
+const stepInfo = {
+  enter: {
+    note: "Imported from: Петр - Стандартные операции для ИМ - Вход на проект\n",
+    name: "Вход на проект",
+  },
+  page_1: {
+    note: "Imported from: Петр - Стандартные операции для ИМ - Переход на страницу 2\n",
+    name: "Переход на страницу 2",
+  },
+  page_3: {
+    note: "Imported from: Петр - Стандартные операции для ИМ - Переход на страницу 3\n",
+    name: "Переход на страницу 2",
+  },
+};
+
 const rawSteps = {
   allSuccess: [
     {
@@ -7,24 +22,21 @@ const rawSteps = {
       extra: {
         rootSequence: 0,
       },
-      notes:
-        "Imported from: Петр - Стандартные операции для ИМ - Вход на проект\n",
+      notes: stepInfo.enter.note,
     },
     {
       passing: true,
       extra: {
         rootSequence: 1,
       },
-      notes:
-        "Imported from: Петр - Стандартные операции для ИМ - Переход на страницу 2\n",
+      notes: stepInfo.page_1.note,
     },
     {
       passing: true,
       extra: {
         rootSequence: 2,
       },
-      notes:
-        "Imported from: Петр - Стандартные операции для ИМ - Переход на страницу 3\n",
+      notes: stepInfo.page_3.note,
     },
   ],
   withErrors: [
@@ -33,24 +45,21 @@ const rawSteps = {
       extra: {
         rootSequence: 0,
       },
-      notes:
-        "Imported from: Петр - Стандартные операции для ИМ - Вход на проект\n",
+      notes: stepInfo.enter.note,
     },
     {
       passing: false,
       extra: {
         rootSequence: 1,
       },
-      notes:
-        "Imported from: Петр - Стандартные операции для ИМ - Переход на страницу 2\n",
+      notes: stepInfo.page_1.note,
     },
     {
       passing: false,
       extra: {
         rootSequence: 1,
       },
-      notes:
-        "Imported from: Петр - Стандартные операции для ИМ - Переход на страницу 3\n",
+      notes: stepInfo.page_3.note,
     },
   ],
   partlyExecuted: [
@@ -59,24 +68,21 @@ const rawSteps = {
       extra: {
         rootSequence: 0,
       },
-      notes:
-        "Imported from: Петр - Стандартные операции для ИМ - Вход на проект\n",
+      notes: stepInfo.enter.note,
     },
     {
       passing: null,
       extra: {
         rootSequence: 1,
       },
-      notes:
-        "Imported from: Петр - Стандартные операции для ИМ - Переход на страницу 2\n",
+      notes: stepInfo.page_1.note,
     },
     {
       passing: null,
       extra: {
         rootSequence: 1,
       },
-      notes:
-        "Imported from: Петр - Стандартные операции для ИМ - Переход на страницу 3\n",
+      notes: stepInfo.page_3.note,
     },
   ],
   executeWithSkipping: [
@@ -85,45 +91,42 @@ const rawSteps = {
       extra: {
         rootSequence: 0,
       },
-      notes:
-        "Imported from: Петр - Стандартные операции для ИМ - Вход на проект\n",
+      notes: stepInfo.enter.note,
     },
     {
       passing: null,
       extra: {
         rootSequence: 1,
       },
-      notes:
-        "Imported from: Петр - Стандартные операции для ИМ - Переход на страницу 2\n",
+      notes: stepInfo.page_1.note,
     },
     {
       passing: true,
       extra: {
         rootSequence: 1,
       },
-      notes:
-        "Imported from: Петр - Стандартные операции для ИМ - Переход на страницу 3\n",
+      notes: stepInfo.page_3.note,
     },
   ],
 };
 
 const reducedSteps = {
   allSuccess: [
-    { name: "Вход на проект", status: true },
-    { name: "Переход на страницу 2", status: true },
-    { name: "Переход на страницу 3", status: true },
+    { name: stepInfo.enter.name, status: true },
+    { name: stepInfo.page_1.name, status: true },
+    { name: stepInfo.page_3.name, status: true },
   ],
   withErrors: [
-    { name: "Вход на проект", status: true },
-    { name: "Переход на страницу 2", status: false },
+    { name: stepInfo.enter.name, status: true },
+    { name: stepInfo.page_1.name, status: false },
   ],
   partlyExecuted: [
-    { name: "Вход на проект", status: true },
-    { name: "Переход на страницу 2", status: null },
+    { name: stepInfo.enter.name, status: true },
+    { name: stepInfo.page_1.name, status: null },
   ],
   executeWithSkipping: [
-    { name: "Вход на проект", status: true },
-    { name: "Переход на страницу 2", status: true },
+    { name: stepInfo.enter.name, status: true },
+    { name: stepInfo.page_1.name, status: true },
   ],
 };
 

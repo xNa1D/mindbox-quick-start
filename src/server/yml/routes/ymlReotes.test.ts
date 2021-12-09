@@ -58,10 +58,12 @@ const mockYmlDataWithAuth = {
   },
 };
 
+const API_URL = "/api/yml/start";
+
 describe("send valid yml data with valid user token", () => {
   it("should call 'sendYmlToMindbox' with correct params", async () => {
     await agent
-      .post("/api/yml/start")
+      .post(API_URL)
       .set("Cookie", [`token=${mockUserAuthToken}`])
       .send(mockYmlData);
 
@@ -84,7 +86,7 @@ describe("send valid yml data with valid user token", () => {
   });
   it("when pass valid data with auth, should call sendYmlToMindbox", async () => {
     await agent
-      .post("/api/yml/start")
+      .post(API_URL)
       .set("Cookie", [`token=${mockUserAuthToken}`])
       .send(mockYmlDataWithAuth);
 
@@ -107,10 +109,10 @@ describe("send valid yml data with valid user token", () => {
   });
 });
 
-describe("/api/yml/start", () => {
+describe(API_URL, () => {
   it("when no errors, should return 200 and text", async () => {
     const res = await agent
-      .post("/api/yml/start")
+      .post(API_URL)
       .set("Cookie", [`token=${mockUserAuthToken}`])
       .send(mockYmlData);
 
@@ -120,7 +122,7 @@ describe("/api/yml/start", () => {
 
   it("when pass 501+ yml, should return validation error", async () => {
     const res = await agent
-      .post("/api/yml/start")
+      .post(API_URL)
       .set("Cookie", [`token=${mockUserAuthToken}`])
       .send(mockHugeYml);
 
@@ -130,7 +132,7 @@ describe("/api/yml/start", () => {
 
   it("When auth is failed, should return 403", async () => {
     const res = await agent
-      .post("/api/yml/start")
+      .post(API_URL)
       .set("Cookie", [`token=12345`])
       .send(mockYmlData);
 
