@@ -1,23 +1,28 @@
-import axios from "src/__mocks__/axios";
+import axios from "axios";
 import getScenarioDescription from "client/scenario/getScenarioDescription";
-import mockSuccessGistAnswer from "src/__mocks__/mockSuccessGistAnswer.json";
+
+jest.mock("axios");
 
 const mockFileName = "AwesomeFile";
 
-describe("get scenario info", () => {
-  test("should return valid MD", async () => {
-    axios.get = jest
-      .fn()
-      .mockResolvedValue({ status: 200, data: mockSuccessGistAnswer });
+const validFile = {
+  files: {
+    "AwesomeFile.md": {
+      content: "Супер прекрасное описание теста",
+    },
+  },
+};
+
+describe("getScenarioDescription", () => {
+  test("When getting valid file, should return MD with content", async () => {
+    axios.get = jest.fn().mockResolvedValue({ status: 200, data: validFile });
 
     const answer = await getScenarioDescription(mockFileName);
 
-    expect(answer).toBe(mockSuccessGistAnswer.files["AwesomeFile.md"].content);
+    expect(answer).toBe(validFile.files["AwesomeFile.md"].content);
   });
-  test("should return valid MD", async () => {
-    axios.get = jest
-      .fn()
-      .mockResolvedValue({ status: 200, data: mockSuccessGistAnswer });
+  test("When getting non-existent file, should return undefined", async () => {
+    axios.get = jest.fn().mockResolvedValue({ status: 200, data: validFile });
 
     const answer = await getScenarioDescription("fakeFile");
 
