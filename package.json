@@ -14,7 +14,8 @@
     "build": "npm run build:front && npm run build:back",
     "webpack": "webpack --mode=production",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts --fix .",
-    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\""
+    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
+    "wipe": "rm -rf ./node_modules && rm -f package-lock.json"
   },
   "repository": {
     "type": "git",
