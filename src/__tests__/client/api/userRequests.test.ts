@@ -1,8 +1,8 @@
+import axios from "axios";
 import { checkToken, loginUserByAdminPanel } from "client/api/userRequests";
-
 import { AuthByAdminPanelRequestBody } from "src/declarations";
 
-import axios from "src/__mocks__/axios";
+jest.mock("axios");
 
 const MockAuthBody: AuthByAdminPanelRequestBody = {
   login: "auth@me.please",

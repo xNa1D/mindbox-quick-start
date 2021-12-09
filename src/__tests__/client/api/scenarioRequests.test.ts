@@ -1,7 +1,10 @@
 import startScenario from "client/api/scenarioRequests";
 
 import { StartScenarioBody } from "src/declarations";
-import axios from "src/__mocks__/axios";
+
+import axios from "axios";
+
+jest.mock("axios");
 
 const mockScenarioBody: StartScenarioBody = {
   campaign: 1,
