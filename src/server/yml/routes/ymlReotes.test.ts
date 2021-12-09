@@ -109,7 +109,7 @@ describe("send valid yml data with valid user token", () => {
   });
 });
 
-describe(API_URL, () => {
+describe("POST to /api/yml/start", () => {
   it("when no errors, should return 200 and text", async () => {
     const res = await agent
       .post(API_URL)
