@@ -66,7 +66,7 @@ const token = generateAccessToken({
 const API_URL = "/api/scenario/start";
 
 describe("/scenario", () => {
-  describe("POST to /api/scenario/start ", () => {
+  describe("POST to /api/scenario/start", () => {
     describe("Checking status of response", () => {
       (startScenario as jest.Mock).mockResolvedValue(mockSuccessResponse);
       it("When passing correct JWT, should return 200", async () => {
@@ -142,7 +142,7 @@ describe("/scenario", () => {
     });
   });
 
-  describe("GET to /api/scenario/ ", () => {
+  describe("GET to /api/scenario/", () => {
     (getAllScenarios as jest.Mock).mockResolvedValue([mockScenario]);
     it("Should return array of scenarios", async () => {
       const res = await agent.get("/api/scenario/");
