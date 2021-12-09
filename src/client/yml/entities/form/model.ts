@@ -51,7 +51,7 @@ export const statuses = {
   error: "error",
 };
 
-type Action = { type: string; payload?: unknown };
+type Action = { type: string; payload?: any };
 
 export const initialState: State = {
   status: statuses.notSent,
