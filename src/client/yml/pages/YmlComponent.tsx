@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Container, Grid, Header, Segment } from "semantic-ui-react";
-import Papa, { ParseError, ParseResult } from "papaparse";
 
 import { YmlInstructions } from "../entities/instruction";
 import YmlForm from "../entities/form/ui";

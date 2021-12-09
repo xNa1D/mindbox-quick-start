@@ -1,13 +1,10 @@
-import { AxiosResponse } from "axios";
 import React, { FormEvent, useReducer, useState } from "react";
 import {
   Button,
   Divider,
   Form,
   Header,
-  List,
   Message,
-  Table,
 } from "semantic-ui-react";
 import {
   AuthParams,
@@ -21,7 +18,6 @@ import {
   statuses,
   validateCsv,
   YmlFormProps,
-  YmlRequestType,
 } from ".";
 
 import { CsvWarning } from "../csv-warning";
