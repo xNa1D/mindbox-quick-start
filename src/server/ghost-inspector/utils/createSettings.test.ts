@@ -1,7 +1,7 @@
 import { StartScenarioType } from "../../scenario/model";
 import { createSettings } from "./createSettings";
 
-describe("createSettings ", () => {
+describe("createSettings", () => {
   const oldScenarioMock: StartScenarioType = {
     scenarioApiAddress: ["testApi"],
     projectName: "testProject",
