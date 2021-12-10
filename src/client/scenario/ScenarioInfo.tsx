@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Header, List, Message, Segment } from "semantic-ui-react";
-import ReactMarkdown from "react-markdown";
+import { Remark } from "react-remark";
 
 import getScenarioDescription from "./getScenarioDescription";
 import { Scenario } from "src/declarations";
@@ -17,8 +17,8 @@ const ScenarioInfo = ({ scenario }: ScenarioInfo) => {
   useEffect(() => {
     setIsDescriptionLoading(true);
     getScenarioDescription(scenario.type)
-      .then((description) => setScenarioDescription(description))
-      .catch((error) => setGettingDescriptionError(error.toString()))
+      .then(description => setScenarioDescription(description))
+      .catch(error => setGettingDescriptionError(error.toString()))
       .finally(() => setIsDescriptionLoading(false));
   }, [scenario]);
 
@@ -32,7 +32,7 @@ const ScenarioInfo = ({ scenario }: ScenarioInfo) => {
           </Button>
         )}
         <div style={{ maxWidth: "75ch", padding: "35px 0" }}>
-          <ReactMarkdown>{scenarioDescription}</ReactMarkdown>
+          <Remark>{scenarioDescription}</Remark>
         </div>
         {gettingDescriptionError && (
           <Message error visible content={gettingDescriptionError} />
