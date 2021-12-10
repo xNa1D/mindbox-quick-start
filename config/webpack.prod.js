@@ -1,4 +1,4 @@
-const path = require("path");
+/* eslint-disable @typescript-eslint/no-var-requires */
 const { merge } = require("webpack-merge");
 
 const BundleAnalyzerPlugin =
