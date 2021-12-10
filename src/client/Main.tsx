@@ -3,6 +3,7 @@ import React, { lazy, Suspense } from "react";
 import AuthComponent from "./auth/AuthComponent";
 import { Segment, Tab } from "semantic-ui-react";
 import Footer from "./common/Footer";
+import { CustomFields } from "./custom-fields";
 
 const ScenarioComponent = lazy(() => import("./scenario/ScenarioComponent"));
 const YmlComponent = lazy(() => import("./yml/pages/YmlComponent"));
@@ -25,6 +26,16 @@ const Main = () => {
         <Tab.Pane as="div">
           <Suspense fallback={<div>Загрузка...</div>}>
             <YmlComponent />
+          </Suspense>
+        </Tab.Pane>
+      ),
+    },
+    {
+      menuItem: "Массовое добавление доп. полей",
+      render: () => (
+        <Tab.Pane as="div">
+          <Suspense fallback={<div>Загрузка...</div>}>
+            <CustomFields />
           </Suspense>
         </Tab.Pane>
       ),
