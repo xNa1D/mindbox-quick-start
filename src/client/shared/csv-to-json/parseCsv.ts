@@ -1,15 +1,12 @@
 import Papa, { LocalFile } from "papaparse";
-import { Link } from "../../yml/entities/form";
 
-export type ParseCsv = (
+export const parseCsv = <ReturnValue>(
   file: LocalFile,
-  handleResult: (data: Link[]) => void
-) => Promise<Link[]>;
-
-export const parseCsv: ParseCsv = (file, handleResult) => {
-  return new Promise((resolve, reject) => {
+  handleResult: (data: ReturnValue) => void
+) => {
+  return new Promise<ReturnValue>((resolve, reject) => {
     const config = {
-      complete: (result: { data: any; }) => {
+      complete: (result: { data: any }) => {
         const { data } = result;
 
         handleResult(data);
