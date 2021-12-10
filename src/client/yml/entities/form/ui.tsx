@@ -1,11 +1,5 @@
 import React, { FormEvent, useReducer, useState } from "react";
-import {
-  Button,
-  Divider,
-  Form,
-  Header,
-  Message,
-} from "semantic-ui-react";
+import { Button, Divider, Form, Header, Message } from "semantic-ui-react";
 import {
   AuthParams,
   finishWithError,
@@ -25,7 +19,7 @@ import { CsvWarning } from "../csv-warning";
 const YmlForm = ({ parseCsv, sendData, setYmlTable }: YmlFormProps) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const [csvData, setCsvData] = useState<Link[]>();
+  const [csvData, setCsvData] = useState<Link[]>([]);
 
   const [ymlSettings, setYmlSettings] = useState<Settings>({
     brand: "",
@@ -86,7 +80,7 @@ const YmlForm = ({ parseCsv, sendData, setYmlTable }: YmlFormProps) => {
 
       parseCsv(files[0], setYmlTable)
         .then(setCsvData)
-        .catch((message) => dispatch(finishWithError(message)));
+        .catch((message: string) => dispatch(finishWithError(message)));
     }
   };
 
