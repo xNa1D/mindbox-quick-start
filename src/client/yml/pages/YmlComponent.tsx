@@ -5,7 +5,7 @@ import { YmlInstructions } from "../entities/instruction";
 import YmlForm from "../entities/form/ui";
 import { CsvDataPreview } from "../entities/csv-preview";
 
-import sendYmlData from "client/api/sendYmlData";
+import sendYmlData from "src/client/shared/api/sendYmlData";
 import { CsvDataInstruction } from "../entities/csv-instruction";
 import { parseCsv } from "../process";
 import { Link } from "../entities/form";

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { Scenario, StartScenarioBody } from "src/declarations";
-import startScenario from "src/client/api/scenarioRequests";
+import startScenario from "src/client/shared/api/scenarioRequests";
 // import scenarios from "src/data";
 
 import { Button, Divider, Form, Icon, Input, Message } from "semantic-ui-react";

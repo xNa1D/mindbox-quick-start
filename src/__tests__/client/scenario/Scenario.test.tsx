@@ -4,7 +4,7 @@ import "@testing-library/jest-dom";
 import { MemoryRouter } from "react-router-dom";
 import { createMemoryHistory } from "history";
 
-import startScenario from "src/client/api/scenarioRequests";
+import startScenario from "src/client/shared/api/scenarioRequests";
 import ScenarioComponent from "src/client/scenario/ScenarioComponent";
 
 import { getAllScenarios } from "src/client/scenario/getAllScenarios";

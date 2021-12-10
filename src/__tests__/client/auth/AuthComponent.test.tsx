@@ -6,7 +6,7 @@ import { MemoryRouter } from "react-router-dom";
 import { ProvideAuth } from "client/auth/useAuth";
 import AuthComponent from "client/auth/AuthComponent";
 
-import { checkToken } from "src/client/api/userRequests";
+import { checkToken } from "src/client/shared/api/userRequests";
 
 jest.mock("axios");
 jest.mock("client/api/userRequests");

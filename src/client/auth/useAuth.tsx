@@ -2,7 +2,7 @@ import React, { useContext, createContext, useState, useEffect } from "react";
 import Cookies from "universal-cookie";
 import { useHistory } from "react-router-dom";
 
-import { loginUser, checkToken, loginUserByAdminPanel } from "src/client/api/userRequests";
+import { loginUser, checkToken, loginUserByAdminPanel } from "src/client/shared/api/userRequests";
 
 import { AuthRequestBody, UseProviderReturnedValue } from "src/declarations";
 

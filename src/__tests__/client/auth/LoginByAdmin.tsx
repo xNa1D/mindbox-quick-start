@@ -11,7 +11,7 @@ import { MemoryRouter } from "react-router-dom";
 import { ProvideAuth } from "client/auth/useAuth";
 import Login from "client/auth/LoginByAdmin";
 
-import { loginUser } from "src/client/api/userRequests";
+import { loginUser } from "src/client/shared/api/userRequests";
 
 jest.mock("axios");
 jest.mock("client/api/userRequests");

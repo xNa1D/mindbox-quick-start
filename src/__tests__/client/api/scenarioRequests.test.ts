@@ -1,4 +1,4 @@
-import startScenario from "client/api/scenarioRequests";
+import startScenario from "src/client/shared/api/scenarioRequests";
 
 import { StartScenarioBody } from "src/declarations";
 
