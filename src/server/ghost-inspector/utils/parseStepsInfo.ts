@@ -5,7 +5,9 @@ type reducedStepsType = {
   [k: string]: { status?: boolean | null; name?: string };
 };
 
-const isStepsEmpty = (steps: StepsEntity[]) => steps?.length === 0;
+const validateEmptySteps = (steps: StepsEntity[]) => {
+  if (steps?.length === 0) return [];
+};
 
 const getStepName = (step: StepsEntity) =>
   step.notes
@@ -23,9 +25,8 @@ const isReducedStepStatusEmpty = (steps: reducedStepsType, id: number) =>
   steps[id]["status"] === null;
 
 export const parseStepsInfo = (steps: StepsEntity[]) => {
-  if (isStepsEmpty(steps)) {
-    return [];
-  }
+  validateEmptySteps(steps);
+  
   const reducedSteps: reducedStepsType = {};
 
   steps.reduce((reducedSteps, step) => {
