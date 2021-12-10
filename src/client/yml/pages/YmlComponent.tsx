@@ -7,7 +7,7 @@ import { CsvDataPreview } from "../entities/csv-preview";
 
 import sendYmlData from "src/client/shared/api/sendYmlData";
 import { CsvDataInstruction } from "../entities/csv-instruction";
-import { parseCsv } from "../process";
+import { parseCsv } from "../../shared/csv-to-json";
 import { Link } from "../entities/form";
 
 export const YmlComponent = () => {

@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { ParseCsv } from "../../process";
+import { ParseCsv } from "../../../shared/csv-to-json";
 
 export const validateCsv = (links: Link[]) => {
   const findRowsWithIncorrectFields = () =>

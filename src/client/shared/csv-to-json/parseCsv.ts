@@ -1,5 +1,5 @@
 import Papa, { LocalFile } from "papaparse";
-import { Link } from "../entities/form";
+import { Link } from "../../yml/entities/form";
 
 export type ParseCsv = (
   file: LocalFile,
