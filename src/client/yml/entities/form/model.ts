@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { ParseCsv } from "../../../shared/csv-to-json";
+import { parseCsv } from "../../../shared/csv-to-json";
 
 export const validateCsv = (links: Link[]) => {
   const findRowsWithIncorrectFields = () =>
@@ -11,7 +11,7 @@ export const validateCsv = (links: Link[]) => {
 };
 
 export type YmlFormProps = {
-  parseCsv: ParseCsv;
+  parseCsv: typeof parseCsv;
   sendData: (data: YmlRequestType) => Promise<AxiosResponse<unknown>>;
   setYmlTable: React.Dispatch<React.SetStateAction<Link[]>>;
 };
