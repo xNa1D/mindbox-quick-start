@@ -13,11 +13,37 @@ import {
 import { CustomFieldObject } from "src/server/custom-fields";
 import { startCf } from "../../shared/api/startCF";
 import { parseCsv } from "../../processes/csv-to-json";
+import {
+  column,
+  CsvDataInstruction,
+} from "src/client/entities/csv-instruction";
 
 const initialFormState = {
   status: "idle",
   error: "",
 };
+
+const columns: column[] = [
+  { header: "CustomFieldEntity", description: "Сущность", isRequired: true },
+  { header: "CustomFieldName", description: "Название", isRequired: true },
+  {
+    header: "CustomFieldSystemName",
+    description: "Системное имя",
+    isRequired: true,
+  },
+  {
+    header: "CustomFieldValueTypes",
+    description: "Тип данных",
+    isRequired: true,
+  },
+  {
+    header: "isClearable",
+    description: "Очищать, если не передано",
+    isRequired: true,
+  },
+  { header: "isMultiple", description: "Множественное", isRequired: true },
+  { header: "isPublic", description: "Публичное", isRequired: true },
+];
 
 export const CustomFields = () => {
   const [data, setData] = useState<CustomFieldObject[]>([]);
@@ -103,39 +129,40 @@ export const CustomFields = () => {
           </Segment>
         </Grid.Column>
         <Grid.Column width={10}>
-          <Table striped fixed selectable>
-            <Table.Header>
-              <Table.Row>
-                <Table.HeaderCell>Сущность</Table.HeaderCell>
-                <Table.HeaderCell>Название</Table.HeaderCell>
-                <Table.HeaderCell>Системное имя</Table.HeaderCell>
-                <Table.HeaderCell>Тип данных</Table.HeaderCell>
-                <Table.HeaderCell>Очищать, если не передано</Table.HeaderCell>
-                <Table.HeaderCell>Множественное</Table.HeaderCell>
-                <Table.HeaderCell>Публичное</Table.HeaderCell>
-              </Table.Row>
-            </Table.Header>
-            <Table.Body>
-              {data.map(row => (
-                <Table.Row key={row.CustomFieldSystemName}>
-                  <Table.Cell>{row.CustomFieldEntity}</Table.Cell>
-                  <Table.Cell>{row.CustomFieldName}</Table.Cell>
-                  <Table.Cell>{row.CustomFieldSystemName}</Table.Cell>
-                  <Table.Cell>{row.CustomFieldValueTypes}</Table.Cell>
-                  <Table.Cell>
-                    <Checkbox checked={row.isClearable} />
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Checkbox checked={row.isMultiple} />
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Checkbox checked={row.isPublic} />
-                  </Table.Cell>
-                </Table.Row>
-              ))}
-            </Table.Body>
-          </Table>
+          <CsvDataInstruction columns={columns} linkToExample="" />
         </Grid.Column>
+      </Grid>
+      <Grid columns={1} stackable>
+        <Table striped fixed selectable>
+          <Table.Header>
+            <Table.Row>
+              {columns.map(column => (
+                <Table.HeaderCell key={column.header}>
+                  {column.description}
+                </Table.HeaderCell>
+              ))}
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+            {data.map(row => (
+              <Table.Row key={row.CustomFieldSystemName}>
+                <Table.Cell>{row.CustomFieldEntity}</Table.Cell>
+                <Table.Cell>{row.CustomFieldName}</Table.Cell>
+                <Table.Cell>{row.CustomFieldSystemName}</Table.Cell>
+                <Table.Cell>{row.CustomFieldValueTypes}</Table.Cell>
+                <Table.Cell>
+                  <Checkbox checked={row.isClearable} />
+                </Table.Cell>
+                <Table.Cell>
+                  <Checkbox checked={row.isMultiple} />
+                </Table.Cell>
+                <Table.Cell>
+                  <Checkbox checked={row.isPublic} />
+                </Table.Cell>
+              </Table.Row>
+            ))}
+          </Table.Body>
+        </Table>
       </Grid>
     </Container>
   );
