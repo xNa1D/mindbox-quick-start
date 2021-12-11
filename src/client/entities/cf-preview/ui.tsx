@@ -28,13 +28,13 @@ export const CfPreview = ({
             <Table.Cell>{row.CustomFieldSystemName}</Table.Cell>
             <Table.Cell>{row.CustomFieldValueTypes}</Table.Cell>
             <Table.Cell>
-              <Checkbox checked={row.isClearable} />
+              <Checkbox checked={!!row.isClearable} />
             </Table.Cell>
             <Table.Cell>
-              <Checkbox checked={row.isMultiple} />
+              <Checkbox checked={!!row.isMultiple} />
             </Table.Cell>
             <Table.Cell>
-              <Checkbox checked={row.isPublic} />
+              <Checkbox checked={!!row.isPublic} />
             </Table.Cell>
           </Table.Row>
         ))}
