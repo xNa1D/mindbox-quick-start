@@ -11,8 +11,8 @@ import {
   Table,
 } from "semantic-ui-react";
 import { CustomFieldObject } from "src/server/custom-fields";
-import { startCf } from "../shared/api/startCF";
-import { parseCsv } from "../shared/csv-to-json";
+import { startCf } from "../../shared/api/startCF";
+import { parseCsv } from "../../shared/csv-to-json";
 
 const initialFormState = {
   status: "idle",
