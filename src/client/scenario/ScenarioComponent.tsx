@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import { Scenario, StartScenarioBody } from "src/declarations";
-import useAuth from "client/auth/useAuth";
+import { Scenario } from "src/declarations";
+import useAuth from "src/client/processes/auth/useAuth";
 // import scenarios from "src/data";
 
 import { Container, Grid, Header, Segment } from "semantic-ui-react";
@@ -20,7 +20,7 @@ export const fallbackScenario: Scenario = {
 };
 
 const ScenarioComponent = () => {
-  const auth = useAuth();
+  useAuth();
   const [scenarios, setScenarios] = useState<Scenario[]>([fallbackScenario]);
   const [selectedScenario, setSelectedScenario] = useState<string>("");
 

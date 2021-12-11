@@ -1,20 +1,17 @@
-import React, { useEffect, useState } from "react";
-
-import { Scenario, StartScenarioBody } from "src/declarations";
-import startScenario from "src/client/shared/api/scenarioRequests";
-// import scenarios from "src/data";
-
+import axios from "axios";
+import React, { useState } from "react";
 import { Button, Divider, Form, Icon, Input, Message } from "semantic-ui-react";
-import useAuth from "../auth/useAuth";
+import startScenario from "src/client/shared/api/scenarioRequests";
+import { Scenario, StartScenarioBody } from "src/declarations";
+import useAuth from "../processes/auth/useAuth";
 import { fallbackScenario } from "./ScenarioComponent";
+
 
 type ScenarioFormProps = {
   allScenarios: Scenario[];
   selectedScenario: string;
   onChangeSelectedScenario: React.Dispatch<React.SetStateAction<string>>;
 };
-
-
 
 const ScenarioForm = ({
   allScenarios,
@@ -49,8 +46,14 @@ const ScenarioForm = ({
       await startScenario(formState);
       setWasStarted(true);
     } catch (error) {
-      // @ts-ignore
-      setError(error.response.data);
+      let message;
+
+      if (axios.isAxiosError(error)) {
+        message = error.response?.data;
+      } else if (error instanceof Error) {
+        message = error.message;
+      }
+      setError(message);
     } finally {
       setIsLoading(false);
     }
@@ -65,11 +68,11 @@ const ScenarioForm = ({
           className="ui fluid dropdown"
           name="task"
           id="task"
-          onChange={(event) => {
+          onChange={event => {
             const selectedScenarioType = event.target.value;
             const selectedScenario =
               allScenarios.find(
-                (scenario) => scenario.type === selectedScenarioType
+                scenario => scenario.type === selectedScenarioType
               ) || fallbackScenario;
             setFormState({ ...formState, scenario: selectedScenario });
             onChangeSelectedScenario(selectedScenarioType);
@@ -78,7 +81,7 @@ const ScenarioForm = ({
           value={formState?.scenario?.type}
         >
           {allScenarios.length > 0 &&
-            allScenarios.map((scenario) => (
+            allScenarios.map(scenario => (
               <option value={scenario.type} key={scenario.type}>
                 {scenario.name}
               </option>
@@ -95,7 +98,7 @@ const ScenarioForm = ({
           id="campaign"
           name="campaign"
           placeholder="1, 2 или 100500. Кто знает, сколько у вас там кампаний"
-          onChange={(event) => {
+          onChange={event => {
             const eventValue = +event.target.value as number;
             if (eventValue) {
               setFormState({ ...formState, campaign: eventValue });
@@ -123,7 +126,7 @@ const ScenarioForm = ({
           id="emailForNotification"
           name="emailForNotification"
           placeholder="Почта, на которую мы отправим письмо, когда сценарий добежит до конца"
-          onChange={(event) => {
+          onChange={event => {
             setFormState({
               ...formState,
               emailForNotification: event.target.value,
