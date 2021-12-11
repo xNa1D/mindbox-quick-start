@@ -14,8 +14,8 @@ import {
   CsvDataInstruction
 } from "src/client/entities/csv-instruction";
 import { CustomFieldObject } from "src/server/custom-fields";
-import { parseCsv } from "../../processes/csv-to-json";
-import { startCf } from "../../shared/api/startCF";
+import { parseCsv } from "client/processes/csv-to-json";
+import { startCf } from "client/shared/api/startCF";
 
 const initialFormState = {
   status: "idle",
@@ -93,11 +93,11 @@ export const CustomFields = () => {
           <Segment style={{ position: "sticky", top: "15px" }}>
             <Form onSubmit={handleFormSubmit} id="scenario">
               <Form.Field>
-                <label htmlFor="csvWithYmlData">Файл с доп полями</label>
+                <label htmlFor="csv">Файл с доп полями</label>
                 <input
                   type="file"
-                  name="csvWithYmlData"
-                  id="csvWithYmlData"
+                  name="csv"
+                  id="csv"
                   accept=".csv"
                   required
                   onChange={handleFileChange}
