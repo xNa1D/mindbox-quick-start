@@ -103,13 +103,13 @@ describe("Rendering of form inputs", () => {
   test("should render brandInput", async () => {
     const { queryByLabelText } = setUpYmlForm();
 
-    expect(queryByLabelText(SubmitBtnText)).toBeInTheDocument();
+    expect(queryByLabelText(BrandInputLabel)).toBeInTheDocument();
   });
 
   test("should change value of brandInput", async () => {
     const { queryByLabelText } = setUpYmlForm();
 
-    const brand = queryByLabelText(SubmitBtnText);
+    const brand = queryByLabelText(BrandInputLabel);
 
     if (brand) {
       changeInput(brand, "newBrand");
@@ -265,8 +265,8 @@ describe("sendData", () => {
     const { queryByLabelText, queryByText } = setUpYmlForm(mockYmlProps);
 
     const fileInput = queryByLabelText(FileInputLabel);
-    const brand = queryByLabelText(SubmitBtnText);
-    const btn = queryByText("Загрузить фиды");
+    const brand = queryByLabelText(BrandInputLabel);
+    const btn = queryByText(SubmitBtnText);
 
     if (fileInput && brand) {
       changeInput(fileInput, csvFile);
