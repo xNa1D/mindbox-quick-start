@@ -9,7 +9,7 @@ import {
   Message,
   Icon,
 } from "semantic-ui-react";
-import Logo from "../common/Logo";
+import Logo from "../../common/Logo";
 import AuthInfo from "./AuthInfo";
 import LoginByAdmin from "./LoginByAdmin";
 import useAuth from "./useAuth";
