@@ -7,16 +7,20 @@ export type column = {
   isRequired: boolean;
 };
 
-export const CsvDataInstruction = ({ columns }: { columns: column[] }) => {
+export const CsvDataInstruction = ({
+  columns,
+  linkToExample,
+}: {
+  columns: column[];
+  linkToExample: string;
+}) => {
   return (
     <>
       <Header as="h3">
         Какой нужен файл
         <Header.Subheader>
           CSV табличка с 3 колонками. <br />
-          <a href="https://drive.google.com/file/d/1h-Ts-lZ0FGlkRYCAFP5-uTMhcxoSViMo/view?usp=sharing">
-            Пример файла
-          </a>
+          <a href={linkToExample}>Пример файла</a>
         </Header.Subheader>
       </Header>
       <Table attached definition>
