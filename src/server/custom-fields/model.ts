@@ -35,9 +35,9 @@ export type CustomFieldObject = {
   CustomFieldName: string;
   CustomFieldSystemName: string;
 
-  isClearable: boolean;
-  isMultiple: boolean;
-  isPublic: boolean;
+  isClearable: string;
+  isMultiple: string;
+  isPublic: string;
 };
 
 export type CustomFieldScenarioRequestBody = CustomFieldObject &
