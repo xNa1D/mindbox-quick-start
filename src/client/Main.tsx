@@ -1,12 +1,12 @@
 import React, { lazy, Suspense } from "react";
 
-import AuthComponent from "./auth/AuthComponent";
+import AuthComponent from "./processes/auth/AuthComponent";
 import { Segment, Tab } from "semantic-ui-react";
 import Footer from "./common/Footer";
-import { CustomFields } from "./custom-fields";
+import { CustomFields } from "./pages/custom-fields";
 
 const ScenarioComponent = lazy(() => import("./scenario/ScenarioComponent"));
-const YmlComponent = lazy(() => import("./yml/pages/YmlComponent"));
+const YmlComponent = lazy(() => import("./pages/yml-import/YmlComponent"));
 
 const Main = () => {
   const panes = [
@@ -31,7 +31,7 @@ const Main = () => {
       ),
     },
     {
-      menuItem: "Массовое добавление доп. полей",
+      menuItem: "Заведение доп. полей",
       render: () => (
         <Tab.Pane as="div">
           <Suspense fallback={<div>Загрузка...</div>}>
