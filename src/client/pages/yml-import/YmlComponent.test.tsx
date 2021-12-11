@@ -1,7 +1,6 @@
 import React from "react";
 import {
   render,
-  screen,
   fireEvent,
   act,
   RenderResult,
@@ -14,6 +13,8 @@ jest.mock("axios");
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
+//TODO: add test for invalid csv
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const inValidCsvString = `region_id;name;xml
 1;Санкт-Петербург;myLink`;
 
