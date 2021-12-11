@@ -7,7 +7,7 @@ import getScenarioDescription from "src/client/pages/scenario/getScenarioDescrip
 import { Scenario } from "src/declarations";
 
 jest.mock("axios");
-jest.mock("client/scenario/getScenarioDescription");
+jest.mock("./getScenarioDescription");
 
 const customRender = async (
   ui: any,

@@ -7,8 +7,8 @@ import ScenarioComponent from "src/client/pages/scenario/ScenarioComponent";
 
 import { getAllScenarios } from "src/client/pages/scenario/getAllScenarios";
 
-jest.mock("client/api/scenarioRequests");
-jest.mock("src/client/scenario/getAllScenarios");
+jest.mock("client/shared/api/scenarioRequests");
+jest.mock("./getAllScenarios");
 
 (getAllScenarios as jest.Mock).mockResolvedValue([
   {

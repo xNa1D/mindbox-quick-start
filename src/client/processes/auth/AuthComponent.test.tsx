@@ -9,7 +9,7 @@ import AuthComponent from "src/client/processes/auth/AuthComponent";
 import { checkToken } from "src/client/shared/api/userRequests";
 
 jest.mock("axios");
-jest.mock("client/api/userRequests");
+jest.mock("client/shared/api/userRequests");
 
 beforeEach(() => {
   jest.clearAllMocks();

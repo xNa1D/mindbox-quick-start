@@ -14,7 +14,7 @@ import Login from "src/client/processes/auth/LoginByAdmin";
 import { loginUser } from "src/client/shared/api/userRequests";
 
 jest.mock("axios");
-jest.mock("client/api/userRequests");
+jest.mock("client/shared/api/userRequests");
 
 const customRender = async (ui: any, { providerProps, ...renderOptions }: any) => {
   return await act(async () => {

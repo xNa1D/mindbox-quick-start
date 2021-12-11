@@ -10,7 +10,7 @@ import MockConsumer from "../../../__mocks__/MockConsumer";
 import { loginUser, checkToken } from "src/client/shared/api/userRequests";
 
 jest.mock("axios");
-jest.mock("client/api/userRequests");
+jest.mock("client/shared/api/userRequests");
 
 beforeEach(() => {
   (loginUser as jest.Mock).mockResolvedValue({
