@@ -2,7 +2,7 @@ import React, { useContext, createContext, useState, useEffect } from "react";
 import Cookies from "universal-cookie";
 import { useHistory } from "react-router-dom";
 
-import { loginUser, checkToken, loginUserByAdminPanel } from "src/client/shared/api/userRequests";
+import { loginUser, checkToken } from "src/client/shared/api/userRequests";
 
 import { AuthRequestBody, UseProviderReturnedValue } from "src/declarations";
 
@@ -11,7 +11,10 @@ const initialContext: UseProviderReturnedValue = {
   isLoggedIn: false,
   loginErrors: "",
   loginForProject: "",
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   login: async (user) => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   checkAuth: async () => {},
 };
 
