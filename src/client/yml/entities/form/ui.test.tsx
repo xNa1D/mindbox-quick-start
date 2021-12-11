@@ -1,23 +1,19 @@
-import React, { SetStateAction } from "react";
-import {
-  render,
-  screen,
-  fireEvent,
-  act,
-  RenderResult,
-} from "@testing-library/react";
+import React from "react";
+import { render, fireEvent, act, RenderResult } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import YmlForm from "src/client/yml/entities/form/ui";
-import { Link, YmlFormProps } from ".";
+import { YmlFormProps } from ".";
 
 jest.mock("axios");
+
+const name = "Санкт-Петербург";
 
 const mockYmlProps: YmlFormProps = {
   parseCsv: jest.fn().mockResolvedValue([
     {
       areaExternalId: "1",
-      name: "Санкт-Петербург",
+      name,
       url: "myLink",
     },
   ]),
@@ -25,7 +21,7 @@ const mockYmlProps: YmlFormProps = {
   setYmlTable: jest.fn(),
 };
 
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 const inValidCsvString = `region_id;name;xml
 1;Санкт-Петербург;myLink`;
@@ -74,11 +70,17 @@ const changeInput = (input: HTMLElement, value: string | number | File) => {
   });
 };
 
+const FileInputLabel = "Файл с фидами";
+const BrandInputLabel = "Системное имя бренда";
+const SubmitBtnText = "Загрузить фиды";
+const ExternalSystemLabel = "Индетификатор внешней системы";
+const PeriodLabel = "Период загрузки";
+
 describe("Rendering of form inputs", () => {
   test("should render fileInput", async () => {
     const { queryByLabelText } = setUpYmlForm();
 
-    expect(queryByLabelText("Файл с фидами")).toBeInTheDocument();
+    expect(queryByLabelText(FileInputLabel)).toBeInTheDocument();
   });
 
   test("should call parseCsv on file update", async () => {
@@ -88,25 +90,26 @@ describe("Rendering of form inputs", () => {
 
     const { queryByLabelText } = setUpYmlForm();
 
-    const fileInput = queryByLabelText("Файл с фидами");
+    const fileInput = queryByLabelText(FileInputLabel);
 
     if (fileInput) {
       changeInput(fileInput, csvFile);
     }
-    //@ts-ignore
-    expect(mockYmlProps.parseCsv.mock.calls[0][0].name).toBe("table.csv");
+    expect((mockYmlProps.parseCsv as jest.Mock).mock.calls[0][0].name).toBe(
+      "table.csv"
+    );
   });
 
   test("should render brandInput", async () => {
     const { queryByLabelText } = setUpYmlForm();
 
-    expect(queryByLabelText("Системное имя бренда")).toBeInTheDocument();
+    expect(queryByLabelText(SubmitBtnText)).toBeInTheDocument();
   });
 
   test("should change value of brandInput", async () => {
     const { queryByLabelText } = setUpYmlForm();
 
-    const brand = queryByLabelText("Системное имя бренда");
+    const brand = queryByLabelText(SubmitBtnText);
 
     if (brand) {
       changeInput(brand, "newBrand");
@@ -118,23 +121,19 @@ describe("Rendering of form inputs", () => {
   test("should render externalSystemInput", async () => {
     const { queryByLabelText } = setUpYmlForm();
 
-    expect(
-      queryByLabelText("Индетификатор внешней системы")
-    ).toBeInTheDocument();
+    expect(queryByLabelText(ExternalSystemLabel)).toBeInTheDocument();
   });
 
   test("should render externalSystemInput with default value", async () => {
     const { queryByLabelText } = setUpYmlForm();
 
-    expect(queryByLabelText("Индетификатор внешней системы")).toHaveValue(
-      "Website"
-    );
+    expect(queryByLabelText(ExternalSystemLabel)).toHaveValue("Website");
   });
 
   test("should change value of externalSystemInput", async () => {
     const { queryByLabelText } = setUpYmlForm();
 
-    const input = queryByLabelText("Индетификатор внешней системы");
+    const input = queryByLabelText(ExternalSystemLabel);
 
     if (input) {
       changeInput(input, "backend");
@@ -146,13 +145,13 @@ describe("Rendering of form inputs", () => {
   test("should render launchPeriodInput", async () => {
     const { queryByLabelText } = setUpYmlForm();
 
-    expect(queryByLabelText("Период загрузки")).toBeInTheDocument();
+    expect(queryByLabelText(PeriodLabel)).toBeInTheDocument();
   });
 
   test("should change value of launchPeriodInput", async () => {
     const { queryByLabelText } = setUpYmlForm();
 
-    const input = queryByLabelText("Период загрузки");
+    const input = queryByLabelText(PeriodLabel);
 
     if (input) {
       changeInput(input, 3);
@@ -164,7 +163,7 @@ describe("Rendering of form inputs", () => {
   test("should render launchPeriodInput with default value", async () => {
     const { queryByLabelText } = setUpYmlForm();
 
-    expect(queryByLabelText("Период загрузки")).toHaveValue(2);
+    expect(queryByLabelText(PeriodLabel)).toHaveValue(2);
   });
 });
 
@@ -174,11 +173,11 @@ describe("sendData", () => {
       type: "text/csv",
     });
 
-    const { queryByLabelText, queryByText, component } = setUpYmlForm();
+    const { queryByLabelText, queryByText } = setUpYmlForm();
 
-    const fileInput = queryByLabelText("Файл с фидами");
-    const brand = queryByLabelText("Системное имя бренда");
-    const btn = queryByText("Загрузить фиды");
+    const fileInput = queryByLabelText(FileInputLabel);
+    const brand = queryByLabelText(BrandInputLabel);
+    const btn = queryByText(SubmitBtnText);
 
     const login = queryByLabelText("Логин");
     const password = queryByLabelText("Пароль");
@@ -201,7 +200,7 @@ describe("sendData", () => {
         password: "pass",
         username: "login",
       },
-      links: [{ areaExternalId: "1", name: "Санкт-Петербург", url: "myLink" }],
+      links: [{ areaExternalId: "1", name, url: "myLink" }],
       settings: {
         brand: "myBrand",
         externalSystem: "Website",
@@ -214,12 +213,11 @@ describe("sendData", () => {
       type: "text/csv",
     });
 
-    const { queryByLabelText, queryByText, component } = setUpYmlForm();
+    const { queryByLabelText, queryByText } = setUpYmlForm();
 
-    const fileInput = queryByLabelText("Файл с фидами");
-    const brand = queryByLabelText("Системное имя бренда");
-    const btn = queryByText("Загрузить фиды");
-
+    const fileInput = queryByLabelText(FileInputLabel);
+    const brand = queryByLabelText(BrandInputLabel);
+    const btn = queryByText(SubmitBtnText);
 
     if (fileInput && brand) {
       changeInput(fileInput, csvFile);
@@ -237,7 +235,7 @@ describe("sendData", () => {
         password: "",
         username: "",
       },
-      links: [{ areaExternalId: "1", name: "Санкт-Петербург", url: "myLink" }],
+      links: [{ areaExternalId: "1", name, url: "myLink" }],
       settings: {
         brand: "myBrand",
         externalSystem: "Website",
@@ -250,12 +248,12 @@ describe("sendData", () => {
       parseCsv: jest.fn().mockResolvedValue([
         {
           areaExternalId: undefined,
-          name: "Санкт-Петербург",
+          name,
           url: undefined,
         },
       ]),
       sendData: jest.fn(),
-      setYmlTable: function (value: SetStateAction<Link[]>): void {
+      setYmlTable: function (): void {
         throw new Error("Function not implemented.");
       },
     };
@@ -266,8 +264,8 @@ describe("sendData", () => {
 
     const { queryByLabelText, queryByText } = setUpYmlForm(mockYmlProps);
 
-    const fileInput = queryByLabelText("Файл с фидами");
-    const brand = queryByLabelText("Системное имя бренда");
+    const fileInput = queryByLabelText(FileInputLabel);
+    const brand = queryByLabelText(SubmitBtnText);
     const btn = queryByText("Загрузить фиды");
 
     if (fileInput && brand) {
