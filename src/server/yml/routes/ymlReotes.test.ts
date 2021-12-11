@@ -7,6 +7,7 @@ import { YmlRequestType } from "./ymlRoutes";
 
 jest.mock("src/server/yml/sendYmlToMindbox");
 jest.mock("server/db/init.ts");
+jest.mock("axios");
 
 let agent: any;
 
@@ -84,6 +85,7 @@ describe("send valid yml data with valid user token", () => {
       "myToken"
     );
   });
+
   it("when pass valid data with auth, should call sendYmlToMindbox", async () => {
     await agent
       .post(API_URL)
