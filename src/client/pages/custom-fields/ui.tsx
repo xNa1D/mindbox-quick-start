@@ -103,7 +103,7 @@ export const CustomFields = () => {
                   onChange={handleFileChange}
                 />
               </Form.Field>
-
+              {/* TODO:Add email for notification about result */}
               <Button
                 positive
                 loading={formState.status === "sending"}

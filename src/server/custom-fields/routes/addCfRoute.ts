@@ -14,6 +14,7 @@ addingCfRoutes.post(
     res: Response
   ) => {
     try {
+      //TODO: add passing email for notification
       runAndNotify(req.body.cfs, res.locals.user);
 
       res.sendStatus(200);
