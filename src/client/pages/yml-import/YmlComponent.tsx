@@ -38,7 +38,10 @@ export const YmlComponent = () => {
           </Segment>
         </Grid.Column>
         <Grid.Column width={10}>
-          <CsvDataInstruction columns={columns} />
+          <CsvDataInstruction
+            columns={columns}
+            linkToExample="https://drive.google.com/file/d/1h-Ts-lZ0FGlkRYCAFP5-uTMhcxoSViMo/view?usp=sharing"
+          />
           <CsvDataPreview ymlTable={ymlTable} />
         </Grid.Column>
       </Grid>
