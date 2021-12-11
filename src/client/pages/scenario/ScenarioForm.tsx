@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Button, Divider, Form, Icon, Input, Message } from "semantic-ui-react";
 import startScenario from "src/client/shared/api/scenarioRequests";
 import { Scenario, StartScenarioBody } from "src/declarations";
-import useAuth from "../processes/auth/useAuth";
+import useAuth from "../../processes/auth/useAuth";
 import { fallbackScenario } from "./ScenarioComponent";
 
 

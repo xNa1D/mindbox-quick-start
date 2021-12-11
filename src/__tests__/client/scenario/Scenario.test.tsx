@@ -5,9 +5,9 @@ import { MemoryRouter } from "react-router-dom";
 import { createMemoryHistory } from "history";
 
 import startScenario from "src/client/shared/api/scenarioRequests";
-import ScenarioComponent from "src/client/scenario/ScenarioComponent";
+import ScenarioComponent from "src/client/pages/scenario/ScenarioComponent";
 
-import { getAllScenarios } from "src/client/scenario/getAllScenarios";
+import { getAllScenarios } from "src/client/pages/scenario/getAllScenarios";
 
 jest.mock("client/api/scenarioRequests");
 jest.mock("src/client/scenario/getAllScenarios");

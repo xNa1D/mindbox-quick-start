@@ -5,7 +5,7 @@ import { Segment, Tab } from "semantic-ui-react";
 import Footer from "./common/Footer";
 import { CustomFields } from "./pages/custom-fields";
 
-const ScenarioComponent = lazy(() => import("./scenario/ScenarioComponent"));
+const ScenarioComponent = lazy(() => import("./pages/scenario/ScenarioComponent"));
 const YmlComponent = lazy(() => import("./pages/yml-import/YmlComponent"));
 
 const Main = () => {

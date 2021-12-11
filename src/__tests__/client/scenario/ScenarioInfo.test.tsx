@@ -2,8 +2,8 @@ import React from "react";
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
-import ScenarioInfo from "src/client/scenario/ScenarioInfo";
-import getScenarioDescription from "src/client/scenario/getScenarioDescription";
+import ScenarioInfo from "src/client/pages/scenario/ScenarioInfo";
+import getScenarioDescription from "src/client/pages/scenario/getScenarioDescription";
 import { Scenario } from "src/declarations";
 
 jest.mock("axios");

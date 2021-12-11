@@ -1,5 +1,5 @@
 import axios from "axios";
-import getScenarioDescription from "client/scenario/getScenarioDescription";
+import getScenarioDescription from "src/client/pages/scenario/getScenarioDescription";
 
 jest.mock("axios");
 
