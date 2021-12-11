@@ -3,8 +3,8 @@ import { render, screen, fireEvent, act } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { MemoryRouter } from "react-router-dom";
 
-import { ProvideAuth } from "client/auth/useAuth";
-import AuthComponent from "client/auth/AuthComponent";
+import { ProvideAuth } from "src/client/processes/auth/useAuth";
+import AuthComponent from "src/client/processes/auth/AuthComponent";
 
 import { checkToken } from "src/client/shared/api/userRequests";
 
@@ -28,6 +28,8 @@ const customRender = async (
     );
   });
 };
+
+const LabelOfSystemNameField = "Системное имя проекта";
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -70,6 +72,7 @@ describe("check rendering", () => {
   });
 });
 
+
 describe("toggling auth panel", () => {
   test("should hide auth panel on click if not logged in", async () => {
     customRender(<AuthComponent />);
@@ -79,7 +82,7 @@ describe("toggling auth panel", () => {
       fireEvent.click(statusBar);
     });
     await delay(600);
-    const projectField = screen.queryByText("Системное имя проекта");
+    const projectField = screen.queryByText(LabelOfSystemNameField);
     expect(projectField).not.toBeInTheDocument();
   });
 
@@ -97,7 +100,7 @@ describe("toggling auth panel", () => {
       fireEvent.click(statusBar);
     });
     await delay(600);
-    const projectField = screen.queryByText("Системное имя проекта");
+    const projectField = screen.queryByText(LabelOfSystemNameField);
     expect(projectField).toBeInTheDocument();
   });
 });
@@ -116,7 +119,7 @@ describe("clearing auth info", () => {
       fireEvent.click(changeProjectBtn);
     });
     await delay(600);
-    const projectField = screen.getByText("Системное имя проекта");
+    const projectField = screen.getByText(LabelOfSystemNameField);
     expect(projectField).toBeInTheDocument();
   });
 });

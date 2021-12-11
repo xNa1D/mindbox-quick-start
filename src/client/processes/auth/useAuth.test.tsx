@@ -1,14 +1,10 @@
 import React from "react";
-import {
-  render,
-  screen,
-  fireEvent,
-  act,
-} from "@testing-library/react";
+import { render, screen, fireEvent, act } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { MemoryRouter } from "react-router-dom";
 
-import { ProvideAuth } from "client/auth/useAuth";
+import { ProvideAuth } from "src/client/processes/auth/useAuth";
+// eslint-disable-next-line jest/no-mocks-import
 import MockConsumer from "../../../__mocks__/MockConsumer";
 
 import { loginUser, checkToken } from "src/client/shared/api/userRequests";
@@ -52,7 +48,7 @@ test("MockConsumer shows default value", () => {
 });
 
 describe("MockConsumer api calls", () => {
-  test(" should call Login on click", async (done) => {
+  test("should call Login on click", async () => {
     customRender(<MockConsumer />, {});
 
     const submitBtn = screen.getByText("Login");
@@ -61,10 +57,9 @@ describe("MockConsumer api calls", () => {
     });
 
     expect(loginUser).toHaveBeenCalled();
-    done();
   });
 
-  test(" should call checkToken on click", async (done) => {
+  test("should call checkToken on click", async () => {
     customRender(<MockConsumer />, {});
 
     const submitBtn = screen.getByText("Check");
@@ -73,10 +68,9 @@ describe("MockConsumer api calls", () => {
     });
 
     expect(checkToken).toHaveBeenCalled();
-    done();
   });
 
-  test(" should render login errors on rejection", async (done) => {
+  test("should render login errors on rejection", async () => {
     (loginUser as jest.Mock).mockRejectedValue({
       response: { status: 401, data: "Login Error" },
     });
@@ -88,10 +82,9 @@ describe("MockConsumer api calls", () => {
     expect(screen.getByText(/^Errors:/).textContent).toBe(
       "Errors: Login Error"
     );
-    done();
   });
 
-  test(" should set login state to false on rejection", async (done) => {
+  test("should set login state to false on rejection", async () => {
     (loginUser as jest.Mock).mockRejectedValue({
       response: { status: 401, data: "Login Error" },
     });
@@ -104,10 +97,9 @@ describe("MockConsumer api calls", () => {
     });
 
     expect(screen.getByText(/^Auth:/).textContent).toBe("Auth: false");
-    done();
   });
 
-  test(" should change login status on resolving", async (done) => {
+  test("should change login status on resolving", async () => {
     (loginUser as jest.Mock).mockResolvedValue({
       response: { status: 200, data: "Login Success" },
     });
@@ -120,6 +112,5 @@ describe("MockConsumer api calls", () => {
     });
 
     expect(screen.getByText(/^Auth:/).textContent).toBe("Auth: true");
-    done();
   });
 });

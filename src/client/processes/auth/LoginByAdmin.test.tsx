@@ -8,8 +8,8 @@ import {
 import "@testing-library/jest-dom";
 import { MemoryRouter } from "react-router-dom";
 
-import { ProvideAuth } from "client/auth/useAuth";
-import Login from "client/auth/LoginByAdmin";
+import { ProvideAuth } from "src/client/processes/auth/useAuth";
+import Login from "src/client/processes/auth/LoginByAdmin";
 
 import { loginUser } from "src/client/shared/api/userRequests";
 
