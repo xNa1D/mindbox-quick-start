@@ -1,22 +1,21 @@
+import { CfPreview } from "client/entities/cf-preview/";
 import React, { FormEvent, useState } from "react";
 import {
   Button,
-  Checkbox,
   Container,
   Form,
   Grid,
   Header,
   Message,
-  Segment,
-  Table,
+  Segment
 } from "semantic-ui-react";
-import { CustomFieldObject } from "src/server/custom-fields";
-import { startCf } from "../../shared/api/startCF";
-import { parseCsv } from "../../processes/csv-to-json";
 import {
   column,
-  CsvDataInstruction,
+  CsvDataInstruction
 } from "src/client/entities/csv-instruction";
+import { CustomFieldObject } from "src/server/custom-fields";
+import { parseCsv } from "../../processes/csv-to-json";
+import { startCf } from "../../shared/api/startCF";
 
 const initialFormState = {
   status: "idle",
@@ -133,36 +132,7 @@ export const CustomFields = () => {
         </Grid.Column>
       </Grid>
       <Grid columns={1} stackable>
-        <Table striped fixed selectable>
-          <Table.Header>
-            <Table.Row>
-              {columns.map(column => (
-                <Table.HeaderCell key={column.header}>
-                  {column.description}
-                </Table.HeaderCell>
-              ))}
-            </Table.Row>
-          </Table.Header>
-          <Table.Body>
-            {data.map(row => (
-              <Table.Row key={row.CustomFieldSystemName}>
-                <Table.Cell>{row.CustomFieldEntity}</Table.Cell>
-                <Table.Cell>{row.CustomFieldName}</Table.Cell>
-                <Table.Cell>{row.CustomFieldSystemName}</Table.Cell>
-                <Table.Cell>{row.CustomFieldValueTypes}</Table.Cell>
-                <Table.Cell>
-                  <Checkbox checked={row.isClearable} />
-                </Table.Cell>
-                <Table.Cell>
-                  <Checkbox checked={row.isMultiple} />
-                </Table.Cell>
-                <Table.Cell>
-                  <Checkbox checked={row.isPublic} />
-                </Table.Cell>
-              </Table.Row>
-            ))}
-          </Table.Body>
-        </Table>
+        <CfPreview columns={columns} data={data} />
       </Grid>
     </Container>
   );
