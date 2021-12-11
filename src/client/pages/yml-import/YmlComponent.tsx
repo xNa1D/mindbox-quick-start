@@ -1,14 +1,24 @@
 import React, { useState } from "react";
 import { Container, Grid, Header, Segment } from "semantic-ui-react";
 
-import { YmlInstructions } from "../entities/instruction";
-import YmlForm from "../entities/form/ui";
-import { CsvDataPreview } from "../entities/csv-preview";
+import { YmlInstructions } from "../../yml/entities/instruction";
+import YmlForm from "../../yml/entities/form/ui";
+import { CsvDataPreview } from "../../yml/entities/csv-preview";
 
 import sendYmlData from "src/client/shared/api/sendYmlData";
-import { CsvDataInstruction } from "../entities/csv-instruction";
+import { column, CsvDataInstruction } from "../../yml/entities/csv-instruction";
 import { parseCsv } from "../../shared/csv-to-json";
-import { Link } from "../entities/form";
+import { Link } from "../../yml/entities/form";
+
+const columns: column[] = [
+  { header: "name", description: "Название фида", isRequired: true },
+  { header: "url", description: "Ссылка на фид", isRequired: true },
+  {
+    header: "areaExternalId",
+    description: "Внешний идентификатор зоны",
+    isRequired: false,
+  },
+];
 
 export const YmlComponent = () => {
   const [ymlTable, setYmlTable] = useState<Link[]>([]);
@@ -28,7 +38,7 @@ export const YmlComponent = () => {
           </Segment>
         </Grid.Column>
         <Grid.Column width={10}>
-          <CsvDataInstruction />
+          <CsvDataInstruction columns={columns} />
           <CsvDataPreview ymlTable={ymlTable} />
         </Grid.Column>
       </Grid>

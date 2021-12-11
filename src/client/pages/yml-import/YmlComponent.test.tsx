@@ -8,7 +8,7 @@ import {
 } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
-import YmlComponent from "src/client/yml/pages/YmlComponent";
+import YmlComponent from "src/client/pages/yml-import/YmlComponent";
 
 jest.mock("axios");
 
