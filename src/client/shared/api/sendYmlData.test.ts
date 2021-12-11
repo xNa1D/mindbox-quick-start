@@ -4,7 +4,6 @@ import startScenario from "src/client/shared/api/sendYmlData";
 
 jest.mock("axios");
 
-
 const mockBody: YmlRequestType = {
   links: [
     {

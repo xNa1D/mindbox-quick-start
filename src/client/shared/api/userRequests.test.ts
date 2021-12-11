@@ -1,5 +1,8 @@
 import axios from "axios";
-import { checkToken, loginUserByAdminPanel } from "src/client/shared/api/userRequests";
+import {
+  checkToken,
+  loginUserByAdminPanel,
+} from "src/client/shared/api/userRequests";
 import { AuthByAdminPanelRequestBody } from "src/declarations";
 
 jest.mock("axios");

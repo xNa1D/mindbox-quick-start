@@ -26,7 +26,7 @@ const isReducedStepStatusEmpty = (steps: reducedStepsType, id: number) =>
 
 export const parseStepsInfo = (steps: StepsEntity[]) => {
   validateEmptySteps(steps);
-  
+
   const reducedSteps: reducedStepsType = {};
 
   steps.reduce((reducedSteps, step) => {
