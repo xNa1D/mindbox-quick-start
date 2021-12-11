@@ -1,5 +1,5 @@
 import React from "react";
-import { Header, Segment, Table } from "semantic-ui-react";
+import { Header, Table } from "semantic-ui-react";
 
 export const CsvDataInstruction = () => {
   return (
