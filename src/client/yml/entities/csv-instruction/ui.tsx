@@ -1,7 +1,13 @@
 import React from "react";
 import { Header, Table } from "semantic-ui-react";
 
-export const CsvDataInstruction = () => {
+export type column = {
+  header: string;
+  description: string;
+  isRequired: boolean;
+};
+
+export const CsvDataInstruction = ({ columns }: { columns: column[] }) => {
   return (
     <>
       <Header as="h3">
@@ -19,23 +25,29 @@ export const CsvDataInstruction = () => {
             <Table.HeaderCell>
               <Header as="h5">Колонки</Header>
             </Table.HeaderCell>
-            <Table.HeaderCell>name</Table.HeaderCell>
-            <Table.HeaderCell>url</Table.HeaderCell>
-            <Table.HeaderCell>areaExternalId</Table.HeaderCell>
+            {columns.map(column => (
+              <Table.HeaderCell key={column.header}>
+                {column.header}
+              </Table.HeaderCell>
+            ))}
           </Table.Row>
         </Table.Header>
         <Table.Body>
           <Table.Row>
             <Table.Cell>Описание</Table.Cell>
-            <Table.Cell>Название фида</Table.Cell>
-            <Table.Cell>Ссылка на фид</Table.Cell>
-            <Table.Cell>Внешний идентификатор зоны</Table.Cell>
+            {columns.map(column => (
+              <Table.HeaderCell key={column.header}>
+                {column.description}
+              </Table.HeaderCell>
+            ))}
           </Table.Row>
           <Table.Row>
             <Table.Cell>Обязательно?</Table.Cell>
-            <Table.Cell>да</Table.Cell>
-            <Table.Cell>да</Table.Cell>
-            <Table.Cell>нет</Table.Cell>
+            {columns.map(column => (
+              <Table.HeaderCell key={column.header}>
+                {column.isRequired ? "да" : "нет"}
+              </Table.HeaderCell>
+            ))}
           </Table.Row>
         </Table.Body>
       </Table>
