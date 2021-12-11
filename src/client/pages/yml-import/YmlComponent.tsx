@@ -3,7 +3,7 @@ import { Container, Grid, Header, Segment } from "semantic-ui-react";
 
 import { YmlInstructions } from "client/entities/instruction";
 import YmlForm from "client/yml/form/ui";
-import { CsvDataPreview } from "client/entities/csv-preview";
+import { CsvDataPreview } from "src/client/entities/yml-preview";
 
 import sendYmlData from "src/client/shared/api/sendYmlData";
 import { column, CsvDataInstruction } from "client/entities/csv-instruction";
