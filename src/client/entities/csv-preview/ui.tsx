@@ -1,6 +1,6 @@
 import React from "react";
 import { Header, Message, Table } from "semantic-ui-react";
-import { Link } from "../form";
+import { Link } from "../../yml/form";
 
 type CsvDataPreviewProps = {
   ymlTable: Link[];

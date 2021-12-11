@@ -2,8 +2,8 @@ import React from "react";
 import { render, screen, act } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
-import CsvDataPreview from "src/client/yml/entities/csv-preview/ui";
-import { Link } from "../form";
+import CsvDataPreview from "./ui";
+import { Link } from "../../yml/form";
 
 
 const customRender = async (
