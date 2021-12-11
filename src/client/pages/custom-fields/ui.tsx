@@ -7,11 +7,11 @@ import {
   Grid,
   Header,
   Message,
-  Segment
+  Segment,
 } from "semantic-ui-react";
 import {
   column,
-  CsvDataInstruction
+  CsvDataInstruction,
 } from "src/client/entities/csv-instruction";
 import { CustomFieldObject } from "src/server/custom-fields";
 import { parseCsv } from "client/processes/csv-to-json";
@@ -52,7 +52,7 @@ export const CustomFields = () => {
     if (event.target.files) {
       const [file] = Array.from(event.target.files);
 
-      parseCsv<CustomFieldObject[]>(file, setData);
+      parseCsv<CustomFieldObject[]>(file).then(setData);
     }
   };
 

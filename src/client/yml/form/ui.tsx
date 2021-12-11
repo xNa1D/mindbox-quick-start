@@ -78,8 +78,11 @@ const YmlForm = ({ parseCsv, sendData, setYmlTable }: YmlFormProps) => {
     if (event.target.files) {
       const files = Array.from(event.target.files);
 
-      parseCsv(files[0], setYmlTable)
-        .then(setCsvData)
+      parseCsv<Link[]>(files[0])
+        .then(data => {
+          setYmlTable(data);
+          setCsvData(data);
+        })
         .catch((message: string) => dispatch(finishWithError(message)));
     }
   };
