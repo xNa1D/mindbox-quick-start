@@ -1,6 +1,6 @@
 import axios from "axios";
+import { YmlRequestType } from "src/client/yml/form";
 import startScenario from "src/client/shared/api/sendYmlData";
-import { YmlRequestType } from "src/client/yml/entities/form";
 
 jest.mock("axios");
 

@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Container, Grid, Header, Segment } from "semantic-ui-react";
 
-import { YmlInstructions } from "../../yml/entities/instruction";
-import YmlForm from "../../yml/entities/form/ui";
-import { CsvDataPreview } from "../../yml/entities/csv-preview";
+import { YmlInstructions } from "client/entities/instruction";
+import YmlForm from "client/yml/form/ui";
+import { CsvDataPreview } from "client/entities/csv-preview";
 
 import sendYmlData from "src/client/shared/api/sendYmlData";
-import { column, CsvDataInstruction } from "../../yml/entities/csv-instruction";
-import { parseCsv } from "../../shared/csv-to-json";
-import { Link } from "../../yml/entities/form";
+import { column, CsvDataInstruction } from "client/entities/csv-instruction";
+import { parseCsv } from "../../processes/csv-to-json";
+import { Link } from "client/yml/form";
 
 const columns: column[] = [
   { header: "name", description: "Название фида", isRequired: true },
