@@ -39,9 +39,9 @@ const data: CustomFieldObject[] = [
     CustomFieldName: "Name",
     CustomFieldSystemName: "SystemName",
     CustomFieldValueTypes: "ValueTypes",
-    isClearable: false,
-    isMultiple: true,
-    isPublic: false,
+    isClearable: "false",
+    isMultiple: "true",
+    isPublic: "false",
   },
 ];
 
