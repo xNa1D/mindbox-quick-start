@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, fireEvent, act } from "@testing-library/react";
+import { render, screen, act } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import ScenarioInfo from "src/client/pages/scenario/ScenarioInfo";
@@ -11,7 +11,7 @@ jest.mock("client/scenario/getScenarioDescription");
 
 const customRender = async (
   ui: any,
-  { providerProps, ...renderOptions }: any = {}
+  { renderOptions }: any = {}
 ) => {
   return await act(async () => {
     render(ui, renderOptions);

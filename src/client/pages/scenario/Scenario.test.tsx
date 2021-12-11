@@ -1,8 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { MemoryRouter } from "react-router-dom";
-import { createMemoryHistory } from "history";
 
 import startScenario from "src/client/shared/api/scenarioRequests";
 import ScenarioComponent from "src/client/pages/scenario/ScenarioComponent";
@@ -52,8 +50,8 @@ describe("Scenario rendering", () => {
   });
 });
 
-describe("Scenario calls", () => {
-  test("should call API with chosen options", async () => {
+describe("startScenario", () => {
+  test("When submit filled form, should call API with chosen options", async () => {
     await act(async () => {
       render(<ScenarioComponent />);
     });
@@ -93,7 +91,7 @@ describe("Scenario calls", () => {
     });
   });
 
-  test("should call API with chosen options", async () => {
+  test("After form submit, should render status badge", async () => {
     await act(async () => {
       render(<ScenarioComponent />);
     });
@@ -105,7 +103,7 @@ describe("Scenario calls", () => {
     expect(screen.getByText("Автозаведение запущено")).toBeInTheDocument();
   });
 
-  test("should render error message on not AUTH error", async () => {
+  test("When server return error in form submit, should render error message", async () => {
     const rejectedApiCall = startScenario as jest.Mock;
     rejectedApiCall.mockRejectedValue({
       response: { status: 503, data: "Server error" },
@@ -119,26 +117,5 @@ describe("Scenario calls", () => {
     });
 
     expect(screen.getByText("Server error")).toBeInTheDocument();
-  });
-
-  test("should redirect to login page on AUTH error", async () => {
-    (startScenario as jest.Mock).mockRejectedValue({
-      response: { status: 403, data: "Forbidden" },
-    });
-    const history = createMemoryHistory();
-
-    await act(async () => {
-      render(
-        <MemoryRouter>
-          <ScenarioComponent />
-        </MemoryRouter>
-      );
-    });
-
-    await act(async () => {
-      fireEvent.click(screen.getByText("Запустить"));
-    });
-
-    expect(history.location.pathname).toBe("/");
   });
 });
