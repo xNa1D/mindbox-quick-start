@@ -15,7 +15,7 @@ export const CfPreview = ({
         <Table.Row>
           {columns.map(column => (
             <Table.HeaderCell key={column.header}>
-              {column.description}
+              {column.header}
             </Table.HeaderCell>
           ))}
         </Table.Row>
