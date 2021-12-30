@@ -3,7 +3,7 @@ import { Header, Table } from "semantic-ui-react";
 
 export type column = {
   header: string;
-  description: string;
+  description: string | JSX.Element;
   isRequired: boolean;
 };
 
@@ -23,7 +23,7 @@ export const CsvDataInstruction = ({
           <a href={linkToExample}>Пример файла</a>
         </Header.Subheader>
       </Header>
-      <Table attached definition>
+      <Table attached definition padded>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>
@@ -37,20 +37,18 @@ export const CsvDataInstruction = ({
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          <Table.Row>
+          <Table.Row verticalAlign="top">
             <Table.Cell>Описание</Table.Cell>
             {columns.map(column => (
-              <Table.HeaderCell key={column.header}>
-                {column.description}
-              </Table.HeaderCell>
+              <Table.Cell key={column.header}>{column.description}</Table.Cell>
             ))}
           </Table.Row>
-          <Table.Row>
+          <Table.Row verticalAlign="top">
             <Table.Cell>Обязательно?</Table.Cell>
             {columns.map(column => (
-              <Table.HeaderCell key={column.header}>
+              <Table.Cell key={column.header}>
                 {column.isRequired ? "да" : "нет"}
-              </Table.HeaderCell>
+              </Table.Cell>
             ))}
           </Table.Row>
         </Table.Body>
