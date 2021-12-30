@@ -9,19 +9,22 @@ const token = generateAccessToken({
 
 describe("checkTocken", () => {
   it("When JWT is valid, should return decoded user", () => {
-    
     const result = checkToken(token);
 
     expect(result.email).toBe("nikitin@mindbox.ru");
   });
 
   it("When JWT is incorrect, should throw error", () => {
+    let message;
+
     try {
       checkToken("123");
     } catch (error) {
       if (error instanceof Error) {
-        expect(error.toString()).toBe("JsonWebTokenError: jwt malformed");
+        message = error.toString();
       }
+    } finally {
+      expect(message).toBe("JsonWebTokenError: jwt malformed");
     }
   });
 });

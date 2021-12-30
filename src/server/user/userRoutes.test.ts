@@ -60,11 +60,13 @@ const mockAdminAuthErrorResponse = {
   },
 };
 
+const API_URL = "/api/user/authByAdminPanel";
+
 describe("/authByAdminPanel", () => {
   it("when Mindbox auth OK, should return JWT token", async () => {
     axios.post = jest.fn().mockResolvedValue(mockAdminAuthSuccessResponse);
 
-    const res = await agent.post("/api/user/authByAdminPanel").send({
+    const res = await agent.post(API_URL).send({
       email: mockUser.login,
       password: mockUser.password,
       project: mockUser.projectName,
@@ -82,7 +84,7 @@ describe("/authByAdminPanel", () => {
   it("when Mindbox auth error, should return error text", async () => {
     axios.post = jest.fn().mockResolvedValue(mockAdminAuthErrorResponse);
 
-    const res = await agent.post("/api/user/authByAdminPanel").send({
+    const res = await agent.post(API_URL).send({
       email: mockUser.login,
       password: mockUser.password,
       project: mockUser.projectName,

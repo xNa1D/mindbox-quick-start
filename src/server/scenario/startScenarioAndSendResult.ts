@@ -52,7 +52,7 @@ const handleScenarioStart = async ({
       "moskalev@mindbox.ru",
     ];
 
-    usersToNotifyAboutError.forEach((email) =>
+    usersToNotifyAboutError.forEach(email =>
       sendMessage<ErrorMessageParameters>({
         email,
         mailingParams: errorMessagePayload,

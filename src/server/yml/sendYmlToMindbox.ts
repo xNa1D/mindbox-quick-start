@@ -1,8 +1,8 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
 import { setYmlType, YmlImportSetting } from ".";
 
 const ymlArrayToMindboxString = (array: YmlImportSetting[]) => {
-  return `ReactJsonData[]={ymlImportSettings:[${array.map((item) =>
+  return `ReactJsonData[]={ymlImportSettings:[${array.map(item =>
     JSON.stringify(item)
   )}]}`;
 };

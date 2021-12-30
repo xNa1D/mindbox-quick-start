@@ -1,4 +1,4 @@
-export interface File {
+export type File = {
   filename: string;
   type: string;
   language: string;
@@ -6,13 +6,13 @@ export interface File {
   size: number;
   truncated: boolean;
   content: string;
-}
+};
 
-export interface Files {
+export type Files = {
   [x: string]: File;
-}
+};
 
-export interface Owner {
+export type Owner = {
   login: string;
   id: number;
   node_id: string;
@@ -31,9 +31,9 @@ export interface Owner {
   received_events_url: string;
   type: string;
   site_admin: boolean;
-}
+};
 
-export interface User {
+export type User = {
   login: string;
   id: number;
   node_id: string;
@@ -52,23 +52,23 @@ export interface User {
   received_events_url: string;
   type: string;
   site_admin: boolean;
-}
+};
 
-export interface ChangeStatus {
+export type ChangeStatus = {
   total: number;
   additions: number;
   deletions: number;
-}
+};
 
-export interface History {
+export type History = {
   user: User;
   version: string;
   committed_at: Date;
   change_status: ChangeStatus;
   url: string;
-}
+};
 
-export interface RootObject {
+export type RootObject = {
   url: string;
   forks_url: string;
   commits_url: string;
@@ -83,10 +83,10 @@ export interface RootObject {
   updated_at: Date;
   description: string;
   comments: number;
-  user?: any;
+  user?: unknown;
   comments_url: string;
   owner: Owner;
-  forks: any[];
+  forks: unknown[];
   history: History[];
   truncated: boolean;
-}
+};

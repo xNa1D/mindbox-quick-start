@@ -10,7 +10,7 @@ const userRoutes = Router();
 
 userRoutes.post(
   "/authByAdminPanel",
-  async (req: Request<{}, string, AuthRequestBody>, res: Response) => {
+  async (req: Request<unknown, string, AuthRequestBody>, res: Response) => {
     try {
       const { email, password, project } = req.body;
 
@@ -43,7 +43,7 @@ userRoutes.get(
   "/checkToken",
   authMiddleware,
   async (req: Request, res: Response) => {
-    res.send(res.locals.user.project)
+    res.send(res.locals.user.project);
   }
 );
 

@@ -1,4 +1,4 @@
-const path = require("path");
+/* eslint-disable @typescript-eslint/no-var-requires */
 const { merge } = require("webpack-merge");
 
 const BundleAnalyzerPlugin =
@@ -24,7 +24,7 @@ const productionConfig = {
     moduleIds: "deterministic",
     minimize: true,
     innerGraph: true,
-    flagIncludedChunks: true, 
+    flagIncludedChunks: true,
     runtimeChunk: {
       name: "runtime",
     },

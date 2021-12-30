@@ -3,7 +3,7 @@ import axios from "axios";
 import startScenario from "./startScenario";
 
 import { Step } from "src/declarations";
-import { parseStepsInfo } from "./utils/parseStepsInfo";
+import { parseStepsInfo } from "../ghost-inspector/utils/parseStepsInfo";
 import { StartScenarioType } from "./model";
 
 const mockBody: StartScenarioType = {
@@ -14,7 +14,7 @@ const mockBody: StartScenarioType = {
   adminPanelCookie: "myAwesomeCookie",
 };
 
-jest.mock("./utils/parseStepsInfo.ts");
+jest.mock("../ghost-inspector/utils/parseStepsInfo.ts");
 
 const expectedSteps: Step[] = [
   { name: "Вход на проект", status: null },
@@ -46,9 +46,9 @@ describe("startScenario", () => {
     });
   });
 
-  it("should start 2 scenarios and return status with both steps", async () => {
+  it("When scenario has 2 api calls, should start 2 scenarios and return status with steps of both", async () => {
     axios.post = jest.fn().mockResolvedValue(mockSuccessResult);
-    
+
     const mockBodyWith2apis = {
       ...mockBody,
       scenarioApiAddress: ["test1", "test2"],
@@ -61,51 +61,50 @@ describe("startScenario", () => {
       steps: [...expectedSteps, ...expectedSteps],
     });
   });
-});
 
-it("should throw on network error", async () => {
-  axios.post = jest.fn().mockRejectedValue({
-    status: 500,
+  it("When network error occurs, should return error status", async () => {
+    axios.post = jest.fn().mockRejectedValue({
+      status: 500,
+    });
+
+    const response = await startScenario(mockBody);
+
+    expect(response.status).toBe("ERROR");
   });
 
-  const response = await startScenario(mockBody);
-
-  expect(response.status).toBe("ERROR");
-});
-
-it("should throw internal error of code not SUCCESS", async () => {
-  axios.post = jest.fn().mockResolvedValue({
-    status: 200,
-    data: {
-      code: "ERROR",
+  it("When ghost inspector return error, should return error message", async () => {
+    axios.post = jest.fn().mockResolvedValue({
+      status: 200,
       data: {
-        passing: true,
-      },
-    },
-  });
-  const response = await startScenario(mockBody);
-  expect(response.error?.errorMessage).toBe(
-    "Internal error in Scenario Server"
-  );
-});
-
-it("should throw internal error of code not SUCCESS", async () => {
-  axios.post = jest.fn().mockResolvedValue({
-    status: 200,
-    data: {
-      code: "SUCCESS",
-      data: {
-        passing: false,
-        error: {
-          details: "Test run reached 10 minute time limit and was stopped",
+        code: "ERROR",
+        data: {
+          passing: true,
         },
       },
-    },
+    });
+    const response = await startScenario(mockBody);
+    expect(response.error?.errorMessage).toBe(
+      "Internal error in Scenario Server"
+    );
   });
 
-  const response = await startScenario(mockBody);
-  expect(response.error?.errorMessage).toBe(
-    "Test run reached 10 minute time limit and was stopped"
-  );
-});
+  it("When scenario execution fails, should return error detail", async () => {
+    axios.post = jest.fn().mockResolvedValue({
+      status: 200,
+      data: {
+        code: "SUCCESS",
+        data: {
+          passing: false,
+          error: {
+            details: "Test run reached 10 minute time limit and was stopped",
+          },
+        },
+      },
+    });
 
+    const response = await startScenario(mockBody);
+    expect(response.error?.errorMessage).toBe(
+      "Test run reached 10 minute time limit and was stopped"
+    );
+  });
+});

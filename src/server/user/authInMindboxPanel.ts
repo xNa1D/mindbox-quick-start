@@ -21,28 +21,24 @@ export const authenticateByAdminPanel = async ({
   email,
   password,
 }: authenticateByAdminPanelArgs) => {
-  try {
-    const response = await axios.post(
-      `https://${project}.mindbox.ru/authenticateByUserNameAndPassword`,
-      {
-        pageState: "login",
-        previousPageState: "login",
-        confirmationCodeSeconds: 30,
-        userName: email,
-        password: password,
-        validationSummary: null,
+  const response = await axios.post(
+    `https://${project}.mindbox.ru/authenticateByUserNameAndPassword`,
+    {
+      pageState: "login",
+      previousPageState: "login",
+      confirmationCodeSeconds: 30,
+      userName: email,
+      password: password,
+      validationSummary: null,
+    },
+    {
+      headers: {
+        "content-type": "application/json",
       },
-      {
-        headers: {
-          "content-type": "application/json",
-        },
-      }
-    );    
+    }
+  );
 
-    checkMindboxAuth(response);
+  checkMindboxAuth(response);
 
-    return getMindboxTokenFromResponse(response);
-  } catch (error) {
-    throw error;
-  }
+  return getMindboxTokenFromResponse(response);
 };

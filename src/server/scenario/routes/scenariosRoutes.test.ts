@@ -48,16 +48,6 @@ const mockSuccessResponse = {
   steps: mockSteps,
 };
 
-const mockErrorResponse = {
-  error: {
-    errorMessage: "Test run reached 10 minute time limit and was stopped",
-    videoLink:
-      "https://ghostinspector-prod.s3.amazonaws.com/videos/a6306a8a-059a-4fda-a1ae-74c973d362b4.mp4",
-  },
-  status: "ERROR",
-  steps: mockSteps,
-};
-
 const mockApiBody: StartScenarioBody = {
   scenario: mockScenario,
   projectName: "testProject",
@@ -73,14 +63,15 @@ const token = generateAccessToken({
   tokenFromAdminPanel: "myToken",
 });
 
+const API_URL = "/api/scenario/start";
 
 describe("/scenario", () => {
-  describe("POST to /api/scenario/start ", () => {
+  describe("POST to /api/scenario/start", () => {
     describe("Checking status of response", () => {
       (startScenario as jest.Mock).mockResolvedValue(mockSuccessResponse);
       it("When passing correct JWT, should return 200", async () => {
         const res = await agent
-          .post("/api/scenario/start")
+          .post(API_URL)
           .set("Cookie", [`token=${token}`])
           .send(mockApiBody);
 
@@ -89,7 +80,7 @@ describe("/scenario", () => {
 
       it("When passing incorrect JWT, should return 403", async () => {
         const res = await agent
-          .post("/api/scenario/start")
+          .post(API_URL)
           .set("Cookie", [`token=123`])
           .send(mockApiBody);
 
@@ -101,7 +92,7 @@ describe("/scenario", () => {
       (startScenario as jest.Mock).mockResolvedValue(mockSuccessResponse);
       it("When JWT and data is OK, should call startScenario with passed data", async () => {
         await agent
-          .post("/api/scenario/start")
+          .post(API_URL)
           .set("Cookie", [`token=${token}`])
           .send(mockApiBody);
 
@@ -113,7 +104,7 @@ describe("/scenario", () => {
       (startScenario as jest.Mock).mockResolvedValue(mockSuccessResponse);
       it("When scenario started, should send message", async () => {
         await agent
-          .post("/api/scenario/start")
+          .post(API_URL)
           .set("Cookie", [`token=${token}`])
           .send(mockApiBody);
 
@@ -126,7 +117,7 @@ describe("/scenario", () => {
         });
 
         await agent
-          .post("/api/scenario/start")
+          .post(API_URL)
           .set("Cookie", [`token=123`])
           .send(mockApiBody);
 
@@ -138,8 +129,8 @@ describe("/scenario", () => {
           status: 503,
         });
         try {
-          const res = await agent
-            .post("/api/scenario/start")
+          await agent
+            .post(API_URL)
             .set("Cookie", [`token=123`])
             .send(mockApiBody);
         } catch (error) {
@@ -151,7 +142,7 @@ describe("/scenario", () => {
     });
   });
 
-  describe("GET to /api/scenario/ ", () => {
+  describe("GET to /api/scenario/", () => {
     (getAllScenarios as jest.Mock).mockResolvedValue([mockScenario]);
     it("Should return array of scenarios", async () => {
       const res = await agent.get("/api/scenario/");
@@ -159,5 +150,4 @@ describe("/scenario", () => {
       expect(JSON.parse(res.text)).toStrictEqual([mockScenario]);
     });
   });
-  describe("POST to /api/scenario/start ", () => {});
 });

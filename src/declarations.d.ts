@@ -1,8 +1,14 @@
 export type ScenarioApiCalls = {
-  ecommerce: (projectName: string, campaignNumber: number) => Promise<any>;
-  loyaltyOnline: (projectName: string, campaignNumber: number) => Promise<any>;
-  loyaltyOffline: (projectName: string, campaignNumber: number) => Promise<any>;
-  mobilePush: (projectName: string, campaignNumber: number) => Promise<any>;
+  ecommerce: (projectName: string, campaignNumber: number) => Promise<unknown>;
+  loyaltyOnline: (
+    projectName: string,
+    campaignNumber: number
+  ) => Promise<unknown>;
+  loyaltyOffline: (
+    projectName: string,
+    campaignNumber: number
+  ) => Promise<unknown>;
+  mobilePush: (projectName: string, campaignNumber: number) => Promise<unknown>;
 };
 
 export type Scenario = {
@@ -65,8 +71,6 @@ export type JwtUser = {
   tokenFromAdminPanel: string;
 };
 
-
-
 export type UseProviderReturnedValue = {
   isLoggedIn: boolean;
   loginErrors: string;
@@ -74,8 +78,3 @@ export type UseProviderReturnedValue = {
   login: (user: AuthRequestBody, isLoginByAdmin: boolean) => Promise<void>;
   checkAuth: () => Promise<void>;
 };
-
-
-
-
-

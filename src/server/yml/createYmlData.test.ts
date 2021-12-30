@@ -57,15 +57,18 @@ describe("createYmlData", () => {
     expect(ymlData).toStrictEqual([resultYmlWithAuth]);
   });
 
-  test("When passing 500+ links, should throw validation error ", () => {
-    const tooManyLinks = Array(501).map((item) => mockLinks);
+  test("When passing 500+ links, should throw validation error", () => {
+    const tooManyLinks = Array(501).map(() => mockLinks);
 
+    let message = "";
     try {
       createYmlData(tooManyLinks, mockSettings, mockAuth);
     } catch (error) {
       if (error instanceof Error) {
-        expect(error.message).toBe("Maximum 500 Yml");
+        message = error.message;
       }
+    } finally {
+      expect(message).toBe("Maximum 500 Yml");
     }
   });
 });

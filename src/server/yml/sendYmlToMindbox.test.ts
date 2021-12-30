@@ -16,9 +16,7 @@ const mockYmlSettings: YmlImportSetting = {
 const mockProject = "myProject";
 const mockToken = "myToken";
 
-
 describe("sendYmlToMindbox", () => {
-
   test("when passed correct data, should send call axios with passed params", () => {
     const mockResponse: AxiosResponse = {
       status: 200,
@@ -69,43 +67,16 @@ describe("sendYmlToMindbox", () => {
     const mockAxios = axios.post as jest.Mock;
     mockAxios.mockResolvedValue(mockResponse);
 
-    try {
-      await sendYmlToMindbox([mockYmlSettings], mockProject, mockToken);
-    } catch (error) {
-      if (error instanceof Error) {
-        expect(error.message).toBe("Mindbox error");
-      }
-    }
-  });
-
-  test("when Mindbox response with HTML, should throw Mindbox error exception", async () => {
-    const mockResponse: AxiosResponse = {
-      status: 200,
-      data: {
-        Action: 3,
-        Content: null,
-        RedirectUrl: null,
-        Data: null,
-      },
-      headers: {
-        "content-type": "text/html; charset=utf-8",
-      },
-      statusText: "OK",
-      config: {},
-    };
-    const mockAxios = axios.post as jest.Mock;
-    mockAxios.mockResolvedValue(mockResponse);
+    let message = "";
 
     try {
       await sendYmlToMindbox([mockYmlSettings], mockProject, mockToken);
     } catch (error) {
       if (error instanceof Error) {
-        expect(error.message).toBe("Mindbox error");
+        message = error.message;
       }
+    } finally {
+      expect(message).toBe("Mindbox error");
     }
   });
-
-  
-
 });
-
