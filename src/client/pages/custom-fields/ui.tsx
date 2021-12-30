@@ -13,7 +13,11 @@ import {
   column,
   CsvDataInstruction,
 } from "src/client/entities/csv-instruction";
-import { CustomFieldObject } from "src/server/custom-fields";
+import {
+  CustomFieldObject,
+  entityTypes,
+  valueTypes,
+} from "src/server/custom-fields";
 import { parseCsv } from "client/processes/csv-to-json";
 import { startCf } from "client/shared/api/startCF";
 
@@ -22,17 +26,44 @@ const initialFormState = {
   error: "",
 };
 
+const CustomFieldEntityDescription = () => (
+  <>
+    <p>Сущность, к которой создается доп поле</p>
+    <p>Возможные значения:</p>
+    <ul style={{ width: "250px" }}>
+      {entityTypes.map(entity => (
+        <li key={entity}>{entity}</li>
+      ))}
+    </ul>
+  </>
+);
+const CustomFieldNameDescription = () => (
+  <>
+    <p>Тип данных</p>
+    <p>Возможные значения:</p>
+    <ul style={{width: "250px"}}>
+      {valueTypes.map(value => (
+        <li key={value}>{value}</li>
+      ))}
+    </ul>
+  </>
+);
+
 const columns: column[] = [
-  { header: "CustomFieldEntity", description: "Сущность", isRequired: true },
-  { header: "CustomFieldName", description: "Название", isRequired: true },
   {
-    header: "CustomFieldSystemName",
-    description: "Системное имя",
+    header: "CustomFieldEntity",
+    description: CustomFieldEntityDescription(),
     isRequired: true,
   },
   {
     header: "CustomFieldValueTypes",
-    description: "Тип данных",
+    description: CustomFieldNameDescription(),
+    isRequired: true,
+  },
+  { header: "CustomFieldName", description: "Название", isRequired: true },
+  {
+    header: "CustomFieldSystemName",
+    description: "Системное имя",
     isRequired: true,
   },
   {
@@ -89,7 +120,7 @@ export const CustomFields = () => {
     <Container fluid>
       <Header as="h1">Заведение дополнительных полей по списку</Header>
       <Grid columns={2} stackable>
-        <Grid.Column width={6} style={{ maxWidth: "450px" }}>
+        <Grid.Column width={5} style={{ maxWidth: "450px" }}>
           <Segment style={{ position: "sticky", top: "15px" }}>
             <Form onSubmit={handleFormSubmit} id="scenario">
               <Form.Field>
@@ -127,13 +158,21 @@ export const CustomFields = () => {
             </Form>
           </Segment>
         </Grid.Column>
-        <Grid.Column width={10}>
-          <CsvDataInstruction columns={columns} linkToExample="" />
+        <Grid.Column width={11}>
+          <div
+            style={{
+              width: "100%",
+              overflowX: "scroll",
+              padding: "5px",
+              WebkitOverflowScrolling: "touch",
+            }}
+          >
+            <CsvDataInstruction columns={columns} linkToExample="" />
+          </div>
         </Grid.Column>
       </Grid>
-      <Grid columns={1} stackable>
-        <CfPreview columns={columns} data={data} />
-      </Grid>
+
+      <CfPreview columns={columns} data={data} />
     </Container>
   );
 };
