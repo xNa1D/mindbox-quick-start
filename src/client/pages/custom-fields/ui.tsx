@@ -49,6 +49,17 @@ const CustomFieldNameDescription = () => (
   </>
 );
 
+const DescriptionForBooleanFields = (text: string) => (
+  <>
+    <p>{text}</p>
+    <p>
+      Принимает:
+      <br />
+      <code>true / false</code>
+    </p>
+  </>
+);
+
 const columns: column[] = [
   {
     header: "CustomFieldEntity",
@@ -68,11 +79,19 @@ const columns: column[] = [
   },
   {
     header: "isClearable",
-    description: "Очищать, если не передано",
+    description: DescriptionForBooleanFields("Очищать, если не передано"),
     isRequired: true,
   },
-  { header: "isMultiple", description: "Множественное", isRequired: true },
-  { header: "isPublic", description: "Публичное", isRequired: true },
+  {
+    header: "isMultiple",
+    description: DescriptionForBooleanFields("Множественное"),
+    isRequired: true,
+  },
+  {
+    header: "isPublic",
+    description: DescriptionForBooleanFields("Публичное"),
+    isRequired: true,
+  },
 ];
 
 export const CustomFields = () => {
