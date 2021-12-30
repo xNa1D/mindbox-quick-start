@@ -30,7 +30,7 @@ const CustomFieldEntityDescription = () => (
   <>
     <p>Сущность, к которой создается доп поле</p>
     <p>Возможные значения:</p>
-    <ul style={{ width: "250px" }}>
+    <ul>
       {entityTypes.map(entity => (
         <li key={entity}>{entity}</li>
       ))}
@@ -41,7 +41,7 @@ const CustomFieldNameDescription = () => (
   <>
     <p>Тип данных</p>
     <p>Возможные значения:</p>
-    <ul style={{width: "250px"}}>
+    <ul>
       {valueTypes.map(value => (
         <li key={value}>{value}</li>
       ))}

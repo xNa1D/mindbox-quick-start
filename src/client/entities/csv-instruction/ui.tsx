@@ -31,7 +31,7 @@ export const CsvDataInstruction = ({
             </Table.HeaderCell>
             {columns.map(column => (
               <Table.HeaderCell key={column.header}>
-                {column.header}
+                <div style={{ width: "250px" }}>{column.header}</div>
               </Table.HeaderCell>
             ))}
           </Table.Row>
