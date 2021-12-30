@@ -49,24 +49,24 @@ describe("CfPreview", () => {
   test("When render table, should render headers", async () => {
     await customRender(<CfPreview columns={columns} data={data} />);
 
-    expect(screen.getByText(columns[0].description as string)).toBeInTheDocument();
+    expect(screen.getByText(columns[0].header as string)).toBeInTheDocument();
     expect(
-      screen.getByText(columns[1].description as string)
+      screen.getByText(columns[1].header as string)
     ).toBeInTheDocument();
     expect(
-      screen.getByText(columns[2].description as string)
+      screen.getByText(columns[2].header as string)
     ).toBeInTheDocument();
     expect(
-      screen.getByText(columns[3].description as string)
+      screen.getByText(columns[3].header as string)
     ).toBeInTheDocument();
     expect(
-      screen.getByText(columns[4].description as string)
+      screen.getByText(columns[4].header as string)
     ).toBeInTheDocument();
     expect(
-      screen.getByText(columns[5].description as string)
+      screen.getByText(columns[5].header as string)
     ).toBeInTheDocument();
     expect(
-      screen.getByText(columns[6].description as string)
+      screen.getByText(columns[6].header as string)
     ).toBeInTheDocument();
   });
 
