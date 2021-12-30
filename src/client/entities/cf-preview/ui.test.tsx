@@ -49,13 +49,25 @@ describe("CfPreview", () => {
   test("When render table, should render headers", async () => {
     await customRender(<CfPreview columns={columns} data={data} />);
 
-    expect(screen.getByText(columns[0].description)).toBeInTheDocument();
-    expect(screen.getByText(columns[1].description)).toBeInTheDocument();
-    expect(screen.getByText(columns[2].description)).toBeInTheDocument();
-    expect(screen.getByText(columns[3].description)).toBeInTheDocument();
-    expect(screen.getByText(columns[4].description)).toBeInTheDocument();
-    expect(screen.getByText(columns[5].description)).toBeInTheDocument();
-    expect(screen.getByText(columns[6].description)).toBeInTheDocument();
+    expect(screen.getByText(columns[0].description as string)).toBeInTheDocument();
+    expect(
+      screen.getByText(columns[1].description as string)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(columns[2].description as string)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(columns[3].description as string)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(columns[4].description as string)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(columns[5].description as string)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(columns[6].description as string)
+    ).toBeInTheDocument();
   });
 
   test("When pass CSV data, should render passed elements", async () => {
