@@ -186,7 +186,10 @@ export const CustomFields = () => {
               WebkitOverflowScrolling: "touch",
             }}
           >
-            <CsvDataInstruction columns={columns} linkToExample="" />
+            <CsvDataInstruction
+              columns={columns}
+              linkToExample="https://drive.google.com/file/d/1P5HTej0byZqvrjPP10dGweOi7WFLVzks/view?usp=sharing"
+            />
           </div>
         </Grid.Column>
       </Grid>
