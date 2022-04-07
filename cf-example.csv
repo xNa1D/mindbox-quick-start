@@ -1,0 +1,2 @@
+CustomFieldEntity,CustomFieldName,CustomFieldSystemName,CustomFieldValueTypes,isClearable,isMultiple,isPublic
+Клиент,Название,"Системное имя",Дата,false,false,true

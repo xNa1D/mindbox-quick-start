@@ -4,7 +4,8 @@ import { CustomFieldObject } from "src/server/custom-fields";
 import { column } from "src/client/entities/csv-instruction";
 
 export const CfPreview = ({
-  data, columns,
+  data,
+  columns,
 }: {
   data: CustomFieldObject[];
   columns: column[];
@@ -28,13 +29,13 @@ export const CfPreview = ({
             <Table.Cell>{row.CustomFieldSystemName}</Table.Cell>
             <Table.Cell>{row.CustomFieldValueTypes}</Table.Cell>
             <Table.Cell>
-              <Checkbox checked={!!row.isClearable} />
+              <Checkbox checked={row.isClearable === "true"} />
             </Table.Cell>
             <Table.Cell>
-              <Checkbox checked={!!row.isMultiple} />
+              <Checkbox checked={row.isMultiple === "true"} />
             </Table.Cell>
             <Table.Cell>
-              <Checkbox checked={!!row.isPublic} />
+              <Checkbox checked={row.isPublic === "true"} />
             </Table.Cell>
           </Table.Row>
         ))}
