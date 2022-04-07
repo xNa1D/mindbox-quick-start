@@ -60,21 +60,21 @@ const DescriptionForBooleanFields = (text: string) => (
   </>
 );
 
-const columns: column[] = [
+export const columns: column[] = [
   {
     header: "CustomFieldEntity",
     description: CustomFieldEntityDescription(),
-    isRequired: true,
-  },
-  {
-    header: "CustomFieldValueTypes",
-    description: CustomFieldNameDescription(),
     isRequired: true,
   },
   { header: "CustomFieldName", description: "Название", isRequired: true },
   {
     header: "CustomFieldSystemName",
     description: "Системное имя",
+    isRequired: true,
+  },
+  {
+    header: "CustomFieldValueTypes",
+    description: CustomFieldNameDescription(),
     isRequired: true,
   },
   {
